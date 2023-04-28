@@ -12,45 +12,6 @@ public class EmojiManagerTest {
 
     private static final String ALL_EMOJIS = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ World";
-    /*@Test
-    public void testContainsEmoji() {
-        String allEmojis = EmojiManager.EMOJIS_LENGTH_DESCENDING.stream().map(Emoji::getEmoji).collect(Collectors.joining());
-
-        long startTime = System.currentTimeMillis();
-        List<Emoji> str = EmojiManager.extractEmojisInOrderEmojiRegex(allEmojis);
-        long endTime = System.currentTimeMillis();
-        System.out.println("Total execution time: " + (endTime - startTime) + "ms");
-
-        Assert.assertEquals(EmojiManager.EMOJIS_LENGTH_DESCENDING.size(), str.size());
-
-        System.out.println(" ".chars().mapToObj(value -> "\\u" + Integer.toHexString(value).toUpperCase())
-                .collect(Collectors.joining("")));
-    }
-
-
-
-        /*Pattern pat = Pattern.compile("(🙅‍♀️)|(🙅‍♀)", Pattern.UNICODE_CASE);
-        Matcher match = pat.matcher(emoji);
-
-        System.out.println(emoji.chars().mapToObj(it -> "\\u" + Integer.toHexString(it).toUpperCase()).collect(Collectors.joining("")));
-        while (match.find()) {
-            System.out.println(match.group().chars().mapToObj(it -> "\\u" + Integer.toHexString(it).toUpperCase()).collect(Collectors.joining("")));
-        }
-    //  \uD83D\uDE45\u200D\u2640\uFE0F
-    //0 \uD83D\uDE45\u200D\u2640\uFE0F
-    //1 \uD83D\uDE45\u200D\u2640\uFE0F
-
-    //System.out.println("\uD83D\uDE45\u200D\u2640\uFE0F".replaceAll("(🙅‍♀)", "").chars().mapToObj(it -> "\\u" + Integer.toHexString(it).toUpperCase()).collect(Collectors.joining("")));
-
-
-    */
-    /*@Test
-    public void extractEmojis() {
-        List<Emoji> emojis = EmojiManager.testEmojiPattern(allEmojis);
-
-        Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size(), emojis.size());
-    }*/
-
 
     @Test
     public void extractEmojisInOrder() {

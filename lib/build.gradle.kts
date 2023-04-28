@@ -143,7 +143,6 @@ buildscript {
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.15.4")
-        //classpath(fileTree("libs",  "*.jar"))
         classpath(files(project.rootDir.path + "\\libs\\lib-${version}.jar"))
     }
 }
@@ -154,60 +153,12 @@ tasks.register("generateEmojis") {
 
         val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
 
-        println(
-            Jsoup.connect("https://emojiterra.com/face-blowing-a-kiss/")
-                .userAgent("Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2")
-                .header("Connection", "keep-alive")
-                .header("Cache-Control", "max-age=0")
-                .header("Upgrade-Insecure-Requests", "1")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-                .timeout(10000)
-                .get()
-                .getElementById("annotations-keywords")?.text()?.replace("Keywords:", "")?.split("|")?.map { it.trim() }
-        )
-
-
         val client = OkHttpClient()
         val mapper = jacksonObjectMapper()
 
         val githubEmojiAliasMap = getGithubEmojiAliasMap(client, mapper)
         val emojiTerraMap = getEmojiTerraMap()
         val discordAliases = getDiscordAliasMap(client, mapper)
-
-
-        /*
-                println("✊".chars()
-                    .mapToObj { """\u""" + it.toHexString().uppercase() }
-                    .collect(Collectors.joining("")))
-
-                println("✊✊".chars()
-                    .mapToObj { """\u""" + it.toHexString().uppercase() }
-                    .collect(Collectors.joining("")))
-
-                println("✊ ✊".chars()
-                    .mapToObj { """\u""" + it.toHexString().uppercase() }
-                    .collect(Collectors.joining("")))
-
-                unicodeLines.lines()
-                    .asSequence()
-                    .filter { it.contains("raised fist") }
-                    .map { it.split(";") }
-                    .forEach { stringList ->
-                        //https://www.unicodepedia.com/groups/basic-latin/
-                        val removeRegex = Regex("[\u0000-\u7E00]")
-                        val txt = stringList[1].trim()
-                        println(
-                            txt + " ---|--- " + txt.chars()
-                                .mapToObj { """\u""" + it.toHexString().uppercase() }
-                                .collect(Collectors.joining("")) + " -------------- " + stringList[1].split("#")[1].split(
-                                Regex("E[0-9]")
-                            )[0].trim().chars()
-                                .mapToObj { """\u""" + it.toHexString().uppercase() }
-                                .collect(Collectors.joining("")) + " ---TO--- " + txt.replace(removeRegex, ""))
-                    }
-
-        */
 
         val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
 
@@ -216,9 +167,10 @@ tasks.register("generateEmojis") {
             .filter { !it.startsWith("#") && it.isNotBlank() }
             .map { it.split(";") }
             .map { stringList ->
-                val cpOrigString = stringList[0].trim().replace(" ", "-")
                 // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
                 //[   [0]    ][                [1]                   ]
+
+                val cpOrigString = stringList[0].trim().replace(" ", "-")
 
                 val codepointsString = stringList[0].trim()
                     .split(" ")
@@ -244,16 +196,16 @@ tasks.register("generateEmojis") {
                 val completeDiscordAliases = buildSet {
 
                     discordAliases[codepointsString]?.let { addAll(it) }
-                    emojiTerraInfo?.discordCode?.let { add(it) } //TODO
+                    emojiTerraInfo?.discordCode?.let { add(it) }
                 }
 
                 val completeGitHubAliases = buildSet {
                     githubEmojiAliasMap[cpOrigString]?.let { addAll(it.map { it.first }.toList()) }
-                    emojiTerraInfo?.githubCode?.let { add(it) } //TODO
+                    emojiTerraInfo?.githubCode?.let { add(it) }
                 }
 
                 val completeSlackAliases = buildSet {
-                    emojiTerraInfo?.slackCode?.let { add(it) } //TODO
+                    emojiTerraInfo?.slackCode?.let { add(it) }
                 }
 
 
@@ -262,9 +214,9 @@ tasks.register("generateEmojis") {
                     codepointsString,
                     //Get each char and fill with leading 0 as the representation is: \u0000
                     "\"$charsAsString\"",
-                    completeDiscordAliases,//emojiTerraInfo?.discordCode,
-                    completeGitHubAliases,//emojiTerraInfo?.githubCode,
-                    completeSlackAliases,//emojiTerraInfo?.slackCode,
+                    completeDiscordAliases,
+                    completeGitHubAliases,
+                    completeSlackAliases,
                     Fitzpatrick.isFitzpatrickEmoji(codepointsString),
                     HairStyle.isHairStyleEmoji(codepointsString),
                     version,
@@ -273,29 +225,6 @@ tasks.register("generateEmojis") {
                 )
             }
             .toList()
-
-
-        /*val allDefaultUnicodeEmojis =
-            allUnicodeEmojis.filter { !Fitzpatrick.isFitzpatrickEmoji(it.emoji) && !HairStyle.isHairStyleEmoji(it.emoji) }
-
-        allUnicodeEmojis.filter { Fitzpatrick.isFitzpatrickEmoji(it.emoji) }
-            .forEach { fitzpatrick: Emoji ->
-                allDefaultUnicodeEmojis.firstOrNull { it.emoji == Fitzpatrick.removeFitzpatrick(fitzpatrick.emoji) }?.supportsFitzpatrick =
-                    true
-            }
-
-        allUnicodeEmojis.filter { HairStyle.isHairStyleEmoji(it.emoji) }
-            .forEach { hairStyle: Emoji ->
-                allDefaultUnicodeEmojis.firstOrNull { it.emoji == HairStyle.removeHairStyle(hairStyle.emoji) }?.supportsHairStyle =
-                    true
-            }*/
-
-
-        /*allUnicodeEmojis.filter { HairStyle.isHairStyleEmoji(it.emoji) }
-            .forEach { hairStyle: Emoji ->
-                allUnicodeEmojis.firstOrNull { it.emoji == HairStyle.removeHairStyle(hairStyle.emoji) }?.supportsHairStyle =
-                    true
-            }*/
 
         //val fileRead = File("$projectDir/src/main/resources/emojis-override.json") TODO: Allow specific overrides or additions to i.e. aliases
 
@@ -348,7 +277,6 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
             ).replace(".png?v8", "", true)
         }
         .groupBy { it.second }
-    //{1F44D=[(+1, 1F44D), (thumbsup, 1F44D)]
 }
 
 fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
@@ -361,7 +289,6 @@ fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
 
     return buildMap {
         list.select("tbody > tr > td > a")
-            //.take(1)
             .mapIndexed { index, listElement ->
 
                 if (index % 10 == 0) println(index)
@@ -395,7 +322,6 @@ fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
 
 }
 
-
 data class Emoji(
     val emoji: String,
     @JsonRawValue val unicode: String,
@@ -408,53 +334,6 @@ data class Emoji(
     val qualification: String,
     val description: String
 )
-/*
-fun codepointToString(cp: Int): String {
-    val sb: StringBuilder = StringBuilder()
-    if (Character.isBmpCodePoint(cp)) {
-        sb.append(cp.toChar())
-    } else if (Character.isValidCodePoint(cp)) {
-        sb.append(Character.highSurrogate(cp))
-        sb.append(Character.lowSurrogate(cp))
-    } else {
-        sb.append('?')
-    }
-    return sb.toString()
-}
-
-enum class Fitzpatrick(val unicode: String) {
-    LIGHT_SKIN("🏻"),
-    MEDIUM_LIGHT_SKIN("🏼"),
-    MEDIUM_SKIN("🏽"),
-    MEDIUM_DARK_SKIN("🏾"),
-    DARK_SKIN("🏿");
-
-    companion object {
-        fun isFitzpatrickEmoji(unicode: String): Boolean =
-            values().any { unicode.contains(it.unicode) && unicode != it.unicode }
-
-        fun removeFitzpatrick(unicode: String): String {
-            return values().filter { unicode.contains(it.unicode) }.map { unicode.removeSuffix(it.unicode) }.first()
-        }
-    }
-}
-
-
-enum class HairStyle(val unicode: String) {
-    RED_HAIR("🦰"),
-    CURLY_HAIR("🦱"),
-    WHITE_HAIR("🦳"),
-    BALD("🦲");
-
-    companion object {
-        fun isHairStyleEmoji(unicode: String): Boolean =
-            values().any { unicode.contains(it.unicode) && unicode != it.unicode }
-
-        fun removeHairStyle(unicode: String): String {
-            return values().filter { unicode.contains(it.unicode) }.map { unicode.removeSuffix(it.unicode) }.first()
-        }
-    }
-}*/
 
 fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, List<String>> {
     val discordEmojiAliasUrl = "https://emzi0767.gl-pages.emzi0767.dev/discord-emoji/discordEmojiMap.json"
