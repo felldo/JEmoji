@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
+
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.internal.toHexString
@@ -51,7 +52,7 @@ tasks.named("build") {
 tasks.register("copyJarToProject") {
     doLast {
         copy {
-            from("$buildDir/libs/lib-${version}.jar")
+            from("$buildDir/libs/jemoji.jar")
             into(project.rootDir.path + "\\libs")
         }
     }
@@ -143,12 +144,12 @@ buildscript {
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.15.4")
-        classpath(files(project.rootDir.path + "\\libs\\lib-${version}.jar"))
+        classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
 
 tasks.register("generateEmojis") {
-    dependsOn("build")
+    //dependsOn("build")
     doLast {
 
         val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
@@ -277,6 +278,7 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
             ).replace(".png?v8", "", true)
         }
         .groupBy { it.second }
+    //{1F44D=[(+1, 1F44D), (thumbsup, 1F44D)]
 }
 
 fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
