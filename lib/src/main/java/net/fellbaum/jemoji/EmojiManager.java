@@ -25,10 +25,6 @@ public final class EmojiManager {
     private static final Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    //WEG MACHEN?
-    private static final Pattern EMOJI_PATTERN_REMOVE_OTHER_CHARS;
-
-
     private static final Comparator<Emoji> EMOJI_CHAR_COMPARATOR = (Emoji o1, Emoji o2) -> {
         if (o1.getEmoji().length() == o2.getEmoji().length()) return 0;
         return o1.getEmoji().length() > o2.getEmoji().length() ? -1 : 1;
@@ -60,7 +56,6 @@ public final class EmojiManager {
                     )
             ));
 
-            EMOJI_PATTERN_REMOVE_OTHER_CHARS = Pattern.compile("[^" + EMOJI_CHAR_TO_EMOJI.keySet().stream().map(Pattern::quote).collect(Collectors.joining("|")) + "]");
             EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
                     .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")), Pattern.UNICODE_CHARACTER_CLASS);
         } catch (final JsonProcessingException e) {
