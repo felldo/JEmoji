@@ -5,7 +5,7 @@ JEmoji is an emoji library for Java with a complete list of all emojis from the 
 ## Why another emoji library?
 
 There are already plenty of emoji libraries for Java but most of them are either incomplete or not up to date.
-JEmoji has a complete list of all emojis of the unicode consortium.
+JEmoji has a complete list of all emojis from the unicode consortium.
 This list can be generated at any time with executing only 1 task. This has a great advantage over other libraries, as
 they are either not maintained anymore or require a lot of manual work to update their list of emojis.
 In addition, multiple sources are fetched to provide additional information about the emojis.
@@ -16,8 +16,23 @@ In addition, multiple sources are fetched to provide additional information abou
 - [EmojiTerra](https://emojiterra.com/list/) for additional information about emojis like aliases
 - [discord-emoji by Emzi0767](https://gitlab.emzi0767.dev/Emzi0767/discord-emoji) for additional information about emojis for Discord
 
-## Install
+## Installation
 
+### Gradle Kotlin DSL
+
+```kotlin
+implementation("net.fellbaum:jemoji:1.0.0")
+```
+
+### Maven
+
+```xml
+<dependency>
+  <groupId>net.fellbaum</groupId>
+  <artifactId>jemoji</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
 ## Usage
 
