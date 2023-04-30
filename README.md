@@ -1,3 +1,6 @@
+![Unicode Version](https://img.shields.io/badge/Unicode_version-15.0-critical?style=for-the-badge)
+![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
 # Java Emoji (JEmoji)
 
 JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium. 
