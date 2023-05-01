@@ -1,3 +1,4 @@
+<a name="startReadme"></a>
 ![Unicode Version](https://img.shields.io/badge/Unicode_version-15.0-critical?style=for-the-badge)
 ![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
@@ -25,20 +26,21 @@ as possible.
 
 ## Installation
 
+Replace the ``VERSION``  with the latest version shown at the [start](#startReadme)start of the README
+
 ### Gradle Kotlin DSL
 
 ```kotlin
-implementation("net.fellbaum:jemoji:1.0.0")
+implementation("net.fellbaum:jemoji:VERSION")
 ```
 
 ### Maven
 
 ```xml
-
 <dependency>
     <groupId>net.fellbaum</groupId>
     <artifactId>jemoji</artifactId>
-    <version>1.0.0</version>
+    <version>VERSION</version>
 </dependency>
 ```
 
@@ -131,3 +133,8 @@ class Emoji {
 + getDescription() String
 }
 ```
+
+## Emoji JSON list Generation
+
+The emoji list can be easily generated with the ``generateEmojis`` Gradle task. The generated list will be saved in the
+``src/main/resources`` folder.
