@@ -26,7 +26,7 @@ as possible.
 
 ## Installation
 
-Replace the ``VERSION``  with the latest version shown at the [start](#startReadme)start of the README
+Replace the ``VERSION``  with the latest version shown at the [start](#startReadme) of the README
 
 ### Gradle Kotlin DSL
 
