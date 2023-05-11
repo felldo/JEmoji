@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EmojiManagerTest {
@@ -15,9 +16,16 @@ public class EmojiManagerTest {
 
     @Test
     public void extractEmojisInOrder() {
-        List<Emoji> str = EmojiManager.extractEmojisInOrder(ALL_EMOJIS);
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(ALL_EMOJIS + ALL_EMOJIS);
 
-        Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size(), str.size());
+        Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size() * 2, emojis.size());
+    }
+
+    @Test
+    public void extractEmojis() {
+        Set<Emoji> emojis = EmojiManager.extractEmojis(ALL_EMOJIS + ALL_EMOJIS);
+
+        Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size(), emojis.size());
     }
 
     @Test

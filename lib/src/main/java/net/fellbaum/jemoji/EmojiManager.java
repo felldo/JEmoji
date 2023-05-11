@@ -14,20 +14,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public final class EmojiManager {
 
     private static final String PATH = "emojis.json";
 
     private static final Map<String, Emoji> EMOJI_CHAR_TO_EMOJI;
-    private static final Map<Character, List<Emoji>> EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING;
+    private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
 
     private static final Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     private static final Comparator<Emoji> EMOJI_CHAR_COMPARATOR = (Emoji o1, Emoji o2) -> {
-        if (o1.getEmoji().length() == o2.getEmoji().length()) return 0;
-        return o1.getEmoji().length() > o2.getEmoji().length() ? -1 : 1;
+        if (o1.getEmoji().codePoints().toArray().length == o2.getEmoji().codePoints().toArray().length) return 0;
+        return o1.getEmoji().codePoints().toArray().length > o2.getEmoji().codePoints().toArray().length ? -1 : 1;
     };
 
     static {
@@ -45,7 +46,7 @@ public final class EmojiManager {
             EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CHAR_COMPARATOR).collect(Collectors.toList()));
 
             EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING = emojis.stream().collect(Collectors.groupingBy(
-                    emoji -> emoji.getEmoji().charAt(0),
+                    emoji -> emoji.getEmoji().codePoints().toArray()[0],
                     LinkedHashMap::new,
                     Collectors.collectingAndThen(
                             Collectors.toList(),
@@ -214,35 +215,34 @@ public final class EmojiManager {
 
         final List<Emoji> emojis = new ArrayList<>();
 
-        final int textLength = text.length();
+        final int[] textCodePointsArray = text.codePoints().toArray();
+        final long textCodePointsLength = textCodePointsArray.length;
 
-        for (int textIndex = 0; textIndex < textLength; textIndex++) {
-            final List<Emoji> emojisByChar = EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(text.charAt(textIndex));
-            if (emojisByChar == null) continue;
-            for (Emoji emoji : emojisByChar) {
-                final int emojiCharLength = emoji.getEmoji().length();
-                if ((textIndex + emojiCharLength) <= textLength) {
-                    for (int i = 0; i < emojiCharLength; i++) {
-                        if (text.charAt(textIndex + i) != emoji.getEmoji().charAt(i)) {
-                            break;
-                        }
-                        if (i == emojiCharLength - 1) {
-                            emojis.add(emoji);
-                            textIndex += emojiCharLength - 1;
-                            break;
-                        }
-                    }
-                    /*
-                    if (text.substring(textIndex, textIndex + emojiCharLength).equals(emoji.getEmoji())) {
-                        emojis.add(emoji);
-                        textIndex += emojiCharLength - 1;
+        nextTextIteration:
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
+            if (emojisByCodePoint == null) continue;
+            for (final Emoji emoji : emojisByCodePoint) {
+                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int emojiCodePointsLength = emojiCodePointsArray.length;
+                // Emoji code points are in bounds of the text code points
+                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+                    continue;
+                }
+
+                for (int i = 0; i < emojiCodePointsLength; i++) {
+                    if (textCodePointsArray[textIndex + i] != emojiCodePointsArray[i]) {
                         break;
                     }
-                     */
+                    if (i == emojiCodePointsLength - 1) {
+                        emojis.add(emoji);
+                        textIndex += emojiCodePointsLength - 1;
+                        continue nextTextIteration;
+                    }
                 }
             }
         }
-        return emojis;
+        return Collections.unmodifiableList(emojis);
     }
 
     /**
@@ -252,7 +252,7 @@ public final class EmojiManager {
      * @return A list of emojis.
      */
     public static Set<Emoji> extractEmojis(final String text) {
-        return new HashSet<>(extractEmojisInOrder(text));
+        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
     }
 
     /**
