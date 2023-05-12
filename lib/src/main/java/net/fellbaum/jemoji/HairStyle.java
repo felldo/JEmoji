@@ -2,7 +2,6 @@ package net.fellbaum.jemoji;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public enum HairStyle {
 

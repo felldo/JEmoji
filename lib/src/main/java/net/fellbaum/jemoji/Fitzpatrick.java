@@ -2,15 +2,14 @@ package net.fellbaum.jemoji;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public enum Fitzpatrick {
 
-    LIGHT_SKIN("🏻"),
-    MEDIUM_LIGHT_SKIN("🏼"),
-    MEDIUM_SKIN("🏽"),
-    MEDIUM_DARK_SKIN("🏾"),
-    DARK_SKIN("🏿");
+    LIGHT_SKIN("\uD83C\uDFFB"),
+    MEDIUM_LIGHT_SKIN("\uD83C\uDFFC"),
+    MEDIUM_SKIN("\uD83C\uDFFD"),
+    MEDIUM_DARK_SKIN("\uD83C\uDFFE"),
+    DARK_SKIN("\uD83C\uDFFF");
 
     private static final List<Fitzpatrick> FITZPATRICK_LIST = Arrays.asList(values());
     private final String unicode;
