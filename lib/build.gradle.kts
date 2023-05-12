@@ -3,7 +3,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
-
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.internal.toHexString
@@ -127,12 +126,37 @@ signing {
     sign(publishing.publications["JEMOJI"])
 }
 
-tasks.javadoc {
-    isFailOnError = false
-    if (JavaVersion.current().isJava9Compatible) {
-        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+tasks.withType<Javadoc>().configureEach {
+    options {
+        this as StandardJavadocDocletOptions
+        locale = "en"
+        encoding = "UTF-8"
+        docTitle = "JEmoji ${project.version}"
+        windowTitle = "$docTitle Documentation"
+        links("https://docs.oracle.com/javase/8/docs/api/")
+        isUse = true
+        isVersion = true
+        isAuthor = true
+        isSplitIndex = true
+
+        val toolchain = javadocTool
+            .map { JavaVersion.toVersion(it.metadata.languageVersion) }
+            .orElse(provider { JavaVersion.current() })
+            .get()
+        if (toolchain.isCompatibleWith(JavaVersion.VERSION_1_9)) {
+            addBooleanOption("html5", true)
+            addStringOption("-release", java.targetCompatibility.majorVersion)
+            if (toolchain.isCompatibleWith(JavaVersion.VERSION_11) && !toolchain.isCompatibleWith(JavaVersion.VERSION_13)) {
+                addBooleanOption("-no-module-directories", true)
+            }
+        } else {
+            source = java.sourceCompatibility.toString()
+        }
     }
 }
+
+
+
 
 buildscript {
     repositories {
