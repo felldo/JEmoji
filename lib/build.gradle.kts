@@ -199,67 +199,104 @@ tasks.register("generateEmojis") {
 
         val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
 
-        val allUnicodeEmojis = unicodeLines.lines()
-            .asSequence()
-            .filter { !it.startsWith("#") && it.isNotBlank() }
-            .map { it.split(";") }
-            .map { stringList ->
-                // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
-                //[   [0]    ][                [1]                   ]
+        // drop the first block as it's just the header
+        val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
+            /*
+                "group" is a string containing everything from a group which looks like:
+                # group: Smileys & Emotion
+                # subgroup: face-smiling
+                1F600     ; fully-qualified     # 😀 E0.6 grinning face
 
-                val cpOrigString = stringList[0].trim().replace(" ", "-")
+                # subgroup: face-affection
+                1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
+             */
 
-                val codepointsString = stringList[0].trim()
-                    .split(" ")
-                    .joinToString("") { String(Character.toChars(it.toInt(16))) }
+            /*
+                "groupSplit" is a list containing the group name and all subgroups
+                [0] = group name
+                [1] = subgroup 1
+                [2] = subgroup 2
+            */
+            val groupSplit = group.split("# subgroup: ")
 
-                //  fully-qualified     # 👍 E0.6 thumbs up
-                //[        [0]          ][      [1]       ]
-                // limit split to 1 because of the # keycap emoji description
-                val information = stringList[1].split("#", limit = 2)
-                val qualification = information[0].trim()
+            // Get the first line of the group which is the group name and ignore the rest as they are just empty lines
+            val groupName = groupSplit[0].lines()[0]
 
-                // 👍 E0.6 thumbs up
-                // [0] [1] [2]
-                val otherInformation = information[1].trim().split(" ", limit = 3)
-                val version = otherInformation[1].removePrefix("E").toDouble()
-                val emojiDescription = otherInformation[2].trim()
-                val emojiTerraInfo = emojiTerraMap[codepointsString]
+            groupSplit.drop(1).flatMap { subGroup ->
+                /*
+                    "subGroup" is a string containing everything from a subgroup which looks like:
+                    face-smiling
+                    1F600     ; fully-qualified     # 😀 E0.6 grinning face
 
-                val charsAsString = codepointsString.chars()
-                    .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
-                    .collect(Collectors.joining(""))
+                    face-affection
+                    1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
+                 */
+                val subGroupLines = subGroup.lines()
+                val subGroupName = subGroupLines[0]
+                //println(subGroupName)
+                subGroupLines.drop(1)
+                    .filter { !it.startsWith("#") && it.isNotBlank() }
+                    .map { it.split(";") }
+                    .map { stringList ->
+                        // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
+                        //[   [0]    ][                [1]                   ]
 
-                val completeDiscordAliases = buildSet {
+                        val cpOrigString = stringList[0].trim().replace(" ", "-")
 
-                    discordAliases[codepointsString]?.let { addAll(it) }
-                    emojiTerraInfo?.discordCode?.let { add(it) }
-                }
+                        val codepointsString = stringList[0].trim()
+                            .split(" ")
+                            .joinToString("") { String(Character.toChars(it.toInt(16))) }
 
-                val completeGitHubAliases = buildSet {
-                    githubEmojiAliasMap[cpOrigString]?.let { addAll(it.map { it.first }.toList()) }
-                    emojiTerraInfo?.githubCode?.let { add(it) }
-                }
+                        //  fully-qualified     # 👍 E0.6 thumbs up
+                        //[        [0]          ][      [1]       ]
+                        // limit split to 1 because of the # keycap emoji description
+                        val information = stringList[1].split("#", limit = 2)
+                        val qualification = information[0].trim()
 
-                val completeSlackAliases = buildSet {
-                    emojiTerraInfo?.slackCode?.let { add(it) }
-                }
+                        // 👍 E0.6 thumbs up
+                        // [0] [1] [2]
+                        val otherInformation = information[1].trim().split(" ", limit = 3)
+                        val version = otherInformation[1].removePrefix("E").toDouble()
+                        val emojiDescription = otherInformation[2].trim()
+                        val emojiTerraInfo = emojiTerraMap[codepointsString]
 
-                Emoji(
-                    codepointsString,
-                    //Get each char and fill with leading 0 as the representation is: \u0000
-                    "\"$charsAsString\"",
-                    completeDiscordAliases,
-                    completeGitHubAliases,
-                    completeSlackAliases,
-                    Fitzpatrick.isFitzpatrickEmoji(codepointsString),
-                    HairStyle.isHairStyleEmoji(codepointsString),
-                    version,
-                    qualification,
-                    emojiDescription
-                )
+                        val charsAsString = codepointsString.chars()
+                            .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
+                            .collect(Collectors.joining(""))
+
+                        val completeDiscordAliases = buildSet {
+
+                            discordAliases[codepointsString]?.let { addAll(it) }
+                            emojiTerraInfo?.discordCode?.let { add(it) }
+                        }
+
+                        val completeGitHubAliases = buildSet {
+                            githubEmojiAliasMap[cpOrigString]?.let { addAll(it.map { it.first }.toList()) }
+                            emojiTerraInfo?.githubCode?.let { add(it) }
+                        }
+
+                        val completeSlackAliases = buildSet {
+                            emojiTerraInfo?.slackCode?.let { add(it) }
+                        }
+
+                        Emoji(
+                            codepointsString,
+                            //Get each char and fill with leading 0 as the representation is: \u0000
+                            "\"$charsAsString\"",
+                            completeDiscordAliases,
+                            completeGitHubAliases,
+                            completeSlackAliases,
+                            Fitzpatrick.isFitzpatrickEmoji(codepointsString),
+                            HairStyle.isHairStyleEmoji(codepointsString),
+                            version,
+                            qualification,
+                            emojiDescription,
+                            groupName,
+                            subGroupName
+                        )
+                    }.toList()
             }
-            .toList()
+        }
 
         //val fileRead = File("$projectDir/src/main/resources/emojis-override.json") TODO: Allow specific overrides or additions to i.e. aliases
 
@@ -368,7 +405,9 @@ data class Emoji(
     var hasHairStyle: Boolean,
     val version: Double,
     val qualification: String,
-    val description: String
+    val description: String,
+    val group: String,
+    val subgroup: String
 )
 
 fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, List<String>> {

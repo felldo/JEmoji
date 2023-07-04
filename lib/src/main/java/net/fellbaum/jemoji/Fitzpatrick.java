@@ -18,14 +18,31 @@ public enum Fitzpatrick {
         this.unicode = unicode;
     }
 
+    /**
+     * Gets the unicode of the fitzpatrick modifier.
+     *
+     * @return The unicode of the fitzpatrick modifier.
+     */
     public String getUnicode() {
         return unicode;
     }
 
+    /**
+     * Check if the given emoji contains a fitzpatrick modifier.
+     *
+     * @param unicode The unicode of the emoji.
+     * @return True if the emoji contains a fitzpatrick modifier.
+     */
     public static boolean isFitzpatrickEmoji(final String unicode) {
         return FITZPATRICK_LIST.stream().anyMatch(fitzpatrick -> unicode.contains(fitzpatrick.unicode) && !unicode.equals(fitzpatrick.unicode));
     }
 
+    /**
+     * Removes the fitzpatrick modifier from the given emoji.
+     *
+     * @param unicode The unicode of the emoji.
+     * @return The unicode of the emoji without the fitzpatrick modifier.
+     */
     public static String removeFitzpatrick(String unicode) {
         for (Fitzpatrick value : FITZPATRICK_LIST) {
             unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");

@@ -5,7 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Emoji {
@@ -20,6 +25,8 @@ public class Emoji {
     private final double version;
     private final Qualification qualification;
     private final String description;
+    private final EmojiGroup group;
+    private final EmojiSubGroup subgroup;
 
     private final List<String> allAliases;
 
@@ -33,7 +40,9 @@ public class Emoji {
             @JsonProperty("hasHairStyle") boolean hasHairStyle,
             @JsonProperty("version") double version,
             @JsonProperty("qualification") Qualification qualification,
-            @JsonProperty("description") String description) {
+            @JsonProperty("description") String description,
+            @JsonProperty("group") EmojiGroup group,
+            @JsonProperty("subgroup") EmojiSubGroup subgroup) {
         this.emoji = emoji;
         this.unicode = unicode;
         this.discordAliases = discordAliases;
@@ -44,6 +53,8 @@ public class Emoji {
         this.version = version;
         this.qualification = qualification;
         this.description = description;
+        this.group = group;
+        this.subgroup = subgroup;
 
         Set<String> aliases = new HashSet<>();
         aliases.addAll(getDiscordAliases());
@@ -195,6 +206,24 @@ public class Emoji {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Gets the group or "category" this emoji belongs to.
+     *
+     * @return The group this emoji belongs to.
+     */
+    public EmojiGroup getGroup() {
+        return group;
+    }
+
+    /**
+     * Gets the sub-group of this emoji.
+     *
+     * @return The sub-group of this emoji.
+     */
+    public EmojiSubGroup getSubgroup() {
+        return subgroup;
     }
 
     @Override
