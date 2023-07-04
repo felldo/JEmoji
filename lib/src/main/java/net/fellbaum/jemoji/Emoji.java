@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Emoji {
@@ -48,12 +45,11 @@ public class Emoji {
         this.qualification = qualification;
         this.description = description;
 
-        List<String> aliases = new ArrayList<>();
+        Set<String> aliases = new HashSet<>();
         aliases.addAll(getDiscordAliases());
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
-
-        allAliases = Collections.unmodifiableList(aliases);
+        allAliases = Collections.unmodifiableList(new ArrayList<>(aliases));
     }
 
     /**

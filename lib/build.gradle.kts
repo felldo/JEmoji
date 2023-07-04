@@ -245,8 +245,6 @@ tasks.register("generateEmojis") {
                     emojiTerraInfo?.slackCode?.let { add(it) }
                 }
 
-
-
                 Emoji(
                     codepointsString,
                     //Get each char and fill with leading 0 as the representation is: \u0000
