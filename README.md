@@ -131,6 +131,8 @@ class Emoji {
 + getVersion() double
 + getQualification() Qualification
 + getDescription() String
++ getGroup() EmojiGroup
++ getSubGroup() EmojiSubGroup
 }
 ```
 

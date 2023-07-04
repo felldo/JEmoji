@@ -218,9 +218,9 @@ public class Emoji {
     }
 
     /**
-     * Gets the sub-group of this emoji.
+     * Gets the subgroup of this emoji.
      *
-     * @return The sub-group of this emoji.
+     * @return The subgroup of this emoji.
      */
     public EmojiSubGroup getSubgroup() {
         return subgroup;
@@ -239,7 +239,8 @@ public class Emoji {
                 ", version=" + version +
                 ", qualification='" + qualification + '\'' +
                 ", description='" + description + '\'' +
-                ", allAliases=" + allAliases +
+                ", group=" + group +
+                ", subgroup=" + subgroup +
                 '}';
     }
 
