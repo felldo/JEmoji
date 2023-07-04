@@ -22,11 +22,11 @@ public enum HairStyle {
     }
 
     public static boolean isHairStyleEmoji(String unicode) {
-        return Arrays.stream(values()).anyMatch(hairStyle -> unicode.contains(hairStyle.unicode) && !unicode.equals(hairStyle.unicode));
+        return HAIR_STYLE_LIST.stream().anyMatch(hairStyle -> unicode.contains(hairStyle.unicode) && !unicode.equals(hairStyle.unicode));
     }
 
     public static String removeHairStyle(String unicode) {
-        for (HairStyle value : values()) {
+        for (HairStyle value : HAIR_STYLE_LIST) {
             unicode = unicode.replaceAll(value.getUnicode(), "");
         }
         return unicode;

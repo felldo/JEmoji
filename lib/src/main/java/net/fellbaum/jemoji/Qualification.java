@@ -2,6 +2,9 @@ package net.fellbaum.jemoji;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Qualification {
 
     COMPONENT("component"),
@@ -9,6 +12,7 @@ public enum Qualification {
     MINIMALLY_QUALIFIED("minimally-qualified"),
     UNQUALIFIED("unqualified");
 
+    private static final List<Qualification> QUALIFICATION_LIST = Arrays.asList(values());
     private final String qualification;
 
     Qualification(String qualification) {
@@ -21,7 +25,7 @@ public enum Qualification {
 
     @JsonCreator
     public static Qualification fromString(String qualification) {
-        for (Qualification q : Qualification.values()) {
+        for (Qualification q : QUALIFICATION_LIST) {
             if (q.getQualification().equals(qualification)) {
                 return q;
             }

@@ -23,11 +23,11 @@ public enum Fitzpatrick {
     }
 
     public static boolean isFitzpatrickEmoji(String unicode) {
-        return Arrays.stream(values()).anyMatch(fitzpatrick -> unicode.contains(fitzpatrick.unicode) && !unicode.equals(fitzpatrick.unicode));
+        return FITZPATRICK_LIST.stream().anyMatch(fitzpatrick -> unicode.contains(fitzpatrick.unicode) && !unicode.equals(fitzpatrick.unicode));
     }
 
     public static String removeFitzpatrick(String unicode) {
-        for (Fitzpatrick value : values()) {
+        for (Fitzpatrick value : FITZPATRICK_LIST) {
             unicode = unicode.replaceAll(value.getUnicode(), "");
         }
         return unicode;
