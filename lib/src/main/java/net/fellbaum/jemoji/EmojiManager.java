@@ -79,6 +79,9 @@ public final class EmojiManager {
         }
     }
 
+    private EmojiManager() {
+    }
+
     /**
      * Returns the emoji for the given unicode.
      *
@@ -127,10 +130,11 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getByAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String checkedAlias = removeColonFromAlias(alias);
+        final String aliasWithoutColon = removeColonFromAlias(alias);
+        final String aliasWithColon = addColonToAlias(alias);
         return EMOJI_CHAR_TO_EMOJI.values()
                 .stream()
-                .filter(emoji -> emoji.getAllAliases().contains(checkedAlias))
+                .filter(emoji -> emoji.getAllAliases().contains(aliasWithoutColon) || emoji.getAllAliases().contains(aliasWithColon))
                 .findFirst();
     }
 
@@ -142,10 +146,11 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getByDiscordAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String checkedAlias = removeColonFromAlias(alias);
+        final String aliasWithoutColon = removeColonFromAlias(alias);
+        final String aliasWithColon = addColonToAlias(alias);
         return EMOJI_CHAR_TO_EMOJI.values()
                 .stream()
-                .filter(emoji -> emoji.getDiscordAliases().contains(checkedAlias))
+                .filter(emoji -> emoji.getDiscordAliases().contains(aliasWithoutColon) || emoji.getDiscordAliases().contains(aliasWithColon))
                 .findFirst();
     }
 
@@ -157,10 +162,11 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getByGithubAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String checkedAlias = removeColonFromAlias(alias);
+        final String aliasWithoutColon = removeColonFromAlias(alias);
+        final String aliasWithColon = addColonToAlias(alias);
         return EMOJI_CHAR_TO_EMOJI.values()
                 .stream()
-                .filter(emoji -> emoji.getGithubAliases().contains(checkedAlias))
+                .filter(emoji -> emoji.getGithubAliases().contains(aliasWithoutColon) || emoji.getGithubAliases().contains(aliasWithColon))
                 .findFirst();
     }
 
@@ -172,15 +178,20 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getBySlackAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String checkedAlias = removeColonFromAlias(alias);
+        final String aliasWithoutColon = removeColonFromAlias(alias);
+        final String aliasWithColon = addColonToAlias(alias);
         return EMOJI_CHAR_TO_EMOJI.values()
                 .stream()
-                .filter(emoji -> emoji.getSlackAliases().contains(checkedAlias))
+                .filter(emoji -> emoji.getSlackAliases().contains(aliasWithoutColon) || emoji.getSlackAliases().contains(aliasWithColon))
                 .findFirst();
     }
 
     private static String removeColonFromAlias(final String alias) {
         return alias.startsWith(":") && alias.endsWith(":") ? alias.substring(1, alias.length() - 1) : alias;
+    }
+
+    private static String addColonToAlias(final String alias) {
+        return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
     }
 
     /**
@@ -217,6 +228,8 @@ public final class EmojiManager {
 
         final int[] textCodePointsArray = text.codePoints().toArray();
         final long textCodePointsLength = textCodePointsArray.length;
+
+        // JDK 21 Characters.isEmoji
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {

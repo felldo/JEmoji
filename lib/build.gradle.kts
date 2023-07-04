@@ -1,6 +1,20 @@
 import com.fasterxml.jackson.annotation.JsonRawValue
+//import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+/*import com.github.javaparser.ast.CompilationUnit
+import com.github.javaparser.ast.Modifier
+import com.github.javaparser.ast.NodeList
+import com.github.javaparser.ast.body.EnumConstantDeclaration
+import com.github.javaparser.ast.body.VariableDeclarator
+import com.github.javaparser.ast.expr.BooleanLiteralExpr
+import com.github.javaparser.ast.expr.DoubleLiteralExpr
+import com.github.javaparser.ast.expr.MethodCallExpr
+import com.github.javaparser.ast.expr.StringLiteralExpr
+import com.github.javaparser.ast.type.TypeParameter
+import com.github.javaparser.printer.DefaultPrettyPrinter
+import com.github.javaparser.printer.configuration.DefaultConfigurationOption
+import com.github.javaparser.printer.configuration.DefaultPrinterConfiguration*/
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
 import okhttp3.OkHttpClient
@@ -14,7 +28,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.github.ben-manes.versions") version "0.46.0"
+    id("com.github.ben-manes.versions") version "0.47.0"
 }
 
 repositories {
@@ -22,7 +36,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
 }
 
 testing {
@@ -155,19 +169,17 @@ tasks.withType<Javadoc>().configureEach {
     }
 }
 
-
-
-
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.15.0")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.0")
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
-        classpath("org.jsoup:jsoup:1.15.4")
+        classpath("org.jsoup:jsoup:1.16.1")
+        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.4")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
@@ -295,7 +307,7 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
             )
         }
         .map {
-            it.first to it.second.replace(
+            ":${it.first}:" to it.second.replace(
                 "https://github.githubassets.com/images/icons/emoji/unicode/",
                 "",
                 true
@@ -352,7 +364,7 @@ data class Emoji(
     val emoji: String,
     @JsonRawValue val unicode: String,
     val discordAliases: Set<String>,
-    val gitHubAliases: Set<String>,
+    val githubAliases: Set<String>,
     val slackAliases: Set<String>,
     var hasFitzpatrick: Boolean,
     var hasHairStyle: Boolean,
@@ -371,7 +383,7 @@ fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, 
     return buildMap {
         for (jsonNode in json.get("emojiDefinitions")) {
             val aliases = buildList {
-                jsonNode.get("names").forEach { add(it.asText()) }
+                jsonNode.get("namesWithColons").forEach { add(it.asText()) }
             }
 
             val key = jsonNode.get("surrogates").asText()
@@ -380,3 +392,417 @@ fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, 
         }
     }
 }
+
+/*
+
+// Try to create an enum with all emojis to work nicely with them and remove the dependency on Jackson
+
+val generatedSourcesDir = "$buildDir/generated/jemoji"
+sourceSets {
+    main {
+        java.setSrcDirs(java.srcDirs + files(generatedSourcesDir))
+    }
+}
+
+tasks.register("generateJavaSourceFiles") {
+    doLast {
+        val emojiNode =
+            jacksonObjectMapper().readTree(file(projectDir.absolutePath + "\\src\\main\\resources\\emojis.json"))
+
+        val fileName = "Emoji"
+        val path = listOf("net", "fellbaum", "jemoji")
+
+        val emojisPath = "${path.joinToString("/")}/$fileName.java"
+        val compilationUnit = CompilationUnit(path.joinToString("."))
+
+        compilationUnit.setStorage(file("$generatedSourcesDir/$emojisPath").toPath())
+
+        // IMPORTS
+        compilationUnit.addImport("java.util.Arrays")
+        compilationUnit.addImport("java.util.List")
+        compilationUnit.addImport("java.util.ArrayList")
+        compilationUnit.addImport("java.io.UnsupportedEncodingException")
+        compilationUnit.addImport("java.net.URLEncoder")
+        compilationUnit.addImport("java.util.Map")
+        compilationUnit.addImport("java.util.Collections")
+        compilationUnit.addImport("java.util.function.Function")
+        compilationUnit.addImport("java.nio.charset.StandardCharsets")
+        compilationUnit.addImport("java.util.stream.Collectors")
+
+        val enumFile = compilationUnit.addEnum(fileName)
+
+        //////////////////////////
+        // ENTRIES
+        //////////////////////////
+
+        // ALIASES
+        val nodeList = NodeList<EnumConstantDeclaration>()
+
+        // FIX DESCRIPTION ERRORS THAT CAUSE COMPILATION ERRORS WITH ENUM NAMES
+        // Basic allowed characters
+        val descriptionReplaceRegex = Regex("[^A-Z0-9_]+")
+        // Fix error with emoji names like Keycap: *
+        val descriptionReplaceStarRegex = Regex("\\*")
+        // Fix error with emoji names like Keycap: #
+        val descriptionReplaceHashRegex = Regex("#")
+        // Fix error with emoji names like: A button (blood type)
+        //which results in an ending _ in the name
+        val descriptionReplaceEndingUnderscoreRegex = Regex("_$")
+
+        emojiNode.forEach {
+            val discordAliases = getAndSanitizeEmojiAliases(it.get("discordAliases"))
+            val slackAliases = getAndSanitizeEmojiAliases(it.get("slackAliases"))
+            val githubAliases = getAndSanitizeEmojiAliases(it.get("githubAliases"))
+
+            val qualification = it.get("qualification").asText()
+
+            var constantName = it.get("description").asText()
+                .uppercase()
+                .replace(descriptionReplaceStarRegex, "STAR")
+                .replace(descriptionReplaceHashRegex, "HASH")
+                .replace(
+                    descriptionReplaceRegex,
+                    "_"
+                )
+                .replace(
+                    descriptionReplaceEndingUnderscoreRegex,
+                    ""
+                ) + (if (qualification != "fully-qualified") "_" + qualification.uppercase()
+                .replace(descriptionReplaceRegex, "_") else "")
+
+            // Special cases for emoji names that start with 1st, 2nd, 3rd
+            if (constantName.startsWith("1ST")) {
+                constantName = "FIR" + constantName.substring(1)
+            } else if (constantName.startsWith("2ND")) {
+                constantName = "SEC" + constantName.substring(1)
+            } else if (constantName.startsWith("3RD")) {
+                constantName = "THI" + constantName.substring(1)
+            }
+
+            val enumConstantDeclaration = EnumConstantDeclaration(constantName)
+                .addArgument(StringLiteralExpr(it.get("emoji").asText()))
+                .addArgument(StringLiteralExpr(it.get("unicode").asText()))
+                .addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
+                .addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
+                .addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
+                .addArgument(BooleanLiteralExpr(it.get("hasFitzpatrick").asBoolean()))
+                .addArgument(BooleanLiteralExpr(it.get("hasHairStyle").asBoolean()))
+                .addArgument(DoubleLiteralExpr(it.get("version").asDouble()))
+                .addArgument(MethodCallExpr("Qualification.fromString").addArgument(StringLiteralExpr(qualification)))
+                .addArgument(StringLiteralExpr(it.get("description").asText()))
+            nodeList.add(enumConstantDeclaration)
+        }
+
+        nodeList.groupBy { it.name.asString() }.onEach {
+            if (it.value.size > 1) {
+                it.value.forEachIndexed { index, enumConstantDeclaration ->
+                    enumConstantDeclaration.setName(enumConstantDeclaration.name.asString() + "_$index")
+                }
+            }
+        }
+
+        enumFile.setEntries(nodeList)
+
+        //////////////////////////
+        // FIELDS
+        //////////////////////////
+
+        val valuesVarDec = VariableDeclarator()
+        valuesVarDec.setName("VALUES")
+        valuesVarDec.setType("$fileName[]")
+        valuesVarDec.setInitializer(
+            """
+         values()
+         """.trimIndent()
+        )
+
+        enumFile.addPrivateField("$fileName[]", "VALUES")
+            .setFinal(true)
+            .setStatic(true)
+            .setVariable(0, valuesVarDec)
+
+        val emojiToObjectVarDec = VariableDeclarator()
+        emojiToObjectVarDec.setName("EMOJI_TO_OBJECT")
+        emojiToObjectVarDec.setType("Map<String, $fileName>")
+        emojiToObjectVarDec.setInitializer(
+            """
+         Collections.unmodifiableMap(
+                Arrays.stream(VALUES)
+                    .collect(Collectors.toMap($fileName::getEmoji, Function.identity())))
+         """.trimIndent()
+        )
+
+        enumFile.addPrivateField("Map<String, $fileName>", "EMOJI_TO_OBJECT")
+            .setFinal(true)
+            .setStatic(true)
+            .setVariable(0, emojiToObjectVarDec)
+
+        val allAliasesField = enumFile.addPrivateField("List<String>", "allAliases").setFinal(true)
+        val emojiField = enumFile.addPrivateField(String::class.java, "emoji").setFinal(true)
+        val unicodeField = enumFile.addPrivateField(String::class.java, "unicode").setFinal(true)
+        val discordAliasesField =
+            enumFile.addPrivateField(TypeParameter("List<String>"), "discordAliases").setFinal(true)
+        val slackAliasesField = enumFile.addPrivateField(TypeParameter("List<String>"), "slackAliases").setFinal(true)
+        val githubField = enumFile.addPrivateField(TypeParameter("List<String>"), "githubAliases").setFinal(true)
+        val hasFitzpatrickField = enumFile.addPrivateField(Boolean::class.java, "hasFitzpatrick").setFinal(true)
+        val hasHairStyleField = enumFile.addPrivateField(Boolean::class.java, "hasHairStyle").setFinal(true)
+        val versionField = enumFile.addPrivateField(Double::class.java, "version").setFinal(true)
+        val qualificationField = enumFile.addPrivateField("Qualification", "qualification").setFinal(true)
+        val descriptionField = enumFile.addPrivateField(String::class.java, "description").setFinal(true)
+
+        //////////////////////////
+        // CONSTRUCTOR
+        //////////////////////////
+        val enumConstructor = enumFile.addConstructor()
+
+        // Parameter
+        enumConstructor.addParameter(String::class.java, "emoji")
+        enumConstructor.addParameter(String::class.java, "unicode")
+        enumConstructor.addParameter(TypeParameter("List<String>"), "discordAliases")
+        enumConstructor.addParameter(TypeParameter("List<String>"), "slackAliases")
+        enumConstructor.addParameter(TypeParameter("List<String>"), "githubAliases")
+        enumConstructor.addParameter(Boolean::class.java, "hasFitzpatrick")
+        enumConstructor.addParameter(Boolean::class.java, "hasHairStyle")
+        enumConstructor.addParameter(Double::class.java, "version")
+        enumConstructor.addParameter("Qualification", "qualification")
+        enumConstructor.addParameter(String::class.java, "description")
+
+        // BODY
+        enumConstructor.createBody()
+            .addStatement("this.emoji = emoji;")
+            .addStatement("this.unicode = unicode;")
+            .addStatement("this.discordAliases = discordAliases;")
+            .addStatement("this.slackAliases = slackAliases;")
+            .addStatement("this.githubAliases = githubAliases;")
+            .addStatement("this.hasFitzpatrick = hasFitzpatrick;")
+            .addStatement("this.hasHairStyle = hasHairStyle;")
+            .addStatement("this.version = version;")
+            .addStatement("this.qualification = qualification;")
+            .addStatement("this.description = description;")
+            .addStatement("List<String> aliases = new ArrayList<>();")
+            .addStatement("aliases.addAll(getDiscordAliases());")
+            .addStatement("aliases.addAll(getGithubAliases());")
+            .addStatement("aliases.addAll(getSlackAliases());")
+            .addStatement("allAliases = Collections.unmodifiableList(aliases);")
+
+        // Generate methods below the constructor
+
+        emojiField.createGetter().setJavadocComment(
+            """
+                Gets the emoji.
+                
+                @return The emoji
+            """.trimIndent()
+        )
+        unicodeField.createGetter().setJavadocComment(
+            """
+                Gets the unicode representation of the emoji as a string i.e. \uD83D\uDC4D.
+                
+                @return The unicode representation of the emoji
+            """.trimIndent()
+        )
+        discordAliasesField.createGetter().setJavadocComment(
+            """
+                Gets the Discord aliases for this emoji.
+                
+                @return The Discord aliases for this emoji.
+            """.trimIndent()
+        )
+        slackAliasesField.createGetter().setJavadocComment(
+            """
+                Gets the GitHub aliases for this emoji.
+                
+                @return The Slack aliases for this emoji.
+            """.trimIndent()
+        )
+        githubField.createGetter().setJavadocComment(
+            """
+                Gets all the aliases for this emoji.
+                
+                @return All the aliases for this emoji.
+            """.trimIndent()
+        )
+        hasFitzpatrickField.createGetter().setName("hasFitzpatrickComponent").setJavadocComment(
+            """
+                Checks if this emoji has a fitzpatrick modifier.
+                
+                @return True if this emoji has a fitzpatrick modifier, false otherwise.
+            """.trimIndent()
+        )
+        hasHairStyleField.createGetter().setName("hasHairStyleComponent").setJavadocComment(
+            """
+                Checks if this emoji has a hairstyle modifier.
+                
+                @return True if this emoji has a hairstyle modifier, false otherwise.
+            """.trimIndent()
+        )
+        versionField.createGetter().setJavadocComment(
+            """
+                Gets the version this emoji was added to the unicode consortium.
+                
+                @return The version this emoji was added to the unicode consortium.
+            """.trimIndent()
+        )
+        qualificationField.createGetter().setJavadocComment(
+            """
+                Gets the qualification of this emoji.
+                
+                @return The qualification of this emoji.
+            """.trimIndent()
+        )
+        descriptionField.createGetter().setJavadocComment(
+            """
+                Gets the description of this emoji.
+                
+                @return The description of this emoji.
+            """.trimIndent()
+        )
+
+        // Generate additional Methods
+
+        enumFile.addMethod("getAllAliases", Modifier.Keyword.PUBLIC)
+            .setType("List<String>")
+            .setJavadocComment(
+                """
+                Gets all the aliases for this emoji.
+                
+                @return All the aliases for this emoji.
+            """.trimIndent()
+            )
+            .createBody()
+            .addStatement("return allAliases;")
+
+        enumFile.addMethod("getHtmlDecimalCode", Modifier.Keyword.PUBLIC)
+            .setType(String::class.java)
+            .setJavadocComment(
+                """
+                Gets the HTML decimal code for this emoji.
+                
+                @return The HTML decimal code for this emoji.
+            """.trimIndent()
+            )
+            .createBody()
+            .addStatement("return getEmoji().codePoints().mapToObj(operand -> \"&#\" + operand).collect(Collectors.joining(\";\")) + \";\";")
+
+
+        enumFile.addMethod("getHtmlHexadecimalCode", Modifier.Keyword.PUBLIC)
+            .setType(String::class.java)
+            .setJavadocComment(
+                """
+                Gets the HTML hexadecimal code for this emoji.
+                
+                @return The HTML hexadecimal code for this emoji.
+            """.trimIndent()
+            )
+            .createBody()
+            .addStatement("return getEmoji().codePoints().mapToObj(operand -> \"&#x\" + Integer.toHexString(operand).toUpperCase()).collect(Collectors.joining(\";\")) + \";\";")
+
+
+        enumFile.addMethod("getVariations", Modifier.Keyword.PUBLIC)
+            .setType("List<Emoji>")
+            .setJavadocComment(
+                """
+                Gets variations of this emoji with different Fitzpatrick or HairStyle modifiers, if there are any.
+                The returned list does not include this emoji itself.
+                
+                @return Variations of this emoji with different Fitzpatrick or HairStyle modifiers, if there are any.
+            """.trimIndent()
+            )
+            .createBody()
+            .addStatement("final String baseEmoji = HairStyle.removeHairStyle(Fitzpatrick.removeFitzpatrick(emoji));")
+            .addStatement(
+                """
+                return EmojiManager.getAllEmojis()
+                .parallelStream()
+                .filter(emoji -> HairStyle.removeHairStyle(Fitzpatrick.removeFitzpatrick(emoji.getEmoji())).equals(baseEmoji))
+                .filter(emoji -> !emoji.equals(this))
+                .collect(Collectors.toList());
+            """.trimIndent()
+            )
+
+        enumFile.addMethod("getURLEncoded", Modifier.Keyword.PUBLIC)
+            .setType(String::class.java)
+            .setJavadocComment(
+                """
+                Gets the URL encoded emoji.
+                
+                @return The URL encoded emoji
+            """.trimIndent()
+            )
+            .createBody()
+            .addStatement(
+                """
+                try {
+                   return URLEncoder.encode(getEmoji(), StandardCharsets.UTF_8.toString());
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+            """.trimIndent()
+            )
+
+        enumFile.addMethod("toString", Modifier.Keyword.PUBLIC)
+            .setType(String::class.java)
+            .addAnnotation(Override::class.java)
+            .createBody()
+            .addStatement(
+                """
+                return "$fileName{" +
+                "emoji='" + emoji + '\'' +
+                ", unicode='" + unicode + '\'' +
+                ", discordAliases=" + discordAliases +
+                ", slackAliases=" + slackAliases +
+                ", githubAliases=" + githubAliases +
+                ", hasFitzpatrick=" + hasFitzpatrick +
+                ", hasHairStyle=" + hasHairStyle +
+                ", version=" + version +
+                ", qualification=" + qualification +
+                ", description='" + description + '\'' +
+                '}';
+            """.trimIndent()
+            )
+
+        val config = DefaultPrinterConfiguration()
+            .addOption(DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.ORDER_IMPORTS, true))
+            .addOption(DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.END_OF_LINE_CHARACTER, "\n"))
+            .addOption(
+                DefaultConfigurationOption(
+                    DefaultPrinterConfiguration.ConfigOption.COLUMN_ALIGN_PARAMETERS,
+                    true
+                )
+            )
+            .addOption(
+                DefaultConfigurationOption(
+                    DefaultPrinterConfiguration.ConfigOption.COLUMN_ALIGN_FIRST_METHOD_CHAIN,
+                    true
+                )
+            )
+
+        compilationUnit.storage.get().save()
+        //println(DefaultPrettyPrinter(config).print(compilationUnit))
+    }
+}
+
+fun getGeneratedMethodCallExprForEntries(aliases: List<StringLiteralExpr>): MethodCallExpr {
+    if (aliases.isEmpty()) return MethodCallExpr("Collections.emptyList")
+    if (aliases.size == 1) return MethodCallExpr("Collections.singletonList").setArguments(NodeList(aliases))
+    return MethodCallExpr("Arrays.asList").setArguments(NodeList(aliases))
+}
+
+// Fix quotation marks
+val replaceQuotationMarksRegex = Regex("\"")
+// Fix error with aliases like: :-\
+val replaceBackslashRegex = Regex("[\\\\]")
+
+fun getAndSanitizeEmojiAliases(aliases: JsonNode): List<StringLiteralExpr> {
+    return buildList {
+        aliases.forEach { alias ->
+            add(
+                StringLiteralExpr(
+                    alias.asText().replace(replaceBackslashRegex, "\\\\\\\\")
+                        .replace(replaceQuotationMarksRegex, "\\\\\"")
+                )
+            )
+        }
+    }
+}
+*/

@@ -26,11 +26,11 @@ public class Emoji {
 
     private final List<String> allAliases;
 
-    public Emoji(
+    Emoji(
             @JsonProperty("emoji") String emoji,
             @JsonProperty("unicode") String unicode,
             @JsonProperty("discordAliases") List<String> discordAliases,
-            @JsonProperty("gitHubAliases") List<String> githubAliases,
+            @JsonProperty("githubAliases") List<String> githubAliases,
             @JsonProperty("slackAliases") List<String> slackAliases,
             @JsonProperty("hasFitzpatrick") boolean hasFitzpatrick,
             @JsonProperty("hasHairStyle") boolean hasHairStyle,

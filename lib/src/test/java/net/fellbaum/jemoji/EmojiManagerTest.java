@@ -3,6 +3,7 @@ package net.fellbaum.jemoji;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -11,21 +12,27 @@ import java.util.stream.Collectors;
 
 public class EmojiManagerTest {
 
-    private static final String ALL_EMOJIS = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
+    private static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ World";
 
     @Test
     public void extractEmojisInOrder() {
-        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(ALL_EMOJIS + ALL_EMOJIS);
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(ALL_EMOJIS_STRING + ALL_EMOJIS_STRING);
 
         Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size() * 2, emojis.size());
+
+        List<Emoji> allEmojis = new ArrayList<>(EmojiManager.getAllEmojisLengthDescending());
+        allEmojis.addAll(EmojiManager.getAllEmojisLengthDescending());
+        Assert.assertEquals(allEmojis, emojis);
     }
 
     @Test
     public void extractEmojis() {
-        Set<Emoji> emojis = EmojiManager.extractEmojis(ALL_EMOJIS + ALL_EMOJIS);
+        Set<Emoji> emojis = EmojiManager.extractEmojis(ALL_EMOJIS_STRING + ALL_EMOJIS_STRING);
 
         Assert.assertEquals(EmojiManager.getAllEmojisLengthDescending().size(), emojis.size());
+        Set<Emoji> allEmojis = EmojiManager.getAllEmojis();
+        Assert.assertEquals(allEmojis, emojis);
     }
 
     @Test
