@@ -19,7 +19,5 @@ public class HairStyleTest {
     public void removeHairStyle() {
         assertEquals(noHair, HairStyle.removeHairStyle(RED_HAIR));
         assertEquals(noHair, HairStyle.removeHairStyle(noHair));
-        //"\uD83D\uDC68";
-        //"\uD83D\uDC68\u200D";
     }
 }
