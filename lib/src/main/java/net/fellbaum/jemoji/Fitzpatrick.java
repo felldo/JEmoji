@@ -14,7 +14,7 @@ public enum Fitzpatrick {
     private static final List<Fitzpatrick> FITZPATRICK_LIST = Arrays.asList(values());
     private final String unicode;
 
-    Fitzpatrick(String unicode) {
+    Fitzpatrick(final String unicode) {
         this.unicode = unicode;
     }
 
@@ -22,13 +22,13 @@ public enum Fitzpatrick {
         return unicode;
     }
 
-    public static boolean isFitzpatrickEmoji(String unicode) {
+    public static boolean isFitzpatrickEmoji(final String unicode) {
         return FITZPATRICK_LIST.stream().anyMatch(fitzpatrick -> unicode.contains(fitzpatrick.unicode) && !unicode.equals(fitzpatrick.unicode));
     }
 
     public static String removeFitzpatrick(String unicode) {
         for (Fitzpatrick value : FITZPATRICK_LIST) {
-            unicode = unicode.replaceAll(value.getUnicode(), "");
+            unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
         }
         return unicode;
     }

@@ -13,7 +13,7 @@ public enum HairStyle {
     private static final List<HairStyle> HAIR_STYLE_LIST = Arrays.asList(values());
     private final String unicode;
 
-    HairStyle(String unicode) {
+    HairStyle(final String unicode) {
         this.unicode = unicode;
     }
 
@@ -21,13 +21,13 @@ public enum HairStyle {
         return unicode;
     }
 
-    public static boolean isHairStyleEmoji(String unicode) {
+    public static boolean isHairStyleEmoji(final String unicode) {
         return HAIR_STYLE_LIST.stream().anyMatch(hairStyle -> unicode.contains(hairStyle.unicode) && !unicode.equals(hairStyle.unicode));
     }
 
     public static String removeHairStyle(String unicode) {
         for (HairStyle value : HAIR_STYLE_LIST) {
-            unicode = unicode.replaceAll(value.getUnicode(), "");
+            unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
         }
         return unicode;
     }

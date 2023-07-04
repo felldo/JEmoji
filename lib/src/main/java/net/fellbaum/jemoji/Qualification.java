@@ -15,7 +15,7 @@ public enum Qualification {
     private static final List<Qualification> QUALIFICATION_LIST = Arrays.asList(values());
     private final String qualification;
 
-    Qualification(String qualification) {
+    Qualification(final String qualification) {
         this.qualification = qualification;
     }
 
@@ -24,7 +24,7 @@ public enum Qualification {
     }
 
     @JsonCreator
-    public static Qualification fromString(String qualification) {
+    public static Qualification fromString(final String qualification) {
         for (Qualification q : QUALIFICATION_LIST) {
             if (q.getQualification().equals(qualification)) {
                 return q;
