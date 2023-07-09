@@ -6,7 +6,7 @@
 
 JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium. 
 
-## Why another emoji library?
+## ❓ Why another emoji library?
 
 While several other emoji libraries for Java exist, most of them are incomplete or outdated. JEmoji, on the other
 hand, offers a complete list of all emojis from the Unicode Consortium, which can be generated quickly and easily with
@@ -24,7 +24,7 @@ as possible.
 - [discord-emoji by Emzi0767](https://gitlab.emzi0767.dev/Emzi0767/discord-emoji) for additional information about
   emojis for Discord
 
-## Installation
+## 📦 Installation
 
 Replace the ``VERSION``  with the latest version shown at the [start](#startReadme) of the README
 
@@ -44,7 +44,7 @@ implementation("net.fellbaum:jemoji:VERSION")
 </dependency>
 ```
 
-## Usage
+## 📝 Usage
 
 ### EmojiManager
 
@@ -136,7 +136,38 @@ class Emoji {
 }
 ```
 
-## Emoji JSON list Generation
+## 🚀 Benchmarks
+| **Benchmark**                                  | **Mode** | **Cnt** | **Score** | **Error** | **Units** |
+|------------------------------------------------|----------|---------|-----------|-----------|-----------|
+| containsEmoji                                  | avgt     | 10      | 4,820     | ± 0,051   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 10      | 4,841     | ± 0,579   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967     | ± 0,054   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364     | ± 0,081   | ms/op     |
+| removeAllEmojis                                | avgt     | 10      | 7,813     | ± 0,454   | ms/op     |
+| replaceAllEmojis                               | avgt     | 10      | 7,213     | ± 0,043   | ms/op     |
+
+<details>
+
+<summary>Click to see the benchmark details</summary>
+
+CPU:  Intel® Core™ i7-13700K
+
+VM version: JDK 1.8.0_372, OpenJDK 64-Bit Server VM, 25.372-b07
+
+Blackhole mode: full + dont-inline hint (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+
+Warmup: 5 iterations, 10 s each
+
+Measurement: 5 iterations, 10 s each
+
+Timeout: 10 min per iteration
+
+Threads: 1 thread, will synchronize iterations
+
+Benchmark mode: Average time, time/op
+</details>
+
+## 💾 Emoji JSON list Generation
 
 The emoji list can be easily generated with the ``generateEmojis`` Gradle task. The generated list will be saved in the
 ``src/main/resources`` folder.
