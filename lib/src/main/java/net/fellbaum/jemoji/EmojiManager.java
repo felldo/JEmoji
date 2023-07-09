@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.function.Function;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -27,7 +26,7 @@ public final class EmojiManager {
     private static final Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (Emoji o1, Emoji o2) -> {
+    private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (final Emoji o1, final Emoji o2) -> {
         if (o1.getEmoji().codePoints().toArray().length == o2.getEmoji().codePoints().toArray().length) return 0;
         return o1.getEmoji().codePoints().toArray().length > o2.getEmoji().codePoints().toArray().length ? -1 : 1;
     };
@@ -124,7 +123,7 @@ public final class EmojiManager {
      * @param group The group to get the emojis for.
      * @return A set of all emojis that are part of the given group.
      */
-    public static Set<Emoji> getAllEmojisByGroup(EmojiGroup group) {
+    public static Set<Emoji> getAllEmojisByGroup(final EmojiGroup group) {
         return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getGroup() == group).collect(Collectors.toSet());
     }
 
@@ -134,7 +133,7 @@ public final class EmojiManager {
      * @param subgroup The subgroup to get the emojis for.
      * @return A set of all emojis that are part of the given subgroup.
      */
-    public static Set<Emoji> getAllEmojisBySubGroup(EmojiSubGroup subgroup) {
+    public static Set<Emoji> getAllEmojisBySubGroup(final EmojiSubGroup subgroup) {
         return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getSubgroup() == subgroup).collect(Collectors.toSet());
     }
 
@@ -398,7 +397,7 @@ public final class EmojiManager {
      * @param emojisToKeep The emojis to keep.
      * @return The text with only the given emojis.
      */
-    public static String removeAllEmojisExcept(String text, final Emoji... emojisToKeep) {
+    public static String removeAllEmojisExcept(final String text, final Emoji... emojisToKeep) {
         return removeAllEmojisExcept(text, Arrays.asList(emojisToKeep));
     }
 
@@ -409,7 +408,7 @@ public final class EmojiManager {
      * @param replacementString The replacement string.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(String text, final String replacementString) {
+    public static String replaceAllEmojis(final String text, final String replacementString) {
         return replaceEmojis(text, replacementString, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -421,7 +420,7 @@ public final class EmojiManager {
      * @param replacementString The replacement string.
      * @return The text with the given emojis replaced.
      */
-    public static String replaceEmojis(String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
+    public static String replaceEmojis(final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
         final LinkedHashMap<Integer, List<Emoji>> FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojisToReplace.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(getEmojiLinkedHashMapCollector());
