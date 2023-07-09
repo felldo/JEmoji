@@ -236,7 +236,35 @@ public final class EmojiManager {
      */
     public static boolean containsEmoji(final String text) {
         if (isStringNullOrEmpty(text)) return false;
-        return EMOJI_UNICODE_TO_EMOJI.keySet().stream().anyMatch(text::contains);
+
+        final List<Emoji> emojis = new ArrayList<>();
+
+        final int[] textCodePointsArray = text.codePoints().toArray();
+        final long textCodePointsLength = textCodePointsArray.length;
+
+        nextTextIteration:
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
+            if (emojisByCodePoint == null) continue;
+            for (final Emoji emoji : emojisByCodePoint) {
+                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int emojiCodePointsLength = emojiCodePointsArray.length;
+                // Emoji code points are in bounds of the text code points
+                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+                    continue;
+                }
+
+                for (int i = 0; i < emojiCodePointsLength; i++) {
+                    if (textCodePointsArray[textIndex + i] != emojiCodePointsArray[i]) {
+                        break;
+                    }
+                    if (i == emojiCodePointsLength - 1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
