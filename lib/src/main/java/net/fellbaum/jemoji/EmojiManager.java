@@ -300,7 +300,41 @@ public final class EmojiManager {
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text) {
-        return EMOJI_PATTERN.matcher(text).replaceAll("");
+        final int[] textCodePointsArray = text.codePoints().toArray();
+        final long textCodePointsLength = textCodePointsArray.length;
+
+        final StringBuilder sb = new StringBuilder();
+
+        nextTextIteration:
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final int currentCodepoint = textCodePointsArray[textIndex];
+            sb.appendCodePoint(currentCodepoint);
+
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(currentCodepoint);
+            if (emojisByCodePoint == null) continue;
+            for (final Emoji emoji : emojisByCodePoint) {
+                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int emojiCodePointsLength = emojiCodePointsArray.length;
+                // Check if Emoji code points are in bounds of the text code points
+                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+                    continue;
+                }
+
+                for (int i = 0; i < emojiCodePointsLength; i++) {
+                    if (textCodePointsArray[textIndex + i] != emojiCodePointsArray[i]) {
+                        break;
+                    }
+                    if (i == emojiCodePointsLength - 1) {
+                        sb.delete(sb.length() - Character.charCount(currentCodepoint) , sb.length());
+
+                        textIndex += emojiCodePointsLength - 1;
+                        continue nextTextIteration;
+                    }
+                }
+            }
+        }
+
+        return sb.toString();
     }
 
     /**
