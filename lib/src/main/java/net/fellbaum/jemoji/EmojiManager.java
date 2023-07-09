@@ -273,8 +273,7 @@ public final class EmojiManager {
      * @param text The text to extract emojis from.
      * @return A list of emojis.
      */
-    public static List<Emoji> extractEmojisInOrder(String text) {
-        text = truncateString(text);
+    public static List<Emoji> extractEmojisInOrder(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<Emoji> emojis = new ArrayList<>();
@@ -465,13 +464,6 @@ public final class EmojiManager {
         }
 
         return sb.toString();
-    }
-
-    private static String truncateString(final String text) {
-        if (isStringNullOrEmpty(text)) return "";
-
-        final Matcher matcher = NOT_WANTED_EMOJI_CHARACTERS.matcher(text);
-        return matcher.replaceAll("");
     }
 
     private static boolean isStringNullOrEmpty(final String string) {
