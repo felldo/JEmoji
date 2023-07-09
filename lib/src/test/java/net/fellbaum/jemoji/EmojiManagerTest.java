@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class EmojiManagerTest {
 
-    private static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
+    public static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ World";
 
     @Test
@@ -91,6 +91,6 @@ public class EmojiManagerTest {
 
     @Test
     public void replaceAllEmojis() {
-        Assert.assertEquals("Hello something World something something", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 😊", "something"));
+        Assert.assertEquals("Hello something World something something something", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", "something"));
     }
 }
