@@ -231,13 +231,13 @@ public class Emoji {
         return "Emoji{" +
                 "emoji='" + emoji + '\'' +
                 ", unicode='" + unicode + '\'' +
-                ", discordAlias='" + discordAliases + '\'' +
-                ", githubAlias='" + githubAliases + '\'' +
-                ", slackAlias='" + slackAliases + '\'' +
+                ", discordAliases=" + discordAliases +
+                ", githubAliases=" + githubAliases +
+                ", slackAliases=" + slackAliases +
                 ", hasFitzpatrick=" + hasFitzpatrick +
                 ", hasHairStyle=" + hasHairStyle +
                 ", version=" + version +
-                ", qualification='" + qualification + '\'' +
+                ", qualification=" + qualification +
                 ", description='" + description + '\'' +
                 ", group=" + group +
                 ", subgroup=" + subgroup +
@@ -256,13 +256,13 @@ public class Emoji {
         if (Double.compare(emoji1.version, version) != 0) return false;
         if (!emoji.equals(emoji1.emoji)) return false;
         if (!unicode.equals(emoji1.unicode)) return false;
-        if (!Objects.equals(discordAliases, emoji1.discordAliases))
-            return false;
-        if (!Objects.equals(githubAliases, emoji1.githubAliases)) return false;
-        if (!Objects.equals(slackAliases, emoji1.slackAliases)) return false;
-        if (!qualification.equals(emoji1.qualification)) return false;
+        if (!discordAliases.equals(emoji1.discordAliases)) return false;
+        if (!githubAliases.equals(emoji1.githubAliases)) return false;
+        if (!slackAliases.equals(emoji1.slackAliases)) return false;
+        if (qualification != emoji1.qualification) return false;
         if (!description.equals(emoji1.description)) return false;
-        return allAliases.equals(emoji1.allAliases);
+        if (group != emoji1.group) return false;
+        return subgroup == emoji1.subgroup;
     }
 
     @Override
@@ -271,16 +271,17 @@ public class Emoji {
         long temp;
         result = emoji.hashCode();
         result = 31 * result + unicode.hashCode();
-        result = 31 * result + (discordAliases != null ? discordAliases.hashCode() : 0);
-        result = 31 * result + (githubAliases != null ? githubAliases.hashCode() : 0);
-        result = 31 * result + (slackAliases != null ? slackAliases.hashCode() : 0);
+        result = 31 * result + discordAliases.hashCode();
+        result = 31 * result + githubAliases.hashCode();
+        result = 31 * result + slackAliases.hashCode();
         result = 31 * result + (hasFitzpatrick ? 1 : 0);
         result = 31 * result + (hasHairStyle ? 1 : 0);
         temp = Double.doubleToLongBits(version);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + qualification.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + allAliases.hashCode();
+        result = 31 * result + group.hashCode();
+        result = 31 * result + subgroup.hashCode();
         return result;
     }
 }
