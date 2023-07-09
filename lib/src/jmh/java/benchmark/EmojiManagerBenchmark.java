@@ -15,12 +15,12 @@ import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class BenchmarkRunner {
+public class EmojiManagerBenchmark {
 
-    private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(BenchmarkRunner.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
+    private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
             .lines().collect(Collectors.joining("\n"));
 
-    private static final String CONTAINS_EMOJI_TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(BenchmarkRunner.class.getClassLoader().getResourceAsStream("ContainsBenchmarkTextFileWithEmojis.txt"))))
+    private static final String CONTAINS_EMOJI_TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ContainsBenchmarkTextFileWithEmojis.txt"))))
             .lines().collect(Collectors.joining("\n"));
 
     public static void main(String[] args) throws Exception {
@@ -44,7 +44,7 @@ public class BenchmarkRunner {
 
     @Benchmark
     //@BenchmarkMode(Mode.AverageTime)
-    //@Warmup(iterations = 2)
+    //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
