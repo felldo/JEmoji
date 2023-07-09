@@ -51,33 +51,46 @@ implementation("net.fellbaum:jemoji:VERSION")
 #### Get all emojis
 
 ```java
-Set<Emoji> emojis=EmojiManager.getAllEmojis();
+Set<Emoji> emojis = EmojiManager.getAllEmojis();
 ```
 
 #### Get emoji by unicode string
 
 ```java
-Optional<Emoji> emoji=EmojiManager.getEmoji("😀");
+Optional<Emoji> emoji = EmojiManager.getEmoji("😀");
 ```
 
 #### Get emoji by alias
 
 ```java
-Optional<Emoji> emoji=EmojiManager.getByAlias("smile");
+Optional<Emoji> emoji = EmojiManager.getByAlias("smile");
 // or
-        Optional<Emoji> emoji=EmojiManager.getByAlias(":smile:");
+Optional<Emoji> emoji = EmojiManager.getByAlias(":smile:");
 ```
+
+#### Get all emojis by group (general category of emojis)
+
+```java
+Set<Emoji> emojis = EmojiManager.getAllEmojisByGroup(EmojiGroup.SMILEYS_AND_EMOTION);
+```
+
+#### Get all emojis by subgroup (more specific set of emojis)
+
+```java
+Set<Emoji> emojis = EmojiManager.getAllEmojisBySubGroup(EmojiSubGroup.ANIMAL_BIRD);
+```
+
 
 #### Check if the provided string is an emoji
 
 ```java
-boolean isEmoji=EmojiManager.isEmoji("😀");
+boolean isEmoji = EmojiManager.isEmoji("😀");
 ```
 
 #### Check if the provided string contains an emoji
 
 ```java
-boolean containsEmoji=EmojiManager.containsEmoji("Hello 😀 World");
+boolean containsEmoji = EmojiManager.containsEmoji("Hello 😀 World");
 ```
 
 #### Extract all emojis from a string in order they appear
@@ -89,25 +102,25 @@ Set<Emoji> emojis = EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); 
 #### Remove all emojis from a string
 
 ```java
-String text=EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  World "
+String text = EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  World "
 ```
 
 #### Remove specific emojis from a string
 
 ```java
-String text=EmojiManager.removeEmojis("Hello 😀 World 👍",Collections.singletonList("😀")); // "Hello  World 👍"
+String text = EmojiManager.removeEmojis("Hello 😀 World 👍",Collections.singletonList("😀")); // "Hello  World 👍"
 ```
 
 #### Replace emojis in a string
 
 ```java
-String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
+String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
 ```
 
 #### Replace specific emojis in a string
 
 ```java
-String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>",Collections.singletonList("😀")); // "Hello <an emoji was here> World 👍"
+String text = EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>",Collections.singletonList("😀")); // "Hello <an emoji was here> World 👍"
 ```
 
 ### Emoji Object
