@@ -137,14 +137,14 @@ class Emoji {
 ```
 
 ## 🚀 Benchmarks
-| **Benchmark**                                  | **Mode** | **Cnt** | **Score** | **Error** | **Units** |
-|------------------------------------------------|----------|---------|-----------|-----------|-----------|
-| containsEmoji                                  | avgt     | 10      | 4,820     | ± 0,051   | ms/op     |
-| extractEmojisInOrder                           | avgt     | 10      | 4,841     | ± 0,579   | ms/op     |
-| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967     | ± 0,054   | ms/op     |
-| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364     | ± 0,081   | ms/op     |
-| removeAllEmojis                                | avgt     | 10      | 7,813     | ± 0,454   | ms/op     |
-| replaceAllEmojis                               | avgt     | 10      | 7,213     | ± 0,043   | ms/op     |
+| **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
+|------------------------------------------------|----------|---------|-------------|-----------|-----------|
+| containsEmoji                                  | avgt     | 10      | 4,820       | ± 0,051   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 10      | 4,841       | ± 0,579   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967       | ± 0,054   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364       | ± 0,081   | ms/op     |
+| removeAllEmojis                                | avgt     | 10      | 7,813       | ± 0,454   | ms/op     |
+| replaceAllEmojis                               | avgt     | 10      | 7,213       | ± 0,043   | ms/op     |
 
 <details>
 
@@ -166,6 +166,8 @@ Threads: 1 thread, will synchronize iterations
 
 Benchmark mode: Average time, time/op
 </details>
+
+** Score depends on many factors like text size and emoji count if used as an argument. For this benchmark relatively large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code and resources.
 
 ## 💾 Emoji JSON list Generation
 
