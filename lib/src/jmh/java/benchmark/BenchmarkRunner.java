@@ -4,6 +4,7 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import net.fellbaum.jemoji.EmojiManagerTest;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Warmup;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
 public class BenchmarkRunner {
 
     private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(BenchmarkRunner.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
+            .lines().collect(Collectors.joining("\n"));
+
+    private static final String CONTAINS_EMOJI_TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(BenchmarkRunner.class.getClassLoader().getResourceAsStream("ContainsBenchmarkTextFileWithEmojis.txt"))))
             .lines().collect(Collectors.joining("\n"));
 
     public static void main(String[] args) throws Exception {
@@ -38,9 +42,9 @@ public class BenchmarkRunner {
 
     private static final String EMOJIS_RANDOM_ORDER = String.join("", EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(toShuffledList()));
 
-
     @Benchmark
     //@BenchmarkMode(Mode.AverageTime)
+    //@Warmup(iterations = 2)
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
@@ -63,6 +67,11 @@ public class BenchmarkRunner {
     @Benchmark
     public List<Emoji> extractEmojisInOrderOnlyEmojisRandomOrder() {
         return EmojiManager.extractEmojisInOrder(EMOJIS_RANDOM_ORDER);
+    }
+
+    @Benchmark
+    public boolean containsEmoji() {
+        return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
     }
 
 }
