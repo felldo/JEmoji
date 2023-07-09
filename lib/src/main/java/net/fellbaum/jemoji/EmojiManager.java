@@ -20,14 +20,14 @@ public final class EmojiManager {
 
     private static final String PATH = "emojis.json";
 
-    private static final Map<String, Emoji> EMOJI_CHAR_TO_EMOJI;
-    private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING;
+    private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
+    private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
 
     private static final Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    private static final Comparator<Emoji> EMOJI_CHAR_COMPARATOR = (Emoji o1, Emoji o2) -> {
+    private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (Emoji o1, Emoji o2) -> {
         if (o1.getEmoji().codePoints().toArray().length == o2.getEmoji().codePoints().toArray().length) return 0;
         return o1.getEmoji().codePoints().toArray().length > o2.getEmoji().codePoints().toArray().length ? -1 : 1;
     };
@@ -40,13 +40,13 @@ public final class EmojiManager {
                     .filter(emoji -> emoji.getQualification() == Qualification.FULLY_QUALIFIED || emoji.getQualification() == Qualification.COMPONENT)
                     .collect(Collectors.toList());
 
-            EMOJI_CHAR_TO_EMOJI = Collections.unmodifiableMap(
+            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(
                     emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity()))
             );
 
-            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CHAR_COMPARATOR).collect(Collectors.toList()));
+            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(Collectors.toList()));
 
-            EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
+            EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
 
             EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
                     .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")), Pattern.UNICODE_CHARACTER_CLASS);
@@ -62,7 +62,7 @@ public final class EmojiManager {
                 Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> {
-                            list.sort(EMOJI_CHAR_COMPARATOR);
+                            list.sort(EMOJI_CODEPOINT_COMPARATOR);
                             return list;
                         }
                 )
@@ -95,7 +95,7 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getEmoji(final String emoji) {
         if (isStringNullOrEmpty(emoji)) return Optional.empty();
-        return Optional.ofNullable(EMOJI_CHAR_TO_EMOJI.get(emoji));
+        return Optional.ofNullable(EMOJI_UNICODE_TO_EMOJI.get(emoji));
     }
 
     /**
@@ -106,7 +106,7 @@ public final class EmojiManager {
      */
     public static boolean isEmoji(final String emoji) {
         if (isStringNullOrEmpty(emoji)) return false;
-        return EMOJI_CHAR_TO_EMOJI.containsKey(emoji);
+        return EMOJI_UNICODE_TO_EMOJI.containsKey(emoji);
     }
 
     /**
@@ -157,7 +157,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_CHAR_TO_EMOJI.values()
+        return EMOJI_UNICODE_TO_EMOJI.values()
                 .stream()
                 .filter(emoji -> emoji.getAllAliases().contains(aliasWithoutColon) || emoji.getAllAliases().contains(aliasWithColon))
                 .findFirst();
@@ -173,7 +173,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_CHAR_TO_EMOJI.values()
+        return EMOJI_UNICODE_TO_EMOJI.values()
                 .stream()
                 .filter(emoji -> emoji.getDiscordAliases().contains(aliasWithoutColon) || emoji.getDiscordAliases().contains(aliasWithColon))
                 .findFirst();
@@ -189,7 +189,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_CHAR_TO_EMOJI.values()
+        return EMOJI_UNICODE_TO_EMOJI.values()
                 .stream()
                 .filter(emoji -> emoji.getGithubAliases().contains(aliasWithoutColon) || emoji.getGithubAliases().contains(aliasWithColon))
                 .findFirst();
@@ -205,7 +205,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_CHAR_TO_EMOJI.values()
+        return EMOJI_UNICODE_TO_EMOJI.values()
                 .stream()
                 .filter(emoji -> emoji.getSlackAliases().contains(aliasWithoutColon) || emoji.getSlackAliases().contains(aliasWithColon))
                 .findFirst();
@@ -236,7 +236,7 @@ public final class EmojiManager {
      */
     public static boolean containsEmoji(final String text) {
         if (isStringNullOrEmpty(text)) return false;
-        return EMOJI_CHAR_TO_EMOJI.keySet().stream().anyMatch(text::contains);
+        return EMOJI_UNICODE_TO_EMOJI.keySet().stream().anyMatch(text::contains);
     }
 
     /**
@@ -258,7 +258,7 @@ public final class EmojiManager {
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
                 final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
@@ -300,6 +300,19 @@ public final class EmojiManager {
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text) {
+        return removeEmojis(text, EMOJIS_LENGTH_DESCENDING);
+    }
+
+    /**
+     * Removes the given emojis from the given text.
+     *
+     * @param text           The text to remove emojis from.
+     * @param emojisToRemove The emojis to remove.
+     * @return The text without the given emojis.
+     */
+    public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove) {
+        final LinkedHashMap<Integer, List<Emoji>> FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojisToRemove.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(getEmojiLinkedHashMapCollector());
+
         final int[] textCodePointsArray = text.codePoints().toArray();
         final long textCodePointsLength = textCodePointsArray.length;
 
@@ -310,7 +323,7 @@ public final class EmojiManager {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
 
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(currentCodepoint);
+            final List<Emoji> emojisByCodePoint = FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
                 final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
@@ -325,7 +338,7 @@ public final class EmojiManager {
                         break;
                     }
                     if (i == emojiCodePointsLength - 1) {
-                        sb.delete(sb.length() - Character.charCount(currentCodepoint) , sb.length());
+                        sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
 
                         textIndex += emojiCodePointsLength - 1;
                         continue nextTextIteration;
@@ -335,23 +348,6 @@ public final class EmojiManager {
         }
 
         return sb.toString();
-    }
-
-    /**
-     * Removes the given emojis from the given text.
-     *
-     * @param text           The text to remove emojis from.
-     * @param emojisToRemove The emojis to remove.
-     * @return The text without the given emojis.
-     */
-    public static String removeEmojis(String text, final Collection<Emoji> emojisToRemove) {
-        if (isStringNullOrEmpty(text)) return "";
-
-        for (final Emoji emoji : emojisToRemove) {
-            text = text.replaceAll(Pattern.quote(emoji.getEmoji()), "");
-        }
-
-        return text;
     }
 
     /**
@@ -401,7 +397,7 @@ public final class EmojiManager {
     public static String replaceEmojis(String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
-        final LinkedHashMap<Integer, List<Emoji>> FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING = emojisToReplace.stream().sorted(EMOJI_CHAR_COMPARATOR).collect(getEmojiLinkedHashMapCollector());
+        final LinkedHashMap<Integer, List<Emoji>> FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojisToReplace.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(getEmojiLinkedHashMapCollector());
 
         final int[] textCodePointsArray = text.codePoints().toArray();
         final long textCodePointsLength = textCodePointsArray.length;
@@ -413,7 +409,7 @@ public final class EmojiManager {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
 
-            final List<Emoji> emojisByCodePoint = FIRST_CHAR_TO_EMOJIS_ORDER_CHAR_LENGTH_DESCENDING.get(currentCodepoint);
+            final List<Emoji> emojisByCodePoint = FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
                 final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
@@ -430,7 +426,7 @@ public final class EmojiManager {
                     if (i == emojiCodePointsLength - 1) {
                         //Does the same but is slower apparently
                         //sb.replace(sb.length() - Character.charCount(currentCodepoint), sb.length(), replacementString);
-                        sb.delete(sb.length() - Character.charCount(currentCodepoint) , sb.length());
+                        sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
                         sb.append(replacementString);
 
                         textIndex += emojiCodePointsLength - 1;
@@ -441,16 +437,6 @@ public final class EmojiManager {
         }
 
         return sb.toString();
-    }
-
-    static class Coords {
-        final int startIndex;
-        final int length;
-
-        public Coords(final int startIndex, final int length) {
-            this.startIndex = startIndex;
-            this.length = length;
-        }
     }
 
     private static String truncateString(final String text) {
