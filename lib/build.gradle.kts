@@ -178,17 +178,19 @@ publishing {
                 uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             }
             credentials {
-                username = if (hasProperty("NEXUS_USERNAME")) project.property("NEXUS_USERNAME") as String else null
-                password = if (hasProperty("NEXUS_PASSWORD")) project.property("NEXUS_PASSWORD") as String else null
+                username = findPropertyOrNull("NEXUS_USERNAME")
+                password = findPropertyOrNull("NEXUS_PASSWORD")
             }
         }
     }
 }
 
+fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
+
 signing {
-    val signingKey = findProperty("JEMOJI_SINGING_SECRET_KEY_RING_FILE") as String
-    val signingKeyId = findProperty("JEMOJI_SIGNING_KEY_ID") as String
-    val signingPassword = findProperty("JEMOJI_SIGNING_PASSWORD") as String
+    val signingKey = findPropertyOrNull("JEMOJI_SINGING_SECRET_KEY_RING_FILE")
+    val signingKeyId = findPropertyOrNull("JEMOJI_SIGNING_KEY_ID")
+    val signingPassword = findPropertyOrNull("JEMOJI_SIGNING_PASSWORD")
 
     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
     sign(publishing.publications["JEMOJI"])
