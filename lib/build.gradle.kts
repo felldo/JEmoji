@@ -108,7 +108,7 @@ tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
 }
 
-tasks.withType<Javadoc>{
+tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
@@ -178,8 +178,8 @@ publishing {
                 uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             }
             credentials {
-                username = findProperty("NEXUS_USERNAME") as String
-                password = findProperty("NEXUS_PASSWORD") as String
+                username = project.property("NEXUS_USERNAME") as String? ?: run { null }
+                password = project.property("NEXUS_PASSWORD") as String? ?: run { null }
             }
         }
     }
