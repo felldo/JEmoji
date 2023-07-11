@@ -1,4 +1,4 @@
-name: "\2753 Other"
+name: "❓ Other"
 description: Anything else that is not a feature request or bug report.
 labels: [ ":question: Other" ]
 body:
