@@ -1,4 +1,4 @@
-name: "\U000002753 Other"
+name: "\2753 Other"
 description: Anything else that is not a feature request or bug report.
 labels: [ ":question: Other" ]
 body:
