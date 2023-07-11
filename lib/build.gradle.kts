@@ -125,74 +125,74 @@ tasks.register("copyJarToProject") {
     }
 }
 
-//publishing {
-//    publications {
-//        create<MavenPublication>("JEMOJI") {
-//            artifactId = "jemoji"
-//            from(components["java"])
-//            versionMapping {
-//                usage("java-api") {
-//                    fromResolutionOf("runtimeClasspath")
-//                }
-//                usage("java-runtime") {
-//                    fromResolutionResult()
-//                }
-//            }
-//            pom {
-//                name.set("Java Emoji")
-//                description.set(rootProject.description)
-//                url.set("https://github.com/felldo/jemoji")
-//
-//                licenses {
-//                    license {
-//                        name.set("The Apache License, Version 2.0")
-//                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-//                    }
-//                }
-//
-//                inceptionYear.set("2023")
-//                developers {
-//                    developer {
-//                        id.set("felldo")
-//                        name.set("Dominic Fellbaum")
-//                        email.set("d.fellbaum@hotmail.de")
-//                        url.set("https://github.com/felldo")
-//                        timezone.set("Europe/Berlin")
-//                    }
-//                }
-//                scm {
-//                    connection.set("scm:git:https://github.com/felldo/jemoji.git")
-//                    developerConnection.set("scm:git:git@github.com:felldo/jemoji.git")
-//                    url.set("https://github.com/felldo/jemoji")
-//                }
-//            }
-//        }
-//    }
-//    repositories {
-//        maven {
-//            val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-//            name = "OSSRH"
-//            url = if (isReleaseVersion) {
-//                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//            } else {
-//                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-//            }
-//            credentials {
-//                username = findProperty("NEXUS_USERNAME") as String
-//                password = findProperty("NEXUS_PASSWORD") as String
-//            }
-//        }
-//    }
-//}
-//
-//signing {
-//    val signingKey = findProperty("JEMOJI_SINGING_SECRET_KEY_RING_FILE") as String
-//    val signingKeyId = findProperty("JEMOJI_SIGNING_KEY_ID") as String
-//    val signingPassword = findProperty("JEMOJI_SIGNING_PASSWORD") as String
-//
-//    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-//    sign(publishing.publications["JEMOJI"])
-//}
+publishing {
+    publications {
+        create<MavenPublication>("JEMOJI") {
+            artifactId = "jemoji"
+            from(components["java"])
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name.set("Java Emoji")
+                description.set(rootProject.description)
+                url.set("https://github.com/felldo/jemoji")
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+
+                inceptionYear.set("2023")
+                developers {
+                    developer {
+                        id.set("felldo")
+                        name.set("Dominic Fellbaum")
+                        email.set("d.fellbaum@hotmail.de")
+                        url.set("https://github.com/felldo")
+                        timezone.set("Europe/Berlin")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:https://github.com/felldo/jemoji.git")
+                    developerConnection.set("scm:git:git@github.com:felldo/jemoji.git")
+                    url.set("https://github.com/felldo/jemoji")
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
+            name = "OSSRH"
+            url = if (isReleaseVersion) {
+                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            } else {
+                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            }
+            credentials {
+                username = findProperty("NEXUS_USERNAME") as String
+                password = findProperty("NEXUS_PASSWORD") as String
+            }
+        }
+    }
+}
+
+signing {
+    val signingKey = findProperty("JEMOJI_SINGING_SECRET_KEY_RING_FILE") as String
+    val signingKeyId = findProperty("JEMOJI_SIGNING_KEY_ID") as String
+    val signingPassword = findProperty("JEMOJI_SIGNING_PASSWORD") as String
+
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+    sign(publishing.publications["JEMOJI"])
+}
 
 tasks.withType<Javadoc>().configureEach {
     options {
