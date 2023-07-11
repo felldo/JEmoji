@@ -482,7 +482,7 @@ public final class EmojiManager {
         return Collections.unmodifiableList(emojis);
     }*/
 
-        /*public static List<Emoji> extractEmojisInOrderEmojiRegex(String text) {
+    /*public static List<Emoji> extractEmojisInOrderEmojiRegex(String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<Emoji> emojis = new ArrayList<>();

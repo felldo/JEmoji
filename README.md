@@ -80,7 +80,6 @@ Set<Emoji> emojis = EmojiManager.getAllEmojisByGroup(EmojiGroup.SMILEYS_AND_EMOT
 Set<Emoji> emojis = EmojiManager.getAllEmojisBySubGroup(EmojiSubGroup.ANIMAL_BIRD);
 ```
 
-
 #### Check if the provided string is an emoji
 
 ```java
