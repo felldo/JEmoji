@@ -178,8 +178,8 @@ publishing {
                 uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             }
             credentials {
-                username = project.property("NEXUS_USERNAME") as String? ?: run { null }
-                password = project.property("NEXUS_PASSWORD") as String? ?: run { null }
+                username = if (hasProperty("NEXUS_USERNAME")) project.property("NEXUS_USERNAME") as String else null
+                password = if (hasProperty("NEXUS_PASSWORD")) project.property("NEXUS_PASSWORD") as String else null
             }
         }
     }
