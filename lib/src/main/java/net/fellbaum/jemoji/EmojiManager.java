@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -70,10 +71,10 @@ public final class EmojiManager {
 
     private static String readFileAsString() {
         try {
-            final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+            final ClassLoader classLoader = EmojiManager.class.getClassLoader();
             try (final InputStream is = classLoader.getResourceAsStream(PATH)) {
                 if (is == null) return null;
-                try (final InputStreamReader isr = new InputStreamReader(is);
+                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                      final BufferedReader reader = new BufferedReader(isr)) {
                     return reader.lines().collect(Collectors.joining(System.lineSeparator()));
                 }
@@ -241,7 +242,6 @@ public final class EmojiManager {
         final int[] textCodePointsArray = text.codePoints().toArray();
         final long textCodePointsLength = textCodePointsArray.length;
 
-        nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
             if (emojisByCodePoint == null) continue;
