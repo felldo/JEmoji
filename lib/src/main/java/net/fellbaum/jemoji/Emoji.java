@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Represents an emoji.
+ */
 public class Emoji {
 
     private final String emoji;
@@ -55,7 +57,6 @@ public class Emoji {
         this.description = description;
         this.group = group;
         this.subgroup = subgroup;
-
         Set<String> aliases = new HashSet<>();
         aliases.addAll(getDiscordAliases());
         aliases.addAll(getGithubAliases());

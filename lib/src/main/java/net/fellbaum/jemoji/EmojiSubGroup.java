@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents an emoji sub group.
+ */
 public enum EmojiSubGroup {
 
     ALPHANUM("alphanum"),

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents an emoji group.
+ */
 public enum EmojiGroup {
 
     ACTIVITIES("Activities"),
