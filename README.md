@@ -110,10 +110,16 @@ String text = EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  
 String text = EmojiManager.removeEmojis("Hello 😀 World 👍",Collections.singletonList("😀")); // "Hello  World 👍"
 ```
 
-#### Replace emojis in a string
+#### Replace all emojis in a string
 
 ```java
 String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
+```
+
+or more control of the replacement with a Function that provides the emoji and wants a string as return value
+
+```java
+String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍", Emoji::getHtmlDecimalCode); // "Hello &#128512; World &#128077;"
 ```
 
 #### Replace specific emojis in a string

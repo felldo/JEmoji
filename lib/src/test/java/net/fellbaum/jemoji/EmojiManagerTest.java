@@ -93,4 +93,9 @@ public class EmojiManagerTest {
     public void replaceAllEmojis() {
         Assert.assertEquals("Hello something World something something something", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", "something"));
     }
+
+    @Test
+    public void replaceAllEmojisFunction() {
+        Assert.assertEquals("Hello SMILEYS_AND_EMOTION World PEOPLE_AND_BODY PEOPLE_AND_BODY SMILEYS_AND_EMOTION", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", emoji -> emoji.getGroup().toString()));
+    }
 }

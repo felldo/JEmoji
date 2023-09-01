@@ -4,7 +4,6 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import net.fellbaum.jemoji.EmojiManagerTest;
 import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Warmup;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -47,6 +46,11 @@ public class EmojiManagerBenchmark {
     //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+    }
+
+    @Benchmark
+    public String replaceAllEmojisFunction() {
+        return EmojiManager.replaceAllEmojis(TEXT, emoji -> emoji.getGroup().toString());
     }
 
     @Benchmark

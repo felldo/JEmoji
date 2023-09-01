@@ -413,14 +413,37 @@ public final class EmojiManager {
     }
 
     /**
+     * Replaces all emojis in the text with the given replacement function.
+     *
+     * @param text                The text to replace emojis from.
+     * @param replacementFunction The replacement function.
+     * @return The text with all emojis replaced.
+     */
+    public static String replaceAllEmojis(final String text, Function<Emoji, String> replacementFunction) {
+        return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING);
+    }
+
+    /**
      * Replaces the given emojis with the given replacement string.
      *
      * @param text              The text to replace emojis from.
-     * @param emojisToReplace   The emojis to replace.
      * @param replacementString The replacement string.
+     * @param emojisToReplace   The emojis to replace.
      * @return The text with the given emojis replaced.
      */
     public static String replaceEmojis(final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
+        return replaceEmojis(text, emoji -> replacementString, emojisToReplace);
+    }
+
+    /**
+     * Replaces all emojis in the text with the given replacement function.
+     *
+     * @param text                The text to replace emojis from.
+     * @param replacementFunction The replacement function.
+     * @param emojisToReplace     The emojis to replace.
+     * @return The text with all emojis replaced.
+     */
+    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
         final LinkedHashMap<Integer, List<Emoji>> FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojisToReplace.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(getEmojiLinkedHashMapCollector());
@@ -453,7 +476,7 @@ public final class EmojiManager {
                         //Does the same but is slower apparently
                         //sb.replace(sb.length() - Character.charCount(currentCodepoint), sb.length(), replacementString);
                         sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
-                        sb.append(replacementString);
+                        sb.append(replacementFunction.apply(emoji));
 
                         textIndex += emojiCodePointsLength - 1;
                         continue nextTextIteration;
