@@ -34,6 +34,44 @@ plugins {
     id("me.champeau.jmh") version "0.7.1"
 }
 
+
+val java9: SourceSet by sourceSets.creating
+
+tasks.named<JavaCompile>(java9.compileJavaTaskName) {
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(9)
+    }
+    options.compilerArgumentProviders.add(object : CommandLineArgumentProvider {
+        @get:InputFiles
+        @get:PathSensitive(PathSensitivity.RELATIVE)
+        val mainClassesDirs = sourceSets.main.map { it.output.classesDirs }
+
+        override fun asArguments() = mainClassesDirs
+            .get()
+            .files
+            .map { it.absolutePath }
+            .flatMap {
+                listOf(
+                    "--patch-module",
+                    "net.fellbaum.jemoji=$it"
+                )
+            }
+    })
+}
+
+tasks.jar {
+    manifest {
+        attributes("Multi-Release" to true)
+    }
+    from(java9.output) {
+        into("META-INF/versions/9/")
+    }
+}
+
+val java9Implementation by configurations.existing {
+    extendsFrom(configurations.implementation.get())
+}
+
 repositories {
     mavenCentral()
 }
@@ -899,3 +937,9 @@ fun getAndSanitizeEmojiAliases(aliases: JsonNode): List<StringLiteralExpr> {
     }
 }
 */
+/*
+val org.gradle.api.Project.`modularity`: org.javamodularity.moduleplugin.extensions.ModularityExtension get() =
+    (this as org.gradle.api.plugins.ExtensionAware).extensions.getByName("modularity") as org.javamodularity.moduleplugin.extensions.ModularityExtension
+
+fun org.gradle.api.Project.`modularity`(configure: Action<org.javamodularity.moduleplugin.extensions.ModularityExtension>): Unit =
+    (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("modularity", configure)*/
