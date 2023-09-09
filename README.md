@@ -114,11 +114,7 @@ String text = EmojiManager.removeEmojis("Hello 😀 World 👍",Collections.sing
 
 ```java
 String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
-```
-
-or more control of the replacement with a Function that provides the emoji and wants a string as return value
-
-```java
+//or more control of the replacement with a Function that provides the emoji and wants a string as return value
 String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍", Emoji::getHtmlDecimalCode); // "Hello &#128512; World &#128077;"
 ```
 
