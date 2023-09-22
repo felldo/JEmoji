@@ -3,7 +3,9 @@ package net.fellbaum.jemoji;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents an emoji group.
@@ -44,6 +46,15 @@ public enum EmojiGroup {
      */
     public static List<EmojiGroup> getGroups() {
         return EMOJI_GROUPS;
+    }
+
+    /**
+     * Gets all emoji subgroups of this group.
+     *
+     * @return All emoji subgroups of this group
+     */
+    public EnumSet<EmojiSubGroup> getEmojiSubGroups() {
+        return EnumSet.copyOf(EmojiSubGroup.getSubGroups().stream().filter(subgroup -> subgroup.getGroup() == this).collect(Collectors.toList()));
     }
 
     /**
