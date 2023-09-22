@@ -107,7 +107,7 @@ String text = EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  
 #### Remove specific emojis from a string
 
 ```java
-String text = EmojiManager.removeEmojis("Hello 😀 World 👍",Collections.singletonList("😀")); // "Hello  World 👍"
+String text = EmojiManager.removeEmojis("Hello 😀 World 👍", EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello  World 👍"
 ```
 
 #### Replace all emojis in a string
@@ -121,7 +121,7 @@ String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍", Emoji::getH
 #### Replace specific emojis in a string
 
 ```java
-String text = EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>",Collections.singletonList("😀")); // "Hello <an emoji was here> World 👍"
+String text = EmojiManager.replaceEmojis("Hello 😀 World 👍", "<an emoji was here>", EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello <an emoji was here> World 👍"
 ```
 
 ### Emoji Object
