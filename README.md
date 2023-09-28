@@ -95,7 +95,7 @@ boolean containsEmoji = EmojiManager.containsEmoji("Hello 😀 World");
 #### Extract all emojis from a string in order they appear
 
 ```java 
-Set<Emoji> emojis = EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); // [😀, 👍]
+List<Emoji> emojis = EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); // [😀, 👍]
 ```
 
 #### Remove all emojis from a string
