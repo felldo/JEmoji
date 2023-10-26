@@ -157,7 +157,7 @@ tasks.named("build") {
 tasks.register("copyJarToProject") {
     doLast {
         copy {
-            from("$buildDir/libs/jemoji.jar")
+            from("${layout.buildDirectory}/libs/jemoji.jar")
             into(project.rootDir.path + "\\libs")
         }
     }
@@ -365,7 +365,7 @@ tasks.register("generateEmojis") {
                         }
 
                         val completeGitHubAliases = buildSet {
-                            githubEmojiAliasMap[cpOrigString]?.let { addAll(it.map { it.first }.toList()) }
+                            githubEmojiAliasMap[cpOrigString]?.let { pairList -> addAll(pairList.map { it.first }.toList()) }
                             emojiTerraInfo?.githubCode?.let { add(it) }
                         }
 
@@ -394,9 +394,13 @@ tasks.register("generateEmojis") {
 
         //val fileRead = File("$projectDir/src/main/resources/emojis-override.json") TODO: Allow specific overrides or additions to i.e. aliases
 
-        val file = File("$projectDir/src/main/resources/emojis.json")
+        val resourceFile = File("$projectDir/src/main/resources/emojis.json")
+        val publicFile = File("$rootDir/public/emojis.json")
+        val publicFileMin = File("$rootDir/public/emojis.min.json")
 
-        file.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(allUnicodeEmojis))
+        resourceFile.writeText(mapper.writeValueAsString(allUnicodeEmojis))
+        publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(allUnicodeEmojis))
+        publicFileMin.writeText(mapper.writeValueAsString(allUnicodeEmojis))
     }
 }
 
@@ -481,7 +485,7 @@ fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
                     ?: emptyList()
 
                 Pair(
-                    document.getElementById("copy-emoji")?.`val`()!!,
+                    document.getElementById("copy-emoji")?.ownText()!!,
                     EmojiTerraInfo(discordCode, githubCode, slackCode, keywords)
                 )
             }.forEach { put(it.first, it.second) }

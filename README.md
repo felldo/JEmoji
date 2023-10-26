@@ -1,5 +1,5 @@
 <a name="startReadme"></a>
-![Unicode Version](https://img.shields.io/badge/Unicode_version-15.0-critical?style=for-the-badge)
+![Unicode Emoji Version](https://img.shields.io/badge/Unicode_Emoji_version-15.1-critical?style=for-the-badge)
 ![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
 # Java Emoji (JEmoji)

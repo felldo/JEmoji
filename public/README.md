@@ -1,0 +1,1 @@
+This is the public directory for any files this project might produce, to ensure a permanent link to those files.
