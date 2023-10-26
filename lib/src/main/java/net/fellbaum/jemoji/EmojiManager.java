@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
-    private static final String PATH = "emojis.json";
+    private static final String PATH = "emoji_sources/emojis.json";
 
     private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
     private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
@@ -282,7 +282,8 @@ public final class EmojiManager {
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
+            final int currentCodepoint = textCodePointsArray[textIndex];
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
                 final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
@@ -292,11 +293,11 @@ public final class EmojiManager {
                     continue;
                 }
 
-                for (int i = 0; i < emojiCodePointsLength; i++) {
-                    if (textCodePointsArray[textIndex + i] != emojiCodePointsArray[i]) {
+                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
+                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
                         break;
                     }
-                    if (i == emojiCodePointsLength - 1) {
+                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
                         emojis.add(emoji);
                         textIndex += emojiCodePointsLength - 1;
                         continue nextTextIteration;
