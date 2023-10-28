@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class EmojiManagerTest {
@@ -103,6 +104,17 @@ public class EmojiManagerTest {
     @Test
     public void replaceAllEmojisFunction() {
         assertEquals("Hello SMILEYS_AND_EMOTION SMILEYS_AND_EMOTION SMILEYS_AND_EMOTIONSMILEYS_AND_EMOTION World PEOPLE_AND_BODY PEOPLE_AND_BODY SMILEYS_AND_EMOTION", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", emoji -> emoji.getGroup().toString()));
+    }
+
+    @Test
+    public void testEmojiPattern() {
+        for (Emoji emoji : EmojiManager.getAllEmojis()) {
+            assertTrue(EmojiManager.getEmojiPattern().matcher(emoji.getEmoji()).matches());
+        }
+        assertFalse(EmojiManager.getEmojiPattern().matcher("a").matches());
+        assertFalse(EmojiManager.getEmojiPattern().matcher("ä").matches());
+        assertFalse(EmojiManager.getEmojiPattern().matcher("1").matches());
+        assertFalse(EmojiManager.getEmojiPattern().matcher("/").matches());
     }
 
 }

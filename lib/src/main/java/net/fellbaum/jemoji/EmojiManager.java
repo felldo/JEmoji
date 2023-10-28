@@ -47,7 +47,7 @@ public final class EmojiManager {
             EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
 
             EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
-                    .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")), Pattern.UNICODE_CHARACTER_CLASS);
+                    .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")));
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         }
