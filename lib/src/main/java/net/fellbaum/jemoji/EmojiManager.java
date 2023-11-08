@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
@@ -274,7 +275,36 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<Emoji> emojis = new ArrayList<>();
+        extractEmojisInOrder(text, (index, emoji) -> emojis.add(emoji));
 
+        return Collections.unmodifiableList(emojis);
+    }
+
+    /**
+     * Extracts all emojis from the given text.
+     *
+     * @param text The text to extract emojis from.
+     * @return A list of emojis.
+     */
+    public static Set<Emoji> extractEmojis(final String text) {
+        if (isStringNullOrEmpty(text)) return Collections.emptySet();
+
+        final Set<Emoji> emojis = new HashSet<>();
+        extractEmojisInOrder(text, (index, emoji) -> emojis.add(emoji));
+
+        return Collections.unmodifiableSet(emojis);
+    }
+
+    public static SortedMap<Integer, Emoji> extractEmojisInOrderWithIndex(final String text) {
+        if (isStringNullOrEmpty(text)) return Collections.emptySortedMap();
+
+        final SortedMap<Integer, Emoji> emojis = new TreeMap<>();
+        extractEmojisInOrder(text, emojis::put);
+
+        return Collections.unmodifiableSortedMap(emojis);
+    }
+
+    private static void extractEmojisInOrder(final String text, final BiConsumer<Integer, Emoji> consumer) {
         final int[] textCodePointsArray = text.codePoints().toArray();
         final long textCodePointsLength = textCodePointsArray.length;
 
@@ -298,24 +328,13 @@ public final class EmojiManager {
                         break;
                     }
                     if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                        emojis.add(emoji);
+                        consumer.accept(textIndex, emoji);
                         textIndex += emojiCodePointsLength - 1;
                         continue nextTextIteration;
                     }
                 }
             }
         }
-        return Collections.unmodifiableList(emojis);
-    }
-
-    /**
-     * Extracts all emojis from the given text.
-     *
-     * @param text The text to extract emojis from.
-     * @return A list of emojis.
-     */
-    public static Set<Emoji> extractEmojis(final String text) {
-        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
     }
 
     /**
