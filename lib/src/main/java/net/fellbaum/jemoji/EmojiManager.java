@@ -27,7 +27,7 @@ public final class EmojiManager {
     // Get emoji by alias
     private static final Map<AliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(AliasGroup.class);
 
-    private static final Pattern EMOJI_PATTERN;
+    private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (final Emoji o1, final Emoji o2) -> {
@@ -50,9 +50,6 @@ public final class EmojiManager {
             EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(Collectors.toList()));
 
             EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
-
-            EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
-                    .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")));
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -247,6 +244,11 @@ public final class EmojiManager {
      * @return The pattern for all emojis.
      */
     public static Pattern getEmojiPattern() {
+        if (EMOJI_PATTERN == null) {
+            EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
+                    .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")));
+        }
+
         return EMOJI_PATTERN;
     }
 
