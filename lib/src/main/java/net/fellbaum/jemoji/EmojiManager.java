@@ -31,8 +31,10 @@ public final class EmojiManager {
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (final Emoji o1, final Emoji o2) -> {
-        if (o1.getEmoji().codePoints().toArray().length == o2.getEmoji().codePoints().toArray().length) return 0;
-        return o1.getEmoji().codePoints().toArray().length > o2.getEmoji().codePoints().toArray().length ? -1 : 1;
+        final int codePointCount1 = getCodePointCount(o1.getEmoji());
+        final int codePointCount2 = getCodePointCount(o2.getEmoji());
+        if (codePointCount1 == codePointCount2) return 0;
+        return codePointCount1 > codePointCount2 ? -1 : 1;
     };
 
     static {
@@ -51,6 +53,10 @@ public final class EmojiManager {
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static int getCodePointCount(String string) {
+        return string.codePointCount(0, string.length());
     }
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
