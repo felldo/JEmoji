@@ -511,47 +511,31 @@ public final class EmojiManager {
     public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
-        final int[] textCodePointsArray = text.codePoints().toArray();
-        final long textCodePointsLength = textCodePointsArray.length;
+        final StringBuilder sb = new StringBuilder(text.length());
 
-        final StringBuilder sb = new StringBuilder();
+        forEachEmoji(text, new VoidEmojiProcessor() {
+            private int currentCodepoint;
 
-        nextTextIteration:
-        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            final int currentCodepoint = textCodePointsArray[textIndex];
-            sb.appendCodePoint(currentCodepoint);
+            @Override
+            public void onCodepoint(int codepoint) {
+                currentCodepoint = codepoint;
 
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
-            if (emojisByCodePoint == null) continue;
-            for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
-                final int emojiCodePointsLength = emojiCodePointsArray.length;
-                // Check if Emoji code points are in bounds of the text code points
-                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
-                    continue;
-                }
-
-                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                    //break out because the emoji is not the same
-                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
-                        break;
-                    }
-
-                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                        textIndex += emojiCodePointsLength - 1;
-                        sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
-
-                        if (emojisToReplace.contains(emoji)) {
-                            sb.append(replacementFunction.apply(emoji));
-                        } else {
-                            sb.append(emoji.getEmoji());
-                        }
-
-                        continue nextTextIteration;
-                    }
-                }
+                sb.appendCodePoint(codepoint);
             }
-        }
+
+            @Override
+            public FunctionResult<Void> onEmoji(int textIndex, Emoji emoji) {
+                sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
+
+                if (emojisToReplace.contains(emoji)) {
+                    sb.append(replacementFunction.apply(emoji));
+                } else {
+                    sb.append(emoji.getEmoji());
+                }
+
+                return FunctionResult.keepLooking();
+            }
+        });
 
         return sb.toString();
     }
