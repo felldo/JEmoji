@@ -92,7 +92,7 @@ testing {
 
 jmh {
 //    includes.addAll("some regular expression")  // include pattern (regular expression) for benchmarks to be executed
-//    excludes.addAll("some regular expression") // exclude pattern (regular expression) for benchmarks to be executed
+    excludes.addAll("excluded") // exclude pattern (regular expression) for benchmarks to be executed
 //    iterations.set(10) // Number of measurement iterations to do.
     benchmarkMode.addAll("avgt") // Benchmark mode. Available modes are: [Throughput/thrpt, AverageTime/avgt, SampleTime/sample, SingleShotTime/ss, All/all]
 //    batchSize.set(1) // Batch size: number of benchmark method calls per operation. (some benchmark modes can ignore this setting)
