@@ -92,7 +92,7 @@ public final class EmojiManager {
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
         return Collectors.groupingBy(
-                emoji -> emoji.getEmoji().codePoints().toArray()[0],
+                emoji -> emoji.getEmoji().codePointAt(0),
                 LinkedHashMap::new,
                 Collectors.collectingAndThen(
                         Collectors.toList(),
@@ -513,7 +513,7 @@ public final class EmojiManager {
 
     private static <T> T forEachEmoji(final String text,
                                       final EmojiProcessor<T> processor) {
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         nextTextIteration:
@@ -524,7 +524,7 @@ public final class EmojiManager {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
@@ -551,6 +551,17 @@ public final class EmojiManager {
         }
 
         return processor.getDefaultValue();
+    }
+
+    private static int[] stringToCodePoints(String text) {
+        int[] codePoints = new int[getCodePointCount(text)];
+        int j = 0;
+        for (int i = 0; i < text.length();) {
+            final int codePoint = text.codePointAt(i);
+            codePoints[j++] = codePoint;
+            i += Character.charCount(codePoint);
+        }
+        return codePoints;
     }
 
     private static boolean isStringNullOrEmpty(final String string) {
