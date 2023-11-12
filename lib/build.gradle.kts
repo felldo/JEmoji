@@ -229,6 +229,12 @@ signing {
     val signingKey = findPropertyOrNull("JEMOJI_SINGING_SECRET_KEY_RING_FILE")
     val signingKeyId = findPropertyOrNull("JEMOJI_SIGNING_KEY_ID")
     val signingPassword = findPropertyOrNull("JEMOJI_SIGNING_PASSWORD")
+    if (System.getenv("SKIP_SIGNING").toBoolean()) {
+        println("++++++++++++++++++SIGNING NOT REQUIRED")
+        isRequired = false
+    } else{
+        println("++++++++++++++++++SIGNING REQUIRED")
+    }
 
     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
     sign(publishing.publications["JEMOJI"])
@@ -365,7 +371,9 @@ tasks.register("generateEmojis") {
                         }
 
                         val completeGitHubAliases = buildSet {
-                            githubEmojiAliasMap[cpOrigString]?.let { pairList -> addAll(pairList.map { it.first }.toList()) }
+                            githubEmojiAliasMap[cpOrigString]?.let { pairList ->
+                                addAll(pairList.map { it.first }.toList())
+                            }
                             emojiTerraInfo?.githubCode?.let { add(it) }
                         }
 
