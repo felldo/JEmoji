@@ -86,7 +86,7 @@ public final class EmojiManager {
         return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(aliasGroup, group -> {
             final Map<String, Emoji> emojiAliasToEmoji = new HashMap<>();
             for (final Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
-                for (String alias : group.getAliasCollectionSupplier().apply(emoji)) {
+                for (final String alias : group.getAliasCollectionSupplier().apply(emoji)) {
                     emojiAliasToEmoji.put(alias, emoji);
                 }
             }
@@ -170,8 +170,9 @@ public final class EmojiManager {
         return Arrays.stream(AliasGroup.values())
                 .map(EmojiManager::getEmojiAliasToEmoji)
                 .filter(m -> m.containsKey(aliasWithColon) || m.containsKey(aliasWithoutColon))
-                .map(m -> getEither(m, aliasWithColon, aliasWithoutColon))
-                .findAny();
+                .map(m -> findEmojiByEitherAlias(m, aliasWithColon, aliasWithoutColon))
+                .findAny()
+                .flatMap(Function.identity());
     }
 
     /**
