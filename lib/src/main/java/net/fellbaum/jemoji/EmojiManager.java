@@ -24,6 +24,9 @@ public final class EmojiManager {
     private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
 
+    // Get emoji by alias
+    private static final Map<AliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(AliasGroup.class);
+
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
@@ -77,6 +80,18 @@ public final class EmojiManager {
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static Map<String, Emoji> getEmojiAliasToEmoji(final AliasGroup aliasGroup) {
+        return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(aliasGroup, group -> {
+            final Map<String, Emoji> emojiAliasToEmoji = new HashMap<>();
+            for (final Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
+                for (final String alias : group.getAliasCollectionSupplier().apply(emoji)) {
+                    emojiAliasToEmoji.put(alias, emoji);
+                }
+            }
+            return Collections.unmodifiableMap(emojiAliasToEmoji);
+        });
     }
 
     private EmojiManager() {
@@ -152,10 +167,12 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_UNICODE_TO_EMOJI.values()
-                .stream()
-                .filter(emoji -> emoji.getAllAliases().contains(aliasWithoutColon) || emoji.getAllAliases().contains(aliasWithColon))
-                .findFirst();
+        return Arrays.stream(AliasGroup.values())
+                .map(EmojiManager::getEmojiAliasToEmoji)
+                .filter(m -> m.containsKey(aliasWithColon) || m.containsKey(aliasWithoutColon))
+                .map(m -> findEmojiByEitherAlias(m, aliasWithColon, aliasWithoutColon))
+                .findAny()
+                .flatMap(Function.identity());
     }
 
     /**
@@ -168,10 +185,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_UNICODE_TO_EMOJI.values()
-                .stream()
-                .filter(emoji -> emoji.getDiscordAliases().contains(aliasWithoutColon) || emoji.getDiscordAliases().contains(aliasWithColon))
-                .findFirst();
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.DISCORD), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -184,10 +198,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_UNICODE_TO_EMOJI.values()
-                .stream()
-                .filter(emoji -> emoji.getGithubAliases().contains(aliasWithoutColon) || emoji.getGithubAliases().contains(aliasWithColon))
-                .findFirst();
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.GITHUB), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -200,10 +211,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return EMOJI_UNICODE_TO_EMOJI.values()
-                .stream()
-                .filter(emoji -> emoji.getSlackAliases().contains(aliasWithoutColon) || emoji.getSlackAliases().contains(aliasWithColon))
-                .findFirst();
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
     }
 
     private static String removeColonFromAlias(final String alias) {
@@ -212,6 +220,14 @@ public final class EmojiManager {
 
     private static String addColonToAlias(final String alias) {
         return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
+    }
+
+    private static <K, V> Optional<V> findEmojiByEitherAlias(final Map<K, V> map, final K aliasWithColon, final K aliasWithoutColon) {
+        final V firstValue = map.get(aliasWithColon);
+        if (firstValue != null) return Optional.of(firstValue);
+        final V secondValue = map.get(aliasWithoutColon);
+        if (secondValue != null) return Optional.of(secondValue);
+        return Optional.empty();
     }
 
     /**

@@ -4,16 +4,17 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import net.fellbaum.jemoji.EmojiManagerTest;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+@State(Scope.Benchmark)
 public class EmojiManagerBenchmark {
 
     private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
@@ -40,6 +41,14 @@ public class EmojiManagerBenchmark {
     }
 
     private static final String EMOJIS_RANDOM_ORDER = String.join("", EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(toShuffledList()));
+
+    @Param({":+1:", "nope"})
+    private String alias;
+
+    @Benchmark
+    public Optional<Emoji> getByAlias() {
+        return EmojiManager.getByAlias(alias);
+    }
 
     @Benchmark
     //@BenchmarkMode(Mode.AverageTime)
