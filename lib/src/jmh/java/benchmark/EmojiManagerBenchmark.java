@@ -46,8 +46,6 @@ public class EmojiManagerBenchmark {
     private String alias;
 
     @Benchmark
-    //@BenchmarkMode(Mode.AverageTime)
-    //@Warmup(iterations = 1)
     public Optional<Emoji> getByAlias() {
         return EmojiManager.getByAlias(alias);
     }
