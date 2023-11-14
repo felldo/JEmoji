@@ -12,10 +12,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static net.fellbaum.jemoji.EmojiUtils.getCodePointCount;
+
 /**
  * Represents an emoji.
  */
-public class Emoji {
+public class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
     private final String unicode;
@@ -243,6 +245,11 @@ public class Emoji {
                 ", group=" + group +
                 ", subgroup=" + subgroup +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Emoji o) {
+        return Integer.compare(getCodePointCount(o.getEmoji()), getCodePointCount(this.getEmoji()));
     }
 
     @Override
