@@ -43,7 +43,7 @@ public final class EmojiManager {
 
             EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
 
-            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted().collect(Collectors.toList()));
+            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
             EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
         } catch (final JsonProcessingException e) {
@@ -58,7 +58,7 @@ public final class EmojiManager {
                 Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> {
-                            list.sort(Emoji::compareTo);
+                            list.sort(Comparator.reverseOrder());
                             return list;
                         }
                 )
