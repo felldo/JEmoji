@@ -249,7 +249,7 @@ public class Emoji implements Comparable<Emoji> {
 
     @Override
     public int compareTo(Emoji o) {
-        return Integer.compare(getCodePointCount(o.getEmoji()), getCodePointCount(this.getEmoji()));
+        return o.getEmoji().compareTo(this.emoji);
     }
 
     @Override
