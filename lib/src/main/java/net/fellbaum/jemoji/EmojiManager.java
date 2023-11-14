@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import static net.fellbaum.jemoji.EmojiUtils.addColonToAlias;
+import static net.fellbaum.jemoji.EmojiUtils.findEmojiByEitherAlias;
+import static net.fellbaum.jemoji.EmojiUtils.isStringNullOrEmpty;
+import static net.fellbaum.jemoji.EmojiUtils.removeColonFromAlias;
+
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
@@ -30,22 +35,15 @@ public final class EmojiManager {
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (final Emoji o1, final Emoji o2) -> {
-        if (o1.getEmoji().codePoints().toArray().length == o2.getEmoji().codePoints().toArray().length) return 0;
-        return o1.getEmoji().codePoints().toArray().length > o2.getEmoji().codePoints().toArray().length ? -1 : 1;
-    };
-
     static {
         final String fileContent = readFileAsString();
         try {
             final List<Emoji> emojis = new ObjectMapper().readValue(fileContent, new TypeReference<List<Emoji>>() {
             });
 
-            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(
-                    emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity()))
-            );
+            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
 
-            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(Collectors.toList()));
+            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
             EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
         } catch (final JsonProcessingException e) {
@@ -60,7 +58,7 @@ public final class EmojiManager {
                 Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> {
-                            list.sort(EMOJI_CODEPOINT_COMPARATOR);
+                            list.sort(Comparator.reverseOrder());
                             return list;
                         }
                 )
@@ -212,22 +210,6 @@ public final class EmojiManager {
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
         return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
-    }
-
-    private static String removeColonFromAlias(final String alias) {
-        return alias.startsWith(":") && alias.endsWith(":") ? alias.substring(1, alias.length() - 1) : alias;
-    }
-
-    private static String addColonToAlias(final String alias) {
-        return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
-    }
-
-    private static <K, V> Optional<V> findEmojiByEitherAlias(final Map<K, V> map, final K aliasWithColon, final K aliasWithoutColon) {
-        final V firstValue = map.get(aliasWithColon);
-        if (firstValue != null) return Optional.of(firstValue);
-        final V secondValue = map.get(aliasWithoutColon);
-        if (secondValue != null) return Optional.of(secondValue);
-        return Optional.empty();
     }
 
     /**
@@ -546,11 +528,6 @@ public final class EmojiManager {
     public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
-
-    private static boolean isStringNullOrEmpty(final String string) {
-        return null == string || string.isEmpty();
-    }
-
 
     /*public static List<Emoji> testEmojiPattern(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
