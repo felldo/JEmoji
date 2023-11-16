@@ -12,10 +12,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static net.fellbaum.jemoji.EmojiUtils.getCodePointCount;
+
 /**
  * Represents an emoji.
  */
-public class Emoji {
+public class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
     private final String unicode;
@@ -245,8 +247,26 @@ public class Emoji {
                 '}';
     }
 
+    /**
+     * Compares the emojis based on their codepoint length,
+     * and if they are equal, compare them lexicographically based on the emoji.
+     *
+     * @param o the object to be compared.
+     * @return the value 0 if they are fully equal, 1 if the emoji has more codepoints
+     * and has a higher unicode value, otherwise return -1
+     */
     @Override
-    public boolean equals(Object o) {
+    public int compareTo(final Emoji o) {
+        final int comparedValue = Integer.compare(getCodePointCount(this.getEmoji()), getCodePointCount(o.getEmoji()));
+        if (comparedValue != 0) {
+            return comparedValue;
+        }
+
+        return this.getEmoji().compareTo(o.getEmoji());
+    }
+
+    @Override
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 

@@ -15,6 +15,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import static net.fellbaum.jemoji.EmojiUtils.addColonToAlias;
+import static net.fellbaum.jemoji.EmojiUtils.findEmojiByEitherAlias;
+import static net.fellbaum.jemoji.EmojiUtils.isStringNullOrEmpty;
+import static net.fellbaum.jemoji.EmojiUtils.removeColonFromAlias;
+
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
@@ -61,24 +66,15 @@ public final class EmojiManager {
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    private static final Comparator<Emoji> EMOJI_CODEPOINT_COMPARATOR = (final Emoji o1, final Emoji o2) -> {
-        final int codePointCount1 = getCodePointCount(o1.getEmoji());
-        final int codePointCount2 = getCodePointCount(o2.getEmoji());
-        if (codePointCount1 == codePointCount2) return 0;
-        return codePointCount1 > codePointCount2 ? -1 : 1;
-    };
-
     static {
         final String fileContent = readFileAsString();
         try {
             final List<Emoji> emojis = new ObjectMapper().readValue(fileContent, new TypeReference<List<Emoji>>() {
             });
 
-            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(
-                    emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity()))
-            );
+            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
 
-            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(EMOJI_CODEPOINT_COMPARATOR).collect(Collectors.toList()));
+            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
             EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
         } catch (final JsonProcessingException e) {
@@ -97,7 +93,7 @@ public final class EmojiManager {
                 Collectors.collectingAndThen(
                         Collectors.toList(),
                         list -> {
-                            list.sort(EMOJI_CODEPOINT_COMPARATOR);
+                            list.sort(Comparator.reverseOrder());
                             return list;
                         }
                 )
@@ -119,11 +115,11 @@ public final class EmojiManager {
         }
     }
 
-    private static Map<String, Emoji> getEmojiAliasToEmoji(AliasGroup aliasGroup) {
+    private static Map<String, Emoji> getEmojiAliasToEmoji(final AliasGroup aliasGroup) {
         return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(aliasGroup, group -> {
             final Map<String, Emoji> emojiAliasToEmoji = new HashMap<>();
-            for (Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
-                for (String alias : group.getAliasCollectionSupplier().apply(emoji)) {
+            for (final Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
+                for (final String alias : group.getAliasCollectionSupplier().apply(emoji)) {
                     emojiAliasToEmoji.put(alias, emoji);
                 }
             }
@@ -207,8 +203,9 @@ public final class EmojiManager {
         return Arrays.stream(AliasGroup.values())
                 .map(EmojiManager::getEmojiAliasToEmoji)
                 .filter(m -> m.containsKey(aliasWithColon) || m.containsKey(aliasWithoutColon))
-                .map(m -> getEither(m, aliasWithColon, aliasWithoutColon))
-                .findAny();
+                .map(m -> findEmojiByEitherAlias(m, aliasWithColon, aliasWithoutColon))
+                .findAny()
+                .flatMap(Function.identity());
     }
 
     /**
@@ -221,8 +218,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        final Map<String, Emoji> emojiAliasToEmoji = getEmojiAliasToEmoji(AliasGroup.DISCORD);
-        return Optional.of(getEither(emojiAliasToEmoji, aliasWithColon, aliasWithoutColon));
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.DISCORD), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -235,8 +231,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        final Map<String, Emoji> emojiAliasToEmoji = getEmojiAliasToEmoji(AliasGroup.GITHUB);
-        return Optional.of(getEither(emojiAliasToEmoji, aliasWithColon, aliasWithoutColon));
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.GITHUB), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -249,24 +244,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        final Map<String, Emoji> emojiAliasToEmoji = getEmojiAliasToEmoji(AliasGroup.SLACK);
-        return Optional.of(getEither(emojiAliasToEmoji, aliasWithColon, aliasWithoutColon));
-    }
-
-    private static String removeColonFromAlias(final String alias) {
-        return alias.startsWith(":") && alias.endsWith(":") ? alias.substring(1, alias.length() - 1) : alias;
-    }
-
-    private static String addColonToAlias(final String alias) {
-        return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
-    }
-
-    private static <K, V> V getEither(Map<K, V> map, K first, K second) {
-        final V firstValue = map.get(first);
-        if (firstValue != null) return firstValue;
-        final V secondValue = map.get(second);
-        if (secondValue != null) return secondValue;
-        throw new NoSuchElementException("No element for " + first + " or " + second);
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -552,11 +530,6 @@ public final class EmojiManager {
 
         return processor.getDefaultValue();
     }
-
-    private static boolean isStringNullOrEmpty(final String string) {
-        return null == string || string.isEmpty();
-    }
-
 
     /*public static List<Emoji> testEmojiPattern(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
