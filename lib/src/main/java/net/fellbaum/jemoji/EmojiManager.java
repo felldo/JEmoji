@@ -15,10 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.EmojiUtils.addColonToAlias;
-import static net.fellbaum.jemoji.EmojiUtils.findEmojiByEitherAlias;
-import static net.fellbaum.jemoji.EmojiUtils.isStringNullOrEmpty;
-import static net.fellbaum.jemoji.EmojiUtils.removeColonFromAlias;
+import static net.fellbaum.jemoji.EmojiUtils.*;
 
 @SuppressWarnings("unused")
 public final class EmojiManager {
@@ -80,10 +77,6 @@ public final class EmojiManager {
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private static int getCodePointCount(String string) {
-        return string.codePointCount(0, string.length());
     }
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
