@@ -25,6 +25,7 @@ jobs:
           distribution: 'adopt'
       - name: Build and run JMH benchmark
         run: |
+          ./gradlew jmh
           ls -a
           cd lib
           ls -a
@@ -34,7 +35,6 @@ jobs:
           ls -a
           cd jmh
           ls -a
-          ./gradlew jmh
       - name: JMH Benchmark Action
         uses: kitlangton/jmh-benchmark-action@main
         with:
