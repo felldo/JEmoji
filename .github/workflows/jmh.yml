@@ -1,8 +1,9 @@
 name: Minimal setup
 on:
-  push:
+  pull_request_target:
     branches:
       - master
+      - bench
 
 jobs:
   benchmark:
