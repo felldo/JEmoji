@@ -1,55 +1,22 @@
-name: Benchmark
-on:
-  pull_request:
-    branches:
-      - master
-      - bench
+name: Execute Tests
 
-permissions:
-  pull-requests: write
-  contents: write
-  pages: write
-  deployments: write
+on:
+  push:
+  pull_request:
 
 jobs:
-  benchmark:
-    name: Performance regression check
+  build-and-test:
     runs-on: ubuntu-latest
+    name: Build and test
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 11
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
           distribution: 'temurin'
-      - name: Run benchmark
-        run: ./gradlew jmh
-      # Download previous benchmark result from cache (if exists)
-      - name: Download previous benchmark data
-        uses: actions/cache@v1
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-      # Run `github-action-benchmark` action
-      - name: Store benchmark result
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          # What benchmark tool the output.txt came from
-          tool: 'jmh'
-          # Where the output from the benchmark tool is stored
-          output-file-path: ./lib/build/results/jmh/results.json
-          # Where the previous data file is stored
-          #external-data-json-path: ./cache/benchmark-data.json
-          # Workflow will fail when an alert happens
-          fail-on-alert: false
-          alert-threshold: 0%
-          # GitHub API token to make a commit comment
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Enable alert commit comment
-          comment-on-alert: true
-          # Enable Job Summary for PRs
-          summary-always: true
-          # Mention @rhysd in the commit comment
-          alert-comment-cc-users: '@felldo'
-          auto-push: true
-      # Upload the updated cache file for the next job by actions/cache
+          java-version: '17'
+      - name: Build project
+        run: ./gradlew build -x test
+      - name: Run tests
+        run: ./gradlew test

@@ -1,4 +1,4 @@
-name: Minimal setup
+name: Benchmark
 on:
   pull_request:
     branches:
@@ -22,7 +22,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      # Run benchmark with `go test -bench` and stores the output to a file
       - name: Run benchmark
         run: ./gradlew jmh
       # Download previous benchmark result from cache (if exists)
