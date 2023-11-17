@@ -1,1 +1,0 @@
-Do not reference any files in this directory, as they can change anytime. Use the files in this [directory](../../../../public) instead.
