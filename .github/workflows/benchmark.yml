@@ -42,7 +42,7 @@ jobs:
           #external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: false
-          alert-threshold: 0%
+          alert-threshold: 1%
           # GitHub API token to make a commit comment
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Enable alert commit comment
