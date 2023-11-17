@@ -1,4 +1,4 @@
-package benchmark;
+package benchmark.excluded;
 
 import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
