@@ -26,9 +26,9 @@ jobs:
         run: ./gradlew jmh
       # Download previous benchmark result from cache (if exists)
       - name: Download previous benchmark data
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
-          path: ./cache
+          path: ./cache/benchmark-data.json
           key: ${{ runner.os }}-benchmark
       # Run `github-action-benchmark` action
       - name: Store benchmark result
@@ -49,7 +49,12 @@ jobs:
           comment-on-alert: true
           # Enable Job Summary for PRs
           summary-always: true
-          # Mention @rhysd in the commit comment
+          # Mention @felldo in the commit comment
           alert-comment-cc-users: '@felldo'
           auto-push: true
       # Upload the updated cache file for the next job by actions/cache
+      - name: Save benchmark JSON
+        uses: actions/cache/save@v3
+        with:
+          path: ./cache/benchmark-data.json
+          key: ${{ runner.os }}-benchmark
