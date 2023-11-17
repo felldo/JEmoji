@@ -109,12 +109,12 @@ jmh {
 //    //benchmarkParameters.put("", ListProperty) // Benchmark parameters.
 //    profilers.addAll("") // Use profilers to collect additional data. Supported profilers: [cl, comp, gc, stack, perf, perfnorm, perfasm, xperf, xperfasm, hs_cl, hs_comp, hs_gc, hs_rt, hs_thr, async]
 //    timeOnIteration.set("1s") // Time to spend at each measurement iteration.
-//    resultFormat.set("CSV") // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
+    resultFormat.set("JSON") // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
 //    synchronizeIterations.set(false) // Synchronize iterations?
 //    threads.set(4) // Number of worker threads to run with.
 //    threadGroups.addAll(2,3,4) //Override thread group distribution for asymmetric benchmarks.
 //    jmhTimeout.set("1s") // Timeout for benchmark iteration.
-    timeUnit.set("ms") // Output time unit. Available time units are: [m, s, ms, us, ns].
+//    timeUnit.set("ms") // Output time unit. Available time units are: [m, s, ms, us, ns].
 //    verbosity.set("NORMAL") // Verbosity mode. Available modes are: [SILENT, NORMAL, EXTRA]
 //    warmup.set("1s") // Time to spend at each warmup iteration.
 //    warmupBatchSize.set(10) // Warmup batch size: number of benchmark method calls per operation.

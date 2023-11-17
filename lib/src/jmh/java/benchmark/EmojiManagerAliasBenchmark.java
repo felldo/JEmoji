@@ -2,14 +2,13 @@ package benchmark;
 
 import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class EmojiManagerAliasBenchmark {
 
     @Param({":+1:", "nope"})
