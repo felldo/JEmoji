@@ -64,6 +64,7 @@ EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10 
     //@BenchmarkMode(Mode.AverageTime)
     //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
+
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
