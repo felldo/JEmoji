@@ -70,6 +70,36 @@ EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10 
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
 /*
