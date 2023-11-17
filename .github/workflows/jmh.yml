@@ -10,6 +10,7 @@ permissions:
   contents: write
   pages: write
 
+
 jobs:
   benchmark:
     name: Performance regression check
