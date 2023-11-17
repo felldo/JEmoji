@@ -38,5 +38,5 @@ jobs:
       - name: JMH Benchmark Action
         uses: kitlangton/jmh-benchmark-action@main
         with:
-          jmh-output-path: lib/build/results/jmh/results.json
+          jmh-output-path: ./lib/build/results/jmh/results.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
