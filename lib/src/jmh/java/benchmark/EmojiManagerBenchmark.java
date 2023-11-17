@@ -66,7 +66,7 @@ EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10 
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
-
+/*
     @Benchmark
     public String replaceAllEmojisFunction() {
         return EmojiManager.replaceAllEmojis(TEXT, emoji -> emoji.getGroup().toString());
@@ -91,7 +91,7 @@ EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10 
     public List<Emoji> extractEmojisInOrderOnlyEmojisRandomOrder() {
         return EmojiManager.extractEmojisInOrder(EMOJIS_RANDOM_ORDER);
     }
-/*
+
     @Benchmark
     public boolean containsEmoji() {
         return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
