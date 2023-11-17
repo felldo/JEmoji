@@ -9,6 +9,7 @@ permissions:
   pull-requests: write
   contents: write
   pages: write
+  deployments: write
 
 jobs:
   benchmark:
