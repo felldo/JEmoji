@@ -40,7 +40,7 @@ jobs:
           # Where the output from the benchmark tool is stored
           output-file-path: ./lib/build/results/jmh/results.json
           # Where the previous data file is stored
-          external-data-json-path: ./cache/benchmark-data.json
+          #external-data-json-path: ./cache/benchmark-data.json
           # Workflow will fail when an alert happens
           fail-on-alert: false
           alert-threshold: 1%
