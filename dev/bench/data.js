@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700232320221,
+  "lastUpdate": 1700232321882,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -102,6 +102,32 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
             "value": 200.55057850666668,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "felldo",
+            "username": "felldo"
+          },
+          "committer": {
+            "name": "felldo",
+            "username": "felldo"
+          },
+          "id": "89de80c11c1dee9d08ac22228f0e79b4f765a5f0",
+          "message": "test benchmark",
+          "timestamp": "2023-11-05T10:05:19Z",
+          "url": "https://github.com/felldo/JEmoji/pull/38/commits/89de80c11c1dee9d08ac22228f0e79b4f765a5f0"
+        },
+        "date": 1700232319706,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 790.6069475,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 2\nthreads: 1"
           }
