@@ -28,10 +28,10 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.github.ben-manes.versions") version "0.47.0"
+    id("com.github.ben-manes.versions") version "0.50.0"
 
     //https://github.com/melix/jmh-gradle-plugin
-    id("me.champeau.jmh") version "0.7.1"
+    id("me.champeau.jmh") version "0.7.2"
 }
 
 
@@ -77,7 +77,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
 }
 
 testing {
@@ -230,10 +230,7 @@ signing {
     val signingKeyId = findPropertyOrNull("JEMOJI_SIGNING_KEY_ID")
     val signingPassword = findPropertyOrNull("JEMOJI_SIGNING_PASSWORD")
     if (System.getenv("SKIP_SIGNING").toBoolean()) {
-        println("++++++++++++++++++SIGNING NOT REQUIRED")
         isRequired = false
-    } else{
-        println("++++++++++++++++++SIGNING REQUIRED")
     }
 
     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
@@ -274,12 +271,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.15.2")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.16.0")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
-        classpath("org.jsoup:jsoup:1.16.1")
-        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.4")
+        classpath("org.jsoup:jsoup:1.16.2")
+        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.6")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
