@@ -4,11 +4,14 @@ on:
     branches:
       - master
       - testyml
-  pull_request:
+  pull_request_target:
     branches:
       - master
       - testyml
-      - testmerge
+#    branches:
+#      - master
+#      - testyml
+#      - testmerge
 
 permissions:
   contents: write
