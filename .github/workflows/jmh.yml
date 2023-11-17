@@ -6,7 +6,6 @@ on:
       - bench
 
 
-
 jobs:
   benchmark:
     name: Performance regression check
