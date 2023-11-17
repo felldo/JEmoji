@@ -5,6 +5,11 @@ on:
       - master
       - bench
 
+permissions:
+  pull-requests: write
+  contents: write
+  pages: write
+
 jobs:
   benchmark:
     name: Performance regression check
