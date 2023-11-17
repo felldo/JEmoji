@@ -2,12 +2,13 @@ name: Benchmark
 on:
   push:
     branches:
-      - main
+      - master
       - testyml
   pull_request:
     branches:
-      - main
+      - master
       - testyml
+      - testmerge
 
 permissions:
   contents: write
