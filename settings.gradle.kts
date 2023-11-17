@@ -14,4 +14,5 @@ plugins {
 }
 
 rootProject.name = "JEmoji"
+
 include("lib")

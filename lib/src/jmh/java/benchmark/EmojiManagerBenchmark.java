@@ -16,6 +16,25 @@ import java.util.stream.Collectors;
 
 public class EmojiManagerBenchmark {
 
+
+    /*
+    <tem
+    Benchmark                                                             Mode  Cnt   Score   Error  Units
+EmojiManagerBenchmark.extractEmojisInOrder                            avgt   10   2,206 ± 0,013  ms/op
+EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending  avgt   10   9,773 ± 0,083  ms/op
+EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder       avgt   10  10,469 ± 0,107  ms/op
+EmojiManagerBenchmark.removeAllEmojis                                 avgt   10   2,822 ± 0,026  ms/op
+EmojiManagerBenchmark.replaceAllEmojis                                avgt   10   2,836 ± 0,070  ms/op
+EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10   2,834 ± 0,015  ms/op
+
+Benchmark                                                             Mode  Cnt   Score   Error  Units
+EmojiManagerBenchmark.extractEmojisInOrder                            avgt   10   2,186 ± 0,057  ms/op
+EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending  avgt   10  10,044 ± 0,117  ms/op
+EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder       avgt   10  10,584 ± 0,196  ms/op
+EmojiManagerBenchmark.removeAllEmojis                                 avgt   10   3,062 ± 0,203  ms/op
+EmojiManagerBenchmark.replaceAllEmojis                                avgt   10   3,034 ± 0,042  ms/op
+EmojiManagerBenchmark.replaceAllEmojisFunction                        avgt   10   3,319 ± 0,281  ms/op
+     */
     private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
             .lines().collect(Collectors.joining("\n"));
 
@@ -45,9 +64,14 @@ public class EmojiManagerBenchmark {
     //@BenchmarkMode(Mode.AverageTime)
     //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
-
+/*
     @Benchmark
     public String replaceAllEmojisFunction() {
         return EmojiManager.replaceAllEmojis(TEXT, emoji -> emoji.getGroup().toString());
@@ -77,5 +101,5 @@ public class EmojiManagerBenchmark {
     public boolean containsEmoji() {
         return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
     }
-
+*/
 }
