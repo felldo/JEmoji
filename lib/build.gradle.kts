@@ -109,7 +109,7 @@ jmh {
 //    //benchmarkParameters.put("", ListProperty) // Benchmark parameters.
 //    profilers.addAll("") // Use profilers to collect additional data. Supported profilers: [cl, comp, gc, stack, perf, perfnorm, perfasm, xperf, xperfasm, hs_cl, hs_comp, hs_gc, hs_rt, hs_thr, async]
 //    timeOnIteration.set("1s") // Time to spend at each measurement iteration.
-//    resultFormat.set("CSV") // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
+    resultFormat.set("JSON") // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
 //    synchronizeIterations.set(false) // Synchronize iterations?
 //    threads.set(4) // Number of worker threads to run with.
 //    threadGroups.addAll(2,3,4) //Override thread group distribution for asymmetric benchmarks.
