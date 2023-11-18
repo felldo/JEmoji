@@ -1,17 +1,15 @@
-# https://docs.github.com/en/actions/learn-github-actions/contexts
-# https://docs.github.com/en/rest/overview/github-event-types
-name: Benchmark
+name: Benchmark and deploy
 on:
-  pull_request:
+  push:
     branches:
       - master
 
 permissions:
-  pull-requests: write
   contents: write
+  pages: write
 
 jobs:
-  benchmark-pr:
+  benchmark:
     name: Performance regression check
     runs-on: ubuntu-latest
     steps:
@@ -30,24 +28,21 @@ jobs:
           path: ./cache/benchmark-data.json
           key: ${{ runner.os }}-benchmark
       # Run `github-action-benchmark` action
-      - name: Store benchmark result
+      - name: Save and Deploy benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          # What benchmark tool the output.txt came from
           tool: 'jmh'
-          # Where the output from the benchmark tool is stored
           output-file-path: ./lib/build/results/jmh/results.json
-          # Where the previous data file is stored
-          external-data-json-path: ./cache/benchmark-data.json
-          # Workflow will fail when an alert happens
           fail-on-alert: false
           alert-threshold: 1%
-          # GitHub API token to make a commit comment
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # Enable alert commit comment
           comment-on-alert: true
-          # Enable Job Summary for PRs
           summary-always: true
-          # Mention @felldo in the commit comment
           alert-comment-cc-users: '@felldo'
-          auto-push: false
+          auto-push: true
+      # Upload the updated cache file for the next job by actions/cache
+      - name: Save benchmark JSON
+        uses: actions/cache/save@v3
+        with:
+          path: ./cache/benchmark-data.json
+          key: ${{ runner.os }}-benchmark

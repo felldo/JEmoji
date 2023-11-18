@@ -77,7 +77,6 @@ public class EmojiManagerBenchmark {
     }
 
     @Benchmark
-    @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public boolean containsEmoji() {
         return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
     }
