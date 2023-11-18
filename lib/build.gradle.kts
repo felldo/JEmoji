@@ -114,7 +114,7 @@ jmh {
 //    threads.set(4) // Number of worker threads to run with.
 //    threadGroups.addAll(2,3,4) //Override thread group distribution for asymmetric benchmarks.
 //    jmhTimeout.set("1s") // Timeout for benchmark iteration.
-    timeUnit.set("ms") // Output time unit. Available time units are: [m, s, ms, us, ns].
+//    timeUnit.set("ms") // Output time unit. Available time units are: [m, s, ms, us, ns].
 //    verbosity.set("NORMAL") // Verbosity mode. Available modes are: [SILENT, NORMAL, EXTRA]
 //    warmup.set("1s") // Time to spend at each warmup iteration.
 //    warmupBatchSize.set(10) // Warmup batch size: number of benchmark method calls per operation.

@@ -4,6 +4,7 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import net.fellbaum.jemoji.EmojiManagerTest;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,9 +12,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class EmojiManagerBenchmark {
 
     private static final String TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
@@ -74,6 +77,7 @@ public class EmojiManagerBenchmark {
     }
 
     @Benchmark
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public boolean containsEmoji() {
         return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
     }
