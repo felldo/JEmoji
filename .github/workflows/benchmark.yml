@@ -2,6 +2,9 @@
 # https://docs.github.com/en/rest/overview/github-event-types
 name: Benchmark
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
@@ -14,7 +17,7 @@ permissions:
 
 jobs:
   benchmark:
-    name: Performance regression check PR
+    name: Performance regression check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +29,26 @@ jobs:
       - name: Run benchmark
         run: ./gradlew jmh
       # Run `github-action-benchmark` action
-      - name: Store benchmark result
+#      - name: Compare benchmark results
+#        uses: benchmark-action/github-action-benchmark@v1
+#        with:
+#          # What benchmark tool the output.txt came from
+#          tool: 'jmh'
+#          # Where the output from the benchmark tool is stored
+#          output-file-path: ./lib/build/results/jmh/results.json
+#          # Workflow will fail when an alert happens
+#          fail-on-alert: false
+#          alert-threshold: 1%
+#          # GitHub API token to make a commit comment
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          # Enable alert commit comment
+#          comment-on-alert: true
+#          # Enable Job Summary for PRs
+#          summary-always: true
+#          # Mention @felldo in the commit comment
+#          alert-comment-cc-users: '@felldo'
+#          save-data-file: false
+      - name: Compare and publish benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
           # What benchmark tool the output.txt came from
@@ -44,4 +66,4 @@ jobs:
           summary-always: true
           # Mention @felldo in the commit comment
           alert-comment-cc-users: '@felldo'
-          save-data-file: false
+          auto-push: true
