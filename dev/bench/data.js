@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700400052468,
+  "lastUpdate": 1700400053819,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -2010,6 +2010,84 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
             "value": 4.9541678316831685,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "committer": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "distinct": true,
+          "id": "4608cfc799b70ab9310916e07b03adae339e9330",
+          "message": "Should probably work?",
+          "timestamp": "2023-11-19T14:18:59+01:00",
+          "tree_id": "a23f0e5f5cf96e1b4e18e73f98be2cd5fd5b1ff3",
+          "url": "https://github.com/felldo/JEmoji/commit/4608cfc799b70ab9310916e07b03adae339e9330"
+        },
+        "date": 1700400052008,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\":+1:\"} )",
+            "value": 140.17102613691964,
+            "unit": "ns/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\"nope\"} )",
+            "value": 148.29806325440208,
+            "unit": "ns/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.containsEmoji",
+            "value": 3.0762113711656442,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrder",
+            "value": 3.2989599342105262,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending",
+            "value": 22.557081311111112,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder",
+            "value": 24.34924780952381,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.removeAllEmojis",
+            "value": 4.8117554278846155,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 4.670802511627907,
+            "unit": "ms/op",
+            "extra": "iterations: 1\nforks: 1\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
+            "value": 4.76740200952381,
             "unit": "ms/op",
             "extra": "iterations: 1\nforks: 1\nthreads: 1"
           }
