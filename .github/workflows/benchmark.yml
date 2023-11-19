@@ -44,4 +44,4 @@ jobs:
           summary-always: true
           # Mention @felldo in the commit comment
           alert-comment-cc-users: '@felldo'
-          auto-push: false
+          save-data-file: false
