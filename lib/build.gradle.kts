@@ -93,10 +93,10 @@ testing {
 jmh {
 //    includes.addAll("some regular expression")  // include pattern (regular expression) for benchmarks to be executed
     excludes.addAll("excluded") // exclude pattern (regular expression) for benchmarks to be executed
-//    iterations.set(10) // Number of measurement iterations to do.
+    iterations.set(1) // Number of measurement iterations to do.
     benchmarkMode.addAll("avgt") // Benchmark mode. Available modes are: [Throughput/thrpt, AverageTime/avgt, SampleTime/sample, SingleShotTime/ss, All/all]
 //    batchSize.set(1) // Batch size: number of benchmark method calls per operation. (some benchmark modes can ignore this setting)
-    fork.set(2) // How many times to forks a single benchmark. Use 0 to disable forking altogether
+    fork.set(1) // How many times to forks a single benchmark. Use 0 to disable forking altogether
 //    failOnError.set(false) // Should JMH fail immediately if any benchmark had experienced the unrecoverable error?
 //    forceGC.set(false) // Should JMH force GC between iterations?
 //    jvm.set("myjvm") // Custom JVM to use when forking.
@@ -108,18 +108,18 @@ jmh {
 //    operationsPerInvocation.set(10) // Operations per invocation.
 //    //benchmarkParameters.put("", ListProperty) // Benchmark parameters.
 //    profilers.addAll("") // Use profilers to collect additional data. Supported profilers: [cl, comp, gc, stack, perf, perfnorm, perfasm, xperf, xperfasm, hs_cl, hs_comp, hs_gc, hs_rt, hs_thr, async]
-//    timeOnIteration.set("1s") // Time to spend at each measurement iteration.
+    timeOnIteration.set("1s") // Time to spend at each measurement iteration.
     resultFormat.set("JSON") // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
 //    synchronizeIterations.set(false) // Synchronize iterations?
 //    threads.set(4) // Number of worker threads to run with.
 //    threadGroups.addAll(2,3,4) //Override thread group distribution for asymmetric benchmarks.
-//    jmhTimeout.set("1s") // Timeout for benchmark iteration.
+    jmhTimeout.set("1s") // Timeout for benchmark iteration.
 //    timeUnit.set("ms") // Output time unit. Available time units are: [m, s, ms, us, ns].
 //    verbosity.set("NORMAL") // Verbosity mode. Available modes are: [SILENT, NORMAL, EXTRA]
-//    warmup.set("1s") // Time to spend at each warmup iteration.
+    warmup.set("1s") // Time to spend at each warmup iteration.
 //    warmupBatchSize.set(10) // Warmup batch size: number of benchmark method calls per operation.
 //    warmupForks.set(0) // How many warmup forks to make for a single benchmark. 0 to disable warmup forks.
-//    warmupIterations.set(1) // Number of warmup iterations to do.
+    warmupIterations.set(1) // Number of warmup iterations to do.
 //    warmupMode.set("INDI") // Warmup mode for warming up selected benchmarks. Warmup modes are: [INDI, BULK, BULK_INDI].
 //    warmupBenchmarks.addAll(".*Warmup") // Warmup benchmarks to include in the run in addition to already selected. JMH will not measure these benchmarks, but only use them for the warmup.
 //
