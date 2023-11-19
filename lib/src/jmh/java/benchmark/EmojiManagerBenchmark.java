@@ -92,6 +92,10 @@ public class EmojiManagerBenchmark {
         EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
         EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
+        EmojiManager.replaceAllEmojis(TEXT+TEXT, "<replaced emoji>");
 
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
