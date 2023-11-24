@@ -15,10 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.EmojiUtils.addColonToAlias;
-import static net.fellbaum.jemoji.EmojiUtils.findEmojiByEitherAlias;
-import static net.fellbaum.jemoji.EmojiUtils.isStringNullOrEmpty;
-import static net.fellbaum.jemoji.EmojiUtils.removeColonFromAlias;
+import static net.fellbaum.jemoji.EmojiUtils.*;
 
 @SuppressWarnings("unused")
 public final class EmojiManager {
@@ -305,6 +302,56 @@ public final class EmojiManager {
                 }
             }
         }
+        return Collections.unmodifiableList(emojis);
+    }
+
+    /**
+     * Extracts all emojis from the given text in the order they appear.
+     *
+     * @param text The text to extract emojis from.
+     * @return A list of indexed emojis.
+     */
+    public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text) {
+        if (isStringNullOrEmpty(text)) return Collections.emptyList();
+
+        final List<IndexedEmoji> emojis = new ArrayList<>();
+
+        final int[] textCodePointsArray = text.codePoints().toArray();
+        final long textCodePointsLength = textCodePointsArray.length;
+
+        int charIndex = 0;
+        nextTextIteration:
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final int currentCodepoint = textCodePointsArray[textIndex];
+            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
+            if (emojisByCodePoint == null) {
+                charIndex += Character.charCount(currentCodepoint);
+                continue;
+            }
+            for (final Emoji emoji : emojisByCodePoint) {
+                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int emojiCodePointsLength = emojiCodePointsArray.length;
+                // Emoji code points are in bounds of the text code points
+                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+                    continue;
+                }
+
+                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
+                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
+                        break;
+                    }
+                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
+                        emojis.add(new IndexedEmoji(emoji, charIndex, textIndex));
+                        textIndex += emojiCodePointsLength - 1;
+                        charIndex += emoji.getEmoji().length();
+                        continue nextTextIteration;
+                    }
+                }
+            }
+
+            charIndex += Character.charCount(currentCodepoint);
+        }
+
         return Collections.unmodifiableList(emojis);
     }
 

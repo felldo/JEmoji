@@ -8,14 +8,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class EmojiManagerTest {
 
     public static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ ❤ ❤❤️ World";
+    private static final String SIMPLE_POSITION_EMOJI_STRING = "Hello ❤️ ❤ 👩🏻‍🤝‍👨🏼 ❤❤️ World";
 
     @Test
     public void extractEmojisInOrder() {
@@ -26,6 +25,37 @@ public class EmojiManagerTest {
         List<Emoji> allEmojis = new ArrayList<>(EmojiManager.getAllEmojisLengthDescending());
         allEmojis.addAll(EmojiManager.getAllEmojisLengthDescending());
         assertEquals(allEmojis, emojis);
+    }
+
+    @Test
+    public void extractEmojisInOrderWithIndex() {
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrderWithIndex(ALL_EMOJIS_STRING + ALL_EMOJIS_STRING)
+                .stream()
+                .map(IndexedEmoji::getEmoji)
+                .collect(Collectors.toList());
+
+        assertEquals(EmojiManager.getAllEmojisLengthDescending().size() * 2, emojis.size());
+        List<Emoji> allEmojis = new ArrayList<>(EmojiManager.getAllEmojisLengthDescending());
+        allEmojis.addAll(EmojiManager.getAllEmojisLengthDescending());
+
+        assertEquals(allEmojis, emojis);
+    }
+
+    @Test
+    public void extractEmojisInOrderWithIndexCheckPosition() {
+        List<IndexedEmoji> emojis = EmojiManager.extractEmojisInOrderWithIndex(SIMPLE_POSITION_EMOJI_STRING);
+        assertEquals(5, emojis.size());
+
+        checkIndexedEmoji(emojis.get(0), 6, 6);
+        checkIndexedEmoji(emojis.get(1), 9, 9);
+        checkIndexedEmoji(emojis.get(2), 11, 11);
+        checkIndexedEmoji(emojis.get(3), 24, 19);
+        checkIndexedEmoji(emojis.get(4), 25, 20);
+    }
+
+    private void checkIndexedEmoji(IndexedEmoji indexedEmoji, int expectedCharIndex, int expectedCodePointIndex) {
+        assertEquals(expectedCharIndex, indexedEmoji.getCharIndex());
+        assertEquals(expectedCodePointIndex, indexedEmoji.getCodePointIndex());
     }
 
     @Test
