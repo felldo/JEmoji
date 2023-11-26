@@ -526,17 +526,6 @@ public final class EmojiManager {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
 
-    private static int[] stringToCodePoints(String text) {
-        int[] codePoints = new int[getCodePointCount(text)];
-        int j = 0;
-        for (int i = 0; i < text.length();) {
-            final int codePoint = text.codePointAt(i);
-            codePoints[j++] = codePoint;
-            i += Character.charCount(codePoint);
-        }
-        return codePoints;
-    }
-
     /*public static List<Emoji> testEmojiPattern(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
