@@ -15,10 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.EmojiUtils.addColonToAlias;
-import static net.fellbaum.jemoji.EmojiUtils.findEmojiByEitherAlias;
-import static net.fellbaum.jemoji.EmojiUtils.isStringNullOrEmpty;
-import static net.fellbaum.jemoji.EmojiUtils.removeColonFromAlias;
+import static net.fellbaum.jemoji.EmojiUtils.*;
 
 @SuppressWarnings("unused")
 public final class EmojiManager {
@@ -53,7 +50,7 @@ public final class EmojiManager {
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
         return Collectors.groupingBy(
-                emoji -> emoji.getEmoji().codePoints().toArray()[0],
+                emoji -> emoji.getEmoji().codePointAt(0),
                 LinkedHashMap::new,
                 Collectors.collectingAndThen(
                         Collectors.toList(),
@@ -237,14 +234,14 @@ public final class EmojiManager {
 
         final List<Emoji> emojis = new ArrayList<>();
 
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
@@ -275,7 +272,7 @@ public final class EmojiManager {
 
         final List<Emoji> emojis = new ArrayList<>();
 
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         // JDK 21 Characters.isEmoji
@@ -286,7 +283,7 @@ public final class EmojiManager {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
@@ -372,7 +369,7 @@ public final class EmojiManager {
      */
     public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep) {
         if (isStringNullOrEmpty(text)) return "";
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         final StringBuilder sb = new StringBuilder();
@@ -385,7 +382,7 @@ public final class EmojiManager {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Check if Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
@@ -472,7 +469,7 @@ public final class EmojiManager {
     public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         final StringBuilder sb = new StringBuilder();
@@ -485,7 +482,7 @@ public final class EmojiManager {
             final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
             if (emojisByCodePoint == null) continue;
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Check if Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
