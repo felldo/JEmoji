@@ -2,14 +2,11 @@ package net.fellbaum.jemoji;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.annotation.Nonnull;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static net.fellbaum.jemoji.EmojiUtils.getCodePointCount;
@@ -71,6 +68,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The emoji
      */
+    @Nonnull
     public String getEmoji() {
         return emoji;
     }
@@ -80,6 +78,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The unicode representation of the emoji
      */
+    @Nonnull
     public String getUnicode() {
         return unicode;
     }
@@ -89,6 +88,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The HTML decimal code for this emoji.
      */
+    @Nonnull
     public String getHtmlDecimalCode() {
         return getEmoji().codePoints().mapToObj(operand -> "&#" + operand).collect(Collectors.joining(";")) + ";";
     }
@@ -98,6 +98,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The HTML hexadecimal code for this emoji.
      */
+    @Nonnull
     public String getHtmlHexadecimalCode() {
         return getEmoji().codePoints().mapToObj(operand -> "&#x" + Integer.toHexString(operand).toUpperCase()).collect(Collectors.joining(";")) + ";";
     }
@@ -108,6 +109,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return Variations of this emoji with different Fitzpatrick or HairStyle modifiers, if there are any.
      */
+    @Nonnull
     public List<Emoji> getVariations() {
         final String baseEmoji = HairStyle.removeHairStyle(Fitzpatrick.removeFitzpatrick(emoji));
         return EmojiManager.getAllEmojis()
@@ -122,6 +124,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The URL encoded emoji
      */
+    @Nonnull
     public String getURLEncoded() {
         try {
             return URLEncoder.encode(getEmoji(), StandardCharsets.UTF_8.toString());
@@ -135,6 +138,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The Discord aliases for this emoji.
      */
+    @Nonnull
     public List<String> getDiscordAliases() {
         return discordAliases;
     }
@@ -144,6 +148,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The GitHub aliases for this emoji.
      */
+    @Nonnull
     public List<String> getGithubAliases() {
         return githubAliases;
     }
@@ -153,6 +158,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The Slack aliases for this emoji.
      */
+    @Nonnull
     public List<String> getSlackAliases() {
         return slackAliases;
     }
@@ -162,6 +168,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return All the aliases for this emoji.
      */
+    @Nonnull
     public List<String> getAllAliases() {
         return allAliases;
     }
@@ -198,6 +205,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The qualification of this emoji.
      */
+    @Nonnull
     public Qualification getQualification() {
         return qualification;
     }
@@ -207,6 +215,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The description of this emoji.
      */
+    @Nonnull
     public String getDescription() {
         return description;
     }
@@ -216,6 +225,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The group this emoji belongs to.
      */
+    @Nonnull
     public EmojiGroup getGroup() {
         return group;
     }
@@ -225,6 +235,7 @@ public class Emoji implements Comparable<Emoji> {
      *
      * @return The subgroup of this emoji.
      */
+    @Nonnull
     public EmojiSubGroup getSubgroup() {
         return subgroup;
     }

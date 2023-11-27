@@ -1,5 +1,6 @@
 package net.fellbaum.jemoji;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public enum HairStyle {
      *
      * @return The unicode of the hairstyle.
      */
+    @Nonnull
     public String getUnicode() {
         return unicode;
     }
@@ -32,7 +34,7 @@ public enum HairStyle {
      * @param unicode The unicode of the emoji.
      * @return True if the emoji contains a hairstyle element.
      */
-    public static boolean isHairStyleEmoji(final String unicode) {
+    public static boolean isHairStyleEmoji(@Nonnull final String unicode) {
         return HAIR_STYLE_LIST.stream().anyMatch(hairStyle -> unicode.contains(hairStyle.unicode) && !unicode.equals(hairStyle.unicode));
     }
 
@@ -42,7 +44,8 @@ public enum HairStyle {
      * @param unicode The unicode of the emoji.
      * @return The unicode of the emoji without the hairstyle element.
      */
-    public static String removeHairStyle(String unicode) {
+    @Nonnull
+    public static String removeHairStyle(@Nonnull String unicode) {
         for (HairStyle value : HAIR_STYLE_LIST) {
             unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
         }
