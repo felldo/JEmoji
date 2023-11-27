@@ -3,6 +3,7 @@ package benchmark;
 import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import net.fellbaum.jemoji.EmojiManagerTest;
+import net.fellbaum.jemoji.IndexedEmoji;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 
@@ -64,6 +65,11 @@ public class EmojiManagerBenchmark {
     @Benchmark
     public List<Emoji> extractEmojisInOrder() {
         return EmojiManager.extractEmojisInOrder(TEXT);
+    }
+
+    @Benchmark
+    public List<IndexedEmoji> extractEmojisInOrderWithIndex() {
+        return EmojiManager.extractEmojisInOrderWithIndex(TEXT);
     }
 
     @Benchmark

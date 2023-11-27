@@ -5,7 +5,9 @@ import java.util.Optional;
 
 class EmojiUtils {
 
-    public static int getCodePointCount(String string) {
+    private EmojiUtils() {}
+
+    public static int getCodePointCount(final String string) {
         return string.codePointCount(0, string.length());
     }
 
@@ -29,8 +31,8 @@ class EmojiUtils {
         return Optional.empty();
     }
 
-    public static int[] stringToCodePoints(String text) {
-        int[] codePoints = new int[getCodePointCount(text)];
+    public static int[] stringToCodePoints(final String text) {
+        final int[] codePoints = new int[getCodePointCount(text)];
         int j = 0;
         for (int i = 0; i < text.length();) {
             final int codePoint = text.codePointAt(i);
