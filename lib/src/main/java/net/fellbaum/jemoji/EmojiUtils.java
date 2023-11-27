@@ -28,4 +28,15 @@ class EmojiUtils {
         if (secondValue != null) return Optional.of(secondValue);
         return Optional.empty();
     }
+
+    public static int[] stringToCodePoints(String text) {
+        int[] codePoints = new int[getCodePointCount(text)];
+        int j = 0;
+        for (int i = 0; i < text.length();) {
+            final int codePoint = text.codePointAt(i);
+            codePoints[j++] = codePoint;
+            i += Character.charCount(codePoint);
+        }
+        return codePoints;
+    }
 }
