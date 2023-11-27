@@ -316,7 +316,7 @@ public final class EmojiManager {
 
         final List<IndexedEmoji> emojis = new ArrayList<>();
 
-        final int[] textCodePointsArray = text.codePoints().toArray();
+        final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         int charIndex = 0;
@@ -329,7 +329,7 @@ public final class EmojiManager {
                 continue;
             }
             for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = emoji.getEmoji().codePoints().toArray();
+                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
                 final int emojiCodePointsLength = emojiCodePointsArray.length;
                 // Emoji code points are in bounds of the text code points
                 if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
