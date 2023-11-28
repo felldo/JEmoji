@@ -362,7 +362,7 @@ public final class EmojiManager {
      * @param text The text to extract emojis from.
      * @return A list of emojis.
      */
-    public static Set<Emoji> extractEmojis(final String text) {
+    public static Set<Emoji> extractEmojis(@Nullable final String text) {
         return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
     }
 
@@ -372,7 +372,7 @@ public final class EmojiManager {
      * @param text The text to remove emojis from.
      * @return The text without emojis.
      */
-    public static String removeAllEmojis(final String text) {
+    public static String removeAllEmojis(@Nullable final String text) {
         return removeAllEmojisExcept(text, Collections.emptyList());
     }
 
@@ -383,7 +383,7 @@ public final class EmojiManager {
      * @param emojisToRemove The emojis to remove.
      * @return The text without the given emojis.
      */
-    public static String removeEmojis(final String text, final Emoji... emojisToRemove) {
+    public static String removeEmojis(@Nullable final String text, final Emoji... emojisToRemove) {
         return removeEmojis(text, Arrays.asList(emojisToRemove));
     }
 
@@ -394,7 +394,7 @@ public final class EmojiManager {
      * @param emojisToRemove The emojis to remove.
      * @return The text without the given emojis.
      */
-    public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove) {
+    public static String removeEmojis(@Nullable final String text, final Collection<Emoji> emojisToRemove) {
         final Set<Emoji> emojis = new HashSet<>(EMOJIS_LENGTH_DESCENDING);
         emojis.removeAll(emojisToRemove);
         return removeAllEmojisExcept(text, emojis);
@@ -407,7 +407,7 @@ public final class EmojiManager {
      * @param emojisToKeep The emojis to keep.
      * @return The text with only the given emojis.
      */
-    public static String removeAllEmojisExcept(final String text, final Emoji... emojisToKeep) {
+    public static String removeAllEmojisExcept(@Nullable final String text, final Emoji... emojisToKeep) {
         return removeAllEmojisExcept(text, Arrays.asList(emojisToKeep));
     }
 
@@ -470,7 +470,7 @@ public final class EmojiManager {
      * @param replacementString The replacement string.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(final String text, final String replacementString) {
+    public static String replaceAllEmojis(@Nullable final String text, final String replacementString) {
         return replaceEmojis(text, replacementString, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -481,7 +481,7 @@ public final class EmojiManager {
      * @param replacementFunction The replacement function.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(final String text, Function<Emoji, String> replacementFunction) {
+    public static String replaceAllEmojis(@Nullable final String text, Function<Emoji, String> replacementFunction) {
         return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -493,7 +493,7 @@ public final class EmojiManager {
      * @param emojisToReplace   The emojis to replace.
      * @return The text with the given emojis replaced.
      */
-    public static String replaceEmojis(final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
+    public static String replaceEmojis(@Nullable final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
         return replaceEmojis(text, emoji -> replacementString, emojisToReplace);
     }
 
@@ -505,7 +505,7 @@ public final class EmojiManager {
      * @param emojisToReplace   The emojis to replace.
      * @return The text with the given emojis replaced.
      */
-    public static String replaceEmojis(final String text, final String replacementString, final Emoji... emojisToReplace) {
+    public static String replaceEmojis(@Nullable final String text, final String replacementString, final Emoji... emojisToReplace) {
         return replaceEmojis(text, emoji -> replacementString, Arrays.asList(emojisToReplace));
     }
 
@@ -573,7 +573,7 @@ public final class EmojiManager {
      * @param emojisToReplace     The emojis to replace.
      * @return The text with all emojis replaced.
      */
-    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
+    public static String replaceEmojis(@Nullable final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
 
