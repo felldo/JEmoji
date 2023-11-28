@@ -2,7 +2,6 @@ package net.fellbaum.jemoji;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -128,7 +127,6 @@ public enum EmojiSubGroup {
      *
      * @return The name of the emoji subgroup
      */
-    @Nonnull
     public String getName() {
         return name;
     }
@@ -138,7 +136,6 @@ public enum EmojiSubGroup {
      *
      * @return All emoji subgroups
      */
-    @Nonnull
     public static List<EmojiSubGroup> getSubGroups() {
         return EMOJI_SUBGROUPS;
     }
@@ -149,9 +146,8 @@ public enum EmojiSubGroup {
      * @param name The name of the emoji subgroup.
      * @return The emoji subgroup.
      */
-    @Nonnull
     @JsonCreator
-    public static EmojiSubGroup fromString(@Nonnull final String name) {
+    public static EmojiSubGroup fromString(final String name) {
         for (final EmojiSubGroup emojiSubGroup : EMOJI_SUBGROUPS) {
             if (emojiSubGroup.getName().equals(name)) {
                 return emojiSubGroup;
@@ -160,7 +156,6 @@ public enum EmojiSubGroup {
         throw new IllegalArgumentException("No EmojiSubGroup found for name: " + name);
     }
 
-    @Nonnull
     public EmojiGroup getGroup() {
         return group;
     }

@@ -77,7 +77,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+    compileOnly("org.jspecify:jspecify:0.3.0")
 
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
 }

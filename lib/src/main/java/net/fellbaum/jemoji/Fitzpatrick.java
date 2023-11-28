@@ -1,6 +1,5 @@
 package net.fellbaum.jemoji;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public enum Fitzpatrick {
      *
      * @return The unicode of the fitzpatrick modifier.
      */
-    @Nonnull
     public String getUnicode() {
         return unicode;
     }
@@ -35,7 +33,7 @@ public enum Fitzpatrick {
      * @param unicode The unicode of the emoji.
      * @return True if the emoji contains a fitzpatrick modifier.
      */
-    public static boolean isFitzpatrickEmoji(@Nonnull final String unicode) {
+    public static boolean isFitzpatrickEmoji(final String unicode) {
         return FITZPATRICK_LIST.stream().anyMatch(fitzpatrick -> unicode.contains(fitzpatrick.unicode) && !unicode.equals(fitzpatrick.unicode));
     }
 
@@ -45,8 +43,7 @@ public enum Fitzpatrick {
      * @param unicode The unicode of the emoji.
      * @return The unicode of the emoji without the fitzpatrick modifier.
      */
-    @Nonnull
-    public static String removeFitzpatrick(@Nonnull String unicode) {
+    public static String removeFitzpatrick(String unicode) {
         for (Fitzpatrick value : FITZPATRICK_LIST) {
             unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
         }

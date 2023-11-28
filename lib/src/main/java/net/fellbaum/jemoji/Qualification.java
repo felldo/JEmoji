@@ -2,7 +2,6 @@ package net.fellbaum.jemoji;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,14 +19,12 @@ public enum Qualification {
         this.qualification = qualification;
     }
 
-    @Nonnull
     public String getQualification() {
         return qualification;
     }
 
-    @Nonnull
     @JsonCreator
-    public static Qualification fromString(@Nonnull final String qualification) {
+    public static Qualification fromString(final String qualification) {
         for (Qualification q : QUALIFICATION_LIST) {
             if (q.getQualification().equals(qualification)) {
                 return q;

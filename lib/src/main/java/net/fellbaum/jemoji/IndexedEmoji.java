@@ -1,7 +1,5 @@
 package net.fellbaum.jemoji;
 
-import javax.annotation.Nonnull;
-
 /**
  * Represents an emoji with character and codepoint indexes.
  *
@@ -23,7 +21,6 @@ public class IndexedEmoji {
      *
      * @return The captured emoji
      */
-    @Nonnull
     public Emoji getEmoji() {
         return emoji;
     }
