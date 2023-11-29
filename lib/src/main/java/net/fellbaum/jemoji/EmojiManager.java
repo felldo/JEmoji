@@ -3,7 +3,6 @@ package net.fellbaum.jemoji;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jspecify.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -99,7 +98,7 @@ public final class EmojiManager {
      * @param emoji The unicode of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getEmoji(@Nullable final String emoji) {
+    public static Optional<Emoji> getEmoji(final String emoji) {
         if (isStringNullOrEmpty(emoji)) return Optional.empty();
         return Optional.ofNullable(EMOJI_UNICODE_TO_EMOJI.get(emoji));
     }
@@ -110,7 +109,7 @@ public final class EmojiManager {
      * @param emoji The emoji to check.
      * @return True if the given string is an emoji.
      */
-    public static boolean isEmoji(@Nullable final String emoji) {
+    public static boolean isEmoji(final String emoji) {
         if (isStringNullOrEmpty(emoji)) return false;
         return EMOJI_UNICODE_TO_EMOJI.containsKey(emoji);
     }
@@ -159,7 +158,7 @@ public final class EmojiManager {
      * @param alias The alias of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getByAlias(@Nullable final String alias) {
+    public static Optional<Emoji> getByAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
@@ -177,7 +176,7 @@ public final class EmojiManager {
      * @param alias The Discord alias of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getByDiscordAlias(@Nullable final String alias) {
+    public static Optional<Emoji> getByDiscordAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
@@ -190,7 +189,7 @@ public final class EmojiManager {
      * @param alias The GitHub alias of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getByGithubAlias(@Nullable final String alias) {
+    public static Optional<Emoji> getByGithubAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
@@ -203,7 +202,7 @@ public final class EmojiManager {
      * @param alias The Slack alias of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getBySlackAlias(@Nullable final String alias) {
+    public static Optional<Emoji> getBySlackAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
@@ -230,7 +229,7 @@ public final class EmojiManager {
      * @param text The text to check.
      * @return True if the given text contains emojis.
      */
-    public static boolean containsEmoji(@Nullable final String text) {
+    public static boolean containsEmoji(final String text) {
         if (isStringNullOrEmpty(text)) return false;
 
         final List<Emoji> emojis = new ArrayList<>();
@@ -268,7 +267,7 @@ public final class EmojiManager {
      * @param text The text to extract emojis from.
      * @return A list of emojis.
      */
-    public static List<Emoji> extractEmojisInOrder(@Nullable final String text) {
+    public static List<Emoji> extractEmojisInOrder(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<Emoji> emojis = new ArrayList<>();
@@ -312,7 +311,7 @@ public final class EmojiManager {
      * @param text The text to extract emojis from.
      * @return A list of indexed emojis.
      */
-    public static List<IndexedEmoji> extractEmojisInOrderWithIndex(@Nullable final String text) {
+    public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<IndexedEmoji> emojis = new ArrayList<>();
@@ -362,7 +361,7 @@ public final class EmojiManager {
      * @param text The text to extract emojis from.
      * @return A list of emojis.
      */
-    public static Set<Emoji> extractEmojis(@Nullable final String text) {
+    public static Set<Emoji> extractEmojis(final String text) {
         return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
     }
 
@@ -372,7 +371,7 @@ public final class EmojiManager {
      * @param text The text to remove emojis from.
      * @return The text without emojis.
      */
-    public static String removeAllEmojis(@Nullable final String text) {
+    public static String removeAllEmojis(final String text) {
         return removeAllEmojisExcept(text, Collections.emptyList());
     }
 
@@ -383,7 +382,7 @@ public final class EmojiManager {
      * @param emojisToRemove The emojis to remove.
      * @return The text without the given emojis.
      */
-    public static String removeEmojis(@Nullable final String text, final Emoji... emojisToRemove) {
+    public static String removeEmojis(final String text, final Emoji... emojisToRemove) {
         return removeEmojis(text, Arrays.asList(emojisToRemove));
     }
 
@@ -394,7 +393,7 @@ public final class EmojiManager {
      * @param emojisToRemove The emojis to remove.
      * @return The text without the given emojis.
      */
-    public static String removeEmojis(@Nullable final String text, final Collection<Emoji> emojisToRemove) {
+    public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove) {
         final Set<Emoji> emojis = new HashSet<>(EMOJIS_LENGTH_DESCENDING);
         emojis.removeAll(emojisToRemove);
         return removeAllEmojisExcept(text, emojis);
@@ -407,7 +406,7 @@ public final class EmojiManager {
      * @param emojisToKeep The emojis to keep.
      * @return The text with only the given emojis.
      */
-    public static String removeAllEmojisExcept(@Nullable final String text, final Emoji... emojisToKeep) {
+    public static String removeAllEmojisExcept(final String text, final Emoji... emojisToKeep) {
         return removeAllEmojisExcept(text, Arrays.asList(emojisToKeep));
     }
 
@@ -418,7 +417,7 @@ public final class EmojiManager {
      * @param emojisToKeep The emojis to keep.
      * @return The text with only the given emojis.
      */
-    public static String removeAllEmojisExcept(@Nullable final String text, final Collection<Emoji> emojisToKeep) {
+    public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep) {
         if (isStringNullOrEmpty(text)) return "";
         final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
@@ -470,7 +469,7 @@ public final class EmojiManager {
      * @param replacementString The replacement string.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(@Nullable final String text, final String replacementString) {
+    public static String replaceAllEmojis(final String text, final String replacementString) {
         return replaceEmojis(text, replacementString, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -481,7 +480,7 @@ public final class EmojiManager {
      * @param replacementFunction The replacement function.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(@Nullable final String text, Function<Emoji, String> replacementFunction) {
+    public static String replaceAllEmojis(final String text, Function<Emoji, String> replacementFunction) {
         return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -493,7 +492,7 @@ public final class EmojiManager {
      * @param emojisToReplace   The emojis to replace.
      * @return The text with the given emojis replaced.
      */
-    public static String replaceEmojis(@Nullable final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
+    public static String replaceEmojis(final String text, final String replacementString, final Collection<Emoji> emojisToReplace) {
         return replaceEmojis(text, emoji -> replacementString, emojisToReplace);
     }
 
@@ -505,7 +504,7 @@ public final class EmojiManager {
      * @param emojisToReplace   The emojis to replace.
      * @return The text with the given emojis replaced.
      */
-    public static String replaceEmojis(@Nullable final String text, final String replacementString, final Emoji... emojisToReplace) {
+    public static String replaceEmojis(final String text, final String replacementString, final Emoji... emojisToReplace) {
         return replaceEmojis(text, emoji -> replacementString, Arrays.asList(emojisToReplace));
     }
 
@@ -517,7 +516,7 @@ public final class EmojiManager {
      * @param emojisToReplace     The emojis to replace.
      * @return The text with all emojis replaced.
      */
-    public static String replaceEmojis(@Nullable final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
+    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -573,7 +572,7 @@ public final class EmojiManager {
      * @param emojisToReplace     The emojis to replace.
      * @return The text with all emojis replaced.
      */
-    public static String replaceEmojis(@Nullable final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
+    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
 
