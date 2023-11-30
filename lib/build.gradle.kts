@@ -166,6 +166,9 @@ tasks.register("copyJarToProject") {
 }
 
 publishing {
+    if (project.gradle.startParameter.taskNames.contains("publish")) {
+        project.version = project.version.toString().replace("-SNAPSHOT", "")
+    }
     publications {
         create<MavenPublication>("JEMOJI") {
             artifactId = "jemoji"
@@ -181,7 +184,7 @@ publishing {
             pom {
                 name.set("Java Emoji")
                 description.set(rootProject.description)
-                url.set("https://github.com/felldo/jemoji")
+                url.set("https://github.com/felldo/JEmoji")
 
                 licenses {
                     license {
@@ -201,9 +204,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:https://github.com/felldo/jemoji.git")
-                    developerConnection.set("scm:git:git@github.com:felldo/jemoji.git")
-                    url.set("https://github.com/felldo/jemoji")
+                    connection.set("scm:git:https://github.com/felldo/JEmoji.git")
+                    developerConnection.set("scm:git:git@github.com:felldo/JEmoji.git")
+                    url.set("https://github.com/felldo/JEmoji")
                 }
             }
         }
@@ -231,12 +234,28 @@ signing {
     val signingKey = findPropertyOrNull("JEMOJI_SINGING_SECRET_KEY_RING_FILE")
     val signingKeyId = findPropertyOrNull("JEMOJI_SIGNING_KEY_ID")
     val signingPassword = findPropertyOrNull("JEMOJI_SIGNING_PASSWORD")
-    if (System.getenv("SKIP_SIGNING").toBoolean()) {
-        isRequired = false
+    isRequired = !signingKey.isNullOrBlank()
+
+    if (project.gradle.startParameter.taskNames.any { anyTask ->
+            tasks.mapNotNull { if (it.group == "publishing") it.name else null }.contains(anyTask)
+        }) {
+        println("Executing a publishing task. The jar will be signed: $isRequired")
     }
 
     useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
     sign(publishing.publications["JEMOJI"])
+}
+
+val prePublishTask by tasks.register("prePublishTask") {
+    doFirst {
+        if (findPropertyOrNull("JEMOJI_SINGING_SECRET_KEY_RING_FILE").isNullOrBlank()) {
+            throw Exception("Can not publish a new release because secrets are missing for singing")
+        }
+    }
+}
+
+tasks.named("publish") {
+    dependsOn(prePublishTask)
 }
 
 tasks.withType<Javadoc>().configureEach {
