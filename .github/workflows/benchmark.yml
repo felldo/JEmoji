@@ -45,7 +45,7 @@ jobs:
 
       # Publish only on master branch
       - name: Publish benchmark result to GH Pages
-        if: ${{ github.repository == 'felldo/JEmoji' && env.GITHUB_REF_NAME == 'master' }}
+        if: ${{ github.repository == 'felldo/JEmoji' && github.ref_name == 'master' }}
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'jmh'
