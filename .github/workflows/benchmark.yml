@@ -3,14 +3,7 @@
 name: Benchmark
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
 permissions:
-  pull-requests: write
   contents: write
   pages: write
   deployments: write
@@ -22,33 +15,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Run benchmark
         run: ./gradlew jmh
 
-      # Download previous benchmark results from cache (if exists)
-      - name: Download previous benchmark data from cache
-        if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@v3
-        with:
-          path: ./cache/benchmark-data.json
-          key: ${{ runner.os }}-benchmark
-
       # Run `github-action-benchmark` action
       - name: Compare benchmark results
-        if: github.event_name == 'pull_request'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'jmh'
           # Where the output from the benchmark tool is stored
           output-file-path: ./lib/build/results/jmh/results.json
           # Where the previous data file is stored
-          external-data-json-path: ./cache/benchmark-data.json
+          #external-data-json-path: ./cache/benchmark-data.json
+          gh-repository: github.com/felldo/JEmoji
           # Workflow will fail when an alert happens
           fail-on-alert: false
           alert-threshold: 1%
@@ -56,12 +41,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Enable alert commit comment
           comment-on-alert: true
-          # Enable Job Summary for PRs
-          summary-always: true
           save-data-file: false
 
+      # Publish only on master branch
       - name: Publish benchmark result to GH Pages
-        if: github.event_name == 'push'
+        if: ${{ github.repository == 'felldo/JEmoji' && env.GITHUB_REF_NAME == 'master' }}
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'jmh'
@@ -74,26 +58,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Enable alert commit comment
           comment-on-alert: true
-          # Enable Job Summary for PRs
-          summary-always: true
           # Mention user in the commit comment
           alert-comment-cc-users: '@felldo'
           auto-push: true
-
-      - name: Prepare benchmark result for cache upload
-        if: github.event_name == 'push'
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          tool: 'jmh'
-          # Where the output from the benchmark tool is stored
-          output-file-path: ./lib/build/results/jmh/results.json
-          # Where the previous data file is stored
-          external-data-json-path: ./cache/benchmark-data.json
-
-      # Upload the updated cache file for the next job by actions/cache
-      - name: Upload benchmark JSON to cache
-        if: github.event_name == 'push'
-        uses: actions/cache/save@v3
-        with:
-          path: ./cache/benchmark-data.json
-          key: ${{ runner.os }}-benchmark
