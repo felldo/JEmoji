@@ -165,18 +165,18 @@ class Emoji {
 
 ## 🚀 Benchmarks
 
-| **Benchmark**                                  | **Mode** | **Cnt** | **Old Score** | **Score**** | **Error** | **Units** |
-|------------------------------------------------|----------|---------|---------------|-------------|-----------|-----------|
-| getByAlias -> :+1:                             | avgt     | 10      | No data       | 59,509      | ± 0,608   | ns/op     |
-| getByAlias -> nope                             | avgt     | 10      | No data       | 72,004      | ± 0,546   | ns/op     |
-| containsEmoji                                  | avgt     | 10      | 4,820         | 1,403       | ± 0,004   | ms/op     |
-| extractEmojisInOrder                           | avgt     | 10      | 4,481         | 1,382       | ± 0,013   | ms/op     |
-| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967         | 6,013       | ± 0,022   | ms/op     |
-| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364         | 6,614       | ± 0,045   | ms/op     |
-| extractEmojisInOrderWithIndex                  | avgt     | 10      | No data       | 1,814       | ± 0,002   | ms/op     |
-| removeAllEmojis                                | avgt     | 10      | 7,813         | 2,264       | ± 0,370   | ms/op     |
-| replaceAllEmojis                               | avgt     | 10      | 7,213         | 2,517       | ± 0,020   | ms/op     |
-| replaceAllEmojisFunction                       | avgt     | 10      | No data       | 2,502       | ± 0,023   | ms/op     |
+| **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
+|------------------------------------------------|----------|---------|-------------|-----------|-----------|
+| getByAlias -> :+1:                             | avgt     | 10      | 59,509      | ± 0,608   | ns/op     |
+| getByAlias -> nope                             | avgt     | 10      | 72,004      | ± 0,546   | ns/op     |
+| containsEmoji                                  | avgt     | 10      | 1,403       | ± 0,004   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 10      | 1,382       | ± 0,013   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 6,013       | ± 0,022   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 6,614       | ± 0,045   | ms/op     |
+| extractEmojisInOrderWithIndex                  | avgt     | 10      | 1,814       | ± 0,002   | ms/op     |
+| removeAllEmojis                                | avgt     | 10      | 2,264       | ± 0,370   | ms/op     |
+| replaceAllEmojis                               | avgt     | 10      | 2,517       | ± 0,020   | ms/op     |
+| replaceAllEmojisFunction                       | avgt     | 10      | 2,502       | ± 0,023   | ms/op     |
 
 <details>
 
