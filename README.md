@@ -175,8 +175,8 @@ of benchmark table below which are always executed on the specified specs.
 
 | **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
 |------------------------------------------------|----------|---------|-------------|-----------|-----------|
-| getByAlias -> `:+1:`                             | avgt     | 10      | 59,509      | ± 0,608   | ns/op     |
-| getByAlias -> `nope`                             | avgt     | 10      | 72,004      | ± 0,546   | ns/op     |
+| getByAlias -> `:+1:`                           | avgt     | 10      | 59,509      | ± 0,608   | ns/op     |
+| getByAlias -> `nope`                           | avgt     | 10      | 72,004      | ± 0,546   | ns/op     |
 | containsEmoji                                  | avgt     | 10      | 1,403       | ± 0,004   | ms/op     |
 | extractEmojisInOrder                           | avgt     | 10      | 1,382       | ± 0,013   | ms/op     |
 | extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 6,013       | ± 0,022   | ms/op     |
