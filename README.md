@@ -2,9 +2,10 @@
 ![Unicode Emoji Version](https://img.shields.io/badge/Unicode_Emoji_version-15.1-critical?style=for-the-badge)
 ![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
+
 # Java Emoji (JEmoji)
 
-JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium. 
+JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium.
 
 ## ❓ Why another emoji library?
 
@@ -37,6 +38,7 @@ implementation("net.fellbaum:jemoji:VERSION")
 ### Maven
 
 ```xml
+
 <dependency>
     <groupId>net.fellbaum</groupId>
     <artifactId>jemoji</artifactId>
@@ -51,77 +53,77 @@ implementation("net.fellbaum:jemoji:VERSION")
 #### Get all emojis
 
 ```java
-Set<Emoji> emojis = EmojiManager.getAllEmojis();
+Set<Emoji> emojis=EmojiManager.getAllEmojis();
 ```
 
 #### Get emoji by unicode string
 
 ```java
-Optional<Emoji> emoji = EmojiManager.getEmoji("😀");
+Optional<Emoji> emoji=EmojiManager.getEmoji("😀");
 ```
 
 #### Get emoji by alias
 
 ```java
-Optional<Emoji> emoji = EmojiManager.getByAlias("smile");
+Optional<Emoji> emoji=EmojiManager.getByAlias("smile");
 // or
-Optional<Emoji> emoji = EmojiManager.getByAlias(":smile:");
+Optional<Emoji> emoji=EmojiManager.getByAlias(":smile:");
 ```
 
 #### Get all emojis by group (general category of emojis)
 
 ```java
-Set<Emoji> emojis = EmojiManager.getAllEmojisByGroup(EmojiGroup.SMILEYS_AND_EMOTION);
+Set<Emoji> emojis=EmojiManager.getAllEmojisByGroup(EmojiGroup.SMILEYS_AND_EMOTION);
 ```
 
 #### Get all emojis by subgroup (more specific set of emojis)
 
 ```java
-Set<Emoji> emojis = EmojiManager.getAllEmojisBySubGroup(EmojiSubGroup.ANIMAL_BIRD);
+Set<Emoji> emojis=EmojiManager.getAllEmojisBySubGroup(EmojiSubGroup.ANIMAL_BIRD);
 ```
 
 #### Check if the provided string is an emoji
 
 ```java
-boolean isEmoji = EmojiManager.isEmoji("😀");
+boolean isEmoji=EmojiManager.isEmoji("😀");
 ```
 
 #### Check if the provided string contains an emoji
 
 ```java
-boolean containsEmoji = EmojiManager.containsEmoji("Hello 😀 World");
+boolean containsEmoji=EmojiManager.containsEmoji("Hello 😀 World");
 ```
 
 #### Extract all emojis from a string in order they appear
 
 ```java 
-List<Emoji> emojis = EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); // [😀, 👍]
+List<Emoji> emojis=EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); // [😀, 👍]
 ```
 
 #### Remove all emojis from a string
 
 ```java
-String text = EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  World "
+String text=EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  World "
 ```
 
 #### Remove specific emojis from a string
 
 ```java
-String text = EmojiManager.removeEmojis("Hello 😀 World 👍", EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello  World 👍"
+String text=EmojiManager.removeEmojis("Hello 😀 World 👍",EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello  World 👍"
 ```
 
 #### Replace all emojis in a string
 
 ```java
-String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
+String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍","<an emoji was here>"); // "Hello <an emoji was here> World <an emoji was here>"
 //or more control of the replacement with a Function that provides the emoji and wants a string as return value
-String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍", Emoji::getHtmlDecimalCode); // "Hello &#128512; World &#128077;"
+String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍",Emoji::getHtmlDecimalCode); // "Hello &#128512; World &#128077;"
 ```
 
 #### Replace specific emojis in a string
 
 ```java
-String text = EmojiManager.replaceEmojis("Hello 😀 World 👍", "<an emoji was here>", EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello <an emoji was here> World 👍"
+String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>",EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello <an emoji was here> World 👍"
 ```
 
 ### Emoji Object
@@ -151,14 +153,19 @@ class Emoji {
 ```
 
 ## 🚀 Benchmarks
-| **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
-|------------------------------------------------|----------|---------|-------------|-----------|-----------|
-| containsEmoji                                  | avgt     | 10      | 4,820       | ± 0,051   | ms/op     |
-| extractEmojisInOrder                           | avgt     | 10      | 4,841       | ± 0,579   | ms/op     |
-| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967       | ± 0,054   | ms/op     |
-| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364       | ± 0,081   | ms/op     |
-| removeAllEmojis                                | avgt     | 10      | 7,813       | ± 0,454   | ms/op     |
-| replaceAllEmojis                               | avgt     | 10      | 7,213       | ± 0,043   | ms/op     |
+
+| **Benchmark**                                  | **Mode** | **Cnt** | **Old Score** | **Score**** | **Error** | **Units** |
+|------------------------------------------------|----------|---------|---------------|-------------|-----------|-----------|
+| getByAlias -> :+1:                             | avgt     | 10      | No data       | 59,509      | ± 0,608   | ns/op     |
+| getByAlias -> nope                             | avgt     | 10      | No data       | 72,004      | ± 0,546   | ns/op     |
+| containsEmoji                                  | avgt     | 10      | 4,820         | 1,403       | ± 0,004   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 10      | 4,481         | 1,382       | ± 0,013   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 8,967         | 6,013       | ± 0,022   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 9,364         | 6,614       | ± 0,045   | ms/op     |
+| extractEmojisInOrderWithIndex                  | avgt     | 10      | No data       | 1,814       | ± 0,002   | ms/op     |
+| removeAllEmojis                                | avgt     | 10      | 7,813         | 2,264       | ± 0,370   | ms/op     |
+| replaceAllEmojis                               | avgt     | 10      | 7,213         | 2,517       | ± 0,020   | ms/op     |
+| replaceAllEmojisFunction                       | avgt     | 10      | No data       | 2,502       | ± 0,023   | ms/op     |
 
 <details>
 
@@ -181,7 +188,8 @@ Threads: 1 thread, will synchronize iterations
 Benchmark mode: Average time, time/op
 </details>
 
-** Score depends on many factors like text size and emoji count if used as an argument. For this benchmark relatively large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code and resources.
+** Score depends on many factors like text size and emoji count if used as an argument. For this benchmark relatively
+large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code and resources.
 
 ## 💾 Emoji JSON list Generation
 
