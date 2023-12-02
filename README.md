@@ -94,10 +94,21 @@ boolean isEmoji=EmojiManager.isEmoji("😀");
 boolean containsEmoji=EmojiManager.containsEmoji("Hello 😀 World");
 ```
 
-#### Extract all emojis from a string in order they appear
+#### Extract all emojis from a string in the order they appear
 
 ```java 
 List<Emoji> emojis=EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); // [😀, 👍]
+```
+
+#### Extract all emojis from a string in the order they appear, with their found index
+
+```java 
+List<IndexedEmoji> emojis=EmojiManager.extractEmojisInOrderWithIndex("Hello 😀 World 👍");
+emojis.get(0).getCharIndex() // Prints "6"
+emojis.get(0).getCharIndex() // Prints "6"
+emojis.get(1).getCodePointIndex() // Prints "15"
+emojis.get(1).getCodePointIndex() // Prints "14"
+emojis.get(0).getEmoji() // Gets the Emoji object
 ```
 
 #### Remove all emojis from a string
