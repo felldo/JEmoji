@@ -105,8 +105,8 @@ List<Emoji> emojis=EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); /
 ```java 
 List<IndexedEmoji> emojis=EmojiManager.extractEmojisInOrderWithIndex("Hello 😀 World 👍");
 emojis.get(0).getCharIndex() // Prints "6"
-emojis.get(0).getCharIndex() // Prints "6"
-emojis.get(1).getCodePointIndex() // Prints "15"
+emojis.get(0).getCodePointIndex() // Prints "6"
+emojis.get(1).getCharIndex() // Prints "15"
 emojis.get(1).getCodePointIndex() // Prints "14"
 emojis.get(0).getEmoji() // Gets the Emoji object
 ```
