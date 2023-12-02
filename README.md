@@ -165,6 +165,14 @@ class Emoji {
 
 ## 🚀 Benchmarks
 
+On every push on the master branch,
+a benchmark will be executed and automatically deployed to this
+projects [GitHub pages](https://felldo.github.io/JEmoji/dev/bench/).
+These benchmarks are executed on GitHub runners and therefore are not very accurate and can differ a bit since this
+library measures benchmarks in single digit milliseconds range or even below.
+They are generally okay to measure large differences if something bad got pushed but are not as reliable as the results
+of benchmark table below which are always executed on the specified specs.
+
 | **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
 |------------------------------------------------|----------|---------|-------------|-----------|-----------|
 | getByAlias -> :+1:                             | avgt     | 10      | 59,509      | ± 0,608   | ns/op     |
