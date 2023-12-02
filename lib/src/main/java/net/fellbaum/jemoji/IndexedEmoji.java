@@ -48,4 +48,13 @@ public class IndexedEmoji {
     public int getCodePointIndex() {
         return codePointIndex;
     }
+
+    @Override
+    public String toString() {
+        return "IndexedEmoji{" +
+                "emoji=" + emoji +
+                ", charIndex=" + charIndex +
+                ", codePointIndex=" + codePointIndex +
+                '}';
+    }
 }
