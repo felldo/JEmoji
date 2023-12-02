@@ -166,7 +166,7 @@ tasks.register("copyJarToProject") {
 }
 
 publishing {
-    if (project.gradle.startParameter.taskNames.contains("publish")) {
+    if (project.gradle.startParameter.taskNames.contains("publish").or(project.gradle.startParameter.taskNames.contains("publishToMavenLocal"))) {
         project.version = project.version.toString().replace("-SNAPSHOT", "")
     }
     publications {
