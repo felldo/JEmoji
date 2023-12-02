@@ -3,9 +3,9 @@ package net.fellbaum.jemoji;
 import java.util.Map;
 import java.util.Optional;
 
-class EmojiUtils {
+class InternalEmojiUtils {
 
-    private EmojiUtils() {}
+    private InternalEmojiUtils() {}
 
     public static int getCodePointCount(final String string) {
         return string.codePointCount(0, string.length());

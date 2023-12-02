@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.EmojiUtils.getCodePointCount;
+import static net.fellbaum.jemoji.InternalEmojiUtils.getCodePointCount;
 
 /**
  * Represents an emoji.

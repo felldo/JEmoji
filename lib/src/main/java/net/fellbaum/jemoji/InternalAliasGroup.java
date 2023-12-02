@@ -3,14 +3,14 @@ package net.fellbaum.jemoji;
 import java.util.Collection;
 import java.util.function.Function;
 
-enum AliasGroup {
+enum InternalAliasGroup {
     DISCORD(Emoji::getDiscordAliases),
     GITHUB(Emoji::getGithubAliases),
     SLACK(Emoji::getSlackAliases);
 
     private final Function<Emoji, Collection<String>> aliasCollectionSupplier;
 
-    AliasGroup(Function<Emoji, Collection<String>> aliasCollectionSupplier) {
+    InternalAliasGroup(Function<Emoji, Collection<String>> aliasCollectionSupplier) {
         this.aliasCollectionSupplier = aliasCollectionSupplier;
     }
 

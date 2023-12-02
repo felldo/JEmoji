@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.EmojiUtils.*;
+import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
 @SuppressWarnings("unused")
 public final class EmojiManager {
@@ -27,7 +27,7 @@ public final class EmojiManager {
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
 
     // Get emoji by alias
-    private static final Map<AliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(AliasGroup.class);
+    private static final Map<InternalAliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(InternalAliasGroup.class);
 
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
@@ -77,8 +77,8 @@ public final class EmojiManager {
         }
     }
 
-    private static Map<String, Emoji> getEmojiAliasToEmoji(final AliasGroup aliasGroup) {
-        return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(aliasGroup, group -> {
+    private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {
+        return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(internalAliasGroup, group -> {
             final Map<String, Emoji> emojiAliasToEmoji = new HashMap<>();
             for (final Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
                 for (final String alias : group.getAliasCollectionSupplier().apply(emoji)) {
@@ -162,7 +162,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return Arrays.stream(AliasGroup.values())
+        return Arrays.stream(InternalAliasGroup.values())
                 .map(EmojiManager::getEmojiAliasToEmoji)
                 .filter(m -> m.containsKey(aliasWithColon) || m.containsKey(aliasWithoutColon))
                 .map(m -> findEmojiByEitherAlias(m, aliasWithColon, aliasWithoutColon))
@@ -180,7 +180,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.DISCORD), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.DISCORD), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -193,7 +193,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.GITHUB), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.GITHUB), aliasWithColon, aliasWithoutColon);
     }
 
     /**
@@ -206,7 +206,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
         final String aliasWithoutColon = removeColonFromAlias(alias);
         final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(AliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
     }
 
     /**
