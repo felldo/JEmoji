@@ -10,7 +10,7 @@ public class IndexedEmoji {
     private final int charIndex;
     private final int codePointIndex;
 
-    IndexedEmoji(Emoji emoji, int charIndex, int codePointIndex) {
+    IndexedEmoji(final Emoji emoji, final int charIndex, final int codePointIndex) {
         this.emoji = emoji;
         this.charIndex = charIndex;
         this.codePointIndex = codePointIndex;
