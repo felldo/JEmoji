@@ -20,7 +20,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
-    private static final String PATH = "emoji_sources/emojis.json";
+    private static final String PATH = "/emoji_sources/emojis.json";
 
     private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
     private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
@@ -64,8 +64,7 @@ public final class EmojiManager {
 
     private static String readFileAsString() {
         try {
-            final ClassLoader classLoader = EmojiManager.class.getClassLoader();
-            try (final InputStream is = classLoader.getResourceAsStream(PATH)) {
+	    try (final InputStream is = EmojiManager.class.getResourceAsStream(PATH)) {
                 if (is == null) return null;
                 try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                      final BufferedReader reader = new BufferedReader(isr)) {
