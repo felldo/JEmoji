@@ -1,11 +1,13 @@
 package net.fellbaum.jemoji;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -15,6 +17,17 @@ public class EmojiManagerTest {
     public static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ ❤ ❤❤️ World";
     private static final String SIMPLE_POSITION_EMOJI_STRING = "Hello ❤️ ❤ 👩🏻‍🤝‍👨🏼 ❤❤️ World";
+
+    @Test
+    public void testIfLoadedEmojisMatchesWithJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode node = objectMapper.readTree(Paths.get(".." + File.separator + "public/emojis.min.json").toFile());
+            assertEquals(node.size(), EmojiManager.getAllEmojis().size());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Test
     public void extractEmojisInOrder() {

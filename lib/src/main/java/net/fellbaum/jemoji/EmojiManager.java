@@ -1,9 +1,5 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,19 +29,22 @@ public final class EmojiManager {
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     static {
-        final String fileContent = readFileAsString();
-        try {
-            final List<Emoji> emojis = new ObjectMapper().readValue(fileContent, new TypeReference<List<Emoji>>() {
-            });
+//        final String fileContent = readFileAsString();
+//        try {
+//        final List<Emoji> emojis = new ObjectMapper().readValue(fileContent, new TypeReference<List<Emoji>>() {});
+        //TODO: Automate somehow loading the emoji loader files?
+        final Set<Emoji> emojis = new HashSet<>();
+        emojis.addAll(EmojiLoaderA.EMOJI_LIST);
+        emojis.addAll(EmojiLoaderB.EMOJI_LIST);
 
-            EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
+        EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
 
-            EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+        EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
-            EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
-        } catch (final JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
+//        } catch (final JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
@@ -62,19 +61,19 @@ public final class EmojiManager {
         );
     }
 
-    private static String readFileAsString() {
-        try {
-	    try (final InputStream is = EmojiManager.class.getResourceAsStream(PATH)) {
-                if (is == null) return null;
-                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-                     final BufferedReader reader = new BufferedReader(isr)) {
-                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-                }
-            }
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private static String readFileAsString() {
+//        try {
+//	    try (final InputStream is = EmojiManager.class.getResourceAsStream(PATH)) {
+//                if (is == null) return null;
+//                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+//                     final BufferedReader reader = new BufferedReader(isr)) {
+//                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+//                }
+//            }
+//        } catch (final IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {
         return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(internalAliasGroup, group -> {
