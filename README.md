@@ -7,6 +7,9 @@
 
 JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium.
 
+With many utility methods and **type safe** direct access to Emojis,
+JEmoji aims to improve your experience and development when working with Emojis.
+
 ## ❓ Why another emoji library?
 
 While several other emoji libraries for Java exist, most of them are incomplete or outdated. JEmoji, on the other
@@ -38,7 +41,6 @@ implementation("net.fellbaum:jemoji:VERSION")
 ### Maven
 
 ```xml
-
 <dependency>
     <groupId>net.fellbaum</groupId>
     <artifactId>jemoji</artifactId>
@@ -47,6 +49,15 @@ implementation("net.fellbaum:jemoji:VERSION")
 ```
 
 ## 📝 Usage
+
+### Emojis
+
+#### Access any emoji directly by a constant
+```java
+//Returns and Emoji instance
+Emojis.THUMBS_UP;
+Emojis.THUMBS_UP_MEDIUM_SKIN_TONE;
+```
 
 ### EmojiManager
 
@@ -104,7 +115,7 @@ List<Emoji> emojis=EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); /
 
 ```java 
 List<IndexedEmoji> emojis=EmojiManager.extractEmojisInOrderWithIndex("Hello 😀 World 👍");
-emojis.get(0).getCharIndex() // Prints "6"
+emojis.get(0).getCharIndex(); // Prints "6"
 emojis.get(0).getCodePointIndex() // Prints "6"
 emojis.get(1).getCharIndex() // Prints "15"
 emojis.get(1).getCodePointIndex() // Prints "14"
@@ -158,6 +169,7 @@ class Emoji {
 + getVersion() double
 + getQualification() Qualification
 + getDescription() String
++ getDescription(EmojiDescriptionLanguage) String
 + getGroup() EmojiGroup
 + getSubGroup() EmojiSubGroup
 }
@@ -213,4 +225,8 @@ large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code an
 ## 💾 Emoji JSON list Generation
 
 The emoji list can be easily generated with the ``generateEmojis`` Gradle task. The generated list will be saved in the
-``src/main/resources`` folder.
+``public`` folder.
+
+## Project setup
+To get started with your local development, execute the ``generate`` Gradle task in the group ``other``. 
+

@@ -1,7 +1,7 @@
 [ {
   "emoji" : "😀",
   "unicode" : "\uD83D\uDE00",
-  "discordAliases" : [ ":grinning:" ],
+  "discordAliases" : [ ":grinning:", ":grinning_face:" ],
   "githubAliases" : [ ":grinning:" ],
   "slackAliases" : [ ":grinning:" ],
   "hasFitzpatrick" : false,
@@ -144,7 +144,7 @@
 }, {
   "emoji" : "😉",
   "unicode" : "\uD83D\uDE09",
-  "discordAliases" : [ ":wink:", ";)", ";-)" ],
+  "discordAliases" : [ ":wink:", ":winking_face:", ";)", ";-)" ],
   "githubAliases" : [ ":wink:" ],
   "slackAliases" : [ ":wink:" ],
   "hasFitzpatrick" : false,
@@ -235,7 +235,7 @@
 }, {
   "emoji" : "😗",
   "unicode" : "\uD83D\uDE17",
-  "discordAliases" : [ ":kissing:", ":*", ":-*", "=*", "=-*" ],
+  "discordAliases" : [ ":kissing:", ":kissing_face:", ":*", ":-*", "=*", "=-*" ],
   "githubAliases" : [ ":kissing:" ],
   "slackAliases" : [ ":kissing:" ],
   "hasFitzpatrick" : false,
@@ -248,7 +248,7 @@
 }, {
   "emoji" : "☺️",
   "unicode" : "\u263A\uFE0F",
-  "discordAliases" : [ ":relaxed:" ],
+  "discordAliases" : [ ":relaxed:", ":smiling_face:" ],
   "githubAliases" : [ ":relaxed:" ],
   "slackAliases" : [ ":relaxed:" ],
   "hasFitzpatrick" : false,
@@ -586,7 +586,7 @@
 }, {
   "emoji" : "😏",
   "unicode" : "\uD83D\uDE0F",
-  "discordAliases" : [ ":smirk:" ],
+  "discordAliases" : [ ":smirk:", ":smirking_face:" ],
   "githubAliases" : [ ":smirk:" ],
   "slackAliases" : [ ":smirk:" ],
   "hasFitzpatrick" : false,
@@ -599,7 +599,7 @@
 }, {
   "emoji" : "😒",
   "unicode" : "\uD83D\uDE12",
-  "discordAliases" : [ ":unamused:", ":s", ":-S", ":z", ":-Z", ":$", ":-$", "=s", "=-S", "=z", "=-Z", "=$", "=-$" ],
+  "discordAliases" : [ ":unamused:", ":unamused_face:", ":s", ":-S", ":z", ":-Z", ":$", ":-$", "=s", "=-S", "=z", "=-Z", "=$", "=-$" ],
   "githubAliases" : [ ":unamused:" ],
   "slackAliases" : [ ":unamused:" ],
   "hasFitzpatrick" : false,
@@ -664,7 +664,7 @@
 }, {
   "emoji" : "🫨",
   "unicode" : "\uD83E\uDEE8",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":shaking_face:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -729,7 +729,7 @@
 }, {
   "emoji" : "😌",
   "unicode" : "\uD83D\uDE0C",
-  "discordAliases" : [ ":relieved:" ],
+  "discordAliases" : [ ":relieved:", ":relieved_face:" ],
   "githubAliases" : [ ":relieved:" ],
   "slackAliases" : [ ":relieved:" ],
   "hasFitzpatrick" : false,
@@ -742,7 +742,7 @@
 }, {
   "emoji" : "😔",
   "unicode" : "\uD83D\uDE14",
-  "discordAliases" : [ ":pensive:" ],
+  "discordAliases" : [ ":pensive:", ":pensive_face:" ],
   "githubAliases" : [ ":pensive:" ],
   "slackAliases" : [ ":pensive:" ],
   "hasFitzpatrick" : false,
@@ -755,7 +755,7 @@
 }, {
   "emoji" : "😪",
   "unicode" : "\uD83D\uDE2A",
-  "discordAliases" : [ ":sleepy:" ],
+  "discordAliases" : [ ":sleepy:", ":sleepy_face:" ],
   "githubAliases" : [ ":sleepy:" ],
   "slackAliases" : [ ":sleepy:" ],
   "hasFitzpatrick" : false,
@@ -781,7 +781,7 @@
 }, {
   "emoji" : "😴",
   "unicode" : "\uD83D\uDE34",
-  "discordAliases" : [ ":sleeping:" ],
+  "discordAliases" : [ ":sleeping:", ":sleeping_face:" ],
   "githubAliases" : [ ":sleeping:" ],
   "slackAliases" : [ ":sleeping:" ],
   "hasFitzpatrick" : false,
@@ -1028,7 +1028,7 @@
 }, {
   "emoji" : "😕",
   "unicode" : "\uD83D\uDE15",
-  "discordAliases" : [ ":confused:", ":-\\", ":-/", "=-\\", "=-/" ],
+  "discordAliases" : [ ":confused:", ":confused_face:", ":-\\", ":-/", "=-\\", "=-/" ],
   "githubAliases" : [ ":confused:" ],
   "slackAliases" : [ ":confused:" ],
   "hasFitzpatrick" : false,
@@ -1054,7 +1054,7 @@
 }, {
   "emoji" : "😟",
   "unicode" : "\uD83D\uDE1F",
-  "discordAliases" : [ ":worried:" ],
+  "discordAliases" : [ ":worried:", ":worried_face:" ],
   "githubAliases" : [ ":worried:" ],
   "slackAliases" : [ ":worried:" ],
   "hasFitzpatrick" : false,
@@ -1080,7 +1080,7 @@
 }, {
   "emoji" : "☹️",
   "unicode" : "\u2639\uFE0F",
-  "discordAliases" : [ ":frowning2:", ":white_frowning_face:" ],
+  "discordAliases" : [ ":frowning2:", ":white_frowning_face:", ":frowning_face:" ],
   "githubAliases" : [ ":frowning_face:" ],
   "slackAliases" : [ ":white_frowning_face:" ],
   "hasFitzpatrick" : false,
@@ -1119,7 +1119,7 @@
 }, {
   "emoji" : "😯",
   "unicode" : "\uD83D\uDE2F",
-  "discordAliases" : [ ":hushed:" ],
+  "discordAliases" : [ ":hushed:", ":hushed_face:" ],
   "githubAliases" : [ ":hushed:" ],
   "slackAliases" : [ ":hushed:" ],
   "hasFitzpatrick" : false,
@@ -1145,7 +1145,7 @@
 }, {
   "emoji" : "😳",
   "unicode" : "\uD83D\uDE33",
-  "discordAliases" : [ ":flushed:" ],
+  "discordAliases" : [ ":flushed:", ":flushed_face:" ],
   "githubAliases" : [ ":flushed:" ],
   "slackAliases" : [ ":flushed:" ],
   "hasFitzpatrick" : false,
@@ -1210,7 +1210,7 @@
 }, {
   "emoji" : "😨",
   "unicode" : "\uD83D\uDE28",
-  "discordAliases" : [ ":fearful:" ],
+  "discordAliases" : [ ":fearful:", ":fearful_face:" ],
   "githubAliases" : [ ":fearful:" ],
   "slackAliases" : [ ":fearful:" ],
   "hasFitzpatrick" : false,
@@ -1249,7 +1249,7 @@
 }, {
   "emoji" : "😢",
   "unicode" : "\uD83D\uDE22",
-  "discordAliases" : [ ":cry:", ":'(", ":'-(", ":,(", ":,-(", "='(", "='-(", "=,(", "=,-(" ],
+  "discordAliases" : [ ":cry:", ":crying_face:", ":'(", ":'-(", ":,(", ":,-(", "='(", "='-(", "=,(", "=,-(" ],
   "githubAliases" : [ ":cry:" ],
   "slackAliases" : [ ":cry:" ],
   "hasFitzpatrick" : false,
@@ -1340,7 +1340,7 @@
 }, {
   "emoji" : "😩",
   "unicode" : "\uD83D\uDE29",
-  "discordAliases" : [ ":weary:" ],
+  "discordAliases" : [ ":weary:", ":weary_face:" ],
   "githubAliases" : [ ":weary:" ],
   "slackAliases" : [ ":weary:" ],
   "hasFitzpatrick" : false,
@@ -1392,7 +1392,7 @@
 }, {
   "emoji" : "😡",
   "unicode" : "\uD83D\uDE21",
-  "discordAliases" : [ ":rage:", ":@", ":-@", "=@", "=-@" ],
+  "discordAliases" : [ ":rage:", ":pouting_face:", ":@", ":-@", "=@", "=-@" ],
   "githubAliases" : [ ":pout:", ":rage:" ],
   "slackAliases" : [ ":rage:" ],
   "hasFitzpatrick" : false,
@@ -1405,7 +1405,7 @@
 }, {
   "emoji" : "😠",
   "unicode" : "\uD83D\uDE20",
-  "discordAliases" : [ ":angry:", ">:(", ">:-(", ">=(", ">=-(" ],
+  "discordAliases" : [ ":angry:", ":angry_face:", ">:(", ">:-(", ">=(", ">=-(" ],
   "githubAliases" : [ ":angry:" ],
   "slackAliases" : [ ":angry:" ],
   "hasFitzpatrick" : false,
@@ -1496,7 +1496,7 @@
 }, {
   "emoji" : "💩",
   "unicode" : "\uD83D\uDCA9",
-  "discordAliases" : [ ":poop:", ":shit:", ":hankey:", ":poo:" ],
+  "discordAliases" : [ ":poop:", ":shit:", ":hankey:", ":poo:", ":pile_of_poo:" ],
   "githubAliases" : [ ":hankey:", ":poop:", ":shit:" ],
   "slackAliases" : [ ":hankey:" ],
   "hasFitzpatrick" : false,
@@ -1522,7 +1522,7 @@
 }, {
   "emoji" : "👹",
   "unicode" : "\uD83D\uDC79",
-  "discordAliases" : [ ":japanese_ogre:" ],
+  "discordAliases" : [ ":japanese_ogre:", ":ogre:" ],
   "githubAliases" : [ ":japanese_ogre:" ],
   "slackAliases" : [ ":japanese_ogre:" ],
   "hasFitzpatrick" : false,
@@ -1535,7 +1535,7 @@
 }, {
   "emoji" : "👺",
   "unicode" : "\uD83D\uDC7A",
-  "discordAliases" : [ ":japanese_goblin:" ],
+  "discordAliases" : [ ":japanese_goblin:", ":goblin:" ],
   "githubAliases" : [ ":japanese_goblin:" ],
   "slackAliases" : [ ":japanese_goblin:" ],
   "hasFitzpatrick" : false,
@@ -1574,7 +1574,7 @@
 }, {
   "emoji" : "👾",
   "unicode" : "\uD83D\uDC7E",
-  "discordAliases" : [ ":space_invader:" ],
+  "discordAliases" : [ ":space_invader:", ":alien_monster:" ],
   "githubAliases" : [ ":space_invader:" ],
   "slackAliases" : [ ":space_invader:" ],
   "hasFitzpatrick" : false,
@@ -1600,7 +1600,7 @@
 }, {
   "emoji" : "😺",
   "unicode" : "\uD83D\uDE3A",
-  "discordAliases" : [ ":smiley_cat:" ],
+  "discordAliases" : [ ":smiley_cat:", ":grinning_cat:" ],
   "githubAliases" : [ ":smiley_cat:" ],
   "slackAliases" : [ ":smiley_cat:" ],
   "hasFitzpatrick" : false,
@@ -1678,7 +1678,7 @@
 }, {
   "emoji" : "🙀",
   "unicode" : "\uD83D\uDE40",
-  "discordAliases" : [ ":scream_cat:" ],
+  "discordAliases" : [ ":scream_cat:", ":weary_cat:" ],
   "githubAliases" : [ ":scream_cat:" ],
   "slackAliases" : [ ":scream_cat:" ],
   "hasFitzpatrick" : false,
@@ -1691,7 +1691,7 @@
 }, {
   "emoji" : "😿",
   "unicode" : "\uD83D\uDE3F",
-  "discordAliases" : [ ":crying_cat_face:" ],
+  "discordAliases" : [ ":crying_cat_face:", ":crying_cat:" ],
   "githubAliases" : [ ":crying_cat_face:" ],
   "slackAliases" : [ ":crying_cat_face:" ],
   "hasFitzpatrick" : false,
@@ -1808,7 +1808,7 @@
 }, {
   "emoji" : "💗",
   "unicode" : "\uD83D\uDC97",
-  "discordAliases" : [ ":heartpulse:" ],
+  "discordAliases" : [ ":heartpulse:", ":growing_heart:" ],
   "githubAliases" : [ ":heartpulse:" ],
   "slackAliases" : [ ":heartpulse:" ],
   "hasFitzpatrick" : false,
@@ -1821,7 +1821,7 @@
 }, {
   "emoji" : "💓",
   "unicode" : "\uD83D\uDC93",
-  "discordAliases" : [ ":heartbeat:" ],
+  "discordAliases" : [ ":heartbeat:", ":beating_heart:" ],
   "githubAliases" : [ ":heartbeat:" ],
   "slackAliases" : [ ":heartbeat:" ],
   "hasFitzpatrick" : false,
@@ -1964,7 +1964,7 @@
 }, {
   "emoji" : "❤️",
   "unicode" : "\u2764\uFE0F",
-  "discordAliases" : [ ":heart:", "<3", "♡" ],
+  "discordAliases" : [ ":heart:", ":red_heart:", "<3", "♡" ],
   "githubAliases" : [ ":heart:" ],
   "slackAliases" : [ ":heart:" ],
   "hasFitzpatrick" : false,
@@ -1990,7 +1990,7 @@
 }, {
   "emoji" : "🩷",
   "unicode" : "\uD83E\uDE77",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":pink_heart:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -2055,7 +2055,7 @@
 }, {
   "emoji" : "🩵",
   "unicode" : "\uD83E\uDE75",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":light_blue_heart:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -2107,7 +2107,7 @@
 }, {
   "emoji" : "🩶",
   "unicode" : "\uD83E\uDE76",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":grey_heart:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -2133,7 +2133,7 @@
 }, {
   "emoji" : "💋",
   "unicode" : "\uD83D\uDC8B",
-  "discordAliases" : [ ":kiss:" ],
+  "discordAliases" : [ ":kiss:", ":kiss_mark:" ],
   "githubAliases" : [ ":kiss:" ],
   "slackAliases" : [ ":kiss:" ],
   "hasFitzpatrick" : false,
@@ -2172,7 +2172,7 @@
 }, {
   "emoji" : "💥",
   "unicode" : "\uD83D\uDCA5",
-  "discordAliases" : [ ":boom:" ],
+  "discordAliases" : [ ":boom:", ":collision:" ],
   "githubAliases" : [ ":boom:", ":collision:" ],
   "slackAliases" : [ ":boom:" ],
   "hasFitzpatrick" : false,
@@ -2211,7 +2211,7 @@
 }, {
   "emoji" : "💨",
   "unicode" : "\uD83D\uDCA8",
-  "discordAliases" : [ ":dash:" ],
+  "discordAliases" : [ ":dash:", ":dashing_away:" ],
   "githubAliases" : [ ":dash:" ],
   "slackAliases" : [ ":dash:" ],
   "hasFitzpatrick" : false,
@@ -2393,7 +2393,7 @@
 }, {
   "emoji" : "👋",
   "unicode" : "\uD83D\uDC4B",
-  "discordAliases" : [ ":wave:" ],
+  "discordAliases" : [ ":wave:", ":waving_hand:" ],
   "githubAliases" : [ ":wave:" ],
   "slackAliases" : [ ":wave:" ],
   "hasFitzpatrick" : false,
@@ -2406,7 +2406,7 @@
 }, {
   "emoji" : "👋🏻",
   "unicode" : "\uD83D\uDC4B\uD83C\uDFFB",
-  "discordAliases" : [ ":wave_tone1:", ":wave::skin-tone-1:" ],
+  "discordAliases" : [ ":wave_tone1:", ":wave::skin-tone-1:", ":waving_hand::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":wave::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -2419,7 +2419,7 @@
 }, {
   "emoji" : "👋🏼",
   "unicode" : "\uD83D\uDC4B\uD83C\uDFFC",
-  "discordAliases" : [ ":wave_tone2:", ":wave::skin-tone-2:" ],
+  "discordAliases" : [ ":wave_tone2:", ":wave::skin-tone-2:", ":waving_hand::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":wave::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -2432,7 +2432,7 @@
 }, {
   "emoji" : "👋🏽",
   "unicode" : "\uD83D\uDC4B\uD83C\uDFFD",
-  "discordAliases" : [ ":wave_tone3:", ":wave::skin-tone-3:" ],
+  "discordAliases" : [ ":wave_tone3:", ":wave::skin-tone-3:", ":waving_hand::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":wave::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -2445,7 +2445,7 @@
 }, {
   "emoji" : "👋🏾",
   "unicode" : "\uD83D\uDC4B\uD83C\uDFFE",
-  "discordAliases" : [ ":wave_tone4:", ":wave::skin-tone-4:" ],
+  "discordAliases" : [ ":wave_tone4:", ":wave::skin-tone-4:", ":waving_hand::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":wave::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -2458,7 +2458,7 @@
 }, {
   "emoji" : "👋🏿",
   "unicode" : "\uD83D\uDC4B\uD83C\uDFFF",
-  "discordAliases" : [ ":wave_tone5:", ":wave::skin-tone-5:" ],
+  "discordAliases" : [ ":wave_tone5:", ":wave::skin-tone-5:", ":waving_hand::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":wave::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -2718,7 +2718,7 @@
 }, {
   "emoji" : "🖖",
   "unicode" : "\uD83D\uDD96",
-  "discordAliases" : [ ":vulcan:", ":raised_hand_with_part_between_middle_and_ring_fingers:" ],
+  "discordAliases" : [ ":vulcan:", ":raised_hand_with_part_between_middle_and_ring_fingers:", ":vulcan_salute:" ],
   "githubAliases" : [ ":vulcan_salute:" ],
   "slackAliases" : [ ":spock-hand:" ],
   "hasFitzpatrick" : false,
@@ -2731,7 +2731,7 @@
 }, {
   "emoji" : "🖖🏻",
   "unicode" : "\uD83D\uDD96\uD83C\uDFFB",
-  "discordAliases" : [ ":vulcan_tone1:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone1:", ":vulcan::skin-tone-1:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-1:" ],
+  "discordAliases" : [ ":vulcan_tone1:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone1:", ":vulcan::skin-tone-1:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-1:", ":vulcan_salute::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":spock-hand::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -2744,7 +2744,7 @@
 }, {
   "emoji" : "🖖🏼",
   "unicode" : "\uD83D\uDD96\uD83C\uDFFC",
-  "discordAliases" : [ ":vulcan_tone2:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone2:", ":vulcan::skin-tone-2:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-2:" ],
+  "discordAliases" : [ ":vulcan_tone2:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone2:", ":vulcan::skin-tone-2:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-2:", ":vulcan_salute::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":spock-hand::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -2757,7 +2757,7 @@
 }, {
   "emoji" : "🖖🏽",
   "unicode" : "\uD83D\uDD96\uD83C\uDFFD",
-  "discordAliases" : [ ":vulcan_tone3:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone3:", ":vulcan::skin-tone-3:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-3:" ],
+  "discordAliases" : [ ":vulcan_tone3:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone3:", ":vulcan::skin-tone-3:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-3:", ":vulcan_salute::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":spock-hand::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -2770,7 +2770,7 @@
 }, {
   "emoji" : "🖖🏾",
   "unicode" : "\uD83D\uDD96\uD83C\uDFFE",
-  "discordAliases" : [ ":vulcan_tone4:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone4:", ":vulcan::skin-tone-4:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-4:" ],
+  "discordAliases" : [ ":vulcan_tone4:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone4:", ":vulcan::skin-tone-4:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-4:", ":vulcan_salute::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":spock-hand::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -2783,7 +2783,7 @@
 }, {
   "emoji" : "🖖🏿",
   "unicode" : "\uD83D\uDD96\uD83C\uDFFF",
-  "discordAliases" : [ ":vulcan_tone5:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone5:", ":vulcan::skin-tone-5:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-5:" ],
+  "discordAliases" : [ ":vulcan_tone5:", ":raised_hand_with_part_between_middle_and_ring_fingers_tone5:", ":vulcan::skin-tone-5:", ":raised_hand_with_part_between_middle_and_ring_fingers::skin-tone-5:", ":vulcan_salute::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":spock-hand::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -3108,7 +3108,7 @@
 }, {
   "emoji" : "🫷",
   "unicode" : "\uD83E\uDEF7",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -3121,7 +3121,7 @@
 }, {
   "emoji" : "🫷🏻",
   "unicode" : "\uD83E\uDEF7\uD83C\uDFFB",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand_tone1:", ":leftwards_pushing_hand_light_skin_tone:", ":leftwards_pushing_hand::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3134,7 +3134,7 @@
 }, {
   "emoji" : "🫷🏼",
   "unicode" : "\uD83E\uDEF7\uD83C\uDFFC",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand_tone2:", ":leftwards_pushing_hand_medium_light_skin_tone:", ":leftwards_pushing_hand::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3147,7 +3147,7 @@
 }, {
   "emoji" : "🫷🏽",
   "unicode" : "\uD83E\uDEF7\uD83C\uDFFD",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand_tone3:", ":leftwards_pushing_hand_medium_skin_tone:", ":leftwards_pushing_hand::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3160,7 +3160,7 @@
 }, {
   "emoji" : "🫷🏾",
   "unicode" : "\uD83E\uDEF7\uD83C\uDFFE",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand_tone4:", ":leftwards_pushing_hand_medium_dark_skin_tone:", ":leftwards_pushing_hand::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3173,7 +3173,7 @@
 }, {
   "emoji" : "🫷🏿",
   "unicode" : "\uD83E\uDEF7\uD83C\uDFFF",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":leftwards_pushing_hand_tone5:", ":leftwards_pushing_hand_dark_skin_tone:", ":leftwards_pushing_hand::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3186,7 +3186,7 @@
 }, {
   "emoji" : "🫸",
   "unicode" : "\uD83E\uDEF8",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -3199,7 +3199,7 @@
 }, {
   "emoji" : "🫸🏻",
   "unicode" : "\uD83E\uDEF8\uD83C\uDFFB",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand_tone1:", ":rightwards_pushing_hand_light_skin_tone:", ":rightwards_pushing_hand::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3212,7 +3212,7 @@
 }, {
   "emoji" : "🫸🏼",
   "unicode" : "\uD83E\uDEF8\uD83C\uDFFC",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand_tone2:", ":rightwards_pushing_hand_medium_light_skin_tone:", ":rightwards_pushing_hand::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3225,7 +3225,7 @@
 }, {
   "emoji" : "🫸🏽",
   "unicode" : "\uD83E\uDEF8\uD83C\uDFFD",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand_tone3:", ":rightwards_pushing_hand_medium_skin_tone:", ":rightwards_pushing_hand::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3238,7 +3238,7 @@
 }, {
   "emoji" : "🫸🏾",
   "unicode" : "\uD83E\uDEF8\uD83C\uDFFE",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand_tone4:", ":rightwards_pushing_hand_medium_dark_skin_tone:", ":rightwards_pushing_hand::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3251,7 +3251,7 @@
 }, {
   "emoji" : "🫸🏿",
   "unicode" : "\uD83E\uDEF8\uD83C\uDFFF",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":rightwards_pushing_hand_tone5:", ":rightwards_pushing_hand_dark_skin_tone:", ":rightwards_pushing_hand::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -3498,7 +3498,7 @@
 }, {
   "emoji" : "✌️",
   "unicode" : "\u270C\uFE0F",
-  "discordAliases" : [ ":v:" ],
+  "discordAliases" : [ ":v:", ":victory_hand:" ],
   "githubAliases" : [ ":v:" ],
   "slackAliases" : [ ":v:" ],
   "hasFitzpatrick" : false,
@@ -3524,7 +3524,7 @@
 }, {
   "emoji" : "✌🏻",
   "unicode" : "\u270C\uD83C\uDFFB",
-  "discordAliases" : [ ":v_tone1:", ":v::skin-tone-1:" ],
+  "discordAliases" : [ ":v_tone1:", ":v::skin-tone-1:", ":victory_hand::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":v::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -3537,7 +3537,7 @@
 }, {
   "emoji" : "✌🏼",
   "unicode" : "\u270C\uD83C\uDFFC",
-  "discordAliases" : [ ":v_tone2:", ":v::skin-tone-2:" ],
+  "discordAliases" : [ ":v_tone2:", ":v::skin-tone-2:", ":victory_hand::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":v::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -3550,7 +3550,7 @@
 }, {
   "emoji" : "✌🏽",
   "unicode" : "\u270C\uD83C\uDFFD",
-  "discordAliases" : [ ":v_tone3:", ":v::skin-tone-3:" ],
+  "discordAliases" : [ ":v_tone3:", ":v::skin-tone-3:", ":victory_hand::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":v::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -3563,7 +3563,7 @@
 }, {
   "emoji" : "✌🏾",
   "unicode" : "\u270C\uD83C\uDFFE",
-  "discordAliases" : [ ":v_tone4:", ":v::skin-tone-4:" ],
+  "discordAliases" : [ ":v_tone4:", ":v::skin-tone-4:", ":victory_hand::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":v::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -3576,7 +3576,7 @@
 }, {
   "emoji" : "✌🏿",
   "unicode" : "\u270C\uD83C\uDFFF",
-  "discordAliases" : [ ":v_tone5:", ":v::skin-tone-5:" ],
+  "discordAliases" : [ ":v_tone5:", ":v::skin-tone-5:", ":victory_hand::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":v::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -4538,7 +4538,7 @@
 }, {
   "emoji" : "👍",
   "unicode" : "\uD83D\uDC4D",
-  "discordAliases" : [ ":thumbsup:", ":+1:", ":thumbup:" ],
+  "discordAliases" : [ ":thumbsup:", ":+1:", ":thumbup:", ":thumbs_up:" ],
   "githubAliases" : [ ":+1:", ":thumbsup:", ":1:" ],
   "slackAliases" : [ ":+1:" ],
   "hasFitzpatrick" : false,
@@ -4551,7 +4551,7 @@
 }, {
   "emoji" : "👍🏻",
   "unicode" : "\uD83D\uDC4D\uD83C\uDFFB",
-  "discordAliases" : [ ":thumbsup_tone1:", ":+1_tone1:", ":thumbup_tone1:", ":thumbsup::skin-tone-1:", ":+1::skin-tone-1:", ":thumbup::skin-tone-1:" ],
+  "discordAliases" : [ ":thumbsup_tone1:", ":+1_tone1:", ":thumbup_tone1:", ":thumbsup::skin-tone-1:", ":+1::skin-tone-1:", ":thumbup::skin-tone-1:", ":thumbs_up::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":+1::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -4564,7 +4564,7 @@
 }, {
   "emoji" : "👍🏼",
   "unicode" : "\uD83D\uDC4D\uD83C\uDFFC",
-  "discordAliases" : [ ":thumbsup_tone2:", ":+1_tone2:", ":thumbup_tone2:", ":thumbsup::skin-tone-2:", ":+1::skin-tone-2:", ":thumbup::skin-tone-2:" ],
+  "discordAliases" : [ ":thumbsup_tone2:", ":+1_tone2:", ":thumbup_tone2:", ":thumbsup::skin-tone-2:", ":+1::skin-tone-2:", ":thumbup::skin-tone-2:", ":thumbs_up::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":+1::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -4577,7 +4577,7 @@
 }, {
   "emoji" : "👍🏽",
   "unicode" : "\uD83D\uDC4D\uD83C\uDFFD",
-  "discordAliases" : [ ":thumbsup_tone3:", ":+1_tone3:", ":thumbup_tone3:", ":thumbsup::skin-tone-3:", ":+1::skin-tone-3:", ":thumbup::skin-tone-3:" ],
+  "discordAliases" : [ ":thumbsup_tone3:", ":+1_tone3:", ":thumbup_tone3:", ":thumbsup::skin-tone-3:", ":+1::skin-tone-3:", ":thumbup::skin-tone-3:", ":thumbs_up::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":+1::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -4590,7 +4590,7 @@
 }, {
   "emoji" : "👍🏾",
   "unicode" : "\uD83D\uDC4D\uD83C\uDFFE",
-  "discordAliases" : [ ":thumbsup_tone4:", ":+1_tone4:", ":thumbup_tone4:", ":thumbsup::skin-tone-4:", ":+1::skin-tone-4:", ":thumbup::skin-tone-4:" ],
+  "discordAliases" : [ ":thumbsup_tone4:", ":+1_tone4:", ":thumbup_tone4:", ":thumbsup::skin-tone-4:", ":+1::skin-tone-4:", ":thumbup::skin-tone-4:", ":thumbs_up::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":+1::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -4603,7 +4603,7 @@
 }, {
   "emoji" : "👍🏿",
   "unicode" : "\uD83D\uDC4D\uD83C\uDFFF",
-  "discordAliases" : [ ":thumbsup_tone5:", ":+1_tone5:", ":thumbup_tone5:", ":thumbsup::skin-tone-5:", ":+1::skin-tone-5:", ":thumbup::skin-tone-5:" ],
+  "discordAliases" : [ ":thumbsup_tone5:", ":+1_tone5:", ":thumbup_tone5:", ":thumbsup::skin-tone-5:", ":+1::skin-tone-5:", ":thumbup::skin-tone-5:", ":thumbs_up::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":+1::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -4616,7 +4616,7 @@
 }, {
   "emoji" : "👎",
   "unicode" : "\uD83D\uDC4E",
-  "discordAliases" : [ ":thumbsdown:", ":-1:", ":thumbdown:" ],
+  "discordAliases" : [ ":thumbsdown:", ":-1:", ":thumbdown:", ":thumbs_down:" ],
   "githubAliases" : [ ":-1:", ":thumbsdown:" ],
   "slackAliases" : [ ":-1:" ],
   "hasFitzpatrick" : false,
@@ -4629,7 +4629,7 @@
 }, {
   "emoji" : "👎🏻",
   "unicode" : "\uD83D\uDC4E\uD83C\uDFFB",
-  "discordAliases" : [ ":thumbsdown_tone1:", ":_1_tone1:", ":thumbdown_tone1:", ":thumbsdown::skin-tone-1:", ":-1::skin-tone-1:", ":thumbdown::skin-tone-1:" ],
+  "discordAliases" : [ ":thumbsdown_tone1:", ":_1_tone1:", ":thumbdown_tone1:", ":thumbsdown::skin-tone-1:", ":-1::skin-tone-1:", ":thumbdown::skin-tone-1:", ":thumbs_down::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":-1::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -4642,7 +4642,7 @@
 }, {
   "emoji" : "👎🏼",
   "unicode" : "\uD83D\uDC4E\uD83C\uDFFC",
-  "discordAliases" : [ ":thumbsdown_tone2:", ":_1_tone2:", ":thumbdown_tone2:", ":thumbsdown::skin-tone-2:", ":-1::skin-tone-2:", ":thumbdown::skin-tone-2:" ],
+  "discordAliases" : [ ":thumbsdown_tone2:", ":_1_tone2:", ":thumbdown_tone2:", ":thumbsdown::skin-tone-2:", ":-1::skin-tone-2:", ":thumbdown::skin-tone-2:", ":thumbs_down::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":-1::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -4655,7 +4655,7 @@
 }, {
   "emoji" : "👎🏽",
   "unicode" : "\uD83D\uDC4E\uD83C\uDFFD",
-  "discordAliases" : [ ":thumbsdown_tone3:", ":_1_tone3:", ":thumbdown_tone3:", ":thumbsdown::skin-tone-3:", ":-1::skin-tone-3:", ":thumbdown::skin-tone-3:" ],
+  "discordAliases" : [ ":thumbsdown_tone3:", ":_1_tone3:", ":thumbdown_tone3:", ":thumbsdown::skin-tone-3:", ":-1::skin-tone-3:", ":thumbdown::skin-tone-3:", ":thumbs_down::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":-1::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -4668,7 +4668,7 @@
 }, {
   "emoji" : "👎🏾",
   "unicode" : "\uD83D\uDC4E\uD83C\uDFFE",
-  "discordAliases" : [ ":thumbsdown_tone4:", ":_1_tone4:", ":thumbdown_tone4:", ":thumbsdown::skin-tone-4:", ":-1::skin-tone-4:", ":thumbdown::skin-tone-4:" ],
+  "discordAliases" : [ ":thumbsdown_tone4:", ":_1_tone4:", ":thumbdown_tone4:", ":thumbsdown::skin-tone-4:", ":-1::skin-tone-4:", ":thumbdown::skin-tone-4:", ":thumbs_down::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":-1::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -4681,7 +4681,7 @@
 }, {
   "emoji" : "👎🏿",
   "unicode" : "\uD83D\uDC4E\uD83C\uDFFF",
-  "discordAliases" : [ ":thumbsdown_tone5:", ":_1_tone5:", ":thumbdown_tone5:", ":thumbsdown::skin-tone-5:", ":-1::skin-tone-5:", ":thumbdown::skin-tone-5:" ],
+  "discordAliases" : [ ":thumbsdown_tone5:", ":_1_tone5:", ":thumbdown_tone5:", ":thumbsdown::skin-tone-5:", ":-1::skin-tone-5:", ":thumbdown::skin-tone-5:", ":thumbs_down::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":-1::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -4694,7 +4694,7 @@
 }, {
   "emoji" : "✊",
   "unicode" : "\u270A",
-  "discordAliases" : [ ":fist:" ],
+  "discordAliases" : [ ":fist:", ":raised_fist:" ],
   "githubAliases" : [ ":fist:", ":fist_raised:" ],
   "slackAliases" : [ ":fist:" ],
   "hasFitzpatrick" : false,
@@ -4707,7 +4707,7 @@
 }, {
   "emoji" : "✊🏻",
   "unicode" : "\u270A\uD83C\uDFFB",
-  "discordAliases" : [ ":fist_tone1:", ":fist::skin-tone-1:" ],
+  "discordAliases" : [ ":fist_tone1:", ":fist::skin-tone-1:", ":raised_fist::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":fist::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -4720,7 +4720,7 @@
 }, {
   "emoji" : "✊🏼",
   "unicode" : "\u270A\uD83C\uDFFC",
-  "discordAliases" : [ ":fist_tone2:", ":fist::skin-tone-2:" ],
+  "discordAliases" : [ ":fist_tone2:", ":fist::skin-tone-2:", ":raised_fist::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":fist::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -4733,7 +4733,7 @@
 }, {
   "emoji" : "✊🏽",
   "unicode" : "\u270A\uD83C\uDFFD",
-  "discordAliases" : [ ":fist_tone3:", ":fist::skin-tone-3:" ],
+  "discordAliases" : [ ":fist_tone3:", ":fist::skin-tone-3:", ":raised_fist::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":fist::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -4746,7 +4746,7 @@
 }, {
   "emoji" : "✊🏾",
   "unicode" : "\u270A\uD83C\uDFFE",
-  "discordAliases" : [ ":fist_tone4:", ":fist::skin-tone-4:" ],
+  "discordAliases" : [ ":fist_tone4:", ":fist::skin-tone-4:", ":raised_fist::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":fist::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -4759,7 +4759,7 @@
 }, {
   "emoji" : "✊🏿",
   "unicode" : "\u270A\uD83C\uDFFF",
-  "discordAliases" : [ ":fist_tone5:", ":fist::skin-tone-5:" ],
+  "discordAliases" : [ ":fist_tone5:", ":fist::skin-tone-5:", ":raised_fist::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":fist::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -4772,7 +4772,7 @@
 }, {
   "emoji" : "👊",
   "unicode" : "\uD83D\uDC4A",
-  "discordAliases" : [ ":punch:" ],
+  "discordAliases" : [ ":punch:", ":oncoming_fist:" ],
   "githubAliases" : [ ":facepunch:", ":fist_oncoming:", ":punch:" ],
   "slackAliases" : [ ":facepunch:" ],
   "hasFitzpatrick" : false,
@@ -4785,7 +4785,7 @@
 }, {
   "emoji" : "👊🏻",
   "unicode" : "\uD83D\uDC4A\uD83C\uDFFB",
-  "discordAliases" : [ ":punch_tone1:", ":punch::skin-tone-1:" ],
+  "discordAliases" : [ ":punch_tone1:", ":punch::skin-tone-1:", ":oncoming_fist::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":facepunch::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -4798,7 +4798,7 @@
 }, {
   "emoji" : "👊🏼",
   "unicode" : "\uD83D\uDC4A\uD83C\uDFFC",
-  "discordAliases" : [ ":punch_tone2:", ":punch::skin-tone-2:" ],
+  "discordAliases" : [ ":punch_tone2:", ":punch::skin-tone-2:", ":oncoming_fist::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":facepunch::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -4811,7 +4811,7 @@
 }, {
   "emoji" : "👊🏽",
   "unicode" : "\uD83D\uDC4A\uD83C\uDFFD",
-  "discordAliases" : [ ":punch_tone3:", ":punch::skin-tone-3:" ],
+  "discordAliases" : [ ":punch_tone3:", ":punch::skin-tone-3:", ":oncoming_fist::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":facepunch::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -4824,7 +4824,7 @@
 }, {
   "emoji" : "👊🏾",
   "unicode" : "\uD83D\uDC4A\uD83C\uDFFE",
-  "discordAliases" : [ ":punch_tone4:", ":punch::skin-tone-4:" ],
+  "discordAliases" : [ ":punch_tone4:", ":punch::skin-tone-4:", ":oncoming_fist::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":facepunch::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -4837,7 +4837,7 @@
 }, {
   "emoji" : "👊🏿",
   "unicode" : "\uD83D\uDC4A\uD83C\uDFFF",
-  "discordAliases" : [ ":punch_tone5:", ":punch::skin-tone-5:" ],
+  "discordAliases" : [ ":punch_tone5:", ":punch::skin-tone-5:", ":oncoming_fist::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":facepunch::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -5084,7 +5084,7 @@
 }, {
   "emoji" : "🙌",
   "unicode" : "\uD83D\uDE4C",
-  "discordAliases" : [ ":raised_hands:" ],
+  "discordAliases" : [ ":raised_hands:", ":raising_hands:" ],
   "githubAliases" : [ ":raised_hands:" ],
   "slackAliases" : [ ":raised_hands:" ],
   "hasFitzpatrick" : false,
@@ -5097,7 +5097,7 @@
 }, {
   "emoji" : "🙌🏻",
   "unicode" : "\uD83D\uDE4C\uD83C\uDFFB",
-  "discordAliases" : [ ":raised_hands_tone1:", ":raised_hands::skin-tone-1:" ],
+  "discordAliases" : [ ":raised_hands_tone1:", ":raised_hands::skin-tone-1:", ":raising_hands::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":raised_hands::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -5110,7 +5110,7 @@
 }, {
   "emoji" : "🙌🏼",
   "unicode" : "\uD83D\uDE4C\uD83C\uDFFC",
-  "discordAliases" : [ ":raised_hands_tone2:", ":raised_hands::skin-tone-2:" ],
+  "discordAliases" : [ ":raised_hands_tone2:", ":raised_hands::skin-tone-2:", ":raising_hands::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":raised_hands::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -5123,7 +5123,7 @@
 }, {
   "emoji" : "🙌🏽",
   "unicode" : "\uD83D\uDE4C\uD83C\uDFFD",
-  "discordAliases" : [ ":raised_hands_tone3:", ":raised_hands::skin-tone-3:" ],
+  "discordAliases" : [ ":raised_hands_tone3:", ":raised_hands::skin-tone-3:", ":raising_hands::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":raised_hands::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -5136,7 +5136,7 @@
 }, {
   "emoji" : "🙌🏾",
   "unicode" : "\uD83D\uDE4C\uD83C\uDFFE",
-  "discordAliases" : [ ":raised_hands_tone4:", ":raised_hands::skin-tone-4:" ],
+  "discordAliases" : [ ":raised_hands_tone4:", ":raised_hands::skin-tone-4:", ":raising_hands::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":raised_hands::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -5149,7 +5149,7 @@
 }, {
   "emoji" : "🙌🏿",
   "unicode" : "\uD83D\uDE4C\uD83C\uDFFF",
-  "discordAliases" : [ ":raised_hands_tone5:", ":raised_hands::skin-tone-5:" ],
+  "discordAliases" : [ ":raised_hands_tone5:", ":raised_hands::skin-tone-5:", ":raising_hands::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":raised_hands::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -5409,7 +5409,7 @@
 }, {
   "emoji" : "🤝🏻",
   "unicode" : "\uD83E\uDD1D\uD83C\uDFFB",
-  "discordAliases" : [ ":handshake_light_skin_tone:" ],
+  "discordAliases" : [ ":handshake_tone1:", ":handshake_light_skin_tone:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -5422,7 +5422,7 @@
 }, {
   "emoji" : "🤝🏼",
   "unicode" : "\uD83E\uDD1D\uD83C\uDFFC",
-  "discordAliases" : [ ":handshake_medium_light_skin_tone:" ],
+  "discordAliases" : [ ":handshake_tone2:", ":handshake_medium_light_skin_tone:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -5435,7 +5435,7 @@
 }, {
   "emoji" : "🤝🏽",
   "unicode" : "\uD83E\uDD1D\uD83C\uDFFD",
-  "discordAliases" : [ ":handshake_medium_skin_tone:" ],
+  "discordAliases" : [ ":handshake_tone3:", ":handshake_medium_skin_tone:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -5448,7 +5448,7 @@
 }, {
   "emoji" : "🤝🏾",
   "unicode" : "\uD83E\uDD1D\uD83C\uDFFE",
-  "discordAliases" : [ ":handshake_medium_dark_skin_tone:" ],
+  "discordAliases" : [ ":handshake_tone4:", ":handshake_medium_dark_skin_tone:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -5461,7 +5461,7 @@
 }, {
   "emoji" : "🤝🏿",
   "unicode" : "\uD83E\uDD1D\uD83C\uDFFF",
-  "discordAliases" : [ ":handshake_dark_skin_tone:" ],
+  "discordAliases" : [ ":handshake_tone5:", ":handshake_dark_skin_tone:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -5734,7 +5734,7 @@
 }, {
   "emoji" : "🙏",
   "unicode" : "\uD83D\uDE4F",
-  "discordAliases" : [ ":pray:" ],
+  "discordAliases" : [ ":pray:", ":folded_hands:" ],
   "githubAliases" : [ ":pray:" ],
   "slackAliases" : [ ":pray:" ],
   "hasFitzpatrick" : false,
@@ -5747,7 +5747,7 @@
 }, {
   "emoji" : "🙏🏻",
   "unicode" : "\uD83D\uDE4F\uD83C\uDFFB",
-  "discordAliases" : [ ":pray_tone1:", ":pray::skin-tone-1:" ],
+  "discordAliases" : [ ":pray_tone1:", ":pray::skin-tone-1:", ":folded_hands::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":pray::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -5760,7 +5760,7 @@
 }, {
   "emoji" : "🙏🏼",
   "unicode" : "\uD83D\uDE4F\uD83C\uDFFC",
-  "discordAliases" : [ ":pray_tone2:", ":pray::skin-tone-2:" ],
+  "discordAliases" : [ ":pray_tone2:", ":pray::skin-tone-2:", ":folded_hands::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":pray::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -5773,7 +5773,7 @@
 }, {
   "emoji" : "🙏🏽",
   "unicode" : "\uD83D\uDE4F\uD83C\uDFFD",
-  "discordAliases" : [ ":pray_tone3:", ":pray::skin-tone-3:" ],
+  "discordAliases" : [ ":pray_tone3:", ":pray::skin-tone-3:", ":folded_hands::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":pray::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -5786,7 +5786,7 @@
 }, {
   "emoji" : "🙏🏾",
   "unicode" : "\uD83D\uDE4F\uD83C\uDFFE",
-  "discordAliases" : [ ":pray_tone4:", ":pray::skin-tone-4:" ],
+  "discordAliases" : [ ":pray_tone4:", ":pray::skin-tone-4:", ":folded_hands::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":pray::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -5799,7 +5799,7 @@
 }, {
   "emoji" : "🙏🏿",
   "unicode" : "\uD83D\uDE4F\uD83C\uDFFF",
-  "discordAliases" : [ ":pray_tone5:", ":pray::skin-tone-5:" ],
+  "discordAliases" : [ ":pray_tone5:", ":pray::skin-tone-5:", ":folded_hands::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":pray::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -5903,7 +5903,7 @@
 }, {
   "emoji" : "💅",
   "unicode" : "\uD83D\uDC85",
-  "discordAliases" : [ ":nail_care:" ],
+  "discordAliases" : [ ":nail_care:", ":nail_polish:" ],
   "githubAliases" : [ ":nail_care:" ],
   "slackAliases" : [ ":nail_care:" ],
   "hasFitzpatrick" : false,
@@ -5916,7 +5916,7 @@
 }, {
   "emoji" : "💅🏻",
   "unicode" : "\uD83D\uDC85\uD83C\uDFFB",
-  "discordAliases" : [ ":nail_care_tone1:", ":nail_care::skin-tone-1:" ],
+  "discordAliases" : [ ":nail_care_tone1:", ":nail_care::skin-tone-1:", ":nail_polish::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":nail_care::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -5929,7 +5929,7 @@
 }, {
   "emoji" : "💅🏼",
   "unicode" : "\uD83D\uDC85\uD83C\uDFFC",
-  "discordAliases" : [ ":nail_care_tone2:", ":nail_care::skin-tone-2:" ],
+  "discordAliases" : [ ":nail_care_tone2:", ":nail_care::skin-tone-2:", ":nail_polish::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":nail_care::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -5942,7 +5942,7 @@
 }, {
   "emoji" : "💅🏽",
   "unicode" : "\uD83D\uDC85\uD83C\uDFFD",
-  "discordAliases" : [ ":nail_care_tone3:", ":nail_care::skin-tone-3:" ],
+  "discordAliases" : [ ":nail_care_tone3:", ":nail_care::skin-tone-3:", ":nail_polish::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":nail_care::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -5955,7 +5955,7 @@
 }, {
   "emoji" : "💅🏾",
   "unicode" : "\uD83D\uDC85\uD83C\uDFFE",
-  "discordAliases" : [ ":nail_care_tone4:", ":nail_care::skin-tone-4:" ],
+  "discordAliases" : [ ":nail_care_tone4:", ":nail_care::skin-tone-4:", ":nail_polish::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":nail_care::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -5968,7 +5968,7 @@
 }, {
   "emoji" : "💅🏿",
   "unicode" : "\uD83D\uDC85\uD83C\uDFFF",
-  "discordAliases" : [ ":nail_care_tone5:", ":nail_care::skin-tone-5:" ],
+  "discordAliases" : [ ":nail_care_tone5:", ":nail_care::skin-tone-5:", ":nail_polish::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":nail_care::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -6059,7 +6059,7 @@
 }, {
   "emoji" : "💪",
   "unicode" : "\uD83D\uDCAA",
-  "discordAliases" : [ ":muscle:" ],
+  "discordAliases" : [ ":muscle:", ":flexed_biceps:" ],
   "githubAliases" : [ ":muscle:" ],
   "slackAliases" : [ ":muscle:" ],
   "hasFitzpatrick" : false,
@@ -6072,7 +6072,7 @@
 }, {
   "emoji" : "💪🏻",
   "unicode" : "\uD83D\uDCAA\uD83C\uDFFB",
-  "discordAliases" : [ ":muscle_tone1:", ":muscle::skin-tone-1:" ],
+  "discordAliases" : [ ":muscle_tone1:", ":muscle::skin-tone-1:", ":flexed_biceps::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":muscle::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -6085,7 +6085,7 @@
 }, {
   "emoji" : "💪🏼",
   "unicode" : "\uD83D\uDCAA\uD83C\uDFFC",
-  "discordAliases" : [ ":muscle_tone2:", ":muscle::skin-tone-2:" ],
+  "discordAliases" : [ ":muscle_tone2:", ":muscle::skin-tone-2:", ":flexed_biceps::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":muscle::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -6098,7 +6098,7 @@
 }, {
   "emoji" : "💪🏽",
   "unicode" : "\uD83D\uDCAA\uD83C\uDFFD",
-  "discordAliases" : [ ":muscle_tone3:", ":muscle::skin-tone-3:" ],
+  "discordAliases" : [ ":muscle_tone3:", ":muscle::skin-tone-3:", ":flexed_biceps::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":muscle::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -6111,7 +6111,7 @@
 }, {
   "emoji" : "💪🏾",
   "unicode" : "\uD83D\uDCAA\uD83C\uDFFE",
-  "discordAliases" : [ ":muscle_tone4:", ":muscle::skin-tone-4:" ],
+  "discordAliases" : [ ":muscle_tone4:", ":muscle::skin-tone-4:", ":flexed_biceps::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":muscle::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -6124,7 +6124,7 @@
 }, {
   "emoji" : "💪🏿",
   "unicode" : "\uD83D\uDCAA\uD83C\uDFFF",
-  "discordAliases" : [ ":muscle_tone5:", ":muscle::skin-tone-5:" ],
+  "discordAliases" : [ ":muscle_tone5:", ":muscle::skin-tone-5:", ":flexed_biceps::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":muscle::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -6670,7 +6670,7 @@
 }, {
   "emoji" : "👄",
   "unicode" : "\uD83D\uDC44",
-  "discordAliases" : [ ":lips:" ],
+  "discordAliases" : [ ":lips:", ":mouth:" ],
   "githubAliases" : [ ":lips:" ],
   "slackAliases" : [ ":lips:" ],
   "hasFitzpatrick" : false,
@@ -7008,7 +7008,7 @@
 }, {
   "emoji" : "🧑",
   "unicode" : "\uD83E\uDDD1",
-  "discordAliases" : [ ":adult:" ],
+  "discordAliases" : [ ":adult:", ":person:" ],
   "githubAliases" : [ ":adult:" ],
   "slackAliases" : [ ":adult:" ],
   "hasFitzpatrick" : false,
@@ -7021,7 +7021,7 @@
 }, {
   "emoji" : "🧑🏻",
   "unicode" : "\uD83E\uDDD1\uD83C\uDFFB",
-  "discordAliases" : [ ":adult_tone1:", ":adult_light_skin_tone:", ":adult::skin-tone-1:" ],
+  "discordAliases" : [ ":adult_tone1:", ":adult_light_skin_tone:", ":adult::skin-tone-1:", ":person::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":adult::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -7034,7 +7034,7 @@
 }, {
   "emoji" : "🧑🏼",
   "unicode" : "\uD83E\uDDD1\uD83C\uDFFC",
-  "discordAliases" : [ ":adult_tone2:", ":adult_medium_light_skin_tone:", ":adult::skin-tone-2:" ],
+  "discordAliases" : [ ":adult_tone2:", ":adult_medium_light_skin_tone:", ":adult::skin-tone-2:", ":person::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":adult::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -7047,7 +7047,7 @@
 }, {
   "emoji" : "🧑🏽",
   "unicode" : "\uD83E\uDDD1\uD83C\uDFFD",
-  "discordAliases" : [ ":adult_tone3:", ":adult_medium_skin_tone:", ":adult::skin-tone-3:" ],
+  "discordAliases" : [ ":adult_tone3:", ":adult_medium_skin_tone:", ":adult::skin-tone-3:", ":person::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":adult::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -7060,7 +7060,7 @@
 }, {
   "emoji" : "🧑🏾",
   "unicode" : "\uD83E\uDDD1\uD83C\uDFFE",
-  "discordAliases" : [ ":adult_tone4:", ":adult_medium_dark_skin_tone:", ":adult::skin-tone-4:" ],
+  "discordAliases" : [ ":adult_tone4:", ":adult_medium_dark_skin_tone:", ":adult::skin-tone-4:", ":person::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":adult::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -7073,7 +7073,7 @@
 }, {
   "emoji" : "🧑🏿",
   "unicode" : "\uD83E\uDDD1\uD83C\uDFFF",
-  "discordAliases" : [ ":adult_tone5:", ":adult_dark_skin_tone:", ":adult::skin-tone-5:" ],
+  "discordAliases" : [ ":adult_tone5:", ":adult_dark_skin_tone:", ":adult::skin-tone-5:", ":person::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":adult::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -7242,7 +7242,7 @@
 }, {
   "emoji" : "🧔",
   "unicode" : "\uD83E\uDDD4",
-  "discordAliases" : [ ":bearded_person:" ],
+  "discordAliases" : [ ":bearded_person:", ":person_beard:" ],
   "githubAliases" : [ ":bearded_person:" ],
   "slackAliases" : [ ":bearded_person:" ],
   "hasFitzpatrick" : false,
@@ -7255,7 +7255,7 @@
 }, {
   "emoji" : "🧔🏻",
   "unicode" : "\uD83E\uDDD4\uD83C\uDFFB",
-  "discordAliases" : [ ":bearded_person_tone1:", ":bearded_person_light_skin_tone:", ":bearded_person::skin-tone-1:" ],
+  "discordAliases" : [ ":bearded_person_tone1:", ":bearded_person_light_skin_tone:", ":bearded_person::skin-tone-1:", ":person_beard::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":bearded_person::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -7268,7 +7268,7 @@
 }, {
   "emoji" : "🧔🏼",
   "unicode" : "\uD83E\uDDD4\uD83C\uDFFC",
-  "discordAliases" : [ ":bearded_person_tone2:", ":bearded_person_medium_light_skin_tone:", ":bearded_person::skin-tone-2:" ],
+  "discordAliases" : [ ":bearded_person_tone2:", ":bearded_person_medium_light_skin_tone:", ":bearded_person::skin-tone-2:", ":person_beard::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":bearded_person::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -7281,7 +7281,7 @@
 }, {
   "emoji" : "🧔🏽",
   "unicode" : "\uD83E\uDDD4\uD83C\uDFFD",
-  "discordAliases" : [ ":bearded_person_tone3:", ":bearded_person_medium_skin_tone:", ":bearded_person::skin-tone-3:" ],
+  "discordAliases" : [ ":bearded_person_tone3:", ":bearded_person_medium_skin_tone:", ":bearded_person::skin-tone-3:", ":person_beard::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":bearded_person::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -7294,7 +7294,7 @@
 }, {
   "emoji" : "🧔🏾",
   "unicode" : "\uD83E\uDDD4\uD83C\uDFFE",
-  "discordAliases" : [ ":bearded_person_tone4:", ":bearded_person_medium_dark_skin_tone:", ":bearded_person::skin-tone-4:" ],
+  "discordAliases" : [ ":bearded_person_tone4:", ":bearded_person_medium_dark_skin_tone:", ":bearded_person::skin-tone-4:", ":person_beard::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":bearded_person::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -7307,7 +7307,7 @@
 }, {
   "emoji" : "🧔🏿",
   "unicode" : "\uD83E\uDDD4\uD83C\uDFFF",
-  "discordAliases" : [ ":bearded_person_tone5:", ":bearded_person_dark_skin_tone:", ":bearded_person::skin-tone-5:" ],
+  "discordAliases" : [ ":bearded_person_tone5:", ":bearded_person_dark_skin_tone:", ":bearded_person::skin-tone-5:", ":person_beard::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":bearded_person::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -7632,7 +7632,7 @@
 }, {
   "emoji" : "👨‍🦰",
   "unicode" : "\uD83D\uDC68\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired:" ],
+  "discordAliases" : [ ":man_red_haired:", ":man_red_hair:" ],
   "githubAliases" : [ ":red_haired_man:" ],
   "slackAliases" : [ ":red_haired_man:" ],
   "hasFitzpatrick" : false,
@@ -7645,7 +7645,7 @@
 }, {
   "emoji" : "👨🏻‍🦰",
   "unicode" : "\uD83D\uDC68\uD83C\uDFFB\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired_tone1:", ":man_red_haired_light_skin_tone:", ":man_red_haired::skin-tone-1:" ],
+  "discordAliases" : [ ":man_red_haired_tone1:", ":man_red_haired_light_skin_tone:", ":man_red_haired::skin-tone-1:", ":man_red_hair::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":red_haired_man::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -7658,7 +7658,7 @@
 }, {
   "emoji" : "👨🏼‍🦰",
   "unicode" : "\uD83D\uDC68\uD83C\uDFFC\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired_tone2:", ":man_red_haired_medium_light_skin_tone:", ":man_red_haired::skin-tone-2:" ],
+  "discordAliases" : [ ":man_red_haired_tone2:", ":man_red_haired_medium_light_skin_tone:", ":man_red_haired::skin-tone-2:", ":man_red_hair::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":red_haired_man::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -7671,7 +7671,7 @@
 }, {
   "emoji" : "👨🏽‍🦰",
   "unicode" : "\uD83D\uDC68\uD83C\uDFFD\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired_tone3:", ":man_red_haired_medium_skin_tone:", ":man_red_haired::skin-tone-3:" ],
+  "discordAliases" : [ ":man_red_haired_tone3:", ":man_red_haired_medium_skin_tone:", ":man_red_haired::skin-tone-3:", ":man_red_hair::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":red_haired_man::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -7684,7 +7684,7 @@
 }, {
   "emoji" : "👨🏾‍🦰",
   "unicode" : "\uD83D\uDC68\uD83C\uDFFE\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired_tone4:", ":man_red_haired_medium_dark_skin_tone:", ":man_red_haired::skin-tone-4:" ],
+  "discordAliases" : [ ":man_red_haired_tone4:", ":man_red_haired_medium_dark_skin_tone:", ":man_red_haired::skin-tone-4:", ":man_red_hair::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":red_haired_man::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -7697,7 +7697,7 @@
 }, {
   "emoji" : "👨🏿‍🦰",
   "unicode" : "\uD83D\uDC68\uD83C\uDFFF\u200D\uD83E\uDDB0",
-  "discordAliases" : [ ":man_red_haired_tone5:", ":man_red_haired_dark_skin_tone:", ":man_red_haired::skin-tone-5:" ],
+  "discordAliases" : [ ":man_red_haired_tone5:", ":man_red_haired_dark_skin_tone:", ":man_red_haired::skin-tone-5:", ":man_red_hair::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":red_haired_man::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -8958,7 +8958,7 @@
 }, {
   "emoji" : "🧓",
   "unicode" : "\uD83E\uDDD3",
-  "discordAliases" : [ ":older_adult:" ],
+  "discordAliases" : [ ":older_adult:", ":older_person:" ],
   "githubAliases" : [ ":older_adult:" ],
   "slackAliases" : [ ":older_adult:" ],
   "hasFitzpatrick" : false,
@@ -8971,7 +8971,7 @@
 }, {
   "emoji" : "🧓🏻",
   "unicode" : "\uD83E\uDDD3\uD83C\uDFFB",
-  "discordAliases" : [ ":older_adult_tone1:", ":older_adult_light_skin_tone:", ":older_adult::skin-tone-1:" ],
+  "discordAliases" : [ ":older_adult_tone1:", ":older_adult_light_skin_tone:", ":older_adult::skin-tone-1:", ":older_person::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_adult::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -8984,7 +8984,7 @@
 }, {
   "emoji" : "🧓🏼",
   "unicode" : "\uD83E\uDDD3\uD83C\uDFFC",
-  "discordAliases" : [ ":older_adult_tone2:", ":older_adult_medium_light_skin_tone:", ":older_adult::skin-tone-2:" ],
+  "discordAliases" : [ ":older_adult_tone2:", ":older_adult_medium_light_skin_tone:", ":older_adult::skin-tone-2:", ":older_person::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_adult::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -8997,7 +8997,7 @@
 }, {
   "emoji" : "🧓🏽",
   "unicode" : "\uD83E\uDDD3\uD83C\uDFFD",
-  "discordAliases" : [ ":older_adult_tone3:", ":older_adult_medium_skin_tone:", ":older_adult::skin-tone-3:" ],
+  "discordAliases" : [ ":older_adult_tone3:", ":older_adult_medium_skin_tone:", ":older_adult::skin-tone-3:", ":older_person::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_adult::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -9010,7 +9010,7 @@
 }, {
   "emoji" : "🧓🏾",
   "unicode" : "\uD83E\uDDD3\uD83C\uDFFE",
-  "discordAliases" : [ ":older_adult_tone4:", ":older_adult_medium_dark_skin_tone:", ":older_adult::skin-tone-4:" ],
+  "discordAliases" : [ ":older_adult_tone4:", ":older_adult_medium_dark_skin_tone:", ":older_adult::skin-tone-4:", ":older_person::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_adult::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -9023,7 +9023,7 @@
 }, {
   "emoji" : "🧓🏿",
   "unicode" : "\uD83E\uDDD3\uD83C\uDFFF",
-  "discordAliases" : [ ":older_adult_tone5:", ":older_adult_dark_skin_tone:", ":older_adult::skin-tone-5:" ],
+  "discordAliases" : [ ":older_adult_tone5:", ":older_adult_dark_skin_tone:", ":older_adult::skin-tone-5:", ":older_person::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_adult::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -9036,7 +9036,7 @@
 }, {
   "emoji" : "👴",
   "unicode" : "\uD83D\uDC74",
-  "discordAliases" : [ ":older_man:" ],
+  "discordAliases" : [ ":older_man:", ":old_man:" ],
   "githubAliases" : [ ":older_man:" ],
   "slackAliases" : [ ":older_man:" ],
   "hasFitzpatrick" : false,
@@ -9049,7 +9049,7 @@
 }, {
   "emoji" : "👴🏻",
   "unicode" : "\uD83D\uDC74\uD83C\uDFFB",
-  "discordAliases" : [ ":older_man_tone1:", ":older_man::skin-tone-1:" ],
+  "discordAliases" : [ ":older_man_tone1:", ":older_man::skin-tone-1:", ":old_man::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_man::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -9062,7 +9062,7 @@
 }, {
   "emoji" : "👴🏼",
   "unicode" : "\uD83D\uDC74\uD83C\uDFFC",
-  "discordAliases" : [ ":older_man_tone2:", ":older_man::skin-tone-2:" ],
+  "discordAliases" : [ ":older_man_tone2:", ":older_man::skin-tone-2:", ":old_man::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_man::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -9075,7 +9075,7 @@
 }, {
   "emoji" : "👴🏽",
   "unicode" : "\uD83D\uDC74\uD83C\uDFFD",
-  "discordAliases" : [ ":older_man_tone3:", ":older_man::skin-tone-3:" ],
+  "discordAliases" : [ ":older_man_tone3:", ":older_man::skin-tone-3:", ":old_man::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_man::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -9088,7 +9088,7 @@
 }, {
   "emoji" : "👴🏾",
   "unicode" : "\uD83D\uDC74\uD83C\uDFFE",
-  "discordAliases" : [ ":older_man_tone4:", ":older_man::skin-tone-4:" ],
+  "discordAliases" : [ ":older_man_tone4:", ":older_man::skin-tone-4:", ":old_man::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_man::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -9101,7 +9101,7 @@
 }, {
   "emoji" : "👴🏿",
   "unicode" : "\uD83D\uDC74\uD83C\uDFFF",
-  "discordAliases" : [ ":older_man_tone5:", ":older_man::skin-tone-5:" ],
+  "discordAliases" : [ ":older_man_tone5:", ":older_man::skin-tone-5:", ":old_man::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_man::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -9114,7 +9114,7 @@
 }, {
   "emoji" : "👵",
   "unicode" : "\uD83D\uDC75",
-  "discordAliases" : [ ":older_woman:", ":grandma:" ],
+  "discordAliases" : [ ":older_woman:", ":grandma:", ":old_woman:" ],
   "githubAliases" : [ ":older_woman:" ],
   "slackAliases" : [ ":older_woman:" ],
   "hasFitzpatrick" : false,
@@ -9127,7 +9127,7 @@
 }, {
   "emoji" : "👵🏻",
   "unicode" : "\uD83D\uDC75\uD83C\uDFFB",
-  "discordAliases" : [ ":older_woman_tone1:", ":grandma_tone1:", ":older_woman::skin-tone-1:", ":grandma::skin-tone-1:" ],
+  "discordAliases" : [ ":older_woman_tone1:", ":grandma_tone1:", ":older_woman::skin-tone-1:", ":grandma::skin-tone-1:", ":old_woman::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_woman::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -9140,7 +9140,7 @@
 }, {
   "emoji" : "👵🏼",
   "unicode" : "\uD83D\uDC75\uD83C\uDFFC",
-  "discordAliases" : [ ":older_woman_tone2:", ":grandma_tone2:", ":older_woman::skin-tone-2:", ":grandma::skin-tone-2:" ],
+  "discordAliases" : [ ":older_woman_tone2:", ":grandma_tone2:", ":older_woman::skin-tone-2:", ":grandma::skin-tone-2:", ":old_woman::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_woman::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -9153,7 +9153,7 @@
 }, {
   "emoji" : "👵🏽",
   "unicode" : "\uD83D\uDC75\uD83C\uDFFD",
-  "discordAliases" : [ ":older_woman_tone3:", ":grandma_tone3:", ":older_woman::skin-tone-3:", ":grandma::skin-tone-3:" ],
+  "discordAliases" : [ ":older_woman_tone3:", ":grandma_tone3:", ":older_woman::skin-tone-3:", ":grandma::skin-tone-3:", ":old_woman::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_woman::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -9166,7 +9166,7 @@
 }, {
   "emoji" : "👵🏾",
   "unicode" : "\uD83D\uDC75\uD83C\uDFFE",
-  "discordAliases" : [ ":older_woman_tone4:", ":grandma_tone4:", ":older_woman::skin-tone-4:", ":grandma::skin-tone-4:" ],
+  "discordAliases" : [ ":older_woman_tone4:", ":grandma_tone4:", ":older_woman::skin-tone-4:", ":grandma::skin-tone-4:", ":old_woman::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_woman::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -9179,7 +9179,7 @@
 }, {
   "emoji" : "👵🏿",
   "unicode" : "\uD83D\uDC75\uD83C\uDFFF",
-  "discordAliases" : [ ":older_woman_tone5:", ":grandma_tone5:", ":older_woman::skin-tone-5:", ":grandma::skin-tone-5:" ],
+  "discordAliases" : [ ":older_woman_tone5:", ":grandma_tone5:", ":older_woman::skin-tone-5:", ":grandma::skin-tone-5:", ":old_woman::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":older_woman::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -21347,7 +21347,7 @@
 }, {
   "emoji" : "👼",
   "unicode" : "\uD83D\uDC7C",
-  "discordAliases" : [ ":angel:" ],
+  "discordAliases" : [ ":angel:", ":baby_angel:" ],
   "githubAliases" : [ ":angel:" ],
   "slackAliases" : [ ":angel:" ],
   "hasFitzpatrick" : false,
@@ -21360,7 +21360,7 @@
 }, {
   "emoji" : "👼🏻",
   "unicode" : "\uD83D\uDC7C\uD83C\uDFFB",
-  "discordAliases" : [ ":angel_tone1:", ":angel::skin-tone-1:" ],
+  "discordAliases" : [ ":angel_tone1:", ":angel::skin-tone-1:", ":baby_angel::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":angel::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -21373,7 +21373,7 @@
 }, {
   "emoji" : "👼🏼",
   "unicode" : "\uD83D\uDC7C\uD83C\uDFFC",
-  "discordAliases" : [ ":angel_tone2:", ":angel::skin-tone-2:" ],
+  "discordAliases" : [ ":angel_tone2:", ":angel::skin-tone-2:", ":baby_angel::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":angel::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -21386,7 +21386,7 @@
 }, {
   "emoji" : "👼🏽",
   "unicode" : "\uD83D\uDC7C\uD83C\uDFFD",
-  "discordAliases" : [ ":angel_tone3:", ":angel::skin-tone-3:" ],
+  "discordAliases" : [ ":angel_tone3:", ":angel::skin-tone-3:", ":baby_angel::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":angel::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -21399,7 +21399,7 @@
 }, {
   "emoji" : "👼🏾",
   "unicode" : "\uD83D\uDC7C\uD83C\uDFFE",
-  "discordAliases" : [ ":angel_tone4:", ":angel::skin-tone-4:" ],
+  "discordAliases" : [ ":angel_tone4:", ":angel::skin-tone-4:", ":baby_angel::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":angel::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -21412,7 +21412,7 @@
 }, {
   "emoji" : "👼🏿",
   "unicode" : "\uD83D\uDC7C\uD83C\uDFFF",
-  "discordAliases" : [ ":angel_tone5:", ":angel::skin-tone-5:" ],
+  "discordAliases" : [ ":angel_tone5:", ":angel::skin-tone-5:", ":baby_angel::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":angel::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -21425,7 +21425,7 @@
 }, {
   "emoji" : "🎅",
   "unicode" : "\uD83C\uDF85",
-  "discordAliases" : [ ":santa:" ],
+  "discordAliases" : [ ":santa:", ":santa_claus:" ],
   "githubAliases" : [ ":santa:" ],
   "slackAliases" : [ ":santa:" ],
   "hasFitzpatrick" : false,
@@ -21438,7 +21438,7 @@
 }, {
   "emoji" : "🎅🏻",
   "unicode" : "\uD83C\uDF85\uD83C\uDFFB",
-  "discordAliases" : [ ":santa_tone1:", ":santa::skin-tone-1:" ],
+  "discordAliases" : [ ":santa_tone1:", ":santa::skin-tone-1:", ":santa_claus::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":santa::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -21451,7 +21451,7 @@
 }, {
   "emoji" : "🎅🏼",
   "unicode" : "\uD83C\uDF85\uD83C\uDFFC",
-  "discordAliases" : [ ":santa_tone2:", ":santa::skin-tone-2:" ],
+  "discordAliases" : [ ":santa_tone2:", ":santa::skin-tone-2:", ":santa_claus::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":santa::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -21464,7 +21464,7 @@
 }, {
   "emoji" : "🎅🏽",
   "unicode" : "\uD83C\uDF85\uD83C\uDFFD",
-  "discordAliases" : [ ":santa_tone3:", ":santa::skin-tone-3:" ],
+  "discordAliases" : [ ":santa_tone3:", ":santa::skin-tone-3:", ":santa_claus::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":santa::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -21477,7 +21477,7 @@
 }, {
   "emoji" : "🎅🏾",
   "unicode" : "\uD83C\uDF85\uD83C\uDFFE",
-  "discordAliases" : [ ":santa_tone4:", ":santa::skin-tone-4:" ],
+  "discordAliases" : [ ":santa_tone4:", ":santa::skin-tone-4:", ":santa_claus::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":santa::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -21490,7 +21490,7 @@
 }, {
   "emoji" : "🎅🏿",
   "unicode" : "\uD83C\uDF85\uD83C\uDFFF",
-  "discordAliases" : [ ":santa_tone5:", ":santa::skin-tone-5:" ],
+  "discordAliases" : [ ":santa_tone5:", ":santa::skin-tone-5:", ":santa_claus::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":santa::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -31318,7 +31318,7 @@
 }, {
   "emoji" : "💃",
   "unicode" : "\uD83D\uDC83",
-  "discordAliases" : [ ":dancer:" ],
+  "discordAliases" : [ ":dancer:", ":woman_dancing:" ],
   "githubAliases" : [ ":dancer:", ":woman_dancing:" ],
   "slackAliases" : [ ":dancer:" ],
   "hasFitzpatrick" : false,
@@ -31331,7 +31331,7 @@
 }, {
   "emoji" : "💃🏻",
   "unicode" : "\uD83D\uDC83\uD83C\uDFFB",
-  "discordAliases" : [ ":dancer_tone1:", ":dancer::skin-tone-1:" ],
+  "discordAliases" : [ ":dancer_tone1:", ":dancer::skin-tone-1:", ":woman_dancing::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":dancer::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -31344,7 +31344,7 @@
 }, {
   "emoji" : "💃🏼",
   "unicode" : "\uD83D\uDC83\uD83C\uDFFC",
-  "discordAliases" : [ ":dancer_tone2:", ":dancer::skin-tone-2:" ],
+  "discordAliases" : [ ":dancer_tone2:", ":dancer::skin-tone-2:", ":woman_dancing::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":dancer::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -31357,7 +31357,7 @@
 }, {
   "emoji" : "💃🏽",
   "unicode" : "\uD83D\uDC83\uD83C\uDFFD",
-  "discordAliases" : [ ":dancer_tone3:", ":dancer::skin-tone-3:" ],
+  "discordAliases" : [ ":dancer_tone3:", ":dancer::skin-tone-3:", ":woman_dancing::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":dancer::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -31370,7 +31370,7 @@
 }, {
   "emoji" : "💃🏾",
   "unicode" : "\uD83D\uDC83\uD83C\uDFFE",
-  "discordAliases" : [ ":dancer_tone4:", ":dancer::skin-tone-4:" ],
+  "discordAliases" : [ ":dancer_tone4:", ":dancer::skin-tone-4:", ":woman_dancing::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":dancer::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -31383,7 +31383,7 @@
 }, {
   "emoji" : "💃🏿",
   "unicode" : "\uD83D\uDC83\uD83C\uDFFF",
-  "discordAliases" : [ ":dancer_tone5:", ":dancer::skin-tone-5:" ],
+  "discordAliases" : [ ":dancer_tone5:", ":dancer::skin-tone-5:", ":woman_dancing::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":dancer::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -38013,7 +38013,7 @@
 }, {
   "emoji" : "🛌",
   "unicode" : "\uD83D\uDECC",
-  "discordAliases" : [ ":sleeping_accommodation:" ],
+  "discordAliases" : [ ":sleeping_accommodation:", ":person_in_bed:" ],
   "githubAliases" : [ ":sleeping_bed:" ],
   "slackAliases" : [ ":sleeping_accommodation:" ],
   "hasFitzpatrick" : false,
@@ -38026,7 +38026,7 @@
 }, {
   "emoji" : "🛌🏻",
   "unicode" : "\uD83D\uDECC\uD83C\uDFFB",
-  "discordAliases" : [ ":person_in_bed_tone1:", ":person_in_bed_light_skin_tone:", ":sleeping_accommodation::skin-tone-1:" ],
+  "discordAliases" : [ ":person_in_bed_tone1:", ":person_in_bed_light_skin_tone:", ":sleeping_accommodation::skin-tone-1:", ":person_in_bed::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":sleeping_accommodation::skin-tone-2:" ],
   "hasFitzpatrick" : true,
@@ -38039,7 +38039,7 @@
 }, {
   "emoji" : "🛌🏼",
   "unicode" : "\uD83D\uDECC\uD83C\uDFFC",
-  "discordAliases" : [ ":person_in_bed_tone2:", ":person_in_bed_medium_light_skin_tone:", ":sleeping_accommodation::skin-tone-2:" ],
+  "discordAliases" : [ ":person_in_bed_tone2:", ":person_in_bed_medium_light_skin_tone:", ":sleeping_accommodation::skin-tone-2:", ":person_in_bed::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":sleeping_accommodation::skin-tone-3:" ],
   "hasFitzpatrick" : true,
@@ -38052,7 +38052,7 @@
 }, {
   "emoji" : "🛌🏽",
   "unicode" : "\uD83D\uDECC\uD83C\uDFFD",
-  "discordAliases" : [ ":person_in_bed_tone3:", ":person_in_bed_medium_skin_tone:", ":sleeping_accommodation::skin-tone-3:" ],
+  "discordAliases" : [ ":person_in_bed_tone3:", ":person_in_bed_medium_skin_tone:", ":sleeping_accommodation::skin-tone-3:", ":person_in_bed::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":sleeping_accommodation::skin-tone-4:" ],
   "hasFitzpatrick" : true,
@@ -38065,7 +38065,7 @@
 }, {
   "emoji" : "🛌🏾",
   "unicode" : "\uD83D\uDECC\uD83C\uDFFE",
-  "discordAliases" : [ ":person_in_bed_tone4:", ":person_in_bed_medium_dark_skin_tone:", ":sleeping_accommodation::skin-tone-4:" ],
+  "discordAliases" : [ ":person_in_bed_tone4:", ":person_in_bed_medium_dark_skin_tone:", ":sleeping_accommodation::skin-tone-4:", ":person_in_bed::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":sleeping_accommodation::skin-tone-5:" ],
   "hasFitzpatrick" : true,
@@ -38078,7 +38078,7 @@
 }, {
   "emoji" : "🛌🏿",
   "unicode" : "\uD83D\uDECC\uD83C\uDFFF",
-  "discordAliases" : [ ":person_in_bed_tone5:", ":person_in_bed_dark_skin_tone:", ":sleeping_accommodation::skin-tone-5:" ],
+  "discordAliases" : [ ":person_in_bed_tone5:", ":person_in_bed_dark_skin_tone:", ":sleeping_accommodation::skin-tone-5:", ":person_in_bed::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ":sleeping_accommodation::skin-tone-6:" ],
   "hasFitzpatrick" : true,
@@ -40717,7 +40717,7 @@
 }, {
   "emoji" : "👨‍❤️‍💋‍👨",
   "unicode" : "\uD83D\uDC68\u200D\u2764\uFE0F\u200D\uD83D\uDC8B\u200D\uD83D\uDC68",
-  "discordAliases" : [ ":kiss_mm:", ":couplekiss_mm:" ],
+  "discordAliases" : [ ":kiss_mm:", ":couplekiss_mm:", ":kiss_man_man:" ],
   "githubAliases" : [ ":couplekiss_man_man:" ],
   "slackAliases" : [ ":man-kiss-man:" ],
   "hasFitzpatrick" : false,
@@ -45332,7 +45332,7 @@
 }, {
   "emoji" : "🐶",
   "unicode" : "\uD83D\uDC36",
-  "discordAliases" : [ ":dog:" ],
+  "discordAliases" : [ ":dog:", ":dog_face:" ],
   "githubAliases" : [ ":dog:" ],
   "slackAliases" : [ ":dog:" ],
   "hasFitzpatrick" : false,
@@ -45436,7 +45436,7 @@
 }, {
   "emoji" : "🐱",
   "unicode" : "\uD83D\uDC31",
-  "discordAliases" : [ ":cat:" ],
+  "discordAliases" : [ ":cat:", ":cat_face:" ],
   "githubAliases" : [ ":cat:" ],
   "slackAliases" : [ ":cat:" ],
   "hasFitzpatrick" : false,
@@ -45488,7 +45488,7 @@
 }, {
   "emoji" : "🐯",
   "unicode" : "\uD83D\uDC2F",
-  "discordAliases" : [ ":tiger:" ],
+  "discordAliases" : [ ":tiger:", ":tiger_face:" ],
   "githubAliases" : [ ":tiger:" ],
   "slackAliases" : [ ":tiger:" ],
   "hasFitzpatrick" : false,
@@ -45527,7 +45527,7 @@
 }, {
   "emoji" : "🐴",
   "unicode" : "\uD83D\uDC34",
-  "discordAliases" : [ ":horse:" ],
+  "discordAliases" : [ ":horse:", ":horse_face:" ],
   "githubAliases" : [ ":horse:" ],
   "slackAliases" : [ ":horse:" ],
   "hasFitzpatrick" : false,
@@ -45540,7 +45540,7 @@
 }, {
   "emoji" : "🫎",
   "unicode" : "\uD83E\uDECE",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":moose:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -45553,7 +45553,7 @@
 }, {
   "emoji" : "🫏",
   "unicode" : "\uD83E\uDECF",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":donkey:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -45631,7 +45631,7 @@
 }, {
   "emoji" : "🐮",
   "unicode" : "\uD83D\uDC2E",
-  "discordAliases" : [ ":cow:" ],
+  "discordAliases" : [ ":cow:", ":cow_face:" ],
   "githubAliases" : [ ":cow:" ],
   "slackAliases" : [ ":cow:" ],
   "hasFitzpatrick" : false,
@@ -45683,7 +45683,7 @@
 }, {
   "emoji" : "🐷",
   "unicode" : "\uD83D\uDC37",
-  "discordAliases" : [ ":pig:" ],
+  "discordAliases" : [ ":pig:", ":pig_face:" ],
   "githubAliases" : [ ":pig:" ],
   "slackAliases" : [ ":pig:" ],
   "hasFitzpatrick" : false,
@@ -45748,7 +45748,7 @@
 }, {
   "emoji" : "🐑",
   "unicode" : "\uD83D\uDC11",
-  "discordAliases" : [ ":sheep:" ],
+  "discordAliases" : [ ":sheep:", ":ewe:" ],
   "githubAliases" : [ ":sheep:" ],
   "slackAliases" : [ ":sheep:" ],
   "hasFitzpatrick" : false,
@@ -45878,7 +45878,7 @@
 }, {
   "emoji" : "🐭",
   "unicode" : "\uD83D\uDC2D",
-  "discordAliases" : [ ":mouse:" ],
+  "discordAliases" : [ ":mouse:", ":mouse_face:" ],
   "githubAliases" : [ ":mouse:" ],
   "slackAliases" : [ ":mouse:" ],
   "hasFitzpatrick" : false,
@@ -45930,7 +45930,7 @@
 }, {
   "emoji" : "🐰",
   "unicode" : "\uD83D\uDC30",
-  "discordAliases" : [ ":rabbit:" ],
+  "discordAliases" : [ ":rabbit:", ":rabbit_face:" ],
   "githubAliases" : [ ":rabbit:" ],
   "slackAliases" : [ ":rabbit:" ],
   "hasFitzpatrick" : false,
@@ -46073,7 +46073,7 @@
 }, {
   "emoji" : "🐼",
   "unicode" : "\uD83D\uDC3C",
-  "discordAliases" : [ ":panda_face:" ],
+  "discordAliases" : [ ":panda_face:", ":panda:" ],
   "githubAliases" : [ ":panda_face:" ],
   "slackAliases" : [ ":panda_face:" ],
   "hasFitzpatrick" : false,
@@ -46411,7 +46411,7 @@
 }, {
   "emoji" : "🪽",
   "unicode" : "\uD83E\uDEBD",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":wing:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -46424,7 +46424,7 @@
 }, {
   "emoji" : "🐦‍⬛",
   "unicode" : "\uD83D\uDC26\u200D\u2B1B",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":black_bird:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -46437,7 +46437,7 @@
 }, {
   "emoji" : "🪿",
   "unicode" : "\uD83E\uDEBF",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":goose:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -46697,7 +46697,7 @@
 }, {
   "emoji" : "🐚",
   "unicode" : "\uD83D\uDC1A",
-  "discordAliases" : [ ":shell:" ],
+  "discordAliases" : [ ":shell:", ":spiral_shell:" ],
   "githubAliases" : [ ":shell:" ],
   "slackAliases" : [ ":shell:" ],
   "hasFitzpatrick" : false,
@@ -46723,7 +46723,7 @@
 }, {
   "emoji" : "🪼",
   "unicode" : "\uD83E\uDEBC",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":jellyfish:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -46788,7 +46788,7 @@
 }, {
   "emoji" : "🐝",
   "unicode" : "\uD83D\uDC1D",
-  "discordAliases" : [ ":bee:" ],
+  "discordAliases" : [ ":bee:", ":honeybee:" ],
   "githubAliases" : [ ":bee:", ":honeybee:" ],
   "slackAliases" : [ ":bee:" ],
   "hasFitzpatrick" : false,
@@ -47126,7 +47126,7 @@
 }, {
   "emoji" : "🪻",
   "unicode" : "\uD83E\uDEBB",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":hyacinth:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -47217,7 +47217,7 @@
 }, {
   "emoji" : "🌾",
   "unicode" : "\uD83C\uDF3E",
-  "discordAliases" : [ ":ear_of_rice:" ],
+  "discordAliases" : [ ":ear_of_rice:", ":sheaf_of_rice:" ],
   "githubAliases" : [ ":ear_of_rice:" ],
   "slackAliases" : [ ":ear_of_rice:" ],
   "hasFitzpatrick" : false,
@@ -47477,7 +47477,7 @@
 }, {
   "emoji" : "🍎",
   "unicode" : "\uD83C\uDF4E",
-  "discordAliases" : [ ":apple:" ],
+  "discordAliases" : [ ":apple:", ":red_apple:" ],
   "githubAliases" : [ ":apple:" ],
   "slackAliases" : [ ":apple:" ],
   "hasFitzpatrick" : false,
@@ -47568,7 +47568,7 @@
 }, {
   "emoji" : "🥝",
   "unicode" : "\uD83E\uDD5D",
-  "discordAliases" : [ ":kiwi:", ":kiwifruit:" ],
+  "discordAliases" : [ ":kiwi:", ":kiwifruit:", ":kiwi_fruit:" ],
   "githubAliases" : [ ":kiwi_fruit:" ],
   "slackAliases" : [ ":kiwifruit:" ],
   "hasFitzpatrick" : false,
@@ -47672,7 +47672,7 @@
 }, {
   "emoji" : "🌽",
   "unicode" : "\uD83C\uDF3D",
-  "discordAliases" : [ ":corn:" ],
+  "discordAliases" : [ ":corn:", ":ear_of_corn:" ],
   "githubAliases" : [ ":corn:" ],
   "slackAliases" : [ ":corn:" ],
   "hasFitzpatrick" : false,
@@ -47828,7 +47828,7 @@
 }, {
   "emoji" : "🫚",
   "unicode" : "\uD83E\uDEDA",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":ginger_root:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -47841,7 +47841,7 @@
 }, {
   "emoji" : "🫛",
   "unicode" : "\uD83E\uDEDB",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":pea_pod:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -48049,7 +48049,7 @@
 }, {
   "emoji" : "🍟",
   "unicode" : "\uD83C\uDF5F",
-  "discordAliases" : [ ":fries:" ],
+  "discordAliases" : [ ":fries:", ":french_fries:" ],
   "githubAliases" : [ ":fries:" ],
   "slackAliases" : [ ":fries:" ],
   "hasFitzpatrick" : false,
@@ -48205,7 +48205,7 @@
 }, {
   "emoji" : "🍲",
   "unicode" : "\uD83C\uDF72",
-  "discordAliases" : [ ":stew:" ],
+  "discordAliases" : [ ":stew:", ":pot_of_food:" ],
   "githubAliases" : [ ":stew:" ],
   "slackAliases" : [ ":stew:" ],
   "hasFitzpatrick" : false,
@@ -48309,7 +48309,7 @@
 }, {
   "emoji" : "🍱",
   "unicode" : "\uD83C\uDF71",
-  "discordAliases" : [ ":bento:" ],
+  "discordAliases" : [ ":bento:", ":bento_box:" ],
   "githubAliases" : [ ":bento:" ],
   "slackAliases" : [ ":bento:" ],
   "hasFitzpatrick" : false,
@@ -48348,7 +48348,7 @@
 }, {
   "emoji" : "🍚",
   "unicode" : "\uD83C\uDF5A",
-  "discordAliases" : [ ":rice:" ],
+  "discordAliases" : [ ":rice:", ":cooked_rice:" ],
   "githubAliases" : [ ":rice:" ],
   "slackAliases" : [ ":rice:" ],
   "hasFitzpatrick" : false,
@@ -48361,7 +48361,7 @@
 }, {
   "emoji" : "🍛",
   "unicode" : "\uD83C\uDF5B",
-  "discordAliases" : [ ":curry:" ],
+  "discordAliases" : [ ":curry:", ":curry_rice:" ],
   "githubAliases" : [ ":curry:" ],
   "slackAliases" : [ ":curry:" ],
   "hasFitzpatrick" : false,
@@ -48374,7 +48374,7 @@
 }, {
   "emoji" : "🍜",
   "unicode" : "\uD83C\uDF5C",
-  "discordAliases" : [ ":ramen:" ],
+  "discordAliases" : [ ":ramen:", ":steaming_bowl:" ],
   "githubAliases" : [ ":ramen:" ],
   "slackAliases" : [ ":ramen:" ],
   "hasFitzpatrick" : false,
@@ -48660,7 +48660,7 @@
 }, {
   "emoji" : "🎂",
   "unicode" : "\uD83C\uDF82",
-  "discordAliases" : [ ":birthday:" ],
+  "discordAliases" : [ ":birthday:", ":birthday_cake:" ],
   "githubAliases" : [ ":birthday:" ],
   "slackAliases" : [ ":birthday:" ],
   "hasFitzpatrick" : false,
@@ -48673,7 +48673,7 @@
 }, {
   "emoji" : "🍰",
   "unicode" : "\uD83C\uDF70",
-  "discordAliases" : [ ":cake:" ],
+  "discordAliases" : [ ":cake:", ":shortcake:" ],
   "githubAliases" : [ ":cake:" ],
   "slackAliases" : [ ":cake:" ],
   "hasFitzpatrick" : false,
@@ -48803,7 +48803,7 @@
 }, {
   "emoji" : "☕",
   "unicode" : "\u2615",
-  "discordAliases" : [ ":coffee:" ],
+  "discordAliases" : [ ":coffee:", ":hot_beverage:" ],
   "githubAliases" : [ ":coffee:" ],
   "slackAliases" : [ ":coffee:" ],
   "hasFitzpatrick" : false,
@@ -48907,7 +48907,7 @@
 }, {
   "emoji" : "🍺",
   "unicode" : "\uD83C\uDF7A",
-  "discordAliases" : [ ":beer:" ],
+  "discordAliases" : [ ":beer:", ":beer_mug:" ],
   "githubAliases" : [ ":beer:" ],
   "slackAliases" : [ ":beer:" ],
   "hasFitzpatrick" : false,
@@ -49102,7 +49102,7 @@
 }, {
   "emoji" : "🔪",
   "unicode" : "\uD83D\uDD2A",
-  "discordAliases" : [ ":knife:" ],
+  "discordAliases" : [ ":knife:", ":kitchen_knife:" ],
   "githubAliases" : [ ":hocho:", ":knife:" ],
   "slackAliases" : [ ":hocho:" ],
   "hasFitzpatrick" : false,
@@ -49219,7 +49219,7 @@
 }, {
   "emoji" : "🗾",
   "unicode" : "\uD83D\uDDFE",
-  "discordAliases" : [ ":japan:" ],
+  "discordAliases" : [ ":japan:", ":map_of_japan:" ],
   "githubAliases" : [ ":japan:" ],
   "slackAliases" : [ ":japan:" ],
   "hasFitzpatrick" : false,
@@ -49531,7 +49531,7 @@
 }, {
   "emoji" : "🧱",
   "unicode" : "\uD83E\uDDF1",
-  "discordAliases" : [ ":bricks:" ],
+  "discordAliases" : [ ":bricks:", ":brick:" ],
   "githubAliases" : [ ":bricks:" ],
   "slackAliases" : [ ":bricks:" ],
   "hasFitzpatrick" : false,
@@ -49583,7 +49583,7 @@
 }, {
   "emoji" : "🏘️",
   "unicode" : "\uD83C\uDFD8\uFE0F",
-  "discordAliases" : [ ":homes:", ":house_buildings:" ],
+  "discordAliases" : [ ":homes:", ":house_buildings:", ":houses:" ],
   "githubAliases" : [ ":houses:" ],
   "slackAliases" : [ ":house_buildings:" ],
   "hasFitzpatrick" : false,
@@ -49817,7 +49817,7 @@
 }, {
   "emoji" : "🏰",
   "unicode" : "\uD83C\uDFF0",
-  "discordAliases" : [ ":european_castle:" ],
+  "discordAliases" : [ ":european_castle:", ":castle:" ],
   "githubAliases" : [ ":european_castle:" ],
   "slackAliases" : [ ":european_castle:" ],
   "hasFitzpatrick" : false,
@@ -50077,7 +50077,7 @@
 }, {
   "emoji" : "🌇",
   "unicode" : "\uD83C\uDF07",
-  "discordAliases" : [ ":city_sunset:", ":city_sunrise:" ],
+  "discordAliases" : [ ":city_sunset:", ":city_sunrise:", ":sunset:" ],
   "githubAliases" : [ ":city_sunrise:" ],
   "slackAliases" : [ ":city_sunrise:" ],
   "hasFitzpatrick" : false,
@@ -50103,7 +50103,7 @@
 }, {
   "emoji" : "♨️",
   "unicode" : "\u2668\uFE0F",
-  "discordAliases" : [ ":hotsprings:" ],
+  "discordAliases" : [ ":hotsprings:", ":hot_springs:" ],
   "githubAliases" : [ ":hotsprings:" ],
   "slackAliases" : [ ":hotsprings:" ],
   "hasFitzpatrick" : false,
@@ -50181,7 +50181,7 @@
 }, {
   "emoji" : "💈",
   "unicode" : "\uD83D\uDC88",
-  "discordAliases" : [ ":barber:" ],
+  "discordAliases" : [ ":barber:", ":barber_pole:" ],
   "githubAliases" : [ ":barber:" ],
   "slackAliases" : [ ":barber:" ],
   "hasFitzpatrick" : false,
@@ -50207,7 +50207,7 @@
 }, {
   "emoji" : "🚂",
   "unicode" : "\uD83D\uDE82",
-  "discordAliases" : [ ":steam_locomotive:" ],
+  "discordAliases" : [ ":steam_locomotive:", ":locomotive:" ],
   "githubAliases" : [ ":steam_locomotive:" ],
   "slackAliases" : [ ":steam_locomotive:" ],
   "hasFitzpatrick" : false,
@@ -50246,7 +50246,7 @@
 }, {
   "emoji" : "🚅",
   "unicode" : "\uD83D\uDE85",
-  "discordAliases" : [ ":bullettrain_front:" ],
+  "discordAliases" : [ ":bullettrain_front:", ":bullet_train:" ],
   "githubAliases" : [ ":bullettrain_front:" ],
   "slackAliases" : [ ":bullettrain_front:" ],
   "hasFitzpatrick" : false,
@@ -50350,7 +50350,7 @@
 }, {
   "emoji" : "🚋",
   "unicode" : "\uD83D\uDE8B",
-  "discordAliases" : [ ":train:" ],
+  "discordAliases" : [ ":train:", ":tram_car:" ],
   "githubAliases" : [ ":train:" ],
   "slackAliases" : [ ":train:" ],
   "hasFitzpatrick" : false,
@@ -50493,7 +50493,7 @@
 }, {
   "emoji" : "🚗",
   "unicode" : "\uD83D\uDE97",
-  "discordAliases" : [ ":red_car:" ],
+  "discordAliases" : [ ":red_car:", ":automobile:" ],
   "githubAliases" : [ ":car:", ":red_car:" ],
   "slackAliases" : [ ":car:" ],
   "hasFitzpatrick" : false,
@@ -50688,7 +50688,7 @@
 }, {
   "emoji" : "🚲",
   "unicode" : "\uD83D\uDEB2",
-  "discordAliases" : [ ":bike:" ],
+  "discordAliases" : [ ":bike:", ":bicycle:" ],
   "githubAliases" : [ ":bike:" ],
   "slackAliases" : [ ":bike:" ],
   "hasFitzpatrick" : false,
@@ -50701,7 +50701,7 @@
 }, {
   "emoji" : "🛴",
   "unicode" : "\uD83D\uDEF4",
-  "discordAliases" : [ ":scooter:" ],
+  "discordAliases" : [ ":scooter:", ":kick_scooter:" ],
   "githubAliases" : [ ":kick_scooter:" ],
   "slackAliases" : [ ":scooter:" ],
   "hasFitzpatrick" : false,
@@ -50740,7 +50740,7 @@
 }, {
   "emoji" : "🚏",
   "unicode" : "\uD83D\uDE8F",
-  "discordAliases" : [ ":busstop:" ],
+  "discordAliases" : [ ":busstop:", ":bus_stop:" ],
   "githubAliases" : [ ":busstop:" ],
   "slackAliases" : [ ":busstop:" ],
   "hasFitzpatrick" : false,
@@ -50831,7 +50831,7 @@
 }, {
   "emoji" : "⛽",
   "unicode" : "\u26FD",
-  "discordAliases" : [ ":fuelpump:" ],
+  "discordAliases" : [ ":fuelpump:", ":fuel_pump:" ],
   "githubAliases" : [ ":fuelpump:" ],
   "slackAliases" : [ ":fuelpump:" ],
   "hasFitzpatrick" : false,
@@ -51039,7 +51039,7 @@
 }, {
   "emoji" : "🛥️",
   "unicode" : "\uD83D\uDEE5\uFE0F",
-  "discordAliases" : [ ":motorboat:" ],
+  "discordAliases" : [ ":motorboat:", ":motor_boat:" ],
   "githubAliases" : [ ":motor_boat:" ],
   "slackAliases" : [ ":motor_boat:" ],
   "hasFitzpatrick" : false,
@@ -51455,7 +51455,7 @@
 }, {
   "emoji" : "🕛",
   "unicode" : "\uD83D\uDD5B",
-  "discordAliases" : [ ":clock12:" ],
+  "discordAliases" : [ ":clock12:", ":twelve_oclock:" ],
   "githubAliases" : [ ":clock12:" ],
   "slackAliases" : [ ":clock12:" ],
   "hasFitzpatrick" : false,
@@ -51468,7 +51468,7 @@
 }, {
   "emoji" : "🕧",
   "unicode" : "\uD83D\uDD67",
-  "discordAliases" : [ ":clock1230:" ],
+  "discordAliases" : [ ":clock1230:", ":twelve_thirty:" ],
   "githubAliases" : [ ":clock1230:" ],
   "slackAliases" : [ ":clock1230:" ],
   "hasFitzpatrick" : false,
@@ -51481,7 +51481,7 @@
 }, {
   "emoji" : "🕐",
   "unicode" : "\uD83D\uDD50",
-  "discordAliases" : [ ":clock1:" ],
+  "discordAliases" : [ ":clock1:", ":one_oclock:" ],
   "githubAliases" : [ ":clock1:" ],
   "slackAliases" : [ ":clock1:" ],
   "hasFitzpatrick" : false,
@@ -51494,7 +51494,7 @@
 }, {
   "emoji" : "🕜",
   "unicode" : "\uD83D\uDD5C",
-  "discordAliases" : [ ":clock130:" ],
+  "discordAliases" : [ ":clock130:", ":one_thirty:" ],
   "githubAliases" : [ ":clock130:" ],
   "slackAliases" : [ ":clock130:" ],
   "hasFitzpatrick" : false,
@@ -51507,7 +51507,7 @@
 }, {
   "emoji" : "🕑",
   "unicode" : "\uD83D\uDD51",
-  "discordAliases" : [ ":clock2:" ],
+  "discordAliases" : [ ":clock2:", ":two_oclock:" ],
   "githubAliases" : [ ":clock2:" ],
   "slackAliases" : [ ":clock2:" ],
   "hasFitzpatrick" : false,
@@ -51520,7 +51520,7 @@
 }, {
   "emoji" : "🕝",
   "unicode" : "\uD83D\uDD5D",
-  "discordAliases" : [ ":clock230:" ],
+  "discordAliases" : [ ":clock230:", ":two_thirty:" ],
   "githubAliases" : [ ":clock230:" ],
   "slackAliases" : [ ":clock230:" ],
   "hasFitzpatrick" : false,
@@ -51533,7 +51533,7 @@
 }, {
   "emoji" : "🕒",
   "unicode" : "\uD83D\uDD52",
-  "discordAliases" : [ ":clock3:" ],
+  "discordAliases" : [ ":clock3:", ":three_oclock:" ],
   "githubAliases" : [ ":clock3:" ],
   "slackAliases" : [ ":clock3:" ],
   "hasFitzpatrick" : false,
@@ -51546,7 +51546,7 @@
 }, {
   "emoji" : "🕞",
   "unicode" : "\uD83D\uDD5E",
-  "discordAliases" : [ ":clock330:" ],
+  "discordAliases" : [ ":clock330:", ":three_thirty:" ],
   "githubAliases" : [ ":clock330:" ],
   "slackAliases" : [ ":clock330:" ],
   "hasFitzpatrick" : false,
@@ -51559,7 +51559,7 @@
 }, {
   "emoji" : "🕓",
   "unicode" : "\uD83D\uDD53",
-  "discordAliases" : [ ":clock4:" ],
+  "discordAliases" : [ ":clock4:", ":four_oclock:" ],
   "githubAliases" : [ ":clock4:" ],
   "slackAliases" : [ ":clock4:" ],
   "hasFitzpatrick" : false,
@@ -51572,7 +51572,7 @@
 }, {
   "emoji" : "🕟",
   "unicode" : "\uD83D\uDD5F",
-  "discordAliases" : [ ":clock430:" ],
+  "discordAliases" : [ ":clock430:", ":four_thirty:" ],
   "githubAliases" : [ ":clock430:" ],
   "slackAliases" : [ ":clock430:" ],
   "hasFitzpatrick" : false,
@@ -51585,7 +51585,7 @@
 }, {
   "emoji" : "🕔",
   "unicode" : "\uD83D\uDD54",
-  "discordAliases" : [ ":clock5:" ],
+  "discordAliases" : [ ":clock5:", ":five_oclock:" ],
   "githubAliases" : [ ":clock5:" ],
   "slackAliases" : [ ":clock5:" ],
   "hasFitzpatrick" : false,
@@ -51598,7 +51598,7 @@
 }, {
   "emoji" : "🕠",
   "unicode" : "\uD83D\uDD60",
-  "discordAliases" : [ ":clock530:" ],
+  "discordAliases" : [ ":clock530:", ":five_thirty:" ],
   "githubAliases" : [ ":clock530:" ],
   "slackAliases" : [ ":clock530:" ],
   "hasFitzpatrick" : false,
@@ -51611,7 +51611,7 @@
 }, {
   "emoji" : "🕕",
   "unicode" : "\uD83D\uDD55",
-  "discordAliases" : [ ":clock6:" ],
+  "discordAliases" : [ ":clock6:", ":six_oclock:" ],
   "githubAliases" : [ ":clock6:" ],
   "slackAliases" : [ ":clock6:" ],
   "hasFitzpatrick" : false,
@@ -51624,7 +51624,7 @@
 }, {
   "emoji" : "🕡",
   "unicode" : "\uD83D\uDD61",
-  "discordAliases" : [ ":clock630:" ],
+  "discordAliases" : [ ":clock630:", ":six_thirty:" ],
   "githubAliases" : [ ":clock630:" ],
   "slackAliases" : [ ":clock630:" ],
   "hasFitzpatrick" : false,
@@ -51637,7 +51637,7 @@
 }, {
   "emoji" : "🕖",
   "unicode" : "\uD83D\uDD56",
-  "discordAliases" : [ ":clock7:" ],
+  "discordAliases" : [ ":clock7:", ":seven_oclock:" ],
   "githubAliases" : [ ":clock7:" ],
   "slackAliases" : [ ":clock7:" ],
   "hasFitzpatrick" : false,
@@ -51650,7 +51650,7 @@
 }, {
   "emoji" : "🕢",
   "unicode" : "\uD83D\uDD62",
-  "discordAliases" : [ ":clock730:" ],
+  "discordAliases" : [ ":clock730:", ":seven_thirty:" ],
   "githubAliases" : [ ":clock730:" ],
   "slackAliases" : [ ":clock730:" ],
   "hasFitzpatrick" : false,
@@ -51663,7 +51663,7 @@
 }, {
   "emoji" : "🕗",
   "unicode" : "\uD83D\uDD57",
-  "discordAliases" : [ ":clock8:" ],
+  "discordAliases" : [ ":clock8:", ":eight_oclock:" ],
   "githubAliases" : [ ":clock8:" ],
   "slackAliases" : [ ":clock8:" ],
   "hasFitzpatrick" : false,
@@ -51676,7 +51676,7 @@
 }, {
   "emoji" : "🕣",
   "unicode" : "\uD83D\uDD63",
-  "discordAliases" : [ ":clock830:" ],
+  "discordAliases" : [ ":clock830:", ":eight_thirty:" ],
   "githubAliases" : [ ":clock830:" ],
   "slackAliases" : [ ":clock830:" ],
   "hasFitzpatrick" : false,
@@ -51689,7 +51689,7 @@
 }, {
   "emoji" : "🕘",
   "unicode" : "\uD83D\uDD58",
-  "discordAliases" : [ ":clock9:" ],
+  "discordAliases" : [ ":clock9:", ":nine_oclock:" ],
   "githubAliases" : [ ":clock9:" ],
   "slackAliases" : [ ":clock9:" ],
   "hasFitzpatrick" : false,
@@ -51702,7 +51702,7 @@
 }, {
   "emoji" : "🕤",
   "unicode" : "\uD83D\uDD64",
-  "discordAliases" : [ ":clock930:" ],
+  "discordAliases" : [ ":clock930:", ":nine_thirty:" ],
   "githubAliases" : [ ":clock930:" ],
   "slackAliases" : [ ":clock930:" ],
   "hasFitzpatrick" : false,
@@ -51715,7 +51715,7 @@
 }, {
   "emoji" : "🕙",
   "unicode" : "\uD83D\uDD59",
-  "discordAliases" : [ ":clock10:" ],
+  "discordAliases" : [ ":clock10:", ":ten_oclock:" ],
   "githubAliases" : [ ":clock10:" ],
   "slackAliases" : [ ":clock10:" ],
   "hasFitzpatrick" : false,
@@ -51728,7 +51728,7 @@
 }, {
   "emoji" : "🕥",
   "unicode" : "\uD83D\uDD65",
-  "discordAliases" : [ ":clock1030:" ],
+  "discordAliases" : [ ":clock1030:", ":ten_thirty:" ],
   "githubAliases" : [ ":clock1030:" ],
   "slackAliases" : [ ":clock1030:" ],
   "hasFitzpatrick" : false,
@@ -51741,7 +51741,7 @@
 }, {
   "emoji" : "🕚",
   "unicode" : "\uD83D\uDD5A",
-  "discordAliases" : [ ":clock11:" ],
+  "discordAliases" : [ ":clock11:", ":eleven_oclock:" ],
   "githubAliases" : [ ":clock11:" ],
   "slackAliases" : [ ":clock11:" ],
   "hasFitzpatrick" : false,
@@ -51754,7 +51754,7 @@
 }, {
   "emoji" : "🕦",
   "unicode" : "\uD83D\uDD66",
-  "discordAliases" : [ ":clock1130:" ],
+  "discordAliases" : [ ":clock1130:", ":eleven_thirty:" ],
   "githubAliases" : [ ":clock1130:" ],
   "slackAliases" : [ ":clock1130:" ],
   "hasFitzpatrick" : false,
@@ -51884,7 +51884,7 @@
 }, {
   "emoji" : "🌚",
   "unicode" : "\uD83C\uDF1A",
-  "discordAliases" : [ ":new_moon_with_face:" ],
+  "discordAliases" : [ ":new_moon_with_face:", ":new_moon_face:" ],
   "githubAliases" : [ ":new_moon_with_face:" ],
   "slackAliases" : [ ":new_moon_with_face:" ],
   "hasFitzpatrick" : false,
@@ -51949,7 +51949,7 @@
 }, {
   "emoji" : "☀️",
   "unicode" : "\u2600\uFE0F",
-  "discordAliases" : [ ":sunny:" ],
+  "discordAliases" : [ ":sunny:", ":sun:" ],
   "githubAliases" : [ ":sunny:" ],
   "slackAliases" : [ ":sunny:" ],
   "hasFitzpatrick" : false,
@@ -52027,7 +52027,7 @@
 }, {
   "emoji" : "🌟",
   "unicode" : "\uD83C\uDF1F",
-  "discordAliases" : [ ":star2:" ],
+  "discordAliases" : [ ":star2:", ":glowing_star:" ],
   "githubAliases" : [ ":star2:" ],
   "slackAliases" : [ ":star2:" ],
   "hasFitzpatrick" : false,
@@ -52040,7 +52040,7 @@
 }, {
   "emoji" : "🌠",
   "unicode" : "\uD83C\uDF20",
-  "discordAliases" : [ ":stars:" ],
+  "discordAliases" : [ ":stars:", ":shooting_star:" ],
   "githubAliases" : [ ":stars:" ],
   "slackAliases" : [ ":stars:" ],
   "hasFitzpatrick" : false,
@@ -52287,7 +52287,7 @@
 }, {
   "emoji" : "🌪️",
   "unicode" : "\uD83C\uDF2A\uFE0F",
-  "discordAliases" : [ ":cloud_tornado:", ":cloud_with_tornado:" ],
+  "discordAliases" : [ ":cloud_tornado:", ":cloud_with_tornado:", ":tornado:" ],
   "githubAliases" : [ ":tornado:" ],
   "slackAliases" : [ ":tornado:" ],
   "hasFitzpatrick" : false,
@@ -52339,7 +52339,7 @@
 }, {
   "emoji" : "🌬️",
   "unicode" : "\uD83C\uDF2C\uFE0F",
-  "discordAliases" : [ ":wind_blowing_face:" ],
+  "discordAliases" : [ ":wind_blowing_face:", ":wind_face:" ],
   "githubAliases" : [ ":wind_face:" ],
   "slackAliases" : [ ":wind_blowing_face:" ],
   "hasFitzpatrick" : false,
@@ -52469,7 +52469,7 @@
 }, {
   "emoji" : "⚡",
   "unicode" : "\u26A1",
-  "discordAliases" : [ ":zap:" ],
+  "discordAliases" : [ ":zap:", ":high_voltage:" ],
   "githubAliases" : [ ":zap:" ],
   "slackAliases" : [ ":zap:" ],
   "hasFitzpatrick" : false,
@@ -52599,7 +52599,7 @@
 }, {
   "emoji" : "🌊",
   "unicode" : "\uD83C\uDF0A",
-  "discordAliases" : [ ":ocean:" ],
+  "discordAliases" : [ ":ocean:", ":water_wave:" ],
   "githubAliases" : [ ":ocean:" ],
   "slackAliases" : [ ":ocean:" ],
   "hasFitzpatrick" : false,
@@ -52703,7 +52703,7 @@
 }, {
   "emoji" : "🎉",
   "unicode" : "\uD83C\uDF89",
-  "discordAliases" : [ ":tada:" ],
+  "discordAliases" : [ ":tada:", ":party_popper:" ],
   "githubAliases" : [ ":tada:" ],
   "slackAliases" : [ ":tada:" ],
   "hasFitzpatrick" : false,
@@ -52768,7 +52768,7 @@
 }, {
   "emoji" : "🎏",
   "unicode" : "\uD83C\uDF8F",
-  "discordAliases" : [ ":flags:" ],
+  "discordAliases" : [ ":flags:", ":carp_streamer:" ],
   "githubAliases" : [ ":flags:" ],
   "slackAliases" : [ ":flags:" ],
   "hasFitzpatrick" : false,
@@ -52833,7 +52833,7 @@
 }, {
   "emoji" : "🎁",
   "unicode" : "\uD83C\uDF81",
-  "discordAliases" : [ ":gift:" ],
+  "discordAliases" : [ ":gift:", ":wrapped_gift:" ],
   "githubAliases" : [ ":gift:" ],
   "slackAliases" : [ ":gift:" ],
   "hasFitzpatrick" : false,
@@ -53002,7 +53002,7 @@
 }, {
   "emoji" : "⚽",
   "unicode" : "\u26BD",
-  "discordAliases" : [ ":soccer:" ],
+  "discordAliases" : [ ":soccer:", ":soccer_ball:" ],
   "githubAliases" : [ ":soccer:" ],
   "slackAliases" : [ ":soccer:" ],
   "hasFitzpatrick" : false,
@@ -53158,7 +53158,7 @@
 }, {
   "emoji" : "🏒",
   "unicode" : "\uD83C\uDFD2",
-  "discordAliases" : [ ":hockey:" ],
+  "discordAliases" : [ ":hockey:", ":ice_hockey:" ],
   "githubAliases" : [ ":ice_hockey:" ],
   "slackAliases" : [ ":ice_hockey_stick_and_puck:" ],
   "hasFitzpatrick" : false,
@@ -53249,7 +53249,7 @@
 }, {
   "emoji" : "⛳",
   "unicode" : "\u26F3",
-  "discordAliases" : [ ":golf:" ],
+  "discordAliases" : [ ":golf:", ":flag_in_hole:" ],
   "githubAliases" : [ ":golf:" ],
   "slackAliases" : [ ":golf:" ],
   "hasFitzpatrick" : false,
@@ -53288,7 +53288,7 @@
 }, {
   "emoji" : "🎣",
   "unicode" : "\uD83C\uDFA3",
-  "discordAliases" : [ ":fishing_pole_and_fish:" ],
+  "discordAliases" : [ ":fishing_pole_and_fish:", ":fishing_pole:" ],
   "githubAliases" : [ ":fishing_pole_and_fish:" ],
   "slackAliases" : [ ":fishing_pole_and_fish:" ],
   "hasFitzpatrick" : false,
@@ -53314,7 +53314,7 @@
 }, {
   "emoji" : "🎽",
   "unicode" : "\uD83C\uDFBD",
-  "discordAliases" : [ ":running_shirt_with_sash:" ],
+  "discordAliases" : [ ":running_shirt_with_sash:", ":running_shirt:" ],
   "githubAliases" : [ ":running_shirt_with_sash:" ],
   "slackAliases" : [ ":running_shirt_with_sash:" ],
   "hasFitzpatrick" : false,
@@ -53327,7 +53327,7 @@
 }, {
   "emoji" : "🎿",
   "unicode" : "\uD83C\uDFBF",
-  "discordAliases" : [ ":ski:" ],
+  "discordAliases" : [ ":ski:", ":skis:" ],
   "githubAliases" : [ ":ski:" ],
   "slackAliases" : [ ":ski:" ],
   "hasFitzpatrick" : false,
@@ -53366,7 +53366,7 @@
 }, {
   "emoji" : "🎯",
   "unicode" : "\uD83C\uDFAF",
-  "discordAliases" : [ ":dart:" ],
+  "discordAliases" : [ ":dart:", ":direct_hit:" ],
   "githubAliases" : [ ":dart:" ],
   "slackAliases" : [ ":dart:" ],
   "hasFitzpatrick" : false,
@@ -53405,7 +53405,7 @@
 }, {
   "emoji" : "🔫",
   "unicode" : "\uD83D\uDD2B",
-  "discordAliases" : [ ":gun:" ],
+  "discordAliases" : [ ":gun:", ":pistol:" ],
   "githubAliases" : [ ":gun:" ],
   "slackAliases" : [ ":gun:" ],
   "hasFitzpatrick" : false,
@@ -53522,7 +53522,7 @@
 }, {
   "emoji" : "🧩",
   "unicode" : "\uD83E\uDDE9",
-  "discordAliases" : [ ":jigsaw:" ],
+  "discordAliases" : [ ":jigsaw:", ":puzzle_piece:" ],
   "githubAliases" : [ ":jigsaw:" ],
   "slackAliases" : [ ":jigsaw:" ],
   "hasFitzpatrick" : false,
@@ -53587,7 +53587,7 @@
 }, {
   "emoji" : "♠️",
   "unicode" : "\u2660\uFE0F",
-  "discordAliases" : [ ":spades:" ],
+  "discordAliases" : [ ":spades:", ":spade_suit:" ],
   "githubAliases" : [ ":spades:" ],
   "slackAliases" : [ ":spades:" ],
   "hasFitzpatrick" : false,
@@ -53613,7 +53613,7 @@
 }, {
   "emoji" : "♥️",
   "unicode" : "\u2665\uFE0F",
-  "discordAliases" : [ ":hearts:" ],
+  "discordAliases" : [ ":hearts:", ":heart_suit:" ],
   "githubAliases" : [ ":hearts:" ],
   "slackAliases" : [ ":hearts:" ],
   "hasFitzpatrick" : false,
@@ -53639,7 +53639,7 @@
 }, {
   "emoji" : "♦️",
   "unicode" : "\u2666\uFE0F",
-  "discordAliases" : [ ":diamonds:" ],
+  "discordAliases" : [ ":diamonds:", ":diamond_suit:" ],
   "githubAliases" : [ ":diamonds:" ],
   "slackAliases" : [ ":diamonds:" ],
   "hasFitzpatrick" : false,
@@ -53665,7 +53665,7 @@
 }, {
   "emoji" : "♣️",
   "unicode" : "\u2663\uFE0F",
-  "discordAliases" : [ ":clubs:" ],
+  "discordAliases" : [ ":clubs:", ":club_suit:" ],
   "githubAliases" : [ ":clubs:" ],
   "slackAliases" : [ ":clubs:" ],
   "hasFitzpatrick" : false,
@@ -53717,7 +53717,7 @@
 }, {
   "emoji" : "🃏",
   "unicode" : "\uD83C\uDCCF",
-  "discordAliases" : [ ":black_joker:" ],
+  "discordAliases" : [ ":black_joker:", ":joker:" ],
   "githubAliases" : [ ":black_joker:" ],
   "slackAliases" : [ ":black_joker:" ],
   "hasFitzpatrick" : false,
@@ -53860,7 +53860,7 @@
 }, {
   "emoji" : "👓",
   "unicode" : "\uD83D\uDC53",
-  "discordAliases" : [ ":eyeglasses:" ],
+  "discordAliases" : [ ":eyeglasses:", ":glasses:" ],
   "githubAliases" : [ ":eyeglasses:" ],
   "slackAliases" : [ ":eyeglasses:" ],
   "hasFitzpatrick" : false,
@@ -53951,7 +53951,7 @@
 }, {
   "emoji" : "👕",
   "unicode" : "\uD83D\uDC55",
-  "discordAliases" : [ ":shirt:" ],
+  "discordAliases" : [ ":shirt:", ":t_shirt:" ],
   "githubAliases" : [ ":shirt:", ":tshirt:" ],
   "slackAliases" : [ ":shirt:" ],
   "hasFitzpatrick" : false,
@@ -54133,7 +54133,7 @@
 }, {
   "emoji" : "🪭",
   "unicode" : "\uD83E\uDEAD",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":folding_hand_fan:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -54172,7 +54172,7 @@
 }, {
   "emoji" : "👝",
   "unicode" : "\uD83D\uDC5D",
-  "discordAliases" : [ ":pouch:" ],
+  "discordAliases" : [ ":pouch:", ":clutch_bag:" ],
   "githubAliases" : [ ":pouch:" ],
   "slackAliases" : [ ":pouch:" ],
   "hasFitzpatrick" : false,
@@ -54211,7 +54211,7 @@
 }, {
   "emoji" : "🎒",
   "unicode" : "\uD83C\uDF92",
-  "discordAliases" : [ ":school_satchel:" ],
+  "discordAliases" : [ ":school_satchel:", ":backpack:" ],
   "githubAliases" : [ ":school_satchel:" ],
   "slackAliases" : [ ":school_satchel:" ],
   "hasFitzpatrick" : false,
@@ -54250,7 +54250,7 @@
 }, {
   "emoji" : "👟",
   "unicode" : "\uD83D\uDC5F",
-  "discordAliases" : [ ":athletic_shoe:" ],
+  "discordAliases" : [ ":athletic_shoe:", ":running_shoe:" ],
   "githubAliases" : [ ":athletic_shoe:" ],
   "slackAliases" : [ ":athletic_shoe:" ],
   "hasFitzpatrick" : false,
@@ -54276,7 +54276,7 @@
 }, {
   "emoji" : "🥿",
   "unicode" : "\uD83E\uDD7F",
-  "discordAliases" : [ ":womans_flat_shoe:" ],
+  "discordAliases" : [ ":womans_flat_shoe:", ":flat_shoe:" ],
   "githubAliases" : [ ":flat_shoe:" ],
   "slackAliases" : [ ":womans_flat_shoe:" ],
   "hasFitzpatrick" : false,
@@ -54302,7 +54302,7 @@
 }, {
   "emoji" : "👡",
   "unicode" : "\uD83D\uDC61",
-  "discordAliases" : [ ":sandal:" ],
+  "discordAliases" : [ ":sandal:", ":womans_sandal:" ],
   "githubAliases" : [ ":sandal:" ],
   "slackAliases" : [ ":sandal:" ],
   "hasFitzpatrick" : false,
@@ -54328,7 +54328,7 @@
 }, {
   "emoji" : "👢",
   "unicode" : "\uD83D\uDC62",
-  "discordAliases" : [ ":boot:" ],
+  "discordAliases" : [ ":boot:", ":womans_boot:" ],
   "githubAliases" : [ ":boot:" ],
   "slackAliases" : [ ":boot:" ],
   "hasFitzpatrick" : false,
@@ -54341,7 +54341,7 @@
 }, {
   "emoji" : "🪮",
   "unicode" : "\uD83E\uDEAE",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":hair_pick:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -54380,7 +54380,7 @@
 }, {
   "emoji" : "🎩",
   "unicode" : "\uD83C\uDFA9",
-  "discordAliases" : [ ":tophat:" ],
+  "discordAliases" : [ ":tophat:", ":top_hat:" ],
   "githubAliases" : [ ":tophat:" ],
   "slackAliases" : [ ":tophat:" ],
   "hasFitzpatrick" : false,
@@ -54497,7 +54497,7 @@
 }, {
   "emoji" : "💎",
   "unicode" : "\uD83D\uDC8E",
-  "discordAliases" : [ ":gem:" ],
+  "discordAliases" : [ ":gem:", ":gem_stone:" ],
   "githubAliases" : [ ":gem:" ],
   "slackAliases" : [ ":gem:" ],
   "hasFitzpatrick" : false,
@@ -54510,7 +54510,7 @@
 }, {
   "emoji" : "🔇",
   "unicode" : "\uD83D\uDD07",
-  "discordAliases" : [ ":mute:" ],
+  "discordAliases" : [ ":mute:", ":muted_speaker:" ],
   "githubAliases" : [ ":mute:" ],
   "slackAliases" : [ ":mute:" ],
   "hasFitzpatrick" : false,
@@ -54575,7 +54575,7 @@
 }, {
   "emoji" : "📣",
   "unicode" : "\uD83D\uDCE3",
-  "discordAliases" : [ ":mega:" ],
+  "discordAliases" : [ ":mega:", ":megaphone:" ],
   "githubAliases" : [ ":mega:" ],
   "slackAliases" : [ ":mega:" ],
   "hasFitzpatrick" : false,
@@ -54653,7 +54653,7 @@
 }, {
   "emoji" : "🎶",
   "unicode" : "\uD83C\uDFB6",
-  "discordAliases" : [ ":notes:" ],
+  "discordAliases" : [ ":notes:", ":musical_notes:" ],
   "githubAliases" : [ ":notes:" ],
   "slackAliases" : [ ":notes:" ],
   "hasFitzpatrick" : false,
@@ -54757,7 +54757,7 @@
 }, {
   "emoji" : "🎧",
   "unicode" : "\uD83C\uDFA7",
-  "discordAliases" : [ ":headphones:" ],
+  "discordAliases" : [ ":headphones:", ":headphone:" ],
   "githubAliases" : [ ":headphones:" ],
   "slackAliases" : [ ":headphones:" ],
   "hasFitzpatrick" : false,
@@ -54900,7 +54900,7 @@
 }, {
   "emoji" : "🪇",
   "unicode" : "\uD83E\uDE87",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":maracas:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -54913,7 +54913,7 @@
 }, {
   "emoji" : "🪈",
   "unicode" : "\uD83E\uDE88",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":flute:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -55004,7 +55004,7 @@
 }, {
   "emoji" : "📠",
   "unicode" : "\uD83D\uDCE0",
-  "discordAliases" : [ ":fax:" ],
+  "discordAliases" : [ ":fax:", ":fax_machine:" ],
   "githubAliases" : [ ":fax:" ],
   "slackAliases" : [ ":fax:" ],
   "hasFitzpatrick" : false,
@@ -55199,7 +55199,7 @@
 }, {
   "emoji" : "💽",
   "unicode" : "\uD83D\uDCBD",
-  "discordAliases" : [ ":minidisc:" ],
+  "discordAliases" : [ ":minidisc:", ":computer_disk:" ],
   "githubAliases" : [ ":minidisc:" ],
   "slackAliases" : [ ":minidisc:" ],
   "hasFitzpatrick" : false,
@@ -55225,7 +55225,7 @@
 }, {
   "emoji" : "💿",
   "unicode" : "\uD83D\uDCBF",
-  "discordAliases" : [ ":cd:" ],
+  "discordAliases" : [ ":cd:", ":optical_disk:" ],
   "githubAliases" : [ ":cd:" ],
   "slackAliases" : [ ":cd:" ],
   "hasFitzpatrick" : false,
@@ -55329,7 +55329,7 @@
 }, {
   "emoji" : "🎬",
   "unicode" : "\uD83C\uDFAC",
-  "discordAliases" : [ ":clapper:" ],
+  "discordAliases" : [ ":clapper:", ":clapper_board:" ],
   "githubAliases" : [ ":clapper:" ],
   "slackAliases" : [ ":clapper:" ],
   "hasFitzpatrick" : false,
@@ -55342,7 +55342,7 @@
 }, {
   "emoji" : "📺",
   "unicode" : "\uD83D\uDCFA",
-  "discordAliases" : [ ":tv:" ],
+  "discordAliases" : [ ":tv:", ":television:" ],
   "githubAliases" : [ ":tv:" ],
   "slackAliases" : [ ":tv:" ],
   "hasFitzpatrick" : false,
@@ -55394,7 +55394,7 @@
 }, {
   "emoji" : "📼",
   "unicode" : "\uD83D\uDCFC",
-  "discordAliases" : [ ":vhs:" ],
+  "discordAliases" : [ ":vhs:", ":videocassette:" ],
   "githubAliases" : [ ":vhs:" ],
   "slackAliases" : [ ":vhs:" ],
   "hasFitzpatrick" : false,
@@ -55459,7 +55459,7 @@
 }, {
   "emoji" : "💡",
   "unicode" : "\uD83D\uDCA1",
-  "discordAliases" : [ ":bulb:" ],
+  "discordAliases" : [ ":bulb:", ":light_bulb:" ],
   "githubAliases" : [ ":bulb:" ],
   "slackAliases" : [ ":bulb:" ],
   "hasFitzpatrick" : false,
@@ -55537,7 +55537,7 @@
 }, {
   "emoji" : "📖",
   "unicode" : "\uD83D\uDCD6",
-  "discordAliases" : [ ":book:" ],
+  "discordAliases" : [ ":book:", ":open_book:" ],
   "githubAliases" : [ ":book:", ":open_book:" ],
   "slackAliases" : [ ":book:" ],
   "hasFitzpatrick" : false,
@@ -55758,7 +55758,7 @@
 }, {
   "emoji" : "💰",
   "unicode" : "\uD83D\uDCB0",
-  "discordAliases" : [ ":moneybag:" ],
+  "discordAliases" : [ ":moneybag:", ":money_bag:" ],
   "githubAliases" : [ ":moneybag:" ],
   "slackAliases" : [ ":moneybag:" ],
   "hasFitzpatrick" : false,
@@ -55784,7 +55784,7 @@
 }, {
   "emoji" : "💴",
   "unicode" : "\uD83D\uDCB4",
-  "discordAliases" : [ ":yen:" ],
+  "discordAliases" : [ ":yen:", ":yen_banknote:" ],
   "githubAliases" : [ ":yen:" ],
   "slackAliases" : [ ":yen:" ],
   "hasFitzpatrick" : false,
@@ -55810,7 +55810,7 @@
 }, {
   "emoji" : "💶",
   "unicode" : "\uD83D\uDCB6",
-  "discordAliases" : [ ":euro:" ],
+  "discordAliases" : [ ":euro:", ":euro_banknote:" ],
   "githubAliases" : [ ":euro:" ],
   "slackAliases" : [ ":euro:" ],
   "hasFitzpatrick" : false,
@@ -56135,7 +56135,7 @@
 }, {
   "emoji" : "🖋️",
   "unicode" : "\uD83D\uDD8B\uFE0F",
-  "discordAliases" : [ ":pen_fountain:", ":lower_left_fountain_pen:" ],
+  "discordAliases" : [ ":pen_fountain:", ":lower_left_fountain_pen:", ":fountain_pen:" ],
   "githubAliases" : [ ":fountain_pen:" ],
   "slackAliases" : [ ":lower_left_fountain_pen:" ],
   "hasFitzpatrick" : false,
@@ -56161,7 +56161,7 @@
 }, {
   "emoji" : "🖊️",
   "unicode" : "\uD83D\uDD8A\uFE0F",
-  "discordAliases" : [ ":pen_ballpoint:", ":lower_left_ballpoint_pen:" ],
+  "discordAliases" : [ ":pen_ballpoint:", ":lower_left_ballpoint_pen:", ":pen:" ],
   "githubAliases" : [ ":pen:" ],
   "slackAliases" : [ ":lower_left_ballpoint_pen:" ],
   "hasFitzpatrick" : false,
@@ -56655,7 +56655,7 @@
 }, {
   "emoji" : "🔒",
   "unicode" : "\uD83D\uDD12",
-  "discordAliases" : [ ":lock:" ],
+  "discordAliases" : [ ":lock:", ":locked:" ],
   "githubAliases" : [ ":lock:" ],
   "slackAliases" : [ ":lock:" ],
   "hasFitzpatrick" : false,
@@ -56668,7 +56668,7 @@
 }, {
   "emoji" : "🔓",
   "unicode" : "\uD83D\uDD13",
-  "discordAliases" : [ ":unlock:" ],
+  "discordAliases" : [ ":unlock:", ":unlocked:" ],
   "githubAliases" : [ ":unlock:" ],
   "slackAliases" : [ ":unlock:" ],
   "hasFitzpatrick" : false,
@@ -57045,7 +57045,7 @@
 }, {
   "emoji" : "🗜️",
   "unicode" : "\uD83D\uDDDC\uFE0F",
-  "discordAliases" : [ ":compression:" ],
+  "discordAliases" : [ ":compression:", ":clamp:" ],
   "githubAliases" : [ ":clamp:" ],
   "slackAliases" : [ ":compression:" ],
   "hasFitzpatrick" : false,
@@ -57071,7 +57071,7 @@
 }, {
   "emoji" : "⚖️",
   "unicode" : "\u2696\uFE0F",
-  "discordAliases" : [ ":scales:" ],
+  "discordAliases" : [ ":scales:", ":balance_scale:" ],
   "githubAliases" : [ ":balance_scale:" ],
   "slackAliases" : [ ":scales:" ],
   "hasFitzpatrick" : false,
@@ -57617,7 +57617,7 @@
 }, {
   "emoji" : "🧴",
   "unicode" : "\uD83E\uDDF4",
-  "discordAliases" : [ ":squeeze_bottle:" ],
+  "discordAliases" : [ ":squeeze_bottle:", ":lotion_bottle:" ],
   "githubAliases" : [ ":lotion_bottle:" ],
   "slackAliases" : [ ":lotion_bottle:" ],
   "hasFitzpatrick" : false,
@@ -57773,7 +57773,7 @@
 }, {
   "emoji" : "🚬",
   "unicode" : "\uD83D\uDEAC",
-  "discordAliases" : [ ":smoking:" ],
+  "discordAliases" : [ ":smoking:", ":cigarette:" ],
   "githubAliases" : [ ":smoking:" ],
   "slackAliases" : [ ":smoking:" ],
   "hasFitzpatrick" : false,
@@ -57877,7 +57877,7 @@
 }, {
   "emoji" : "🗿",
   "unicode" : "\uD83D\uDDFF",
-  "discordAliases" : [ ":moyai:" ],
+  "discordAliases" : [ ":moyai:", ":moai:" ],
   "githubAliases" : [ ":moyai:" ],
   "slackAliases" : [ ":moyai:" ],
   "hasFitzpatrick" : false,
@@ -57968,7 +57968,7 @@
 }, {
   "emoji" : "🚹",
   "unicode" : "\uD83D\uDEB9",
-  "discordAliases" : [ ":mens:" ],
+  "discordAliases" : [ ":mens:", ":mens_room:" ],
   "githubAliases" : [ ":mens:" ],
   "slackAliases" : [ ":mens:" ],
   "hasFitzpatrick" : false,
@@ -57981,7 +57981,7 @@
 }, {
   "emoji" : "🚺",
   "unicode" : "\uD83D\uDEBA",
-  "discordAliases" : [ ":womens:" ],
+  "discordAliases" : [ ":womens:", ":womens_room:" ],
   "githubAliases" : [ ":womens:" ],
   "slackAliases" : [ ":womens:" ],
   "hasFitzpatrick" : false,
@@ -58020,7 +58020,7 @@
 }, {
   "emoji" : "🚾",
   "unicode" : "\uD83D\uDEBE",
-  "discordAliases" : [ ":wc:" ],
+  "discordAliases" : [ ":wc:", ":water_closet:" ],
   "githubAliases" : [ ":wc:" ],
   "slackAliases" : [ ":wc:" ],
   "hasFitzpatrick" : false,
@@ -58137,7 +58137,7 @@
 }, {
   "emoji" : "🚫",
   "unicode" : "\uD83D\uDEAB",
-  "discordAliases" : [ ":no_entry_sign:" ],
+  "discordAliases" : [ ":no_entry_sign:", ":prohibited:" ],
   "githubAliases" : [ ":no_entry_sign:" ],
   "slackAliases" : [ ":no_entry_sign:" ],
   "hasFitzpatrick" : false,
@@ -58176,7 +58176,7 @@
 }, {
   "emoji" : "🚯",
   "unicode" : "\uD83D\uDEAF",
-  "discordAliases" : [ ":do_not_litter:" ],
+  "discordAliases" : [ ":do_not_litter:", ":no_littering:" ],
   "githubAliases" : [ ":do_not_litter:" ],
   "slackAliases" : [ ":do_not_litter:" ],
   "hasFitzpatrick" : false,
@@ -58293,7 +58293,7 @@
 }, {
   "emoji" : "⬆️",
   "unicode" : "\u2B06\uFE0F",
-  "discordAliases" : [ ":arrow_up:" ],
+  "discordAliases" : [ ":arrow_up:", ":up_arrow:" ],
   "githubAliases" : [ ":arrow_up:" ],
   "slackAliases" : [ ":arrow_up:" ],
   "hasFitzpatrick" : false,
@@ -58345,7 +58345,7 @@
 }, {
   "emoji" : "➡️",
   "unicode" : "\u27A1\uFE0F",
-  "discordAliases" : [ ":arrow_right:" ],
+  "discordAliases" : [ ":arrow_right:", ":right_arrow:" ],
   "githubAliases" : [ ":arrow_right:" ],
   "slackAliases" : [ ":arrow_right:" ],
   "hasFitzpatrick" : false,
@@ -58397,7 +58397,7 @@
 }, {
   "emoji" : "⬇️",
   "unicode" : "\u2B07\uFE0F",
-  "discordAliases" : [ ":arrow_down:" ],
+  "discordAliases" : [ ":arrow_down:", ":down_arrow:" ],
   "githubAliases" : [ ":arrow_down:" ],
   "slackAliases" : [ ":arrow_down:" ],
   "hasFitzpatrick" : false,
@@ -58449,7 +58449,7 @@
 }, {
   "emoji" : "⬅️",
   "unicode" : "\u2B05\uFE0F",
-  "discordAliases" : [ ":arrow_left:" ],
+  "discordAliases" : [ ":arrow_left:", ":left_arrow:" ],
   "githubAliases" : [ ":arrow_left:" ],
   "slackAliases" : [ ":arrow_left:" ],
   "hasFitzpatrick" : false,
@@ -58475,7 +58475,7 @@
 }, {
   "emoji" : "↖️",
   "unicode" : "\u2196\uFE0F",
-  "discordAliases" : [ ":arrow_upper_left:" ],
+  "discordAliases" : [ ":arrow_upper_left:", ":up_left_arrow:" ],
   "githubAliases" : [ ":arrow_upper_left:" ],
   "slackAliases" : [ ":arrow_upper_left:" ],
   "hasFitzpatrick" : false,
@@ -58501,7 +58501,7 @@
 }, {
   "emoji" : "↕️",
   "unicode" : "\u2195\uFE0F",
-  "discordAliases" : [ ":arrow_up_down:" ],
+  "discordAliases" : [ ":arrow_up_down:", ":up_down_arrow:" ],
   "githubAliases" : [ ":arrow_up_down:" ],
   "slackAliases" : [ ":arrow_up_down:" ],
   "hasFitzpatrick" : false,
@@ -58683,7 +58683,7 @@
 }, {
   "emoji" : "🔙",
   "unicode" : "\uD83D\uDD19",
-  "discordAliases" : [ ":back:" ],
+  "discordAliases" : [ ":back:", ":back_arrow:" ],
   "githubAliases" : [ ":back:" ],
   "slackAliases" : [ ":back:" ],
   "hasFitzpatrick" : false,
@@ -58696,7 +58696,7 @@
 }, {
   "emoji" : "🔚",
   "unicode" : "\uD83D\uDD1A",
-  "discordAliases" : [ ":end:" ],
+  "discordAliases" : [ ":end:", ":end_arrow:" ],
   "githubAliases" : [ ":end:" ],
   "slackAliases" : [ ":end:" ],
   "hasFitzpatrick" : false,
@@ -58709,7 +58709,7 @@
 }, {
   "emoji" : "🔛",
   "unicode" : "\uD83D\uDD1B",
-  "discordAliases" : [ ":on:" ],
+  "discordAliases" : [ ":on:", ":on_arrow:" ],
   "githubAliases" : [ ":on:" ],
   "slackAliases" : [ ":on:" ],
   "hasFitzpatrick" : false,
@@ -58722,7 +58722,7 @@
 }, {
   "emoji" : "🔜",
   "unicode" : "\uD83D\uDD1C",
-  "discordAliases" : [ ":soon:" ],
+  "discordAliases" : [ ":soon:", ":soon_arrow:" ],
   "githubAliases" : [ ":soon:" ],
   "slackAliases" : [ ":soon:" ],
   "hasFitzpatrick" : false,
@@ -58735,7 +58735,7 @@
 }, {
   "emoji" : "🔝",
   "unicode" : "\uD83D\uDD1D",
-  "discordAliases" : [ ":top:" ],
+  "discordAliases" : [ ":top:", ":top_arrow:" ],
   "githubAliases" : [ ":top:" ],
   "slackAliases" : [ ":top:" ],
   "hasFitzpatrick" : false,
@@ -59021,7 +59021,7 @@
 }, {
   "emoji" : "🪯",
   "unicode" : "\uD83E\uDEAF",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":khanda:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -59125,7 +59125,7 @@
 }, {
   "emoji" : "♏",
   "unicode" : "\u264F",
-  "discordAliases" : [ ":scorpius:" ],
+  "discordAliases" : [ ":scorpius:", ":scorpio:" ],
   "githubAliases" : [ ":scorpius:" ],
   "slackAliases" : [ ":scorpius:" ],
   "hasFitzpatrick" : false,
@@ -59593,7 +59593,7 @@
 }, {
   "emoji" : "📶",
   "unicode" : "\uD83D\uDCF6",
-  "discordAliases" : [ ":signal_strength:" ],
+  "discordAliases" : [ ":signal_strength:", ":antenna_bars:" ],
   "githubAliases" : [ ":signal_strength:" ],
   "slackAliases" : [ ":signal_strength:" ],
   "hasFitzpatrick" : false,
@@ -59606,7 +59606,7 @@
 }, {
   "emoji" : "🛜",
   "unicode" : "\uD83D\uDEDC",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":wireless:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -59879,7 +59879,7 @@
 }, {
   "emoji" : "❓",
   "unicode" : "\u2753",
-  "discordAliases" : [ ":question:" ],
+  "discordAliases" : [ ":question:", ":question_mark:" ],
   "githubAliases" : [ ":question:" ],
   "slackAliases" : [ ":question:" ],
   "hasFitzpatrick" : false,
@@ -60152,7 +60152,7 @@
 }, {
   "emoji" : "✔️",
   "unicode" : "\u2714\uFE0F",
-  "discordAliases" : [ ":heavy_check_mark:" ],
+  "discordAliases" : [ ":heavy_check_mark:", ":check_mark:" ],
   "githubAliases" : [ ":heavy_check_mark:" ],
   "slackAliases" : [ ":heavy_check_mark:" ],
   "hasFitzpatrick" : false,
@@ -60178,7 +60178,7 @@
 }, {
   "emoji" : "❌",
   "unicode" : "\u274C",
-  "discordAliases" : [ ":x:" ],
+  "discordAliases" : [ ":x:", ":cross_mark:" ],
   "githubAliases" : [ ":x:" ],
   "slackAliases" : [ ":x:" ],
   "hasFitzpatrick" : false,
@@ -60386,7 +60386,7 @@
 }, {
   "emoji" : "™️",
   "unicode" : "\u2122\uFE0F",
-  "discordAliases" : [ ":tm:" ],
+  "discordAliases" : [ ":tm:", ":trade_mark:" ],
   "githubAliases" : [ ":tm:" ],
   "slackAliases" : [ ":tm:" ],
   "hasFitzpatrick" : false,
@@ -60763,7 +60763,7 @@
 }, {
   "emoji" : "🔢",
   "unicode" : "\uD83D\uDD22",
-  "discordAliases" : [ ":1234:" ],
+  "discordAliases" : [ ":1234:", ":input_numbers:" ],
   "githubAliases" : [ ":1234:" ],
   "slackAliases" : [ ":1234:" ],
   "hasFitzpatrick" : false,
@@ -60776,7 +60776,7 @@
 }, {
   "emoji" : "🔣",
   "unicode" : "\uD83D\uDD23",
-  "discordAliases" : [ ":symbols:" ],
+  "discordAliases" : [ ":symbols:", ":input_symbols:" ],
   "githubAliases" : [ ":symbols:" ],
   "slackAliases" : [ ":symbols:" ],
   "hasFitzpatrick" : false,
@@ -60906,7 +60906,7 @@
 }, {
   "emoji" : "ℹ️",
   "unicode" : "\u2139\uFE0F",
-  "discordAliases" : [ ":information_source:" ],
+  "discordAliases" : [ ":information_source:", ":information:" ],
   "githubAliases" : [ ":information_source:" ],
   "slackAliases" : [ ":information_source:" ],
   "hasFitzpatrick" : false,
@@ -60945,7 +60945,7 @@
 }, {
   "emoji" : "Ⓜ️",
   "unicode" : "\u24C2\uFE0F",
-  "discordAliases" : [ ":m:" ],
+  "discordAliases" : [ ":m:", ":circled_m:" ],
   "githubAliases" : [ ":m:" ],
   "slackAliases" : [ ":m:" ],
   "hasFitzpatrick" : false,

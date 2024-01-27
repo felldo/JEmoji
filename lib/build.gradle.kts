@@ -1,16 +1,21 @@
 import com.fasterxml.jackson.annotation.JsonRawValue
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.JsonNodeFactory
+import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.javaparser.JavaParser
 import com.github.javaparser.ast.CompilationUnit
 import com.github.javaparser.ast.NodeList
+import com.github.javaparser.ast.body.EnumConstantDeclaration
 import com.github.javaparser.ast.body.FieldDeclaration
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.github.javaparser.ast.comments.JavadocComment
 import com.github.javaparser.ast.expr.*
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.internal.toHexString
@@ -148,13 +153,20 @@ tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
-// Generate sources before compiling
+/*// Generate sources before compiling
 tasks.named("compileJava") {
-    dependsOn("generateJavaSourceFiles")
-}
+}*/
 
 tasks.named("build") {
     finalizedBy("copyJarToProject")
+}
+
+/**
+ * Startup task to generate the needed source files for this project. Does not generate a new emojis.json.
+ */
+tasks.register("generate") {
+    dependsOn("generateEmojisDescription")
+    dependsOn("generateJavaSourceFiles")
 }
 
 tasks.register("copyJarToProject") {
@@ -305,6 +317,116 @@ buildscript {
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
+// https://github.com/unicode-org/cldr/tree/main/common/annotations
+// https://github.com/unicode-org/cldr-json/tree/main/cldr-json
+// https://stackoverflow.com/questions/39490865/how-can-i-get-the-full-list-of-slack-emoji-through-api
+// https://github.com/iamcal/emoji-data/
+tasks.register("generateEmojisDescription") {
+    val objectMapper = ObjectMapper();
+    val client = OkHttpClient()
+    val repo = "unicode-org/cldr-json"
+
+    val httpBuilderAnnotationsDerivedDirectory: HttpUrl.Builder = "https://api.github.com/repos/${repo}/contents/cldr-json/cldr-annotations-derived-full/annotationsDerived".toHttpUrl().newBuilder()
+    val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
+    requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
+    val descriptionDirectory: JsonNode = objectMapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
+
+    val fileNameList = mutableListOf<String>()
+
+    for (directory in descriptionDirectory) {
+        val descriptionNodeOutput = JsonNodeFactory.instance.objectNode();
+
+        requestCLDREmojiDescriptionTranslation(
+            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/${
+                directory.get(
+                    "name"
+                ).asText()
+            }/annotations.json", client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
+        )
+
+        requestCLDREmojiDescriptionTranslation(
+            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/${
+                directory.get(
+                    "name"
+                ).asText()
+            }/annotations.json", client, objectMapper, descriptionNodeOutput,directory.get("name").asText()
+        )
+
+
+        val descriptionFile = File("$projectDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}.json")
+        descriptionFile.writeText(objectMapper.writeValueAsString(descriptionNodeOutput))
+        fileNameList.add(directory.get("name").asText())
+    }
+
+    generateEmojiDescriptionLanguageEnum(fileNameList)
+}
+fun requestCLDREmojiDescriptionTranslation(
+    url: String,
+    client: OkHttpClient,
+    mapper: ObjectMapper,
+    descriptionNodeOutput: ObjectNode,
+    fileName: String
+) {
+    val fileHttpBuilder: HttpUrl.Builder = url.toHttpUrl().newBuilder()
+    val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
+    requestBuilder.url(fileHttpBuilder.build())
+
+    val fileContent: JsonNode = mapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
+
+    val translationFile = File("$rootDir/emoji_source_files/description/$fileName.json")
+    translationFile.writeText(mapper.writeValueAsString(fileContent))
+
+    val annotationsDerived =
+        if (fileContent.has("annotations")) fileContent.get("annotations") else fileContent.get("annotationsDerived")
+    if (!annotationsDerived.has("annotations")) {
+        return
+    }
+
+    val annotationsNode = annotationsDerived.get("annotations")
+
+
+    annotationsNode.fields().forEach {
+        if (it.value.has("tts")) {
+            descriptionNodeOutput.put(it.key, it.value.get("tts").map { it.asText() }.joinToString(" "))
+        }
+    }
+}
+
+val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
+fun generateEmojiDescriptionLanguageEnum(languages: List<String>) {
+    val fileName = "EmojiDescriptionLanguage"
+
+    val emojisPath = "${jemojiPackagePath.joinToString("/")}/$fileName.java"
+    val compilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
+
+    compilationUnit.setStorage(file("$generatedSourcesDir/$emojisPath").toPath())
+    val enumFile = compilationUnit.addEnum(fileName)
+
+    val nodeList = NodeList<EnumConstantDeclaration>()
+    languages.forEach {
+        val  constantName = emojiGroupToEnumName(it)
+        val enumConstantDeclaration = EnumConstantDeclaration(constantName).addArgument(StringLiteralExpr(it))
+        nodeList.add(enumConstantDeclaration)
+    }
+
+    enumFile.setEntries(nodeList)
+
+    val valueField = enumFile.addPrivateField(String::class.java, "value").setFinal(true)
+    val enumConstructor = enumFile.addConstructor()
+
+    enumConstructor.addParameter(String::class.java, "value")
+    enumConstructor.createBody().addStatement("this.value = value;")
+    valueField.createGetter().setJavadocComment(
+        """
+                Gets the value.
+
+                @return The value.
+            """.trimIndent()
+    )
+
+    compilationUnit.storage.get().save()
+}
+
 
 tasks.register("generateEmojis") {
     //dependsOn("build")
@@ -317,10 +439,15 @@ tasks.register("generateEmojis") {
 
         val githubEmojiAliasMap = getGithubEmojiAliasMap(client, mapper)
         val emojiTerraMap = getEmojiTerraMap()
-        val emojiTerraEmojiDefinition = File("$rootDir/public/emojiterra-emoji-definition.json")
-        emojiTerraEmojiDefinition.writeText(mapper.writeValueAsString(emojiTerraMap))
-
         val discordAliases = getDiscordAliasMap(client, mapper)
+
+        val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
+        githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiAliasMap))
+        val emojiTerraEmojiDefinition = File("$rootDir/emoji_source_files/emojiterra-emoji-definition.json")
+        emojiTerraEmojiDefinition.writeText(mapper.writeValueAsString(emojiTerraMap))
+        val discordEmojiDefinition = File("$rootDir/emoji_source_files/discord-emoji-definition.json")
+        discordEmojiDefinition.writeText(mapper.writeValueAsString(discordAliases))
+
 
         val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
 
@@ -421,20 +548,19 @@ tasks.register("generateEmojis") {
             }
         }
 
-        val overrideEmojisFile =
-            File("$projectDir/src/main/resources/emojis-override.json") //TODO: Allow specific overrides or additions to i.e. aliases
-        val overrideEmojisJson = mapper.readTree(overrideEmojisFile.readText())
+//        val overrideEmojisFile =
+//            File("$projectDir/src/main/resources/emojis-override.json") //TODO: Allow specific overrides or additions to i.e. aliases
+//        val overrideEmojisJson = mapper.readTree(overrideEmojisFile.readText())
 
         /*for (jsonNode in overrideEmojisJson) {
             Emoji()
         }*/
 
-
-        val resourceFile = File("$projectDir/src/main/resources/emojis.json")
+        //val resourceFile = File("$projectDir/src/main/resources/emojis.json")
         val publicFile = File("$rootDir/public/emojis.json")
         val publicFileMin = File("$rootDir/public/emojis.min.json")
 
-        resourceFile.writeText(mapper.writeValueAsString(allUnicodeEmojis))
+        //resourceFile.writeText(mapper.writeValueAsString(allUnicodeEmojis))
         publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(allUnicodeEmojis))
         publicFileMin.writeText(mapper.writeValueAsString(allUnicodeEmojis))
     }
@@ -490,9 +616,6 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
     val gitHubEmojiAliasUrl = "https://api.github.com/emojis"
 
     val json = client.newCall(Request.Builder().url(gitHubEmojiAliasUrl).build()).execute().body!!.string()
-
-    val discordEmojiDefinition = File("$rootDir/public/github-emoji-definition.json")
-    discordEmojiDefinition.writeText(mapper.writeValueAsString(json))
 
     return mapper.readTree(json)
         .fields()
@@ -576,12 +699,8 @@ data class Emoji(
 fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, List<String>> {
     val discordEmojiAliasUrl = "https://emzi0767.gl-pages.emzi0767.dev/discord-emoji/discordEmojiMap.json"
 
-    val json = mapper.readTree(
-        client.newCall(Request.Builder().url(discordEmojiAliasUrl).build()).execute().body!!.string()
-    )
-
-    val discordEmojiDefinition = File("$rootDir/public/discord-emoji-definition.json")
-    discordEmojiDefinition.writeText(mapper.writeValueAsString(json))
+    val json =
+        mapper.readTree(client.newCall(Request.Builder().url(discordEmojiAliasUrl).build()).execute().body!!.string())
 
     return buildMap {
         for (jsonNode in json.get("emojiDefinitions")) {
@@ -603,8 +722,7 @@ sourceSets {
     }
 }
 
-//For each subgroup an interface, then Emojis interface implementing all and creating a single Arrays.asList inside Emojis
-//Using interfaces instead of classes because inheritance != good
+//Using interfaces instead of classes because deep inheritance != good
 tasks.register("generateJavaSourceFiles") {
     doLast {
         val emojisPerInterface = 500
@@ -613,9 +731,8 @@ tasks.register("generateJavaSourceFiles") {
         val emojiArrayNode =
             jacksonObjectMapper().readTree(file(projectDir.absolutePath + "\\src\\main\\resources\\emoji_sources\\emojis.json"))
 
-        val path = listOf("net", "fellbaum", "jemoji")
-        val emojisCompilationUnit = CompilationUnit(path.joinToString("."))
-        emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${path.joinToString("/")}/Emojis.java").toPath())
+        val emojisCompilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
+        emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${jemojiPackagePath.joinToString("/")}/Emojis.java").toPath())
         val emojisInterface = emojisCompilationUnit.addInterface("Emojis")
         emojisInterface.setPublic(true)
         emojisCompilationUnit.run {
@@ -687,12 +804,12 @@ tasks.register("generateJavaSourceFiles") {
                     val adjustedInterfaceName = emojiSubgroupFileName + (startingLetter++)
                     emojiFileNameToConstants[adjustedInterfaceName] = it
                     emojisInterface.addExtendedType(adjustedInterfaceName)
-                    createSubGroupEmojiInterface(path, adjustedInterfaceName, it)
+                    createSubGroupEmojiInterface(jemojiPackagePath, adjustedInterfaceName, it)
                 }
             } else {
                 emojiFileNameToConstants[emojiSubgroupFileName] = emojiSubGroupInterfaceConstantVariables
                 emojisInterface.addExtendedType(emojiSubgroupFileName)
-                createSubGroupEmojiInterface(path, emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariables)
+                createSubGroupEmojiInterface(jemojiPackagePath, emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariables)
             }
         }
 
@@ -715,7 +832,7 @@ tasks.register("generateJavaSourceFiles") {
         //Create the emoji loader interfaces grouped by max X entries per interface
         var startingLetter = 'A'
         mapEntriesListWithNoMoreThanXEntries.forEach {
-            createEmojiLoaderInterface(path, "EmojiLoader" + (startingLetter++), it)
+            createEmojiLoaderInterface(jemojiPackagePath, "EmojiLoader" + (startingLetter++), it)
         }
 
         emojisListField.getVariable(0).setInitializer(emojisArrayCreationExpr)
