@@ -13,7 +13,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.getCodePointCount;
 /**
  * Represents an emoji.
  */
-public class Emoji implements Comparable<Emoji> {
+public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
     private final String unicode;
@@ -205,6 +205,16 @@ public class Emoji implements Comparable<Emoji> {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Gets the description of this emoji in the specified language.
+     * May not be present for all languages.
+     *
+     * @return The description of this emoji in the specified language.
+     */
+    public Optional<String> getDescription(EmojiDescriptionLanguage emojiDescriptionLanguage) {
+        return EmojiManager.getEmojiDescriptionForLanguageAndEmoji(emojiDescriptionLanguage, emoji);
     }
 
     /**

@@ -1,5 +1,10 @@
 package net.fellbaum.jemoji;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.MapType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +32,8 @@ public final class EmojiManager {
 
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
+
+    private static final Map<EmojiDescriptionLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
 
     static {
 //        final String fileContent = readFileAsString();
@@ -61,19 +68,31 @@ public final class EmojiManager {
         );
     }
 
-//    private static String readFileAsString() {
-//        try {
-//	    try (final InputStream is = EmojiManager.class.getResourceAsStream(PATH)) {
-//                if (is == null) return null;
-//                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-//                     final BufferedReader reader = new BufferedReader(isr)) {
-//                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-//                }
-//            }
-//        } catch (final IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    private static String readFileAsString(String filePathName) {
+        try {
+	    try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
+                if (is == null) return null;
+                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+                     final BufferedReader reader = new BufferedReader(isr)) {
+                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+                }
+            }
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiDescriptionLanguage language, final String emoji) {
+        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiDescriptionLanguage -> {
+            final String fileContent = readFileAsString("/emoji_sources/description/" + emojiDescriptionLanguage.getValue() + ".json");
+            final MapType type = TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class, String.class);
+            try {
+                return new ObjectMapper().readValue(fileContent, type);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }).get(emoji));
+    }
 
     private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {
         return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(internalAliasGroup, group -> {
