@@ -211,6 +211,7 @@ public final class Emoji implements Comparable<Emoji> {
      * Gets the description of this emoji in the specified language.
      * May not be present for all languages.
      *
+     * @param emojiDescriptionLanguage The language type the description should be searched for.
      * @return The description of this emoji in the specified language.
      */
     public Optional<String> getDescription(EmojiDescriptionLanguage emojiDescriptionLanguage) {

@@ -153,9 +153,15 @@ tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
-/*// Generate sources before compiling
+//Generate sources before compiling if they do not exist
 tasks.named("compileJava") {
-}*/
+    if (!file("./build/generated/jemoji/net/fellbaum/jemoji/Emojis.java").exists()) {
+        dependsOn("generateJavaSourceFiles")
+    }
+    if (!file("./build/generated/jemoji/net/fellbaum/jemoji/EmojiDescriptionLanguage.java").exists()) {
+        dependsOn("generateEmojisDescription")
+    }
+}
 
 tasks.named("build") {
     finalizedBy("copyJarToProject")
