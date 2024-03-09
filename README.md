@@ -54,7 +54,7 @@ implementation("net.fellbaum:jemoji:VERSION")
 
 #### Access any emoji directly by a constant
 ```java
-//Returns and Emoji instance
+//Returns an Emoji instance
 Emojis.THUMBS_UP;
 Emojis.THUMBS_UP_MEDIUM_SKIN_TONE;
 ```
