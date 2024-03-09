@@ -36,9 +36,6 @@ public final class EmojiManager {
     private static final Map<EmojiDescriptionLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
 
     static {
-//        final String fileContent = readFileAsString();
-//        try {
-//        final List<Emoji> emojis = new ObjectMapper().readValue(fileContent, new TypeReference<List<Emoji>>() {});
         //TODO: Automate somehow loading the emoji loader files?
         final Set<Emoji> emojis = new HashSet<>();
         emojis.addAll(EmojiLoaderA.EMOJI_LIST);
@@ -49,9 +46,6 @@ public final class EmojiManager {
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
         EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
-//        } catch (final JsonProcessingException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
@@ -68,10 +62,10 @@ public final class EmojiManager {
         );
     }
 
-    private static String readFileAsString(String filePathName) {
+    private static String readFileAsString(final String filePathName) {
         try {
 	    try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-                if (is == null) return null;
+                if (null == is) return null;
                 try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                      final BufferedReader reader = new BufferedReader(isr)) {
                     return reader.lines().collect(Collectors.joining(System.lineSeparator()));

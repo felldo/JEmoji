@@ -29,7 +29,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("com.github.ben-manes.versions") version "0.50.0"
+    id("com.github.ben-manes.versions") version "0.51.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     //https://github.com/melix/jmh-gradle-plugin
     id("me.champeau.jmh") version "0.7.2"
@@ -319,7 +319,7 @@ buildscript {
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.17.2")
-        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.8")
+        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.9")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
