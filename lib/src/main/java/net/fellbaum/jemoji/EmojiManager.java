@@ -65,7 +65,7 @@ public final class EmojiManager {
     private static String readFileAsString(final String filePathName) {
         try {
 	    try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-                if (null == is) return null;
+                if (null == is) throw new IllegalStateException("InputStream is null");
                 try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                      final BufferedReader reader = new BufferedReader(isr)) {
                     return reader.lines().collect(Collectors.joining(System.lineSeparator()));
