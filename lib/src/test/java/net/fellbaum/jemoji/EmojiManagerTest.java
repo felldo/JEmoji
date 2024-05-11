@@ -4,9 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ public class EmojiManagerTest {
     public static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
     private static final String SIMPLE_EMOJI_STRING = "Hello ❤️ ❤ ❤❤️ World";
     private static final String SIMPLE_POSITION_EMOJI_STRING = "Hello ❤️ ❤ 👩🏻‍🤝‍👨🏼 ❤❤️ World";
+    private static final String EMOJI_VARIATION_STRING = "♎️";
 
     @Test
     public void testIfLoadedEmojisMatchesWithJSON() {
@@ -96,6 +96,13 @@ public class EmojiManagerTest {
         Optional<Emoji> emoji = EmojiManager.getEmoji(emojiString);
         assertTrue(emoji.isPresent());
         assertEquals(emojiString, emoji.orElseThrow(RuntimeException::new).getEmoji());
+    }
+
+    @Test
+    public void getEmojiWithVariation() {
+        Optional<Emoji> emoji = EmojiManager.getEmoji(EMOJI_VARIATION_STRING);
+        assertTrue(emoji.isPresent());
+        assertEquals("♎", emoji.orElseThrow(RuntimeException::new).getEmoji());
     }
 
     @Test

@@ -437,12 +437,12 @@ fun generateEmojiDescriptionLanguageEnum(languages: List<String>) {
     compilationUnit.storage.get().save()
 }
 
-
 tasks.register("generateEmojis") {
     //dependsOn("build")
     doLast {
 
         val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
+        val unicodeVariationSequences = "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
 
         val client = OkHttpClient()
         val mapper = jacksonObjectMapper()
@@ -458,6 +458,17 @@ tasks.register("generateEmojis") {
         val discordEmojiDefinition = File("$rootDir/emoji_source_files/discord-emoji-definition.json")
         discordEmojiDefinition.writeText(mapper.writeValueAsString(discordAliases))
 
+        val unicodeVariationLines = client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body!!.string()
+
+        val emojisThatHaveVariations = unicodeVariationLines.lines()
+            .asSequence()
+            .filter { !it.startsWith("#") }
+            .filter { it.isNotEmpty() }
+            .map { it.split(";") }
+            .map { it[0].split(" ")[0].trim() }
+            .distinct()
+            .map { String(Character.toChars(it.toInt(16))) }
+            .toSet()
 
         val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
 
@@ -552,7 +563,8 @@ tasks.register("generateEmojis") {
                             qualification,
                             emojiDescription,
                             groupName,
-                            subGroupName
+                            subGroupName,
+                            emojisThatHaveVariations.contains(codepointsString)
                         )
                     }.toList()
             }
@@ -666,6 +678,7 @@ fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
                 do {
                     response = fetchEmojiTerra(listElement.attr("href"))
                     if (response.statusCode() != 200) {
+                        Thread.sleep(500)
                         println("RETRYING: ${response.statusCode()} - ${response.statusMessage()}")
                     }
                 } while (response.statusCode() != 200)
@@ -703,7 +716,8 @@ data class Emoji(
     val qualification: String,
     val description: String,
     val group: String,
-    val subgroup: String
+    val subgroup: String,
+    val hasVariationSelectors: Boolean
 )
 
 fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, List<String>> {
@@ -737,9 +751,8 @@ tasks.register("generateJavaSourceFiles") {
     doLast {
         val emojisPerInterface = 500
         val emojisPerListInterface = 5000
-
         val emojiArrayNode =
-            jacksonObjectMapper().readTree(file(projectDir.absolutePath + "\\src\\main\\resources\\emoji_sources\\emojis.json"))
+            jacksonObjectMapper().readTree(file(rootDir.absolutePath + "\\public\\emojis.json"))
 
         val emojisCompilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
         emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${jemojiPackagePath.joinToString("/")}/Emojis.java").toPath())
@@ -788,6 +801,7 @@ tasks.register("generateJavaSourceFiles") {
                     addArgument(StringLiteralExpr(it.get("description").asText()))
                     addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
                     addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
+                    addArgument(BooleanLiteralExpr(it.get("hasVariationSelectors").asBoolean()))
                 }
                 emojiConstantVariable.getVariable(0).setInitializer(initializer)
             }

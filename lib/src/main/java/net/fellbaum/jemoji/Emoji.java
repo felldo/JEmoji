@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.fellbaum.jemoji.InternalEmojiUtils.getCodePointCount;
+import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
 /**
  * Represents an emoji.
@@ -27,6 +27,7 @@ public final class Emoji implements Comparable<Emoji> {
     private final String description;
     private final EmojiGroup group;
     private final EmojiSubGroup subgroup;
+    private final boolean hasVariationSelectors;
 
     private final List<String> allAliases;
 
@@ -42,7 +43,8 @@ public final class Emoji implements Comparable<Emoji> {
             @JsonProperty("qualification") Qualification qualification,
             @JsonProperty("description") String description,
             @JsonProperty("group") EmojiGroup group,
-            @JsonProperty("subgroup") EmojiSubGroup subgroup) {
+            @JsonProperty("subgroup") EmojiSubGroup subgroup,
+            @JsonProperty("hasVariationSelectors") boolean hasVariationSelectors) {
         this.emoji = emoji;
         this.unicode = unicode;
         this.discordAliases = discordAliases;
@@ -55,6 +57,7 @@ public final class Emoji implements Comparable<Emoji> {
         this.description = description;
         this.group = group;
         this.subgroup = subgroup;
+        this.hasVariationSelectors = hasVariationSelectors;
         Set<String> aliases = new HashSet<>();
         aliases.addAll(getDiscordAliases());
         aliases.addAll(getGithubAliases());
@@ -304,6 +307,7 @@ public final class Emoji implements Comparable<Emoji> {
         result = 31 * result + slackAliases.hashCode();
         result = 31 * result + (hasFitzpatrick ? 1 : 0);
         result = 31 * result + (hasHairStyle ? 1 : 0);
+        result = 31 * result + (hasVariationSelectors ? 1 : 0);
         temp = Double.doubleToLongBits(version);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + qualification.hashCode();
@@ -312,4 +316,34 @@ public final class Emoji implements Comparable<Emoji> {
         result = 31 * result + subgroup.hashCode();
         return result;
     }
+
+    /**
+     * Returns whether the emoji has text or emoji variations.
+     * This means the emoji is allowed to be appended with a FE0E or FE0F character to control how the emoji should be displayed.
+     *
+     * @return Whether the emoji is a standardized emoji that can be appended with a Variation Selector.
+     * @see <a href="https://www.unicode.org/faq/vs.html">Read more here about Emoji Variation Sequences</a>
+     */
+    public boolean hasVariationSelectors() {
+        return hasVariationSelectors;
+    }
+
+    /**
+     * Gets the text representation of this emoji if the emoji is a standardized emoji that allows variations.
+     *
+     * @return The text variation of this emoji.
+     */
+    public Optional<String> getTextVariation() {
+        return hasVariationSelectors() ? Optional.of(emoji + TEXT_VARIATION_CHARACTER) : Optional.empty();
+    }
+
+    /**
+     * Gets the emoji representation of this emoji if the emoji is a standardized emoji that allows variations.
+     *
+     * @return The emoji variation of this emoji.
+     */
+    public Optional<String> getEmojiVariation() {
+        return hasVariationSelectors() ? Optional.of(emoji + EMOJI_VARIATION_CHARACTER) : Optional.empty();
+    }
+
 }

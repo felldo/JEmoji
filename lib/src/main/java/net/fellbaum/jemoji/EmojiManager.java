@@ -15,6 +15,7 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
@@ -41,30 +42,43 @@ public final class EmojiManager {
         emojis.addAll(EmojiLoaderA.EMOJI_LIST);
         emojis.addAll(EmojiLoaderB.EMOJI_LIST);
 
-        EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(emojis.stream().collect(Collectors.toMap(Emoji::getEmoji, Function.identity())));
+        EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
 
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
-        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = emojis.stream().collect(getEmojiLinkedHashMapCollector());
+        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = prepareEmojisStreamForInitialization(emojis).collect(getEmojiLinkedHashMapCollector());
     }
 
-    private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
+    private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
         return Collectors.groupingBy(
-                emoji -> emoji.getEmoji().codePointAt(0),
+                entry -> entry.getValue().getEmoji().codePointAt(0),
                 LinkedHashMap::new,
                 Collectors.collectingAndThen(
-                        Collectors.toList(),
+                        Collectors.mapping(Map.Entry::getValue, Collectors.toList()),
                         list -> {
-                            list.sort(Comparator.reverseOrder());
+                            list.sort((e1, e2) -> Integer.compare(e2.getEmoji().length(), e1.getEmoji().length()));
                             return list;
                         }
                 )
         );
     }
 
+    private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Set<Emoji> emojis) {
+        return emojis.stream()
+                .flatMap(emoji -> {
+                    final Stream.Builder<AbstractMap.SimpleEntry<String, Emoji>> streamBuilder = Stream.builder();
+                    streamBuilder.add(new AbstractMap.SimpleEntry<>(emoji.getEmoji(), emoji));
+                    if (emoji.hasVariationSelectors()) {
+                        emoji.getTextVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
+                        emoji.getEmojiVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
+                    }
+                    return streamBuilder.build();
+                });
+    }
+
     private static String readFileAsString(final String filePathName) {
         try {
-	    try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
+            try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
                 if (null == is) throw new IllegalStateException("InputStream is null");
                 try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
                      final BufferedReader reader = new BufferedReader(isr)) {

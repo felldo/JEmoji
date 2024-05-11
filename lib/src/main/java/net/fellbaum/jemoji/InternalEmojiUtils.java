@@ -5,7 +5,11 @@ import java.util.Optional;
 
 class InternalEmojiUtils {
 
-    private InternalEmojiUtils() {}
+    private InternalEmojiUtils() {
+    }
+
+    public static final char TEXT_VARIATION_CHARACTER = '\uFE0E';
+    public static final char EMOJI_VARIATION_CHARACTER = '\uFE0F';
 
     public static int getCodePointCount(final String string) {
         return string.codePointCount(0, string.length());
@@ -34,7 +38,7 @@ class InternalEmojiUtils {
     public static int[] stringToCodePoints(final String text) {
         final int[] codePoints = new int[getCodePointCount(text)];
         int j = 0;
-        for (int i = 0; i < text.length();) {
+        for (int i = 0; i < text.length(); ) {
             final int codePoint = text.codePointAt(i);
             codePoints[j++] = codePoint;
             i += Character.charCount(codePoint);

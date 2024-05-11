@@ -131,7 +131,7 @@ String text=EmojiManager.removeAllEmojis("Hello 😀 World 👍"); // "Hello  Wo
 #### Remove specific emojis from a string
 
 ```java
-String text=EmojiManager.removeEmojis("Hello 😀 World 👍",EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello  World 👍"
+String text=EmojiManager.removeEmojis("Hello 😀 World 👍", Emojis.GRINNING_FACE); // "Hello  World 👍"
 ```
 
 #### Replace all emojis in a string
@@ -145,7 +145,7 @@ String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍",Emoji::getHtml
 #### Replace specific emojis in a string
 
 ```java
-String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>",EmojiManager.getEmoji("😀").orElseThrow(RuntimeException::new)); // "Hello <an emoji was here> World 👍"
+String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>", Emojis.GRINNING_FACE); // "Hello <an emoji was here> World 👍"
 ```
 
 ### Emoji Object
@@ -172,6 +172,7 @@ class Emoji {
 + getDescription(EmojiDescriptionLanguage) String
 + getGroup() EmojiGroup
 + getSubGroup() EmojiSubGroup
++ hasVariationSelectors() boolean
 }
 ```
 
