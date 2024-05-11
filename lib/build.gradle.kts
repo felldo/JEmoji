@@ -80,7 +80,7 @@ repositories {
 dependencies {
     compileOnlyApi("org.jspecify:jspecify:0.3.0")
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
 }
 
 testing {
@@ -314,12 +314,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.16.1")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.17.2")
-        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.9")
+        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.10")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
