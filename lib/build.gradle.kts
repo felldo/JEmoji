@@ -347,18 +347,16 @@ tasks.register("generateEmojisDescription") {
 
         requestCLDREmojiDescriptionTranslation(
             "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/${
-                directory.get(
-                    "name"
-                ).asText()
-            }/annotations.json", client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
+                directory.get("name").asText()
+            }/annotations.json",
+            client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
         )
 
         requestCLDREmojiDescriptionTranslation(
             "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/${
-                directory.get(
-                    "name"
-                ).asText()
-            }/annotations.json", client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
+                directory.get("name").asText()
+            }/annotations.json",
+            client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
         )
 
 
@@ -383,11 +381,10 @@ fun requestCLDREmojiDescriptionTranslation(
 
     val fileContent: JsonNode = mapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
 
-    val translationFile = File("$rootDir/emoji_source_files/description/$fileName.json")
+    val translationFile = File("$rootDir/emoji_source_files/description/$fileName${if(fileContent.has("annotationsDerived")) "-derieved" else ""}.json")
     translationFile.writeText(mapper.writeValueAsString(fileContent))
 
-    val annotationsDerived =
-        if (fileContent.has("annotations")) fileContent.get("annotations") else fileContent.get("annotationsDerived")
+    val annotationsDerived = if (fileContent.has("annotations")) fileContent.get("annotations") else fileContent.get("annotationsDerived")
     if (!annotationsDerived.has("annotations")) {
         return
     }
@@ -442,7 +439,8 @@ tasks.register("generateEmojis") {
     doLast {
 
         val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
-        val unicodeVariationSequences = "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
+        val unicodeVariationSequences =
+            "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
 
         val client = OkHttpClient()
         val mapper = jacksonObjectMapper()
@@ -458,7 +456,8 @@ tasks.register("generateEmojis") {
         val discordEmojiDefinition = File("$rootDir/emoji_source_files/discord-emoji-definition.json")
         discordEmojiDefinition.writeText(mapper.writeValueAsString(discordAliases))
 
-        val unicodeVariationLines = client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body!!.string()
+        val unicodeVariationLines =
+            client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body!!.string()
 
         val emojisThatHaveVariations = unicodeVariationLines.lines()
             .asSequence()

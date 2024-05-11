@@ -22,8 +22,6 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
-    private static final String PATH = "/emoji_sources/emojis.json";
-
     private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
     private static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
