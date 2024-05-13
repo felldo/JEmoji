@@ -35,7 +35,7 @@ public class EmojiManagerTest {
 
     @Test
     public void testIfEmojiAlternativeLanguageIsLoaded() {
-        assertEquals("Daumen hoch", Emojis.THUMBS_UP.getDescription(EmojiDescriptionLanguage.DE).get());
+        assertEquals("Daumen hoch", Emojis.THUMBS_UP.getDescription(EmojiDescriptionLanguage.DE).orElseThrow(RuntimeException::new));
     }
 
     @Test
@@ -142,17 +142,17 @@ public class EmojiManagerTest {
 
     @Test
     public void removeAllEmojisExcept() {
-        assertEquals("Hello ❤️  ❤️ World", EmojiManager.removeAllEmojisExcept(SIMPLE_EMOJI_STRING + "👍", EmojiManager.getEmoji("❤️").orElseThrow(RuntimeException::new)));
+        assertEquals("Hello ❤️  ❤️ World", EmojiManager.removeAllEmojisExcept(SIMPLE_EMOJI_STRING + "👍", Emojis.RED_HEART));
     }
 
     @Test
     public void replaceEmojis() {
-        assertEquals("Hello :heart: ❤ ❤:heart: World", EmojiManager.replaceEmojis(SIMPLE_EMOJI_STRING, ":heart:", EmojiManager.getEmoji("❤️").orElseThrow(RuntimeException::new)));
+        assertEquals("Hello :heart: ❤ ❤:heart: World", EmojiManager.replaceEmojis(SIMPLE_EMOJI_STRING, ":heart:", Emojis.RED_HEART));
     }
 
     @Test
     public void replaceOnlyUnqualifiedEmoji() {
-        assertEquals("Hello ❤️ :heart: :heart:❤️ World", EmojiManager.replaceEmojis(SIMPLE_EMOJI_STRING, ":heart:", EmojiManager.getEmoji("❤").orElseThrow(RuntimeException::new)));
+        assertEquals("Hello ❤️ :heart: :heart:❤️ World", EmojiManager.replaceEmojis(SIMPLE_EMOJI_STRING, ":heart:", Emojis.RED_HEART_UNQUALIFIED));
     }
 
     @Test
