@@ -158,8 +158,8 @@ tasks.named("compileJava") {
     if (!file("./build/generated/jemoji/net/fellbaum/jemoji/Emojis.java").exists()) {
         dependsOn("generateJavaSourceFiles")
     }
-    if (!file("./build/generated/jemoji/net/fellbaum/jemoji/EmojiDescriptionLanguage.java").exists()) {
-        dependsOn("generateEmojisDescription")
+    if (!file("./build/generated/jemoji/net/fellbaum/jemoji/EmojiLanguage.java").exists()) {
+        dependsOn("generateEmojisDescriptionAndKeywords")
     }
 }
 
@@ -171,7 +171,7 @@ tasks.named("build") {
  * Startup task to generate the needed source files for this project. Does not generate a new emojis.json.
  */
 tasks.register("generate") {
-    dependsOn("generateEmojisDescription")
+    dependsOn("generateEmojisDescriptionAndKeywords")
     dependsOn("generateJavaSourceFiles")
 }
 
@@ -242,8 +242,8 @@ publishing {
                 uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             }
             credentials {
-                username = findPropertyOrNull("NEXUS_USERNAME")
-                password = findPropertyOrNull("NEXUS_PASSWORD")
+                username = findPropertyOrNull("NEXUS_API_TOKEN_USERNAME")
+                password = findPropertyOrNull("NEXUS_API_TOKEN_PASSWORD")
             }
         }
     }
@@ -327,7 +327,7 @@ buildscript {
 // https://github.com/unicode-org/cldr-json/tree/main/cldr-json
 // https://stackoverflow.com/questions/39490865/how-can-i-get-the-full-list-of-slack-emoji-through-api
 // https://github.com/iamcal/emoji-data/
-tasks.register("generateEmojisDescription") {
+tasks.register("generateEmojisDescriptionAndKeywords") {
     val objectMapper = ObjectMapper()
     val client = OkHttpClient()
     val repo = "unicode-org/cldr-json"
@@ -344,35 +344,38 @@ tasks.register("generateEmojisDescription") {
 
     for (directory in descriptionDirectory) {
         val descriptionNodeOutput = JsonNodeFactory.instance.objectNode()
+        val keywordsNodeOutput = JsonNodeFactory.instance.objectNode()
 
         requestCLDREmojiDescriptionTranslation(
             "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/${
                 directory.get("name").asText()
             }/annotations.json",
-            client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
+            client, objectMapper, descriptionNodeOutput, keywordsNodeOutput, directory.get("name").asText()
         )
 
         requestCLDREmojiDescriptionTranslation(
             "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/${
                 directory.get("name").asText()
             }/annotations.json",
-            client, objectMapper, descriptionNodeOutput, directory.get("name").asText()
+            client, objectMapper, descriptionNodeOutput, keywordsNodeOutput, directory.get("name").asText()
         )
-
-
         val descriptionFile =
             File("$projectDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}.json")
         descriptionFile.writeText(objectMapper.writeValueAsString(descriptionNodeOutput))
+        val keywordsFile =
+            File("$projectDir/src/main/resources/emoji_sources/keyword/${directory.get("name").asText()}.json")
+        keywordsFile.writeText(objectMapper.writeValueAsString(keywordsNodeOutput))
         fileNameList.add(directory.get("name").asText())
     }
 
-    generateEmojiDescriptionLanguageEnum(fileNameList)
+    generateEmojiLanguageEnum(fileNameList)
 }
 fun requestCLDREmojiDescriptionTranslation(
     url: String,
     client: OkHttpClient,
     mapper: ObjectMapper,
     descriptionNodeOutput: ObjectNode,
+    keywordsNodeOutput: ObjectNode,
     fileName: String
 ) {
     val fileHttpBuilder: HttpUrl.Builder = url.toHttpUrl().newBuilder()
@@ -381,10 +384,12 @@ fun requestCLDREmojiDescriptionTranslation(
 
     val fileContent: JsonNode = mapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
 
-    val translationFile = File("$rootDir/emoji_source_files/description/$fileName${if(fileContent.has("annotationsDerived")) "-derieved" else ""}.json")
+    val translationFile =
+        File("$rootDir/emoji_source_files/description/$fileName${if (fileContent.has("annotationsDerived")) "-derieved" else ""}.json")
     translationFile.writeText(mapper.writeValueAsString(fileContent))
 
-    val annotationsDerived = if (fileContent.has("annotations")) fileContent.get("annotations") else fileContent.get("annotationsDerived")
+    val annotationsDerived =
+        if (fileContent.has("annotations")) fileContent.get("annotations") else fileContent.get("annotationsDerived")
     if (!annotationsDerived.has("annotations")) {
         return
     }
@@ -395,13 +400,17 @@ fun requestCLDREmojiDescriptionTranslation(
     annotationsNode.fields().forEach {
         if (it.value.has("tts")) {
             descriptionNodeOutput.put(it.key, it.value.get("tts").joinToString(" ") { it.asText() })
+            val keywordsArray = keywordsNodeOutput.putArray(it.key)
+            if (it.value.has("default")) {
+                it.value.get("default").forEach { keywordsArray.add(it) }
+            }
         }
     }
 }
 
 val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
-fun generateEmojiDescriptionLanguageEnum(languages: List<String>) {
-    val fileName = "EmojiDescriptionLanguage"
+fun generateEmojiLanguageEnum(languages: List<String>) {
+    val fileName = "EmojiLanguage"
 
     val emojisPath = "${jemojiPackagePath.joinToString("/")}/$fileName.java"
     val compilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))

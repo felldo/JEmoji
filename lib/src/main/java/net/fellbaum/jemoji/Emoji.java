@@ -214,11 +214,22 @@ public final class Emoji implements Comparable<Emoji> {
      * Gets the description of this emoji in the specified language.
      * May not be present for all languages.
      *
-     * @param emojiDescriptionLanguage The language type the description should be searched for.
+     * @param emojiLanguage The language type the description should be searched for.
      * @return The description of this emoji in the specified language.
      */
-    public Optional<String> getDescription(EmojiDescriptionLanguage emojiDescriptionLanguage) {
-        return EmojiManager.getEmojiDescriptionForLanguageAndEmoji(emojiDescriptionLanguage, emoji);
+    public Optional<String> getDescription(final EmojiLanguage emojiLanguage) {
+        return EmojiManager.getEmojiDescriptionForLanguageAndEmoji(emojiLanguage, emoji);
+    }
+
+    /**
+     * Gets the keywords of this emoji in the specified language.
+     * May not be present for all languages.
+     *
+     * @param emojiLanguage The language type the keywords should be searched for.
+     * @return The keywords of this emoji in the specified language.
+     */
+    public Optional<Set<String>> getKeywords(final EmojiLanguage emojiLanguage) {
+        return EmojiManager.getEmojiKeywordsForLanguageAndEmoji(emojiLanguage, emoji);
     }
 
     /**
@@ -239,24 +250,6 @@ public final class Emoji implements Comparable<Emoji> {
         return subgroup;
     }
 
-    @Override
-    public String toString() {
-        return "Emoji{" +
-                "emoji='" + emoji + '\'' +
-                ", unicode='" + unicode + '\'' +
-                ", discordAliases=" + discordAliases +
-                ", githubAliases=" + githubAliases +
-                ", slackAliases=" + slackAliases +
-                ", hasFitzpatrick=" + hasFitzpatrick +
-                ", hasHairStyle=" + hasHairStyle +
-                ", version=" + version +
-                ", qualification=" + qualification +
-                ", description='" + description + '\'' +
-                ", group=" + group +
-                ", subgroup=" + subgroup +
-                '}';
-    }
-
     /**
      * Compares the emojis based on their codepoint length,
      * and if they are equal, compare them lexicographically based on the emoji.
@@ -273,48 +266,6 @@ public final class Emoji implements Comparable<Emoji> {
         }
 
         return this.getEmoji().compareTo(o.getEmoji());
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Emoji emoji1 = (Emoji) o;
-
-        if (hasFitzpatrick != emoji1.hasFitzpatrick) return false;
-        if (hasHairStyle != emoji1.hasHairStyle) return false;
-        if (Double.compare(emoji1.version, version) != 0) return false;
-        if (!emoji.equals(emoji1.emoji)) return false;
-        if (!unicode.equals(emoji1.unicode)) return false;
-        if (!discordAliases.equals(emoji1.discordAliases)) return false;
-        if (!githubAliases.equals(emoji1.githubAliases)) return false;
-        if (!slackAliases.equals(emoji1.slackAliases)) return false;
-        if (qualification != emoji1.qualification) return false;
-        if (!description.equals(emoji1.description)) return false;
-        if (group != emoji1.group) return false;
-        return subgroup == emoji1.subgroup;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = emoji.hashCode();
-        result = 31 * result + unicode.hashCode();
-        result = 31 * result + discordAliases.hashCode();
-        result = 31 * result + githubAliases.hashCode();
-        result = 31 * result + slackAliases.hashCode();
-        result = 31 * result + (hasFitzpatrick ? 1 : 0);
-        result = 31 * result + (hasHairStyle ? 1 : 0);
-        result = 31 * result + (hasVariationSelectors ? 1 : 0);
-        temp = Double.doubleToLongBits(version);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + qualification.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + group.hashCode();
-        result = 31 * result + subgroup.hashCode();
-        return result;
     }
 
     /**
@@ -346,4 +297,51 @@ public final class Emoji implements Comparable<Emoji> {
         return hasVariationSelectors() ? Optional.of(emoji + EMOJI_VARIATION_CHARACTER) : Optional.empty();
     }
 
+    @Override
+    public String toString() {
+        return "Emoji{" +
+                "emoji='" + emoji + '\'' +
+                ", unicode='" + unicode + '\'' +
+                ", discordAliases=" + discordAliases +
+                ", githubAliases=" + githubAliases +
+                ", slackAliases=" + slackAliases +
+                ", hasFitzpatrick=" + hasFitzpatrick +
+                ", hasHairStyle=" + hasHairStyle +
+                ", version=" + version +
+                ", qualification=" + qualification +
+                ", description='" + description + '\'' +
+                ", group=" + group +
+                ", subgroup=" + subgroup +
+                ", hasVariationSelectors=" + hasVariationSelectors +
+                ", allAliases=" + allAliases +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Emoji emoji1 = (Emoji) o;
+        return hasFitzpatrick == emoji1.hasFitzpatrick && hasHairStyle == emoji1.hasHairStyle && Double.compare(version, emoji1.version) == 0 && hasVariationSelectors == emoji1.hasVariationSelectors && emoji.equals(emoji1.emoji) && unicode.equals(emoji1.unicode) && discordAliases.equals(emoji1.discordAliases) && githubAliases.equals(emoji1.githubAliases) && slackAliases.equals(emoji1.slackAliases) && qualification == emoji1.qualification && description.equals(emoji1.description) && group == emoji1.group && subgroup == emoji1.subgroup && allAliases.equals(emoji1.allAliases);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = emoji.hashCode();
+        result = 31 * result + unicode.hashCode();
+        result = 31 * result + discordAliases.hashCode();
+        result = 31 * result + githubAliases.hashCode();
+        result = 31 * result + slackAliases.hashCode();
+        result = 31 * result + Boolean.hashCode(hasFitzpatrick);
+        result = 31 * result + Boolean.hashCode(hasHairStyle);
+        result = 31 * result + Double.hashCode(version);
+        result = 31 * result + qualification.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + group.hashCode();
+        result = 31 * result + subgroup.hashCode();
+        result = 31 * result + Boolean.hashCode(hasVariationSelectors);
+        result = 31 * result + allAliases.hashCode();
+        return result;
+    }
 }
