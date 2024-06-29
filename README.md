@@ -169,7 +169,7 @@ class Emoji {
 + getVersion() double
 + getQualification() Qualification
 + getDescription() String
-+ getDescription(EmojiDescriptionLanguage) String
++ getDescription(EmojiLanguage) String
 + getGroup() EmojiGroup
 + getSubGroup() EmojiSubGroup
 + hasVariationSelectors() boolean

@@ -35,7 +35,7 @@ public class EmojiManagerTest {
 
     @Test
     public void testIfEmojiAlternativeLanguageIsLoaded() {
-        assertEquals("Daumen hoch", Emojis.THUMBS_UP.getDescription(EmojiDescriptionLanguage.DE).orElseThrow(RuntimeException::new));
+        assertEquals("Daumen hoch", Emojis.THUMBS_UP.getDescription(EmojiLanguage.DE).orElseThrow(RuntimeException::new));
     }
 
     @Test

@@ -1,9 +1,8 @@
 package net.fellbaum.jemoji;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +31,8 @@ public final class EmojiManager {
     private static Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
-    private static final Map<EmojiDescriptionLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
+    private static final Map<EmojiLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
+    private static final Map<EmojiLanguage, Map<String, Set<String>>> EMOJI_KEYWORD_LANGUAGE_MAP = new HashMap<>();
 
     static {
         //TODO: Automate somehow loading the emoji loader files?
@@ -44,7 +44,7 @@ public final class EmojiManager {
 
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
-        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = prepareEmojisStreamForInitialization(emojis).collect(getEmojiLinkedHashMapCollector());
+        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(getEmojiLinkedHashMapCollector()));
     }
 
     private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
@@ -88,12 +88,26 @@ public final class EmojiManager {
         }
     }
 
-    static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiDescriptionLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiDescriptionLanguage -> {
-            final String fileContent = readFileAsString("/emoji_sources/description/" + emojiDescriptionLanguage.getValue() + ".json");
-            final MapType type = TypeFactory.defaultInstance().constructMapType(HashMap.class, String.class, String.class);
+    static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
+        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> {
+            final String fileContent = readFileAsString("/emoji_sources/description/" + emojiLanguage.getValue() + ".json");
+            final TypeReference<Map<String, String>> typeRef = new TypeReference<Map<String, String>>() {
+            };
             try {
-                return new ObjectMapper().readValue(fileContent, type);
+                return new ObjectMapper().readValue(fileContent, typeRef);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }).get(emoji));
+    }
+
+    static Optional<Set<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
+        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> {
+            final String fileContent = readFileAsString("/emoji_sources/keyword/" + emojiLanguage.getValue() + ".json");
+            final TypeReference<Map<String, Set<String>>> typeRef = new TypeReference<Map<String, Set<String>>>() {
+            };
+            try {
+                return new ObjectMapper().readValue(fileContent, typeRef);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
@@ -144,6 +158,24 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojis() {
         return new HashSet<>(EMOJIS_LENGTH_DESCENDING);
+    }
+
+    /**
+     * Gets all emojis mapped to their group.
+     *
+     * @return A map of all emojis mapped to their group.
+     */
+    public static Map<EmojiGroup, Set<Emoji>> getAllEmojisGrouped() {
+        return EMOJIS_LENGTH_DESCENDING.stream().collect(Collectors.groupingBy(Emoji::getGroup, Collectors.toSet()));
+    }
+
+    /**
+     * Gets all emojis mapped to their subgroup.
+     *
+     * @return A map of all emojis mapped to their subgroup.
+     */
+    public static Map<EmojiSubGroup, Set<Emoji>> getAllEmojisSubGrouped() {
+        return EMOJIS_LENGTH_DESCENDING.stream().collect(Collectors.groupingBy(Emoji::getSubgroup, Collectors.toSet()));
     }
 
     /**
