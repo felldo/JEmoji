@@ -65115,7 +65115,7 @@
 }, {
   "emoji" : "0️⃣",
   "unicode" : "\u0030\uFE0F\u20E3",
-  "discordAliases" : [ ":zero:" ],
+  "discordAliases" : [ ":zero:", ":number_0:" ],
   "githubAliases" : [ ":zero:" ],
   "slackAliases" : [ ":zero:" ],
   "hasFitzpatrick" : false,
@@ -65143,7 +65143,7 @@
 }, {
   "emoji" : "1️⃣",
   "unicode" : "\u0031\uFE0F\u20E3",
-  "discordAliases" : [ ":one:" ],
+  "discordAliases" : [ ":one:", ":number_1:" ],
   "githubAliases" : [ ":one:" ],
   "slackAliases" : [ ":one:" ],
   "hasFitzpatrick" : false,
@@ -65171,7 +65171,7 @@
 }, {
   "emoji" : "2️⃣",
   "unicode" : "\u0032\uFE0F\u20E3",
-  "discordAliases" : [ ":two:" ],
+  "discordAliases" : [ ":two:", ":number_2:" ],
   "githubAliases" : [ ":two:" ],
   "slackAliases" : [ ":two:" ],
   "hasFitzpatrick" : false,
@@ -65199,7 +65199,7 @@
 }, {
   "emoji" : "3️⃣",
   "unicode" : "\u0033\uFE0F\u20E3",
-  "discordAliases" : [ ":three:" ],
+  "discordAliases" : [ ":three:", ":number_3:" ],
   "githubAliases" : [ ":three:" ],
   "slackAliases" : [ ":three:" ],
   "hasFitzpatrick" : false,
@@ -65227,7 +65227,7 @@
 }, {
   "emoji" : "4️⃣",
   "unicode" : "\u0034\uFE0F\u20E3",
-  "discordAliases" : [ ":four:" ],
+  "discordAliases" : [ ":four:", ":number_4:" ],
   "githubAliases" : [ ":four:" ],
   "slackAliases" : [ ":four:" ],
   "hasFitzpatrick" : false,
@@ -65255,7 +65255,7 @@
 }, {
   "emoji" : "5️⃣",
   "unicode" : "\u0035\uFE0F\u20E3",
-  "discordAliases" : [ ":five:" ],
+  "discordAliases" : [ ":five:", ":number_5:" ],
   "githubAliases" : [ ":five:" ],
   "slackAliases" : [ ":five:" ],
   "hasFitzpatrick" : false,
@@ -65283,7 +65283,7 @@
 }, {
   "emoji" : "6️⃣",
   "unicode" : "\u0036\uFE0F\u20E3",
-  "discordAliases" : [ ":six:" ],
+  "discordAliases" : [ ":six:", ":number_6:" ],
   "githubAliases" : [ ":six:" ],
   "slackAliases" : [ ":six:" ],
   "hasFitzpatrick" : false,
@@ -65311,7 +65311,7 @@
 }, {
   "emoji" : "7️⃣",
   "unicode" : "\u0037\uFE0F\u20E3",
-  "discordAliases" : [ ":seven:" ],
+  "discordAliases" : [ ":seven:", ":number_7:" ],
   "githubAliases" : [ ":seven:" ],
   "slackAliases" : [ ":seven:" ],
   "hasFitzpatrick" : false,
@@ -65339,7 +65339,7 @@
 }, {
   "emoji" : "8️⃣",
   "unicode" : "\u0038\uFE0F\u20E3",
-  "discordAliases" : [ ":eight:" ],
+  "discordAliases" : [ ":eight:", ":number_8:" ],
   "githubAliases" : [ ":eight:" ],
   "slackAliases" : [ ":eight:" ],
   "hasFitzpatrick" : false,
@@ -65367,7 +65367,7 @@
 }, {
   "emoji" : "9️⃣",
   "unicode" : "\u0039\uFE0F\u20E3",
-  "discordAliases" : [ ":nine:" ],
+  "discordAliases" : [ ":nine:", ":number_9:" ],
   "githubAliases" : [ ":nine:" ],
   "slackAliases" : [ ":nine:" ],
   "hasFitzpatrick" : false,
@@ -65395,7 +65395,7 @@
 }, {
   "emoji" : "🔟",
   "unicode" : "\uD83D\uDD1F",
-  "discordAliases" : [ ":keycap_ten:" ],
+  "discordAliases" : [ ":keycap_ten:", ":number_10:" ],
   "githubAliases" : [ ":keycap_ten:" ],
   "slackAliases" : [ ":keycap_ten:" ],
   "hasFitzpatrick" : false,
