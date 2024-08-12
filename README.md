@@ -156,6 +156,15 @@ String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍",Emoji::getHtml
 String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>", Emojis.GRINNING_FACE); // "Hello <an emoji was here> World 👍"
 ```
 
+### EmojiLoader
+
+#### Load all emoji keyword/description files instead of on demand
+
+```java
+EmojiLoader.loadAllEmojiDescriptions();
+EmojiLoader.loadAllEmojiKeywords();
+```
+
 ### Emoji Object
 
 ```mermaid
