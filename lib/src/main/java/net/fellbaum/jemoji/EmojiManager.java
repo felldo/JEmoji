@@ -35,8 +35,6 @@ public final class EmojiManager {
         emojis.addAll(EmojiLoaderA.EMOJI_LIST);
         emojis.addAll(EmojiLoaderB.EMOJI_LIST);
 
-        Map<EmojiGroup, Set<Emoji>> a = EmojiManager.getAllEmojisGrouped();
-        Map<EmojiSubGroup, Set<Emoji>> b = EmojiManager.getAllEmojisSubGrouped();
         EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
 
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
