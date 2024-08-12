@@ -1,5 +1,7 @@
 package net.fellbaum.jemoji;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,7 +17,7 @@ class InternalEmojiUtils {
         return string.codePointCount(0, string.length());
     }
 
-    public static boolean isStringNullOrEmpty(final String string) {
+    public static boolean isStringNullOrEmpty(@Nullable final String string) {
         return null == string || string.isEmpty();
     }
 

@@ -1,14 +1,8 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import org.jspecify.annotations.Nullable;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -16,6 +10,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static net.fellbaum.jemoji.EmojiLoader.readFileAsObject;
 import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
 @SuppressWarnings("unused")
@@ -28,7 +23,7 @@ public final class EmojiManager {
     // Get emoji by alias
     private static final Map<InternalAliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(InternalAliasGroup.class);
 
-    private static Pattern EMOJI_PATTERN;
+    private static @Nullable Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     private static final Map<EmojiLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
@@ -40,6 +35,8 @@ public final class EmojiManager {
         emojis.addAll(EmojiLoaderA.EMOJI_LIST);
         emojis.addAll(EmojiLoaderB.EMOJI_LIST);
 
+        Map<EmojiGroup, Set<Emoji>> a = EmojiManager.getAllEmojisGrouped();
+        Map<EmojiSubGroup, Set<Emoji>> b = EmojiManager.getAllEmojisSubGrouped();
         EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
 
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
@@ -74,44 +71,14 @@ public final class EmojiManager {
                 });
     }
 
-    private static String readFileAsString(final String filePathName) {
-        try {
-            try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-                if (null == is) throw new IllegalStateException("InputStream is null");
-                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-                     final BufferedReader reader = new BufferedReader(isr)) {
-                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-                }
-            }
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    @SuppressWarnings("unchecked")
     static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> {
-            final String fileContent = readFileAsString("/emoji_sources/description/" + emojiLanguage.getValue() + ".json");
-            final TypeReference<Map<String, String>> typeRef = new TypeReference<Map<String, String>>() {
-            };
-            try {
-                return new ObjectMapper().readValue(fileContent, typeRef);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        }).get(emoji));
+        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, String>) readFileAsObject("/emoji_sources/description/" + emojiLanguage.getValue())).get(emoji));
     }
 
+    @SuppressWarnings("unchecked")
     static Optional<Set<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> {
-            final String fileContent = readFileAsString("/emoji_sources/keyword/" + emojiLanguage.getValue() + ".json");
-            final TypeReference<Map<String, Set<String>>> typeRef = new TypeReference<Map<String, Set<String>>>() {
-            };
-            try {
-                return new ObjectMapper().readValue(fileContent, typeRef);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        }).get(emoji));
+        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, Set<String>>) readFileAsObject("/emoji_sources/keyword/" + emojiLanguage.getValue())).get(emoji));
     }
 
     private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {
@@ -130,9 +97,9 @@ public final class EmojiManager {
     }
 
     /**
-     * Returns the emoji for the given unicode.
+     * Returns the emoji for the given Unicode.
      *
-     * @param emoji The unicode of the emoji.
+     * @param emoji The Unicode of the emoji.
      * @return The emoji.
      */
     public static Optional<Emoji> getEmoji(final String emoji) {
@@ -631,34 +598,6 @@ public final class EmojiManager {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
 
-    /*public static List<Emoji> testEmojiPattern(final String text) {
-        if (isStringNullOrEmpty(text)) return Collections.emptyList();
-
-        final Matcher matcher = EMOJI_PATTERN.matcher(text);
-
-        final List<Emoji> emojis = new ArrayList<>();
-        while (matcher.find()) {
-            emojis.add(EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getEmoji().equals(matcher.group())).findFirst().get());
-        }
-        return Collections.unmodifiableList(emojis);
-    }*/
-
-    /*public static List<Emoji> extractEmojisInOrderEmojiRegex(String text) {
-        if (isStringNullOrEmpty(text)) return Collections.emptyList();
-
-        final List<Emoji> emojis = new ArrayList<>();
-        System.out.println(EMOJI_PATTERN.pattern());
-        System.out.println(EMOJI_PATTERN.toString());
-
-        Matcher matcher = EMOJI_PATTERN.matcher(text);
-        while (matcher.find()) {
-            String emoji = matcher.group();
-
-            emojis.add(EMOJI_CHAR_TO_EMOJI.get(emoji));
-        }
-
-        return emojis;
-    }*/
 }
 
 

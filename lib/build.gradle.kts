@@ -22,6 +22,8 @@ import okhttp3.internal.toHexString
 import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.jsoup.Connection
 import org.jsoup.Jsoup
+import java.io.FileOutputStream
+import java.io.ObjectOutputStream
 import java.util.stream.Collectors
 import kotlin.math.ceil
 
@@ -78,9 +80,9 @@ repositories {
 }
 
 dependencies {
-    compileOnlyApi("org.jspecify:jspecify:0.3.0")
+    compileOnlyApi("org.jspecify:jspecify:1.0.0")
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+    //implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
 
 testing {
@@ -168,7 +170,7 @@ tasks.named("build") {
 }
 
 /**
- * Startup task to generate the needed source files for this project. Does not generate a new emojis.json.
+ * Startup task to generate the necessary source files for this project. Does not generate a new emojis.json.
  */
 tasks.register("generate") {
     dependsOn("generateEmojisDescriptionAndKeywords")
@@ -314,8 +316,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.17.1")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.17.2")
@@ -359,12 +361,27 @@ tasks.register("generateEmojisDescriptionAndKeywords") {
             }/annotations.json",
             client, objectMapper, descriptionNodeOutput, keywordsNodeOutput, directory.get("name").asText()
         )
+        /*
         val descriptionFile =
             File("$projectDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}.json")
         descriptionFile.writeText(objectMapper.writeValueAsString(descriptionNodeOutput))
         val keywordsFile =
             File("$projectDir/src/main/resources/emoji_sources/keyword/${directory.get("name").asText()}.json")
         keywordsFile.writeText(objectMapper.writeValueAsString(keywordsNodeOutput))
+        */
+
+        val descriptionMap: Map<String, String> = objectMapper.treeToValue(descriptionNodeOutput, Map::class.java) as Map<String, String>
+        val descriptionfos: FileOutputStream = FileOutputStream("$projectDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}")
+        val descriptionoos: ObjectOutputStream = ObjectOutputStream(descriptionfos)
+        descriptionoos.writeObject(descriptionMap)
+        descriptionoos.close()
+
+        val keywordMap: Map<String, List<String>> = objectMapper.treeToValue(keywordsNodeOutput, Map::class.java) as Map<String, List<String>>
+        val keywordfos: FileOutputStream = FileOutputStream("$projectDir/src/main/resources/emoji_sources/keyword/${directory.get("name").asText()}")
+        val keywordoos: ObjectOutputStream = ObjectOutputStream(keywordfos)
+        keywordoos.writeObject(keywordMap)
+        keywordoos.close()
+
         fileNameList.add(directory.get("name").asText())
     }
 

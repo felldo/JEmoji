@@ -1,14 +1,12 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * Represents an emoji sub group.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SpellCheckingInspection"})
 public enum EmojiSubGroup {
 
     ALPHANUM("alphanum", EmojiGroup.SYMBOLS),
@@ -146,7 +144,6 @@ public enum EmojiSubGroup {
      * @param name The name of the emoji subgroup.
      * @return The emoji subgroup.
      */
-    @JsonCreator
     public static EmojiSubGroup fromString(final String name) {
         for (final EmojiSubGroup emojiSubGroup : EMOJI_SUBGROUPS) {
             if (emojiSubGroup.getName().equals(name)) {

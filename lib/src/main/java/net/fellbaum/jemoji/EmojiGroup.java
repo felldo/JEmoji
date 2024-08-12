@@ -1,7 +1,5 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Represents an emoji group.
  */
+@SuppressWarnings("unused")
 public enum EmojiGroup {
 
     ACTIVITIES("Activities"),
@@ -63,7 +62,6 @@ public enum EmojiGroup {
      * @param name The name of the group.
      * @return The emoji group.
      */
-    @JsonCreator
     public static EmojiGroup fromString(String name) {
         for (EmojiGroup emojiGroup : EMOJI_GROUPS) {
             if (emojiGroup.getName().equals(name)) {

@@ -5,7 +5,7 @@
 
 # Java Emoji (JEmoji)
 
-JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the unicode consortium.
+JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the Unicode consortium.
 
 With many utility methods and **type safe** direct access to Emojis,
 JEmoji aims to improve your experience and development when working with Emojis.
@@ -91,6 +91,14 @@ Set<Emoji> emojis=EmojiManager.getAllEmojisByGroup(EmojiGroup.SMILEYS_AND_EMOTIO
 
 ```java
 Set<Emoji> emojis=EmojiManager.getAllEmojisBySubGroup(EmojiSubGroup.ANIMAL_BIRD);
+```
+
+#### Get emojis grouped / subgrouped
+
+```java
+//Commonly used in emoji pickers
+Map<EmojiGroup, Set<Emoji>> a = EmojiManager.getAllEmojisGrouped();//{SMILEYS_AND_EMOTION=["😀","😘"...],...}
+Map<EmojiSubGroup, Set<Emoji>> b = EmojiManager.getAllEmojisSubGrouped();//{FACE_SMILING=["😀","😄"...],...}
 ```
 
 #### Check if the provided string is an emoji

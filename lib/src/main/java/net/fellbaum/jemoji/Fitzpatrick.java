@@ -19,9 +19,9 @@ public enum Fitzpatrick {
     }
 
     /**
-     * Gets the unicode of the fitzpatrick modifier.
+     * Gets the Unicode of the fitzpatrick modifier.
      *
-     * @return The unicode of the fitzpatrick modifier.
+     * @return The Unicode of the fitzpatrick modifier.
      */
     public String getUnicode() {
         return unicode;
@@ -30,7 +30,7 @@ public enum Fitzpatrick {
     /**
      * Check if the given emoji contains a fitzpatrick modifier.
      *
-     * @param unicode The unicode of the emoji.
+     * @param unicode The Unicode of the emoji.
      * @return True if the emoji contains a fitzpatrick modifier.
      */
     public static boolean isFitzpatrickEmoji(final String unicode) {
@@ -40,8 +40,8 @@ public enum Fitzpatrick {
     /**
      * Removes the fitzpatrick modifier from the given emoji.
      *
-     * @param unicode The unicode of the emoji.
-     * @return The unicode of the emoji without the fitzpatrick modifier.
+     * @param unicode The Unicode of the emoji.
+     * @return The Unicode of the emoji without the fitzpatrick modifier.
      */
     public static String removeFitzpatrick(String unicode) {
         for (Fitzpatrick value : FITZPATRICK_LIST) {

@@ -1,12 +1,7 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +17,7 @@ public class EmojiManagerTest {
     private static final String SIMPLE_POSITION_EMOJI_STRING = "Hello ❤️ ❤ 👩🏻‍🤝‍👨🏼 ❤❤️ World";
     private static final String EMOJI_VARIATION_STRING = "♎️";
 
-    @Test
+    /*@Test
     public void testIfLoadedEmojisMatchesWithJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -31,7 +26,7 @@ public class EmojiManagerTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     @Test
     public void testIfEmojiAlternativeLanguageIsLoaded() {

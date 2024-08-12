@@ -1,7 +1,5 @@
 package net.fellbaum.jemoji;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -13,6 +11,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 /**
  * Represents an emoji.
  */
+@SuppressWarnings("unused")
 public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
@@ -32,19 +31,19 @@ public final class Emoji implements Comparable<Emoji> {
     private final List<String> allAliases;
 
     Emoji(
-            @JsonProperty("emoji") String emoji,
-            @JsonProperty("unicode") String unicode,
-            @JsonProperty("discordAliases") List<String> discordAliases,
-            @JsonProperty("githubAliases") List<String> githubAliases,
-            @JsonProperty("slackAliases") List<String> slackAliases,
-            @JsonProperty("hasFitzpatrick") boolean hasFitzpatrick,
-            @JsonProperty("hasHairStyle") boolean hasHairStyle,
-            @JsonProperty("version") double version,
-            @JsonProperty("qualification") Qualification qualification,
-            @JsonProperty("description") String description,
-            @JsonProperty("group") EmojiGroup group,
-            @JsonProperty("subgroup") EmojiSubGroup subgroup,
-            @JsonProperty("hasVariationSelectors") boolean hasVariationSelectors) {
+            String emoji,
+            String unicode,
+            List<String> discordAliases,
+            List<String> githubAliases,
+            List<String> slackAliases,
+            boolean hasFitzpatrick,
+            boolean hasHairStyle,
+            double version,
+            Qualification qualification,
+            String description,
+            EmojiGroup group,
+            EmojiSubGroup subgroup,
+            boolean hasVariationSelectors) {
         this.emoji = emoji;
         this.unicode = unicode;
         this.discordAliases = discordAliases;
@@ -77,7 +76,7 @@ public final class Emoji implements Comparable<Emoji> {
     /**
      * Gets the unicode representation of the emoji as a string i.e. \uD83D\uDC4D.
      *
-     * @return The unicode representation of the emoji
+     * @return The Unicode representation of the emoji
      */
     public String getUnicode() {
         return unicode;
@@ -102,7 +101,7 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
-     * Gets variations of this emoji with different Fitzpatrick or HairStyle modifiers, if there are any.
+     * Gets variations of this emoji with different Fitzpatrick or HairStyle modifiers if there are any.
      * The returned list does not include this emoji itself.
      *
      * @return Variations of this emoji with different Fitzpatrick or HairStyle modifiers, if there are any.
@@ -184,9 +183,9 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
-     * Gets the version this emoji was added to the unicode consortium.
+     * Gets the version this emoji was added to the Unicode consortium.
      *
-     * @return The version this emoji was added to the unicode consortium.
+     * @return The version this emoji was added to the Unicode consortium.
      */
     public double getVersion() {
         return version;
@@ -251,24 +250,6 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
-     * Compares the emojis based on their codepoint length,
-     * and if they are equal, compare them lexicographically based on the emoji.
-     *
-     * @param o the object to be compared.
-     * @return the value 0 if they are fully equal, 1 if the emoji has more codepoints
-     * and has a higher unicode value, otherwise return -1
-     */
-    @Override
-    public int compareTo(final Emoji o) {
-        final int comparedValue = Integer.compare(getCodePointCount(this.getEmoji()), getCodePointCount(o.getEmoji()));
-        if (comparedValue != 0) {
-            return comparedValue;
-        }
-
-        return this.getEmoji().compareTo(o.getEmoji());
-    }
-
-    /**
      * Returns whether the emoji has text or emoji variations.
      * This means the emoji is allowed to be appended with a FE0E or FE0F character to control how the emoji should be displayed.
      *
@@ -295,6 +276,24 @@ public final class Emoji implements Comparable<Emoji> {
      */
     public Optional<String> getEmojiVariation() {
         return hasVariationSelectors() ? Optional.of(emoji + EMOJI_VARIATION_CHARACTER) : Optional.empty();
+    }
+
+    /**
+     * Compares the emojis based on their codepoint length,
+     * and if they are equal, compare them lexicographically based on the emoji.
+     *
+     * @param o the object to be compared.
+     * @return Zero if they are fully equal, 1 if the emoji has more codepoints
+     * and has a higher Unicode value, otherwise return -1
+     */
+    @Override
+    public int compareTo(final Emoji o) {
+        final int comparedValue = Integer.compare(getCodePointCount(this.getEmoji()), getCodePointCount(o.getEmoji()));
+        if (comparedValue != 0) {
+            return comparedValue;
+        }
+
+        return this.getEmoji().compareTo(o.getEmoji());
     }
 
     @Override
