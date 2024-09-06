@@ -24,9 +24,8 @@ as possible.
 ### Fetched sources:
 
 - [unicode.org](https://unicode.org/Public/emoji/latest/emoji-test.txt) for all unicode emojis
-- [EmojiTerra](https://emojiterra.com/list/) for additional information about emojis like aliases
-- [discord-emoji by Emzi0767](https://gitlab.emzi0767.dev/Emzi0767/discord-emoji) for additional information about
-  emojis for Discord
+- [Discord](https://discord.com) custom script for fetching additional information about emojis for Discord
+- [Slack](https://slack.com) custom script for fetching additional information about emojis for Slack
 
 ## 📦 Installation
 
@@ -242,9 +241,9 @@ large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code an
 
 ## 💾 Emoji JSON list Generation
 
-The emoji list can be easily generated with the ``generateEmojis`` Gradle task. The generated list will be saved in the
+The emoji list can be easily generated with the ``generate`` Gradle task. The generated list will be saved in the
 ``public`` folder.
 
 ## Project setup
-To get started with your local development, execute the ``generate`` Gradle task in the group ``other``. 
+To get started with your local development, execute the ``generateJavaSourceFiles`` Gradle task in the group ``jemoji``. 
 

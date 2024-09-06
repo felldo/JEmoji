@@ -31,19 +31,19 @@ public final class Emoji implements Comparable<Emoji> {
     private final List<String> allAliases;
 
     Emoji(
-            String emoji,
-            String unicode,
-            List<String> discordAliases,
-            List<String> slackAliases,
-            List<String> githubAliases,
-            boolean hasFitzpatrick,
-            boolean hasHairStyle,
-            double version,
-            Qualification qualification,
-            String description,
-            EmojiGroup group,
-            EmojiSubGroup subgroup,
-            boolean hasVariationSelectors) {
+            final String emoji,
+            final String unicode,
+            final List<String> discordAliases,
+            final List<String> slackAliases,
+            final List<String> githubAliases,
+            final boolean hasFitzpatrick,
+            final boolean hasHairStyle,
+            final double version,
+            final Qualification qualification,
+            final String description,
+            final EmojiGroup group,
+            final EmojiSubGroup subgroup,
+            final boolean hasVariationSelectors) {
         this.emoji = emoji;
         this.unicode = unicode;
         this.discordAliases = discordAliases;
@@ -57,7 +57,7 @@ public final class Emoji implements Comparable<Emoji> {
         this.group = group;
         this.subgroup = subgroup;
         this.hasVariationSelectors = hasVariationSelectors;
-        Set<String> aliases = new HashSet<>();
+        final Set<String> aliases = new HashSet<>();
         aliases.addAll(getDiscordAliases());
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
@@ -123,13 +123,14 @@ public final class Emoji implements Comparable<Emoji> {
     public String getURLEncoded() {
         try {
             return URLEncoder.encode(getEmoji(), StandardCharsets.UTF_8.toString());
-        } catch (UnsupportedEncodingException e) {
+        } catch (final UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
     }
 
     /**
      * Gets the Discord aliases for this emoji.
+     * If possible, do not use the :name::skin-tone-1: variants as they might not produce the emoji you want.
      *
      * @return The Discord aliases for this emoji.
      */
@@ -322,25 +323,11 @@ public final class Emoji implements Comparable<Emoji> {
         if (o == null || getClass() != o.getClass()) return false;
 
         Emoji emoji1 = (Emoji) o;
-        return hasFitzpatrick == emoji1.hasFitzpatrick && hasHairStyle == emoji1.hasHairStyle && Double.compare(version, emoji1.version) == 0 && hasVariationSelectors == emoji1.hasVariationSelectors && emoji.equals(emoji1.emoji) && unicode.equals(emoji1.unicode) && discordAliases.equals(emoji1.discordAliases) && githubAliases.equals(emoji1.githubAliases) && slackAliases.equals(emoji1.slackAliases) && qualification == emoji1.qualification && description.equals(emoji1.description) && group == emoji1.group && subgroup == emoji1.subgroup && allAliases.equals(emoji1.allAliases);
+        return emoji.equals(emoji1.emoji);
     }
 
     @Override
     public int hashCode() {
-        int result = emoji.hashCode();
-        result = 31 * result + unicode.hashCode();
-        result = 31 * result + discordAliases.hashCode();
-        result = 31 * result + githubAliases.hashCode();
-        result = 31 * result + slackAliases.hashCode();
-        result = 31 * result + Boolean.hashCode(hasFitzpatrick);
-        result = 31 * result + Boolean.hashCode(hasHairStyle);
-        result = 31 * result + Double.hashCode(version);
-        result = 31 * result + qualification.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + group.hashCode();
-        result = 31 * result + subgroup.hashCode();
-        result = 31 * result + Boolean.hashCode(hasVariationSelectors);
-        result = 31 * result + allAliases.hashCode();
-        return result;
+        return emoji.hashCode();
     }
 }

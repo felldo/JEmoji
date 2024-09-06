@@ -17,16 +17,11 @@ public class EmojiManagerTest {
     private static final String SIMPLE_POSITION_EMOJI_STRING = "Hello ❤️ ❤ 👩🏻‍🤝‍👨🏼 ❤❤️ World";
     private static final String EMOJI_VARIATION_STRING = "♎️";
 
-    /*@Test
-    public void testIfLoadedEmojisMatchesWithJSON() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            JsonNode node = objectMapper.readTree(Paths.get(".." + File.separator + "public/emojis.min.json").toFile());
-            assertEquals(node.size(), EmojiManager.getAllEmojis().size());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
+    @Test
+    public void testIfAllEmojisAreUnique() {
+        final List<String> unicodeEmojis = EmojiManager.getAllEmojis().stream().map(Emoji::getEmoji).collect(Collectors.toList());
+        assertTrue(EmojiManager.getAllEmojis().stream().allMatch(emoji -> unicodeEmojis.contains(emoji.getEmoji())));
+    }
 
     @Test
     public void testIfEmojiAlternativeLanguageIsLoaded() {

@@ -5,7 +5,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Map;
 import java.util.Optional;
 
-class InternalEmojiUtils {
+final class InternalEmojiUtils {
 
     private InternalEmojiUtils() {
     }

@@ -5,7 +5,7 @@ package net.fellbaum.jemoji;
  *
  * @see EmojiManager#extractEmojisInOrderWithIndex(String)
  */
-public class IndexedEmoji {
+public final class IndexedEmoji {
     private final Emoji emoji;
     private final int charIndex;
     private final int codePointIndex;
