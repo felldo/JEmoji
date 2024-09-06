@@ -458,7 +458,7 @@ tasks.register("generate") {
         val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, mapper)
         val discordAliases = retrieveDiscordEmojiShortcutsFile()
         val slackAliases = retrieveSlackEmojiShortcutsFile()
-        println(slackAliases)
+        //println(slackAliases)
 
         val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
         githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
@@ -714,7 +714,7 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
     val start = ".exports=JSON.parse('{\"100\""
     jsContent = jsContent.substring(jsContent.indexOf(start) + 21)
     jsContent = jsContent.substring(0, jsContent.indexOf("\"}}')},") + 3)
-    println(jsContent)
+    //println(jsContent)
     val node = jacksonObjectMapper().readTree(jsContent)
     File("./emoji_source_files/slack_emoji_shortcutssssss.min.json").writeText(node.toString())
 
@@ -921,7 +921,7 @@ fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
 
 data class Emoji(
     val emoji: String,
-    /*@JsonRawValue*/ val unicode: String,
+    val unicode: String,
     val discordAliases: Set<String>,
     val githubAliases: Set<String>,
     val slackAliases: Set<String>,
@@ -1015,9 +1015,7 @@ fun generateJavaSourceFiles() {
             val initializer = ObjectCreationExpr().apply {
                 setType(emojiClassType)
                 addArgument(StringLiteralExpr(it.get("emoji").asText()))
-                addArgument(StringLiteralExpr(it.get("unicode").asText().chars()
-                    .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
-                    .collect(Collectors.joining(""))))
+                addArgument(StringLiteralExpr(it.get("emoji").asText().asSequence().joinToString(separator = "") { "\\\\u%04X".format(it.code) }))
                 addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
                 addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
                 addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
