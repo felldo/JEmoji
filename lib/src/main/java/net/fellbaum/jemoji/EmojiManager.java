@@ -500,7 +500,7 @@ public final class EmojiManager {
      * @param replacementFunction The replacement function.
      * @return The text with all emojis replaced.
      */
-    public static String replaceAllEmojis(final String text, Function<Emoji, String> replacementFunction) {
+    public static String replaceAllEmojis(final String text, final Function<Emoji, String> replacementFunction) {
         return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -536,7 +536,7 @@ public final class EmojiManager {
      * @param emojisToReplace     The emojis to replace.
      * @return The text with all emojis replaced.
      */
-    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
+    public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -592,7 +592,7 @@ public final class EmojiManager {
      * @param emojisToReplace     The emojis to replace.
      * @return The text with all emojis replaced.
      */
-    public static String replaceEmojis(final String text, Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
+    public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final Emoji... emojisToReplace) {
         return replaceEmojis(text, replacementFunction, Arrays.asList(emojisToReplace));
     }
 
