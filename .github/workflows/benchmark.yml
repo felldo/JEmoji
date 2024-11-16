@@ -30,7 +30,7 @@ jobs:
         with:
           tool: 'jmh'
           # Where the output from the benchmark tool is stored
-          output-file-path: ./lib/build/results/jmh/results.json
+          output-file-path: ./jemoji/build/results/jmh/results.json
           # Where the previous data file is stored
           #external-data-json-path: ./cache/benchmark-data.json
           gh-repository: github.com/felldo/JEmoji
@@ -50,7 +50,7 @@ jobs:
         with:
           tool: 'jmh'
           # Where the output from the benchmark tool is stored
-          output-file-path: ./lib/build/results/jmh/results.json
+          output-file-path: ./jemoji/build/results/jmh/results.json
           # Workflow will fail when an alert happens
           fail-on-alert: false
           alert-threshold: 125%

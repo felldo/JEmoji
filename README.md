@@ -49,10 +49,9 @@ implementation("net.fellbaum:jemoji:VERSION")
 
 ## 📜 `jemoji-language` module
 
-
-The translation files for emoji descriptions and keywords are significantly large (13 MB),
-whereas the main library is optimized for minimal size (~600 KB).
-To address this, a separate module, ``emoji-language``, 
+The translation files for emoji descriptions and keywords are quite large (13 MB), 
+while the main library is optimized for minimal size (~600 KB). 
+To address this, a separate module, emoji-language, 
 has been introduced to provide translation files for over 160 languages as an optional dependency. 
 
 The version is always kept in sync with the main module.
