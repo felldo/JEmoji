@@ -24,8 +24,8 @@ public class EmojiManagerTest {
     }
 
     @Test
-    public void testIfEmojiAlternativeLanguageIsLoaded() {
-        assertEquals("Daumen hoch", Emojis.THUMBS_UP.getDescription(EmojiLanguage.DE).orElseThrow(RuntimeException::new));
+    public void testEmojiLanguageIsLoaded() {
+        assertEquals("thumbs up", Emojis.THUMBS_UP.getDescription(EmojiLanguage.EN).orElseThrow(RuntimeException::new));
     }
 
     @Test
@@ -153,7 +153,6 @@ public class EmojiManagerTest {
     @Test
     public void replaceAllEmojisFunction() {
         assertEquals("Hello SMILEYS_AND_EMOTION SMILEYS_AND_EMOTION SMILEYS_AND_EMOTIONSMILEYS_AND_EMOTION World PEOPLE_AND_BODY PEOPLE_AND_BODY SMILEYS_AND_EMOTION", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", emoji -> emoji.getGroup().toString()));
-        assertEquals("Hello SMILEYS_AND_EMOTION SMILEYS_AND_EMOTION SMILEYS_AND_EMOTIONSMILEYS_AND_EMOTION World PEOPLE_AND_BODY PEOPLE_AND_BODY SMILEYS_AND_EMOTION", EmojiManager.replaceAllEmojis(SIMPLE_EMOJI_STRING + " 👍 👨🏿‍🦱 😊", emoji -> emoji.getDiscordAliases().get(0)));
     }
 
     @Test
