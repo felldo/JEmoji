@@ -47,6 +47,32 @@ implementation("net.fellbaum:jemoji:VERSION")
 </dependency>
 ```
 
+## 📜 `jemoji-language` module
+
+
+The translation files for emoji descriptions and keywords are significantly large (13 MB),
+whereas the main library is optimized for minimal size (~600 KB).
+To address this, a separate module, ``emoji-language``, 
+has been introduced to provide translation files for over 160 languages as an optional dependency. 
+
+The version is always kept in sync with the main module.
+
+### Gradle Kotlin DSL
+
+```kotlin
+implementation("net.fellbaum:jemoji-language:VERSION")
+```
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>net.fellbaum</groupId>
+    <artifactId>jemoji-language</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
 ## 📝 Usage
 
 ### Emojis
