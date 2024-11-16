@@ -1,38 +1,3 @@
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.node.JsonNodeFactory
-import com.fasterxml.jackson.databind.node.ObjectNode
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.treeToValue
-import com.github.javaparser.JavaParser
-import com.github.javaparser.ast.CompilationUnit
-import com.github.javaparser.ast.NodeList
-import com.github.javaparser.ast.body.EnumConstantDeclaration
-import com.github.javaparser.ast.body.FieldDeclaration
-import com.github.javaparser.ast.body.VariableDeclarator
-import com.github.javaparser.ast.comments.JavadocComment
-import com.github.javaparser.ast.expr.*
-import net.fellbaum.jemoji.Fitzpatrick
-import net.fellbaum.jemoji.HairStyle
-import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.internal.toHexString
-import org.gradle.kotlin.dsl.support.uppercaseFirstChar
-import org.htmlunit.BrowserVersion
-import org.htmlunit.WebClient
-import org.htmlunit.html.HtmlPage
-import org.htmlunit.html.HtmlScript
-import org.jsoup.Connection
-import org.jsoup.Jsoup
-import java.io.FileOutputStream
-import java.io.ObjectOutputStream
-import java.util.stream.Collectors
-import kotlin.math.ceil
-
 plugins {
     `java-library`
     `maven-publish`

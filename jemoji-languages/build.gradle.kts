@@ -50,6 +50,7 @@ dependencies {
     compileOnly(project(":jemoji"))
     //testImplementation(platform("org.junit:junit-bom:5.10.0"))
     //testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(project(":jemoji"))
 }
 
 /*tasks.test {
@@ -61,6 +62,16 @@ java {
     withSourcesJar()
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
+testing {
+    suites {
+        // Configure the built-in test suite
+        val test by getting(JvmTestSuite::class) {
+            // Use JUnit4 test framework
+            useJUnit("4.13.2")
+        }
     }
 }
 
