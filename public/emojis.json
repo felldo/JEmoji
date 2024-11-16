@@ -729,7 +729,7 @@
 }, {
   "emoji" : "🙂‍↔️",
   "unicode" : "\\uD83D\\uDE42\\u200D\\u2194\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":head_shaking_horizontally:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -757,7 +757,7 @@
 }, {
   "emoji" : "🙂‍↕️",
   "unicode" : "\\uD83D\\uDE42\\u200D\\u2195\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":head_shaking_vertically:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -849,6 +849,20 @@
   "version" : 1.0,
   "qualification" : "fully-qualified",
   "description" : "sleeping face",
+  "group" : "Smileys & Emotion",
+  "subgroup" : "face-sleepy",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🫩",
+  "unicode" : "\\uD83E\\uDEE9",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "face with bags under eyes",
   "group" : "Smileys & Emotion",
   "subgroup" : "face-sleepy",
   "hasVariationSelectors" : false
@@ -23248,7 +23262,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus",
+  "description" : "Mx Claus",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -23262,7 +23276,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus: light skin tone",
+  "description" : "Mx Claus: light skin tone",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -23276,7 +23290,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus: medium-light skin tone",
+  "description" : "Mx Claus: medium-light skin tone",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -23290,7 +23304,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus: medium skin tone",
+  "description" : "Mx Claus: medium skin tone",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -23304,7 +23318,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus: medium-dark skin tone",
+  "description" : "Mx Claus: medium-dark skin tone",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -23318,7 +23332,7 @@
   "hasHairStyle" : false,
   "version" : 13.0,
   "qualification" : "fully-qualified",
-  "description" : "mx claus: dark skin tone",
+  "description" : "Mx Claus: dark skin tone",
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false
@@ -27679,7 +27693,7 @@
 }, {
   "emoji" : "🚶‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -27707,7 +27721,7 @@
 }, {
   "emoji" : "🚶🏻‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right_tone1:", ":person_walking_facing_right_light_skin_tone:", ":person_walking_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27735,7 +27749,7 @@
 }, {
   "emoji" : "🚶🏼‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right_tone2:", ":person_walking_facing_right_medium_light_skin_tone:", ":person_walking_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27763,7 +27777,7 @@
 }, {
   "emoji" : "🚶🏽‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right_tone3:", ":person_walking_facing_right_medium_skin_tone:", ":person_walking_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27791,7 +27805,7 @@
 }, {
   "emoji" : "🚶🏾‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right_tone4:", ":person_walking_facing_right_medium_dark_skin_tone:", ":person_walking_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27819,7 +27833,7 @@
 }, {
   "emoji" : "🚶🏿‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_walking_facing_right_tone5:", ":person_walking_facing_right_dark_skin_tone:", ":person_walking_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27847,7 +27861,7 @@
 }, {
   "emoji" : "🚶‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -27903,7 +27917,7 @@
 }, {
   "emoji" : "🚶🏻‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right_tone1:", ":woman_walking_facing_right_light_skin_tone:", ":woman_walking_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -27959,7 +27973,7 @@
 }, {
   "emoji" : "🚶🏼‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right_tone2:", ":woman_walking_facing_right_medium_light_skin_tone:", ":woman_walking_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28015,7 +28029,7 @@
 }, {
   "emoji" : "🚶🏽‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right_tone3:", ":woman_walking_facing_right_medium_skin_tone:", ":woman_walking_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28071,7 +28085,7 @@
 }, {
   "emoji" : "🚶🏾‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right_tone4:", ":woman_walking_facing_right_medium_dark_skin_tone:", ":woman_walking_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28127,7 +28141,7 @@
 }, {
   "emoji" : "🚶🏿‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_walking_facing_right_tone5:", ":woman_walking_facing_right_dark_skin_tone:", ":woman_walking_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28183,7 +28197,7 @@
 }, {
   "emoji" : "🚶‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -28239,7 +28253,7 @@
 }, {
   "emoji" : "🚶🏻‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right_tone1:", ":man_walking_facing_right_light_skin_tone:", ":man_walking_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28295,7 +28309,7 @@
 }, {
   "emoji" : "🚶🏼‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right_tone2:", ":man_walking_facing_right_medium_light_skin_tone:", ":man_walking_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28351,7 +28365,7 @@
 }, {
   "emoji" : "🚶🏽‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right_tone3:", ":man_walking_facing_right_medium_skin_tone:", ":man_walking_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28407,7 +28421,7 @@
 }, {
   "emoji" : "🚶🏾‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right_tone4:", ":man_walking_facing_right_medium_dark_skin_tone:", ":man_walking_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -28463,7 +28477,7 @@
 }, {
   "emoji" : "🚶🏿‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_walking_facing_right_tone5:", ":man_walking_facing_right_dark_skin_tone:", ":man_walking_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29359,7 +29373,7 @@
 }, {
   "emoji" : "🧎‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -29387,7 +29401,7 @@
 }, {
   "emoji" : "🧎🏻‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right_tone1:", ":person_kneeling_facing_right_light_skin_tone:", ":person_kneeling_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29415,7 +29429,7 @@
 }, {
   "emoji" : "🧎🏼‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right_tone2:", ":person_kneeling_facing_right_medium_light_skin_tone:", ":person_kneeling_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29443,7 +29457,7 @@
 }, {
   "emoji" : "🧎🏽‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right_tone3:", ":person_kneeling_facing_right_medium_skin_tone:", ":person_kneeling_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29471,7 +29485,7 @@
 }, {
   "emoji" : "🧎🏾‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right_tone4:", ":person_kneeling_facing_right_medium_dark_skin_tone:", ":person_kneeling_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29499,7 +29513,7 @@
 }, {
   "emoji" : "🧎🏿‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_kneeling_facing_right_tone5:", ":person_kneeling_facing_right_dark_skin_tone:", ":person_kneeling_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29527,7 +29541,7 @@
 }, {
   "emoji" : "🧎‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -29583,7 +29597,7 @@
 }, {
   "emoji" : "🧎🏻‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right_tone1:", ":woman_kneeling_facing_right_light_skin_tone:", ":woman_kneeling_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29639,7 +29653,7 @@
 }, {
   "emoji" : "🧎🏼‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right_tone2:", ":woman_kneeling_facing_right_medium_light_skin_tone:", ":woman_kneeling_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29695,7 +29709,7 @@
 }, {
   "emoji" : "🧎🏽‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right_tone3:", ":woman_kneeling_facing_right_medium_skin_tone:", ":woman_kneeling_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29751,7 +29765,7 @@
 }, {
   "emoji" : "🧎🏾‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right_tone4:", ":woman_kneeling_facing_right_medium_dark_skin_tone:", ":woman_kneeling_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29807,7 +29821,7 @@
 }, {
   "emoji" : "🧎🏿‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_kneeling_facing_right_tone5:", ":woman_kneeling_facing_right_dark_skin_tone:", ":woman_kneeling_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29863,7 +29877,7 @@
 }, {
   "emoji" : "🧎‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -29919,7 +29933,7 @@
 }, {
   "emoji" : "🧎🏻‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right_tone1:", ":man_kneeling_facing_right_light_skin_tone:", ":man_kneeling_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -29975,7 +29989,7 @@
 }, {
   "emoji" : "🧎🏼‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right_tone2:", ":man_kneeling_facing_right_medium_light_skin_tone:", ":man_kneeling_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30031,7 +30045,7 @@
 }, {
   "emoji" : "🧎🏽‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right_tone3:", ":man_kneeling_facing_right_medium_skin_tone:", ":man_kneeling_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30087,7 +30101,7 @@
 }, {
   "emoji" : "🧎🏾‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right_tone4:", ":man_kneeling_facing_right_medium_dark_skin_tone:", ":man_kneeling_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30143,7 +30157,7 @@
 }, {
   "emoji" : "🧎🏿‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_kneeling_facing_right_tone5:", ":man_kneeling_facing_right_dark_skin_tone:", ":man_kneeling_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30283,7 +30297,7 @@
 }, {
   "emoji" : "🧑‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -30311,7 +30325,7 @@
 }, {
   "emoji" : "🧑🏻‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right_tone1:", ":person_with_white_cane_facing_right_light_skin_tone:", ":person_with_white_cane_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30339,7 +30353,7 @@
 }, {
   "emoji" : "🧑🏼‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right_tone2:", ":person_with_white_cane_facing_right_medium_light_skin_tone:", ":person_with_white_cane_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30367,7 +30381,7 @@
 }, {
   "emoji" : "🧑🏽‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right_tone3:", ":person_with_white_cane_facing_right_medium_skin_tone:", ":person_with_white_cane_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30395,7 +30409,7 @@
 }, {
   "emoji" : "🧑🏾‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right_tone4:", ":person_with_white_cane_facing_right_medium_dark_skin_tone:", ":person_with_white_cane_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30423,7 +30437,7 @@
 }, {
   "emoji" : "🧑🏿‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_with_white_cane_facing_right_tone5:", ":person_with_white_cane_facing_right_dark_skin_tone:", ":person_with_white_cane_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30535,7 +30549,7 @@
 }, {
   "emoji" : "👨‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -30563,7 +30577,7 @@
 }, {
   "emoji" : "👨🏻‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right_tone1:", ":man_with_white_cane_facing_right_light_skin_tone:", ":man_with_white_cane_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30591,7 +30605,7 @@
 }, {
   "emoji" : "👨🏼‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right_tone2:", ":man_with_white_cane_facing_right_medium_light_skin_tone:", ":man_with_white_cane_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30619,7 +30633,7 @@
 }, {
   "emoji" : "👨🏽‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right_tone3:", ":man_with_white_cane_facing_right_medium_skin_tone:", ":man_with_white_cane_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30647,7 +30661,7 @@
 }, {
   "emoji" : "👨🏾‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right_tone4:", ":man_with_white_cane_facing_right_medium_dark_skin_tone:", ":man_with_white_cane_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30675,7 +30689,7 @@
 }, {
   "emoji" : "👨🏿‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_with_white_cane_facing_right_tone5:", ":man_with_white_cane_facing_right_dark_skin_tone:", ":man_with_white_cane_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30787,7 +30801,7 @@
 }, {
   "emoji" : "👩‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -30815,7 +30829,7 @@
 }, {
   "emoji" : "👩🏻‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right_tone1:", ":woman_with_white_cane_facing_right_light_skin_tone:", ":woman_with_white_cane_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30843,7 +30857,7 @@
 }, {
   "emoji" : "👩🏼‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right_tone2:", ":woman_with_white_cane_facing_right_medium_light_skin_tone:", ":woman_with_white_cane_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30871,7 +30885,7 @@
 }, {
   "emoji" : "👩🏽‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right_tone3:", ":woman_with_white_cane_facing_right_medium_skin_tone:", ":woman_with_white_cane_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30899,7 +30913,7 @@
 }, {
   "emoji" : "👩🏾‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right_tone4:", ":woman_with_white_cane_facing_right_medium_dark_skin_tone:", ":woman_with_white_cane_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -30927,7 +30941,7 @@
 }, {
   "emoji" : "👩🏿‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_with_white_cane_facing_right_tone5:", ":woman_with_white_cane_facing_right_dark_skin_tone:", ":woman_with_white_cane_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31039,7 +31053,7 @@
 }, {
   "emoji" : "🧑‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -31067,7 +31081,7 @@
 }, {
   "emoji" : "🧑🏻‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right_tone1:", ":person_in_motorized_wheelchair_facing_right_light_skin_tone:", ":person_in_motorized_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31095,7 +31109,7 @@
 }, {
   "emoji" : "🧑🏼‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right_tone2:", ":person_in_motorized_wheelchair_facing_right_medium_light_skin_tone:", ":person_in_motorized_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31123,7 +31137,7 @@
 }, {
   "emoji" : "🧑🏽‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right_tone3:", ":person_in_motorized_wheelchair_facing_right_medium_skin_tone:", ":person_in_motorized_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31151,7 +31165,7 @@
 }, {
   "emoji" : "🧑🏾‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right_tone4:", ":person_in_motorized_wheelchair_facing_right_medium_dark_skin_tone:", ":person_in_motorized_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31179,7 +31193,7 @@
 }, {
   "emoji" : "🧑🏿‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_motorized_wheelchair_facing_right_tone5:", ":person_in_motorized_wheelchair_facing_right_dark_skin_tone:", ":person_in_motorized_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31291,7 +31305,7 @@
 }, {
   "emoji" : "👨‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -31319,7 +31333,7 @@
 }, {
   "emoji" : "👨🏻‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right_tone1:", ":man_in_motorized_wheelchair_facing_right_light_skin_tone:", ":man_in_motorized_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31347,7 +31361,7 @@
 }, {
   "emoji" : "👨🏼‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right_tone2:", ":man_in_motorized_wheelchair_facing_right_medium_light_skin_tone:", ":man_in_motorized_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31375,7 +31389,7 @@
 }, {
   "emoji" : "👨🏽‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right_tone3:", ":man_in_motorized_wheelchair_facing_right_medium_skin_tone:", ":man_in_motorized_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31403,7 +31417,7 @@
 }, {
   "emoji" : "👨🏾‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right_tone4:", ":man_in_motorized_wheelchair_facing_right_medium_dark_skin_tone:", ":man_in_motorized_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31431,7 +31445,7 @@
 }, {
   "emoji" : "👨🏿‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_motorized_wheelchair_facing_right_tone5:", ":man_in_motorized_wheelchair_facing_right_dark_skin_tone:", ":man_in_motorized_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31543,7 +31557,7 @@
 }, {
   "emoji" : "👩‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -31571,7 +31585,7 @@
 }, {
   "emoji" : "👩🏻‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right_tone1:", ":woman_in_motorized_wheelchair_facing_right_light_skin_tone:", ":woman_in_motorized_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31599,7 +31613,7 @@
 }, {
   "emoji" : "👩🏼‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right_tone2:", ":woman_in_motorized_wheelchair_facing_right_medium_light_skin_tone:", ":woman_in_motorized_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31627,7 +31641,7 @@
 }, {
   "emoji" : "👩🏽‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right_tone3:", ":woman_in_motorized_wheelchair_facing_right_medium_skin_tone:", ":woman_in_motorized_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31655,7 +31669,7 @@
 }, {
   "emoji" : "👩🏾‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right_tone4:", ":woman_in_motorized_wheelchair_facing_right_medium_dark_skin_tone:", ":woman_in_motorized_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31683,7 +31697,7 @@
 }, {
   "emoji" : "👩🏿‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_motorized_wheelchair_facing_right_tone5:", ":woman_in_motorized_wheelchair_facing_right_dark_skin_tone:", ":woman_in_motorized_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31795,7 +31809,7 @@
 }, {
   "emoji" : "🧑‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -31823,7 +31837,7 @@
 }, {
   "emoji" : "🧑🏻‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right_tone1:", ":person_in_manual_wheelchair_facing_right_light_skin_tone:", ":person_in_manual_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31851,7 +31865,7 @@
 }, {
   "emoji" : "🧑🏼‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right_tone2:", ":person_in_manual_wheelchair_facing_right_medium_light_skin_tone:", ":person_in_manual_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31879,7 +31893,7 @@
 }, {
   "emoji" : "🧑🏽‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right_tone3:", ":person_in_manual_wheelchair_facing_right_medium_skin_tone:", ":person_in_manual_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31907,7 +31921,7 @@
 }, {
   "emoji" : "🧑🏾‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right_tone4:", ":person_in_manual_wheelchair_facing_right_medium_dark_skin_tone:", ":person_in_manual_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -31935,7 +31949,7 @@
 }, {
   "emoji" : "🧑🏿‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_in_manual_wheelchair_facing_right_tone5:", ":person_in_manual_wheelchair_facing_right_dark_skin_tone:", ":person_in_manual_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32047,7 +32061,7 @@
 }, {
   "emoji" : "👨‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -32075,7 +32089,7 @@
 }, {
   "emoji" : "👨🏻‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right_tone1:", ":man_in_manual_wheelchair_facing_right_light_skin_tone:", ":man_in_manual_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32103,7 +32117,7 @@
 }, {
   "emoji" : "👨🏼‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right_tone2:", ":man_in_manual_wheelchair_facing_right_medium_light_skin_tone:", ":man_in_manual_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32131,7 +32145,7 @@
 }, {
   "emoji" : "👨🏽‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right_tone3:", ":man_in_manual_wheelchair_facing_right_medium_skin_tone:", ":man_in_manual_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32159,7 +32173,7 @@
 }, {
   "emoji" : "👨🏾‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right_tone4:", ":man_in_manual_wheelchair_facing_right_medium_dark_skin_tone:", ":man_in_manual_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32187,7 +32201,7 @@
 }, {
   "emoji" : "👨🏿‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_in_manual_wheelchair_facing_right_tone5:", ":man_in_manual_wheelchair_facing_right_dark_skin_tone:", ":man_in_manual_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32299,7 +32313,7 @@
 }, {
   "emoji" : "👩‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -32327,7 +32341,7 @@
 }, {
   "emoji" : "👩🏻‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right_tone1:", ":woman_in_manual_wheelchair_facing_right_light_skin_tone:", ":woman_in_manual_wheelchair_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32355,7 +32369,7 @@
 }, {
   "emoji" : "👩🏼‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right_tone2:", ":woman_in_manual_wheelchair_facing_right_medium_light_skin_tone:", ":woman_in_manual_wheelchair_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32383,7 +32397,7 @@
 }, {
   "emoji" : "👩🏽‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right_tone3:", ":woman_in_manual_wheelchair_facing_right_medium_skin_tone:", ":woman_in_manual_wheelchair_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32411,7 +32425,7 @@
 }, {
   "emoji" : "👩🏾‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right_tone4:", ":woman_in_manual_wheelchair_facing_right_medium_dark_skin_tone:", ":woman_in_manual_wheelchair_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32439,7 +32453,7 @@
 }, {
   "emoji" : "👩🏿‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_in_manual_wheelchair_facing_right_tone5:", ":woman_in_manual_wheelchair_facing_right_dark_skin_tone:", ":woman_in_manual_wheelchair_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32887,7 +32901,7 @@
 }, {
   "emoji" : "🏃‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -32915,7 +32929,7 @@
 }, {
   "emoji" : "🏃🏻‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right_tone1:", ":person_running_facing_right_light_skin_tone:", ":person_running_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32943,7 +32957,7 @@
 }, {
   "emoji" : "🏃🏼‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right_tone2:", ":person_running_facing_right_medium_light_skin_tone:", ":person_running_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32971,7 +32985,7 @@
 }, {
   "emoji" : "🏃🏽‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right_tone3:", ":person_running_facing_right_medium_skin_tone:", ":person_running_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -32999,7 +33013,7 @@
 }, {
   "emoji" : "🏃🏾‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right_tone4:", ":person_running_facing_right_medium_dark_skin_tone:", ":person_running_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33027,7 +33041,7 @@
 }, {
   "emoji" : "🏃🏿‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":person_running_facing_right_tone5:", ":person_running_facing_right_dark_skin_tone:", ":person_running_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33055,7 +33069,7 @@
 }, {
   "emoji" : "🏃‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -33111,7 +33125,7 @@
 }, {
   "emoji" : "🏃🏻‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right_tone1:", ":woman_running_facing_right_light_skin_tone:", ":woman_running_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33167,7 +33181,7 @@
 }, {
   "emoji" : "🏃🏼‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right_tone2:", ":woman_running_facing_right_medium_light_skin_tone:", ":woman_running_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33223,7 +33237,7 @@
 }, {
   "emoji" : "🏃🏽‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right_tone3:", ":woman_running_facing_right_medium_skin_tone:", ":woman_running_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33279,7 +33293,7 @@
 }, {
   "emoji" : "🏃🏾‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right_tone4:", ":woman_running_facing_right_medium_dark_skin_tone:", ":woman_running_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33335,7 +33349,7 @@
 }, {
   "emoji" : "🏃🏿‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":woman_running_facing_right_tone5:", ":woman_running_facing_right_dark_skin_tone:", ":woman_running_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33391,7 +33405,7 @@
 }, {
   "emoji" : "🏃‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -33447,7 +33461,7 @@
 }, {
   "emoji" : "🏃🏻‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right_tone1:", ":man_running_facing_right_light_skin_tone:", ":man_running_facing_right::skin-tone-1:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33503,7 +33517,7 @@
 }, {
   "emoji" : "🏃🏼‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right_tone2:", ":man_running_facing_right_medium_light_skin_tone:", ":man_running_facing_right::skin-tone-2:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33559,7 +33573,7 @@
 }, {
   "emoji" : "🏃🏽‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right_tone3:", ":man_running_facing_right_medium_skin_tone:", ":man_running_facing_right::skin-tone-3:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33615,7 +33629,7 @@
 }, {
   "emoji" : "🏃🏾‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right_tone4:", ":man_running_facing_right_medium_dark_skin_tone:", ":man_running_facing_right::skin-tone-4:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -33671,7 +33685,7 @@
 }, {
   "emoji" : "🏃🏿‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":man_running_facing_right_tone5:", ":man_running_facing_right_dark_skin_tone:", ":man_running_facing_right::skin-tone-5:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : true,
@@ -48567,7 +48581,7 @@
 }, {
   "emoji" : "🧑‍🧑‍🧒",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD2",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":family_adult_adult_child:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -48581,7 +48595,7 @@
 }, {
   "emoji" : "🧑‍🧑‍🧒‍🧒",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD2\\u200D\\uD83E\\uDDD2",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":family_adult_adult_child_child:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -48595,7 +48609,7 @@
 }, {
   "emoji" : "🧑‍🧒",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD2",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":family_adult_child:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -48609,7 +48623,7 @@
 }, {
   "emoji" : "🧑‍🧒‍🧒",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDD2\\u200D\\uD83E\\uDDD2",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":family_adult_child_child:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -48631,6 +48645,20 @@
   "version" : 0.6,
   "qualification" : "fully-qualified",
   "description" : "footprints",
+  "group" : "People & Body",
+  "subgroup" : "person-symbol",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🫆",
+  "unicode" : "\\uD83E\\uDEC6",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "fingerprint",
   "group" : "People & Body",
   "subgroup" : "person-symbol",
   "hasVariationSelectors" : false
@@ -50023,7 +50051,7 @@
 }, {
   "emoji" : "🐦‍🔥",
   "unicode" : "\\uD83D\\uDC26\\u200D\\uD83D\\uDD25",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":phoenix:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -50325,6 +50353,76 @@
   "version" : 15.0,
   "qualification" : "fully-qualified",
   "description" : "jellyfish",
+  "group" : "Animals & Nature",
+  "subgroup" : "animal-marine",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🦀",
+  "unicode" : "\\uD83E\\uDD80",
+  "discordAliases" : [ ":crab:" ],
+  "githubAliases" : [ ":crab:" ],
+  "slackAliases" : [ ":crab:" ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 1.0,
+  "qualification" : "fully-qualified",
+  "description" : "crab",
+  "group" : "Animals & Nature",
+  "subgroup" : "animal-marine",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🦞",
+  "unicode" : "\\uD83E\\uDD9E",
+  "discordAliases" : [ ":lobster:" ],
+  "githubAliases" : [ ":lobster:" ],
+  "slackAliases" : [ ":lobster:" ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 11.0,
+  "qualification" : "fully-qualified",
+  "description" : "lobster",
+  "group" : "Animals & Nature",
+  "subgroup" : "animal-marine",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🦐",
+  "unicode" : "\\uD83E\\uDD90",
+  "discordAliases" : [ ":shrimp:" ],
+  "githubAliases" : [ ":shrimp:" ],
+  "slackAliases" : [ ":shrimp:" ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 3.0,
+  "qualification" : "fully-qualified",
+  "description" : "shrimp",
+  "group" : "Animals & Nature",
+  "subgroup" : "animal-marine",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🦑",
+  "unicode" : "\\uD83E\\uDD91",
+  "discordAliases" : [ ":squid:" ],
+  "githubAliases" : [ ":squid:" ],
+  "slackAliases" : [ ":squid:" ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 3.0,
+  "qualification" : "fully-qualified",
+  "description" : "squid",
+  "group" : "Animals & Nature",
+  "subgroup" : "animal-marine",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🦪",
+  "unicode" : "\\uD83E\\uDDAA",
+  "discordAliases" : [ ":oyster:" ],
+  "githubAliases" : [ ":oyster:" ],
+  "slackAliases" : [ ":oyster:" ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 12.0,
+  "qualification" : "fully-qualified",
+  "description" : "oyster",
   "group" : "Animals & Nature",
   "subgroup" : "animal-marine",
   "hasVariationSelectors" : false
@@ -51001,6 +51099,20 @@
   "subgroup" : "plant-other",
   "hasVariationSelectors" : false
 }, {
+  "emoji" : "🪾",
+  "unicode" : "\\uD83E\\uDEBE",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "leafless tree",
+  "group" : "Animals & Nature",
+  "subgroup" : "plant-other",
+  "hasVariationSelectors" : false
+}, {
   "emoji" : "🍇",
   "unicode" : "\\uD83C\\uDF47",
   "discordAliases" : [ ":grapes:" ],
@@ -51073,7 +51185,7 @@
 }, {
   "emoji" : "🍋‍🟩",
   "unicode" : "\\uD83C\\uDF4B\\u200D\\uD83D\\uDFE9",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":lime:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -51535,7 +51647,7 @@
 }, {
   "emoji" : "🍄‍🟫",
   "unicode" : "\\uD83C\\uDF44\\u200D\\uD83D\\uDFEB",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":brown_mushroom:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -51543,6 +51655,20 @@
   "version" : 15.1,
   "qualification" : "fully-qualified",
   "description" : "brown mushroom",
+  "group" : "Food & Drink",
+  "subgroup" : "food-vegetable",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🫜",
+  "unicode" : "\\uD83E\\uDEDC",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "root vegetable",
   "group" : "Food & Drink",
   "subgroup" : "food-vegetable",
   "hasVariationSelectors" : false
@@ -52259,76 +52385,6 @@
   "description" : "takeout box",
   "group" : "Food & Drink",
   "subgroup" : "food-asian",
-  "hasVariationSelectors" : false
-}, {
-  "emoji" : "🦀",
-  "unicode" : "\\uD83E\\uDD80",
-  "discordAliases" : [ ":crab:" ],
-  "githubAliases" : [ ":crab:" ],
-  "slackAliases" : [ ":crab:" ],
-  "hasFitzpatrick" : false,
-  "hasHairStyle" : false,
-  "version" : 1.0,
-  "qualification" : "fully-qualified",
-  "description" : "crab",
-  "group" : "Food & Drink",
-  "subgroup" : "food-marine",
-  "hasVariationSelectors" : false
-}, {
-  "emoji" : "🦞",
-  "unicode" : "\\uD83E\\uDD9E",
-  "discordAliases" : [ ":lobster:" ],
-  "githubAliases" : [ ":lobster:" ],
-  "slackAliases" : [ ":lobster:" ],
-  "hasFitzpatrick" : false,
-  "hasHairStyle" : false,
-  "version" : 11.0,
-  "qualification" : "fully-qualified",
-  "description" : "lobster",
-  "group" : "Food & Drink",
-  "subgroup" : "food-marine",
-  "hasVariationSelectors" : false
-}, {
-  "emoji" : "🦐",
-  "unicode" : "\\uD83E\\uDD90",
-  "discordAliases" : [ ":shrimp:" ],
-  "githubAliases" : [ ":shrimp:" ],
-  "slackAliases" : [ ":shrimp:" ],
-  "hasFitzpatrick" : false,
-  "hasHairStyle" : false,
-  "version" : 3.0,
-  "qualification" : "fully-qualified",
-  "description" : "shrimp",
-  "group" : "Food & Drink",
-  "subgroup" : "food-marine",
-  "hasVariationSelectors" : false
-}, {
-  "emoji" : "🦑",
-  "unicode" : "\\uD83E\\uDD91",
-  "discordAliases" : [ ":squid:" ],
-  "githubAliases" : [ ":squid:" ],
-  "slackAliases" : [ ":squid:" ],
-  "hasFitzpatrick" : false,
-  "hasHairStyle" : false,
-  "version" : 3.0,
-  "qualification" : "fully-qualified",
-  "description" : "squid",
-  "group" : "Food & Drink",
-  "subgroup" : "food-marine",
-  "hasVariationSelectors" : false
-}, {
-  "emoji" : "🦪",
-  "unicode" : "\\uD83E\\uDDAA",
-  "discordAliases" : [ ":oyster:" ],
-  "githubAliases" : [ ":oyster:" ],
-  "slackAliases" : [ ":oyster:" ],
-  "hasFitzpatrick" : false,
-  "hasHairStyle" : false,
-  "version" : 12.0,
-  "qualification" : "fully-qualified",
-  "description" : "oyster",
-  "group" : "Food & Drink",
-  "subgroup" : "food-marine",
   "hasVariationSelectors" : false
 }, {
   "emoji" : "🍦",
@@ -59149,6 +59205,20 @@
   "subgroup" : "musical-instrument",
   "hasVariationSelectors" : false
 }, {
+  "emoji" : "🪉",
+  "unicode" : "\\uD83E\\uDE89",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "harp",
+  "group" : "Objects",
+  "subgroup" : "musical-instrument",
+  "hasVariationSelectors" : false
+}, {
   "emoji" : "📱",
   "unicode" : "\\uD83D\\uDCF1",
   "discordAliases" : [ ":mobile_phone:", ":iphone:" ],
@@ -61517,7 +61587,7 @@
 }, {
   "emoji" : "⛓️‍💥",
   "unicode" : "\\u26D3\\uFE0F\\u200D\\uD83D\\uDCA5",
-  "discordAliases" : [ ],
+  "discordAliases" : [ ":broken_chain:" ],
   "githubAliases" : [ ],
   "slackAliases" : [ ],
   "hasFitzpatrick" : false,
@@ -61623,6 +61693,20 @@
   "version" : 13.0,
   "qualification" : "fully-qualified",
   "description" : "ladder",
+  "group" : "Objects",
+  "subgroup" : "tool",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🪏",
+  "unicode" : "\\uD83E\\uDE8F",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "shovel",
   "group" : "Objects",
   "subgroup" : "tool",
   "hasVariationSelectors" : false
@@ -65057,6 +65141,20 @@
   "subgroup" : "other-symbol",
   "hasVariationSelectors" : true
 }, {
+  "emoji" : "🫟",
+  "unicode" : "\\uD83E\\uDEDF",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "splatter",
+  "group" : "Symbols",
+  "subgroup" : "other-symbol",
+  "hasVariationSelectors" : false
+}, {
   "emoji" : "#️⃣",
   "unicode" : "\\u0023\\uFE0F\\u20E3",
   "discordAliases" : [ ":hash:" ],
@@ -67531,6 +67629,20 @@
   "version" : 2.0,
   "qualification" : "fully-qualified",
   "description" : "flag: Clipperton Island",
+  "group" : "Flags",
+  "subgroup" : "country-flag",
+  "hasVariationSelectors" : false
+}, {
+  "emoji" : "🇨🇶",
+  "unicode" : "\\uD83C\\uDDE8\\uD83C\\uDDF6",
+  "discordAliases" : [ ],
+  "githubAliases" : [ ],
+  "slackAliases" : [ ],
+  "hasFitzpatrick" : false,
+  "hasHairStyle" : false,
+  "version" : 16.0,
+  "qualification" : "fully-qualified",
+  "description" : "flag: Sark",
   "group" : "Flags",
   "subgroup" : "country-flag",
   "hasVariationSelectors" : false
