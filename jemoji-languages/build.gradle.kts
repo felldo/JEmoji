@@ -48,8 +48,6 @@ repositories {
 
 dependencies {
     compileOnly(project(":jemoji"))
-    //testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    //testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(project(":jemoji"))
 }
 
@@ -70,7 +68,7 @@ testing {
         // Configure the built-in test suite
         val test by getting(JvmTestSuite::class) {
             // Use JUnit4 test framework
-            useJUnit("4.13.2")
+            useJUnitJupiter("5.11.3")
         }
     }
 }
