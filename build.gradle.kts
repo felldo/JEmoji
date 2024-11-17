@@ -35,7 +35,7 @@ import java.util.stream.Collectors
 import kotlin.math.ceil
 
 plugins {
-    id("com.autonomousapps.dependency-analysis") version "1.21.0"
+    id("com.autonomousapps.dependency-analysis") version "2.4.2"
 }
 
 allprojects {
@@ -86,96 +86,6 @@ buildscript {
 // https://github.com/unicode-org/cldr-json/tree/main/cldr-json
 // https://stackoverflow.com/questions/39490865/how-can-i-get-the-full-list-of-slack-emoji-through-api
 // https://github.com/iamcal/emoji-data/
-
-fun generateEmojisDescriptionAndKeywords() {
-    val objectMapper = ObjectMapper()
-
-    val client = OkHttpClient()
-    val repo = "unicode-org/cldr-json"
-
-    val httpBuilderAnnotationsDerivedDirectory: HttpUrl.Builder =
-        "https://api.github.com/repos/${repo}/contents/cldr-json/cldr-annotations-derived-full/annotationsDerived".toHttpUrl()
-            .newBuilder()
-    val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
-    requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
-    val descriptionDirectory: JsonNode =
-        objectMapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
-
-    // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
-    // So there might be a description or keywords for the unqualified version but not the fully-qualified
-    val emojisGroupedByDescription = EmojiManager.getAllEmojis().groupBy { it.description }
-
-    val fileNameList = mutableListOf<String>()
-    for ((index, directory) in descriptionDirectory.withIndex()) {
-        if (index % 10 == 0) {
-            println("$index / ${descriptionDirectory.size()} description files processed")
-        }
-        val descriptionNodeOutput = JsonNodeFactory.instance.objectNode()
-        val keywordsNodeOutput = JsonNodeFactory.instance.objectNode()
-
-        requestCLDREmojiDescriptionTranslation(
-            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/${
-                directory.get("name").asText()
-            }/annotations.json",
-            client, objectMapper, descriptionNodeOutput, keywordsNodeOutput, directory.get("name").asText()
-        )
-
-        requestCLDREmojiDescriptionTranslation(
-            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/${
-                directory.get("name").asText()
-            }/annotations.json",
-            client, objectMapper, descriptionNodeOutput, keywordsNodeOutput, directory.get("name").asText()
-        )
-        /*
-        val descriptionFile =
-            File("$projectDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}.json")
-        descriptionFile.writeText(objectMapper.writeValueAsString(descriptionNodeOutput))
-        val keywordsFile =
-            File("$projectDir/src/main/resources/emoji_sources/keyword/${directory.get("name").asText()}.json")
-        keywordsFile.writeText(objectMapper.writeValueAsString(keywordsNodeOutput))
-        */
-
-        val fileOutputDir = if (directory.get("name").asText().equals("en")) project(":jemoji").projectDir else project(
-            ":jemoji-languages"
-        ).projectDir
-
-        val descriptionMap: Map<String, String> =
-            objectMapper.treeToValue(descriptionNodeOutput, Map::class.java) as Map<String, String>
-        val descriptionfos: FileOutputStream = FileOutputStream(
-            "$fileOutputDir/src/main/resources/emoji_sources/description/${directory.get("name").asText()}"
-        )
-        val descriptionoos: ObjectOutputStream = ObjectOutputStream(descriptionfos)
-        descriptionoos.writeObject(descriptionMap)
-        descriptionoos.close()
-
-        /*val file = File("$fileOutputDir/src/main/resources/emoji_sources/descriptionproperties/${directory.get("name").asText()}")
-        file.createNewFile()
-        val prop = Properties()
-        FileInputStream(file).use {
-            prop.load(it)
-            descriptionMap.forEach { p0, p1 -> prop.setProperty(p0, p1) }
-
-            val out: OutputStream = FileOutputStream(file)
-            prop.store(out, "some comment")
-        }*/
-
-        val keywordMap: Map<String, List<String>> = jacksonObjectMapper().treeToValue(keywordsNodeOutput)
-        val keywordfos =
-            FileOutputStream(
-                "$fileOutputDir/src/main/resources/emoji_sources/keyword/${directory.get("name").asText()}"
-            )
-        val keywordoos = ObjectOutputStream(keywordfos)
-        keywordoos.writeObject(keywordMap)
-        keywordoos.close()
-        /*if directory.get("name").asText().equals("en")){
-            println(descriptionNodeOutput.toPrettyString())
-        }*/
-        fileNameList.add(directory.get("name").asText())
-    }
-
-    generateEmojiLanguageEnum(fileNameList)
-}
-
 fun requestCLDREmojiDescriptionTranslation(
     url: String,
     client: OkHttpClient,
@@ -444,14 +354,6 @@ tasks.register("generateEmojiJson") {
     }
 }
 
-
-/*data class EmojiTerraInfo(
-    val discordCode: String?,
-    val githubCode: String?,
-    val slackCode: String?,
-    val keywords: List<String>
-)*/
-
 fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, MutableList<String>> {
     val gitHubEmojiAliasUrl = "https://api.github.com/emojis"
 
@@ -683,64 +585,6 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
 fun getStringWithColon(str: String) = ":$str:"
 
-//fun fetchEmojiTerra(url: String): Connection.Response {
-//    val emojiTerraBaseUrl = "https://emojiterra.com"
-//    return Jsoup.connect(emojiTerraBaseUrl + url)
-//        .userAgent("Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2")
-//        .header("Connection", "keep-alive")
-//        .header("Cache-Control", "max-age=0")
-//        .header("Upgrade-Insecure-Requests", "1")
-//        .header("Content-Type", "application/x-www-form-urlencoded")
-//        .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-//        .timeout(10000)
-//        .ignoreHttpErrors(true)
-//        .execute()
-//}
-
-/*fun getEmojiTerraMap(): Map<String, EmojiTerraInfo> {
-    val emojiTerraUrl = "https://emojiterra.com/list/"
-
-    val list = Jsoup.connect(emojiTerraUrl)
-        .userAgent("Mozilla")
-        .timeout(5000)
-        .get()
-
-    return buildMap {
-        list.select("tbody > tr > td > a")
-            .mapIndexed { index, listElement ->
-
-                if (index % 10 == 0) println(index)
-
-                var response: Connection.Response
-                do {
-                    response = fetchEmojiTerra(listElement.attr("href"))
-                    if (response.statusCode() != 200) {
-                        Thread.sleep(500)
-                        println("RETRYING: ${response.statusCode()} - ${response.statusMessage()}")
-                    }
-                } while (response.statusCode() != 200)
-
-                val document = response.parse()
-                val codes = document.getElementsByClass("codes-bold")
-                val discordCode = codes.firstOrNull { it.id().contains("discord") }?.text()
-                val githubCode = codes.firstOrNull { it.id().contains("github") }?.text()
-                val slackCode = codes.firstOrNull { it.id().contains("slack") }?.text()
-                val keywords = document.getElementById("annotations-keywords")
-                    ?.text()
-                    ?.replace("Keywords:", "")
-                    ?.split("|")
-                    ?.map { it.trim() }
-                    ?: emptyList()
-
-                Pair(
-                    document.getElementById("copy-emoji")?.ownText()!!,
-                    EmojiTerraInfo(discordCode, githubCode, slackCode, keywords)
-                )
-            }.forEach { put(it.first, it.second) }
-    }
-
-}*/
-
 data class Emoji(
     val emoji: String,
     val unicode: String,
@@ -757,25 +601,6 @@ data class Emoji(
     val hasVariationSelectors: Boolean,
     var keywords: Set<String>
 )
-
-/*fun getDiscordAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, List<String>> {
-    val discordEmojiAliasUrl = "https://emzi0767.gl-pages.emzi0767.dev/discord-emoji/discordEmojiMap.json"
-
-    val json =
-        mapper.readTree(client.newCall(Request.Builder().url(discordEmojiAliasUrl).build()).execute().body!!.string())
-
-    return buildMap {
-        for (jsonNode in json.get("emojiDefinitions")) {
-            val aliases = buildList {
-                jsonNode.get("namesWithColons").forEach { add(it.asText()) }
-            }
-
-            val key = jsonNode.get("surrogates").asText()
-
-            put(key, aliases)
-        }
-    }
-}*/
 
 val generatedSourcesDir = "${project(":jemoji").layout.buildDirectory.get()}/generated/jemoji"
 

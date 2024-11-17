@@ -11,7 +11,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 /**
  * Represents an emoji.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;

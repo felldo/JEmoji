@@ -6,6 +6,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     //https://github.com/melix/jmh-gradle-plugin
     id("me.champeau.jmh") version "0.7.2"
+    id("com.autonomousapps.dependency-analysis")
 }
 
 

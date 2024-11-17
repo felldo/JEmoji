@@ -19,22 +19,6 @@ public final class EmojiLoader {
     private EmojiLoader() {
     }
 
-//    static Object readFileAsObject(final String filePathName) {
-//        try {
-//            try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-//                if (null == is) throw new IllegalStateException("InputStream is null");
-//                final ObjectInputStream ois = new ObjectInputStream(is);
-//                final Object readObject = ois.readObject();
-//                ois.close();
-//                return readObject;
-//            } catch (final ClassNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } catch (final IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     static final String DEFAULT_PROVIDER = "net.fellbaum.jemoji.internal.ResourceFilesManager";
     @Nullable
     static final ResourceFilesProvider RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE;
