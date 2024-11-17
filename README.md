@@ -272,5 +272,5 @@ The emoji list can be easily generated with the ``generate`` Gradle task. The ge
 ``public`` folder.
 
 ## Project setup
-To get started with your local development, execute the ``generateJavaSourceFiles`` Gradle task in the group ``jemoji``. 
+To get started with your local development, execute the ``generate`` Gradle task in the group ``jemoji``. 
 

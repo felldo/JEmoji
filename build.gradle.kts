@@ -126,7 +126,7 @@ fun requestCLDREmojiDescriptionTranslation(
 
 val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
 
-tasks.register("generateEmojiJson") {
+tasks.register("generate") {
     group = "jemoji"
     doFirst {
         val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
@@ -608,10 +608,10 @@ val generatedSourcesDir = "${project(":jemoji").layout.buildDirectory.get()}/gen
 /**
  * Startup task to generate the necessary source files for this project. Does not generate a new emojis.json.
  */
-tasks.register("generateJavaSourceFilesFromEmojiJson") {
+/*tasks.register("generateJavaSourceFilesFromEmojiJson") {
     group = "jemoji"
     doLast { generateJavaSourceFiles() }
-}
+}*/
 
 fun generateJavaSourceFiles() {
 

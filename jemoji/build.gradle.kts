@@ -130,7 +130,7 @@ tasks.withType<Javadoc> {
 //Generate sources before compiling if they do not exist
 tasks.named("compileJava") {
     if (!file("./build/generated/jemoji/net/fellbaum/jemoji/Emojis.java").exists()) {
-        dependsOn(":generateJavaSourceFiles")
+        dependsOn(":generate")
     }
 }
 
