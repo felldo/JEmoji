@@ -19,6 +19,7 @@ public final class Emoji implements Comparable<Emoji> {
     private final List<String> discordAliases;
     private final List<String> githubAliases;
     private final List<String> slackAliases;
+    private final List<String> keywords;
     private final boolean hasFitzpatrick;
     private final boolean hasHairStyle;
     private final double version;
@@ -36,6 +37,7 @@ public final class Emoji implements Comparable<Emoji> {
             final List<String> discordAliases,
             final List<String> slackAliases,
             final List<String> githubAliases,
+            final List<String> keywords,
             final boolean hasFitzpatrick,
             final boolean hasHairStyle,
             final double version,
@@ -49,6 +51,7 @@ public final class Emoji implements Comparable<Emoji> {
         this.discordAliases = discordAliases;
         this.githubAliases = githubAliases;
         this.slackAliases = slackAliases;
+        this.keywords = keywords;
         this.hasFitzpatrick = hasFitzpatrick;
         this.hasHairStyle = hasHairStyle;
         this.version = version;
@@ -222,13 +225,22 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
+     * Gets the keywords of this emoji.
+     *
+     * @return The keywords of this emoji.
+     */
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
+    /**
      * Gets the keywords of this emoji in the specified language.
      * May not be present for all languages.
      *
      * @param emojiLanguage The language type the keywords should be searched for.
      * @return The keywords of this emoji in the specified language.
      */
-    public Optional<Set<String>> getKeywords(final EmojiLanguage emojiLanguage) {
+    public Optional<List<String>> getKeywords(final EmojiLanguage emojiLanguage) {
         return EmojiManager.getEmojiKeywordsForLanguageAndEmoji(emojiLanguage, emoji);
     }
 

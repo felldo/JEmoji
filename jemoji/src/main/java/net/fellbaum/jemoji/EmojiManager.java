@@ -26,7 +26,7 @@ public final class EmojiManager {
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
 
     private static final Map<EmojiLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
-    private static final Map<EmojiLanguage, Map<String, Set<String>>> EMOJI_KEYWORD_LANGUAGE_MAP = new HashMap<>();
+    private static final Map<EmojiLanguage, Map<String, List<String>>> EMOJI_KEYWORD_LANGUAGE_MAP = new HashMap<>();
 
     static {
         //TODO: Automate somehow loading the emoji loader files?
@@ -74,8 +74,8 @@ public final class EmojiManager {
     }
 
     @SuppressWarnings("unchecked")
-    static Optional<Set<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, Set<String>>) readFromAllLanguageResourceFiles("/emoji_sources/keyword/", emojiLanguage)).get(emoji));
+    static Optional<List<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
+        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, List<String>>) readFromAllLanguageResourceFiles("/emoji_sources/keyword/", emojiLanguage)).get(emoji));
     }
 
     private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {

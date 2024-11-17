@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.stream.Collectors;
 
@@ -37,7 +36,6 @@ public final class EmojiLoader {
 //    }
 
     static final String DEFAULT_PROVIDER = "net.fellbaum.jemoji.internal.ResourceFilesManager";
-    static final ResourceFilesProvider RESOURCE_FILES_PROVIDER_MAIN;
     @Nullable
     static final ResourceFilesProvider RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE;
 
@@ -49,9 +47,6 @@ public final class EmojiLoader {
     }
 
     static Object readFromAllLanguageResourceFiles(String fileName, EmojiLanguage language) {
-        if (language == EmojiLanguage.EN) {
-            return RESOURCE_FILES_PROVIDER_MAIN.readFileAsObject(fileName + language.getValue());
-        }
         if (RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE == null) {
             throw new IllegalStateException("Trying to access a property for language \"" + language.getValue() + "\" but the jemoji-language module is missing. To add multi language support, see here https://github.com/felldo/JEmoji?tab=readme-ov-file#-jemoji-language-module");
         }
@@ -60,22 +55,19 @@ public final class EmojiLoader {
 
     static {
         List<ResourceFilesProvider> providers = EmojiLoader.providers();
-        ResourceFilesProvider localResourceFilesProviderMain = null;
-        ResourceFilesProvider localResourceFilesProviderLanguageModule = null;
-
-        if (providers.size() > 2) {
-            throw new IllegalStateException("Found too many ResourceFilesProviders");
-        }
-
-        for (ResourceFilesProvider provider : providers) {
-            if (provider.getClass().getName().equals(DEFAULT_PROVIDER)) {
-                localResourceFilesProviderMain = provider;
-            } else {
-                localResourceFilesProviderLanguageModule = provider;
+        switch (providers.size()) {
+            case 1: {
+                RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE = providers.get(0);
+                break;
+            }
+            case 0: {
+                RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE = null;
+                break;
+            }
+            default: {
+                throw new IllegalStateException("Found too many ResourceFilesProviders");
             }
         }
-        RESOURCE_FILES_PROVIDER_MAIN = Objects.requireNonNull(localResourceFilesProviderMain);
-        RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE = localResourceFilesProviderLanguageModule;
     }
 
     static String readFileAsString(final String filePathName) {
