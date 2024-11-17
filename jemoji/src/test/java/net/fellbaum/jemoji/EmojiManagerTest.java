@@ -24,8 +24,8 @@ public class EmojiManagerTest {
     }
 
     @Test
-    public void testEmojiLanguageIsLoaded() {
-        assertEquals("thumbs up", Emojis.THUMBS_UP.getDescription(EmojiLanguage.EN).orElseThrow(RuntimeException::new));
+    public void testEmojiLanguageIsNotLoaded() {
+        assertThrowsExactly(IllegalStateException.class, () -> Emojis.THUMBS_UP.getDescription(EmojiLanguage.EN));
     }
 
     @Test
