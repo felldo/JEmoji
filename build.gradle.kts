@@ -14,7 +14,6 @@ import com.github.javaparser.ast.body.FieldDeclaration
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.github.javaparser.ast.comments.JavadocComment
 import com.github.javaparser.ast.expr.*
-import net.fellbaum.jemoji.EmojiManager
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
 import okhttp3.HttpUrl
@@ -34,9 +33,7 @@ import java.io.ObjectOutputStream
 import java.util.stream.Collectors
 import kotlin.math.ceil
 
-plugins {
-    id("com.autonomousapps.dependency-analysis") version "2.4.2"
-}
+plugins {}
 
 allprojects {
     apply(plugin = "maven-publish")

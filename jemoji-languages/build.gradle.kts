@@ -3,7 +3,6 @@ plugins {
     `maven-publish`
     signing
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("com.autonomousapps.dependency-analysis")
 }
 
 val java9: SourceSet by sourceSets.creating
@@ -51,10 +50,6 @@ dependencies {
     compileOnly(project(":jemoji"))
     testImplementation(project(":jemoji"))
 }
-
-/*tasks.test {
-    useJUnitPlatform()
-}*/
 
 java {
     withJavadocJar()

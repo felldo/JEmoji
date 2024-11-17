@@ -6,7 +6,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     //https://github.com/melix/jmh-gradle-plugin
     id("me.champeau.jmh") version "0.7.2"
-    id("com.autonomousapps.dependency-analysis")
 }
 
 
@@ -53,8 +52,6 @@ repositories {
 
 dependencies {
     compileOnlyApi("org.jspecify:jspecify:1.0.0")
-
-    //implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
 
 testing {
