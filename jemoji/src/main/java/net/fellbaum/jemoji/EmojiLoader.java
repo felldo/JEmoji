@@ -19,18 +19,17 @@ public final class EmojiLoader {
     private EmojiLoader() {
     }
 
-    static final String DEFAULT_PROVIDER = "net.fellbaum.jemoji.internal.ResourceFilesManager";
     @Nullable
-    static final ResourceFilesProvider RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE;
+    private static final ResourceFilesProvider RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE;
 
-    public static List<ResourceFilesProvider> providers() {
-        List<ResourceFilesProvider> services = new ArrayList<>();
-        ServiceLoader<ResourceFilesProvider> loader = ServiceLoader.load(ResourceFilesProvider.class);
+    private static List<ResourceFilesProvider> providers() {
+        final List<ResourceFilesProvider> services = new ArrayList<>();
+        final ServiceLoader<ResourceFilesProvider> loader = ServiceLoader.load(ResourceFilesProvider.class);
         loader.forEach(services::add);
         return services;
     }
 
-    static Object readFromAllLanguageResourceFiles(String fileName, EmojiLanguage language) {
+    static Object readFromAllLanguageResourceFiles(final String fileName, final EmojiLanguage language) {
         if (RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE == null) {
             throw new IllegalStateException("Trying to access a property for language \"" + language.getValue() + "\" but the jemoji-language module is missing. To add multi language support, see here https://github.com/felldo/JEmoji?tab=readme-ov-file#-jemoji-language-module");
         }
@@ -38,7 +37,7 @@ public final class EmojiLoader {
     }
 
     static {
-        List<ResourceFilesProvider> providers = EmojiLoader.providers();
+        final List<ResourceFilesProvider> providers = providers();
         switch (providers.size()) {
             case 1: {
                 RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE = providers.get(0);
@@ -54,7 +53,7 @@ public final class EmojiLoader {
         }
     }
 
-    static String readFileAsString(final String filePathName) {
+    private static String readFileAsString(final String filePathName) {
         try {
             try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
                 if (null == is) throw new IllegalStateException("InputStream is null");
@@ -73,7 +72,7 @@ public final class EmojiLoader {
      * This will most likely be called once on startup of your application.
      */
     public static void loadAllEmojiDescriptions() {
-        for (EmojiLanguage value : EmojiLanguage.values()) {
+        for (final EmojiLanguage value : EmojiLanguage.values()) {
             EmojiManager.getEmojiDescriptionForLanguageAndEmoji(value, Emojis.THUMBS_UP.getEmoji());
         }
     }
@@ -83,7 +82,7 @@ public final class EmojiLoader {
      * This will most likely be called once on startup of your application.
      */
     public static void loadAllEmojiKeywords() {
-        for (EmojiLanguage value : EmojiLanguage.values()) {
+        for (final EmojiLanguage value : EmojiLanguage.values()) {
             EmojiManager.getEmojiKeywordsForLanguageAndEmoji(value, Emojis.THUMBS_UP.getEmoji());
         }
     }
