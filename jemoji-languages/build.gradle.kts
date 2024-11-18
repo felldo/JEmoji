@@ -77,10 +77,6 @@ tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
 }
 
-tasks.withType<Javadoc> {
-    options.encoding = "UTF-8"
-}
-
 publishing {
     if (project.gradle.startParameter.taskNames.contains("publish")
         or project.gradle.startParameter.taskNames.contains("publishToMavenLocal")

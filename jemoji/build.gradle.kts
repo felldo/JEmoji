@@ -120,10 +120,6 @@ tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
 }
 
-tasks.withType<Javadoc> {
-    options.encoding = "UTF-8"
-}
-
 //Generate sources before compiling if they do not exist
 tasks.named("compileJava") {
     if (!file("./build/generated/jemoji/net/fellbaum/jemoji/Emojis.java").exists()) {

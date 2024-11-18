@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.treeToValue
@@ -30,6 +31,7 @@ import org.jsoup.Connection
 import org.jsoup.Jsoup
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 import kotlin.math.ceil
 
@@ -66,8 +68,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.17.2")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+        classpath("com.fasterxml.jackson.core:jackson-databind:2.18.1")
+        classpath("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1")
+        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1")
         classpath("com.squareup.okhttp3:okhttp:4.9.3")
 
         classpath("org.jsoup:jsoup:1.17.2")
@@ -247,7 +250,7 @@ tasks.register("generate") {
                             groupName,
                             subGroupName,
                             emojisThatHaveVariations.contains(codepointsString),
-                            emptySet()
+                            emptySet<String>()
                         )
                     }.toList()
             }
@@ -264,20 +267,23 @@ tasks.register("generate") {
                 .newBuilder()
         val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
         requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
-        val descriptionDirectory: JsonNode =
-            mapper.readTree(client.newCall(requestBuilder.build()).execute().body!!.string())
+        val descriptionDirectory: List<Map<String, Any>> =
+            mapper.readValue(client.newCall(requestBuilder.build()).execute().body!!.string())
         // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
         // So there might be a description or keywords for the unqualified version but not the fully-qualified
         //val emojisGroupedByDescription = EmojiManager.getAllEmojis().groupBy { it.description }
-        val descriptionNodesLanguageMap = mutableMapOf<String, Map<String, String>>()
-        val keywordsNodesLanguageMap = mutableMapOf<String, Map<String, List<String>>>()
+        val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
+        val keywordsNodesLanguageMap = mutableMapOf<String, MutableMap<String, List<String>?>>()
         val fileNameList = mutableListOf<String>()
         val emojisGroupedByDescription = allUnicodeEmojis.groupBy { it.description }
-        descriptionDirectory.forEachIndexed { index, directory ->
+
+        val currentIndex = AtomicInteger(0)
+        descriptionDirectory.parallelStream().forEach { directory ->
+            val index = currentIndex.andIncrement
             if (index % 10 == 0) {
-                println("$index / ${descriptionDirectory.size()} description files processed")
+                println("$index / ${descriptionDirectory.size} description files processed")
             }
-            val dirName = directory["name"].asText()
+            val dirName = directory["name"] as String
             val descriptionNodeOutput = JsonNodeFactory.instance.objectNode()
             val keywordsNodeOutput = JsonNodeFactory.instance.objectNode()
             listOf(
@@ -296,37 +302,35 @@ tasks.register("generate") {
 
             val fileOutputDir = project(":jemoji-languages").projectDir
 
-            val descriptionMap =
-                mapper.treeToValue(descriptionNodeOutput, MutableMap::class.java) as MutableMap<String, String>
-            //val descriptionMap: Map<String, String> = mapper.treeToValue(descriptionNodeOutput, object : TypeReference<Map<String, String>>() {})
-
+            val descriptionMap: MutableMap<String, String?> = mapper.treeToValue(descriptionNodeOutput)
             // Emojis should also have a distinct description by emoji.
             // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
             descriptionMap.toMap().forEach { key, value ->
-                emojisGroupedByDescription[value]?.forEach { emoji ->
+                emojisGroupedByDescription[value!!]?.forEach { emoji ->
                     if (!descriptionMap.containsKey(emoji.emoji)) {
                         descriptionMap.put(emoji.emoji, value)
                     }
                 }
             }
 
-            val outputPathDescription = "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}"
-            FileOutputStream(outputPathDescription).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
-            descriptionNodesLanguageMap.put(dirName, descriptionMap)
+            "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
+                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+                descriptionNodesLanguageMap.put(dirName, descriptionMap)
+            }
 
             // Emoji to List<keywords>
-            val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput)
-            //println(keywordMap)
+            val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
             //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
-            val outputPathKeywords = "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}"
-            FileOutputStream(outputPathKeywords).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
-            keywordsNodesLanguageMap.put(dirName, keywordMap)
-            if (dirName == "en") {
-                keywordMap.forEach { key, value ->
-                    for (entry in emojisGroupedByDescription.entries) {
-                        if (entry.value.find { it.emoji == key } != null) {
-                            entry.value.forEach { em -> em.keywords = value.toSet() }
-                            break
+            "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
+                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
+                keywordsNodesLanguageMap.put(dirName, keywordMap)
+                if (dirName == "en") {
+                    keywordMap.forEach { key, value ->
+                        for (entry in emojisGroupedByDescription.entries) {
+                            if (entry.value.find { it.emoji == key } != null) {
+                                entry.value.forEach { em -> em.keywords = value?.toSet()!! }
+                                break
+                            }
                         }
                     }
                 }
@@ -338,17 +342,70 @@ tasks.register("generate") {
         ////////////////////////
         ////////////////////////
         ////////////////////////
+        writeContentToPublicFiles("emojis", allUnicodeEmojis)
+        for (emoji in allUnicodeEmojis) {
+            val a = buildMap<String, String?> {
+                descriptionNodesLanguageMap.forEach { p0, p1 ->
+                    if (p1.containsKey(emoji.emoji)) {
+                        put(p0, p1[emoji.emoji])
+                    } else {
+                        put(p0, null)
+                    }
+                }
+            }
+            emoji.description = a
 
+            val b = buildMap<String, List<String>?> {
+                keywordsNodesLanguageMap.forEach { p0, p1 ->
+                    if (p1.containsKey(emoji.emoji)) {
+                        put(p0, p1[emoji.emoji])
+                    } else {
+                        put(p0, null)
+                    }
+                }
+            }
+            emoji.keywords = b
+        }
+        writeContentToPublicFiles("emojis-full", allUnicodeEmojis)
 
-        val publicFile = File("$rootDir/public/emojis.json")
-        val publicFileMin = File("$rootDir/public/emojis.min.json")
+        descriptionNodesLanguageMap.toMap().run {
+            allUnicodeEmojis.forEach { emoji ->
+                this.forEach { (locale, keywords) ->
+                    descriptionNodesLanguageMap[locale]?.apply {
+                        putIfAbsent(emoji.emoji, null)
+                    }
+                }
+            }
+        }
+        keywordsNodesLanguageMap.toMap().run {
+            allUnicodeEmojis.forEach { emoji ->
+                this.forEach { (locale, keywords) ->
+                    keywordsNodesLanguageMap[locale]?.apply {
+                        putIfAbsent(emoji.emoji, null)
+                    }
+                }
+            }
+        }
 
-        publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(allUnicodeEmojis))
-        publicFileMin.writeText(mapper.writeValueAsString(allUnicodeEmojis))
+        descriptionNodesLanguageMap.forEach { entry ->
+            writeContentToPublicFiles(
+                "description/${entry.key}",
+                entry.value
+            )
+        }
+        keywordsNodesLanguageMap.forEach { entry -> writeContentToPublicFiles("keywords/${entry.key}", entry.value) }
 
         generateEmojiLanguageEnum(fileNameList)
         generateJavaSourceFiles()
     }
+}
+
+fun writeContentToPublicFiles(fileName: String, content: Any) {
+    val publicFile = File("$rootDir/public/$fileName.json")
+    val publicFileMin = File("$rootDir/public/$fileName.min.json")
+    val mapper = jacksonObjectMapper().registerModule(Jdk8Module())
+    publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
+    publicFileMin.writeText(mapper.writeValueAsString(content))
 }
 
 fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, MutableList<String>> {
@@ -592,11 +649,11 @@ data class Emoji(
     var hasHairStyle: Boolean,
     val version: Double,
     val qualification: String,
-    var description: String,
+    var description: Any,
     val group: String,
     val subgroup: String,
     val hasVariationSelectors: Boolean,
-    var keywords: Set<String>
+    var keywords: Any
 )
 
 val generatedSourcesDir = "${project(":jemoji").layout.buildDirectory.get()}/generated/jemoji"
