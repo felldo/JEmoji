@@ -129,37 +129,48 @@ val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
 tasks.register("generate") {
     group = "jemoji"
     doFirst {
-        val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
-        val unicodeVariationSequences =
-            "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
+        generate(false)
+    }
+}
 
-        val client = OkHttpClient()
-        val mapper = jacksonObjectMapper()
+tasks.register("generateAll") {
+    group = "jemoji"
+    doFirst {
+        generate(true)
+    }
+}
+fun generate(generateAll: Boolean = false) {
+    val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
+    val unicodeVariationSequences =
+        "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
 
-        val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, mapper)
-        val discordAliases = retrieveDiscordEmojiShortcutsFile()
-        val slackAliases = retrieveSlackEmojiShortcutsFile()
+    val client = OkHttpClient()
+    val mapper = jacksonObjectMapper()
 
-        val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
-        githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
+    val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, mapper)
+    val discordAliases = retrieveDiscordEmojiShortcutsFile()
+    val slackAliases = retrieveSlackEmojiShortcutsFile()
 
-        val unicodeVariationLines =
-            client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body!!.string()
+    val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
+    githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
 
-        val emojisThatHaveVariations = unicodeVariationLines.lines()
-            .asSequence()
-            .filter { !it.startsWith("#") }
-            .filter { it.isNotEmpty() }
-            .map { it.split(";") }
-            .map { it[0].split(" ")[0].trim() }
-            .distinct()
-            .map { String(Character.toChars(it.toInt(16))) }
-            .toSet()
+    val unicodeVariationLines =
+        client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body!!.string()
 
-        val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
+    val emojisThatHaveVariations = unicodeVariationLines.lines()
+        .asSequence()
+        .filter { !it.startsWith("#") }
+        .filter { it.isNotEmpty() }
+        .map { it.split(";") }
+        .map { it[0].split(" ")[0].trim() }
+        .distinct()
+        .map { String(Character.toChars(it.toInt(16))) }
+        .toSet()
 
-        // drop the first block as it's just the header
-        val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
+    val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body!!.string()
+
+    // drop the first block as it's just the header
+    val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
 
 //          "group" is a string containing everything from a group which looks like:
 //          # group: Smileys & Emotion
@@ -175,176 +186,178 @@ tasks.register("generate") {
 //          [1] = subgroup 1
 //          [2] = subgroup 2
 
-            val groupSplit = group.split("# subgroup: ")
+        val groupSplit = group.split("# subgroup: ")
 
-            // Get the first line of the group which is the group name and ignore the rest as they are just empty lines
-            val groupName = groupSplit[0].lines()[0]
+        // Get the first line of the group which is the group name and ignore the rest as they are just empty lines
+        val groupName = groupSplit[0].lines()[0]
 
-            groupSplit.drop(1).flatMap { subGroup ->
-                /*
-                    "subGroup" is a string containing everything from a subgroup which looks like:
-                    face-smiling
-                    1F600     ; fully-qualified     # 😀 E0.6 grinning face
+        groupSplit.drop(1).flatMap { subGroup ->
+            /*
+                "subGroup" is a string containing everything from a subgroup which looks like:
+                face-smiling
+                1F600     ; fully-qualified     # 😀 E0.6 grinning face
 
-                    face-affection
-                    1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
-                 */
-                val subGroupLines = subGroup.lines()
-                val subGroupName = subGroupLines[0]
-                //println(subGroupName)
-                subGroupLines.asSequence().drop(1)
-                    .filter { !it.startsWith("#") && it.isNotBlank() }
-                    .map { it.split(";") }
-                    .map { stringList ->
-                        // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
-                        //[   [0]    ][                [1]                   ]
+                face-affection
+                1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
+             */
+            val subGroupLines = subGroup.lines()
+            val subGroupName = subGroupLines[0]
+            //println(subGroupName)
+            subGroupLines.asSequence().drop(1)
+                .filter { !it.startsWith("#") && it.isNotBlank() }
+                .map { it.split(";") }
+                .map { stringList ->
+                    // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
+                    //[   [0]    ][                [1]                   ]
 
 //val cpOrigString = stringList[0].trim().replace(" ", "-")
 
-                        val codepointsString = stringList[0].trim()
-                            .split(" ")
-                            .joinToString("") { String(Character.toChars(it.toInt(16))) }
+                    val codepointsString = stringList[0].trim()
+                        .split(" ")
+                        .joinToString("") { String(Character.toChars(it.toInt(16))) }
 
-                        //  fully-qualified     # 👍 E0.6 thumbs up
-                        //[        [0]          ][      [1]       ]
-                        // limit split to 1 because of the # keycap emoji description
-                        val information = stringList[1].split("#", limit = 2)
-                        val qualification = information[0].trim()
+                    //  fully-qualified     # 👍 E0.6 thumbs up
+                    //[        [0]          ][      [1]       ]
+                    // limit split to 1 because of the # keycap emoji description
+                    val information = stringList[1].split("#", limit = 2)
+                    val qualification = information[0].trim()
 
-                        // 👍 E0.6 thumbs up
-                        // [0] [1] [2]
-                        val otherInformation = information[1].trim().split(" ", limit = 3)
-                        val version = otherInformation[1].removePrefix("E").toDouble()
-                        val emojiDescription = otherInformation[2].trim()
+                    // 👍 E0.6 thumbs up
+                    // [0] [1] [2]
+                    val otherInformation = information[1].trim().split(" ", limit = 3)
+                    val version = otherInformation[1].removePrefix("E").toDouble()
+                    val emojiDescription = otherInformation[2].trim()
 
-                        val charsAsString = codepointsString.chars()
-                            .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
-                            .collect(Collectors.joining(""))
+                    val charsAsString = codepointsString.chars()
+                        .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
+                        .collect(Collectors.joining(""))
 
-                        val completeDiscordAliases = buildSet {
-                            discordAliases[codepointsString]?.let { addAll(it) }
+                    val completeDiscordAliases = buildSet {
+                        discordAliases[codepointsString]?.let { addAll(it) }
+                    }
+                    val completeGitHubAliases = buildSet {
+                        githubEmojiToAliasMap[codepointsString]?.let { alias ->
+                            addAll(alias)
                         }
-                        val completeGitHubAliases = buildSet {
-                            githubEmojiToAliasMap[codepointsString]?.let { alias ->
-                                addAll(alias)
-                            }
+                    }
+                    val completeSlackAliases = buildSet {
+                        slackAliases[codepointsString]?.let { pairList ->
+                            addAll(pairList)
                         }
-                        val completeSlackAliases = buildSet {
-                            slackAliases[codepointsString]?.let { pairList ->
-                                addAll(pairList)
-                            }
-                        }
+                    }
 
-                        Emoji(
-                            codepointsString,
-                            //Get each char and fill with leading 0 as the representation is: \u0000
-                            codepointsString.asSequence().joinToString(separator = "") { "\\u%04X".format(it.code) },
-                            completeDiscordAliases,
-                            completeGitHubAliases,
-                            completeSlackAliases,
-                            Fitzpatrick.isFitzpatrickEmoji(codepointsString),
-                            HairStyle.isHairStyleEmoji(codepointsString),
-                            version,
-                            qualification,
-                            emojiDescription,
-                            groupName,
-                            subGroupName,
-                            emojisThatHaveVariations.contains(codepointsString),
-                            emptySet<String>()
-                        )
-                    }.toList()
+                    Emoji(
+                        codepointsString,
+                        //Get each char and fill with leading 0 as the representation is: \u0000
+                        codepointsString.asSequence().joinToString(separator = "") { "\\u%04X".format(it.code) },
+                        completeDiscordAliases,
+                        completeGitHubAliases,
+                        completeSlackAliases,
+                        Fitzpatrick.isFitzpatrickEmoji(codepointsString),
+                        HairStyle.isHairStyleEmoji(codepointsString),
+                        version,
+                        qualification,
+                        emojiDescription,
+                        groupName,
+                        subGroupName,
+                        emojisThatHaveVariations.contains(codepointsString),
+                        emptySet<String>()
+                    )
+                }.toList()
+        }
+    }
+
+
+    ////////////////////////
+    ////////////////////////
+    ////////////////////////
+    val repo = "unicode-org/cldr-json"
+
+    val httpBuilderAnnotationsDerivedDirectory: HttpUrl.Builder =
+        "https://api.github.com/repos/${repo}/contents/cldr-json/cldr-annotations-derived-full/annotationsDerived".toHttpUrl()
+            .newBuilder()
+    val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
+    requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
+    val descriptionDirectory: List<Map<String, Any>> =
+        mapper.readValue(client.newCall(requestBuilder.build()).execute().body!!.string())
+    // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
+    // So there might be a description or keywords for the unqualified version but not the fully-qualified
+    //val emojisGroupedByDescription = EmojiManager.getAllEmojis().groupBy { it.description }
+    val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
+    val keywordsNodesLanguageMap = mutableMapOf<String, MutableMap<String, List<String>?>>()
+    val fileNameList = mutableListOf<String>()
+    val emojisGroupedByDescription = allUnicodeEmojis.groupBy { it.description }
+
+    val currentIndex = AtomicInteger(0)
+    descriptionDirectory.parallelStream().forEach { directory ->
+        val index = currentIndex.andIncrement
+        if (index % 10 == 0) {
+            println("$index / ${descriptionDirectory.size} description files processed")
+        }
+        val dirName = directory["name"] as String
+        val descriptionNodeOutput = JsonNodeFactory.instance.objectNode()
+        val keywordsNodeOutput = JsonNodeFactory.instance.objectNode()
+        listOf(
+            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/$dirName/annotations.json",
+            "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/$dirName/annotations.json"
+        ).forEach { url ->
+            requestCLDREmojiDescriptionTranslation(
+                url,
+                client,
+                mapper,
+                descriptionNodeOutput,
+                keywordsNodeOutput,
+                dirName
+            )
+        }
+
+        val fileOutputDir = project(":jemoji-languages").projectDir
+
+        val descriptionMap: MutableMap<String, String?> = mapper.treeToValue(descriptionNodeOutput)
+        // Emojis should also have a distinct description by emoji.
+        // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
+        descriptionMap.toMap().forEach { key, value ->
+            emojisGroupedByDescription[value!!]?.forEach { emoji ->
+                if (!descriptionMap.containsKey(emoji.emoji)) {
+                    descriptionMap.put(emoji.emoji, value)
+                }
             }
         }
 
+        "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
+            FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+            descriptionNodesLanguageMap.put(dirName, descriptionMap)
+        }
 
-        ////////////////////////
-        ////////////////////////
-        ////////////////////////
-        val repo = "unicode-org/cldr-json"
-
-        val httpBuilderAnnotationsDerivedDirectory: HttpUrl.Builder =
-            "https://api.github.com/repos/${repo}/contents/cldr-json/cldr-annotations-derived-full/annotationsDerived".toHttpUrl()
-                .newBuilder()
-        val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
-        requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
-        val descriptionDirectory: List<Map<String, Any>> =
-            mapper.readValue(client.newCall(requestBuilder.build()).execute().body!!.string())
-        // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
-        // So there might be a description or keywords for the unqualified version but not the fully-qualified
-        //val emojisGroupedByDescription = EmojiManager.getAllEmojis().groupBy { it.description }
-        val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
-        val keywordsNodesLanguageMap = mutableMapOf<String, MutableMap<String, List<String>?>>()
-        val fileNameList = mutableListOf<String>()
-        val emojisGroupedByDescription = allUnicodeEmojis.groupBy { it.description }
-
-        val currentIndex = AtomicInteger(0)
-        descriptionDirectory.parallelStream().forEach { directory ->
-            val index = currentIndex.andIncrement
-            if (index % 10 == 0) {
-                println("$index / ${descriptionDirectory.size} description files processed")
-            }
-            val dirName = directory["name"] as String
-            val descriptionNodeOutput = JsonNodeFactory.instance.objectNode()
-            val keywordsNodeOutput = JsonNodeFactory.instance.objectNode()
-            listOf(
-                "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/$dirName/annotations.json",
-                "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/$dirName/annotations.json"
-            ).forEach { url ->
-                requestCLDREmojiDescriptionTranslation(
-                    url,
-                    client,
-                    mapper,
-                    descriptionNodeOutput,
-                    keywordsNodeOutput,
-                    dirName
-                )
-            }
-
-            val fileOutputDir = project(":jemoji-languages").projectDir
-
-            val descriptionMap: MutableMap<String, String?> = mapper.treeToValue(descriptionNodeOutput)
-            // Emojis should also have a distinct description by emoji.
-            // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
-            descriptionMap.toMap().forEach { key, value ->
-                emojisGroupedByDescription[value!!]?.forEach { emoji ->
-                    if (!descriptionMap.containsKey(emoji.emoji)) {
-                        descriptionMap.put(emoji.emoji, value)
-                    }
-                }
-            }
-
-            "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
-                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
-                descriptionNodesLanguageMap.put(dirName, descriptionMap)
-            }
-
-            // Emoji to List<keywords>
-            val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
-            //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
-            "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
-                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
-                keywordsNodesLanguageMap.put(dirName, keywordMap)
-                if (dirName == "en") {
-                    keywordMap.forEach { key, value ->
-                        for (entry in emojisGroupedByDescription.entries) {
-                            if (entry.value.find { it.emoji == key } != null) {
-                                entry.value.forEach { em -> em.keywords = value?.toSet()!! }
-                                break
-                            }
+        // Emoji to List<keywords>
+        val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
+        //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
+        "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
+            FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
+            keywordsNodesLanguageMap.put(dirName, keywordMap)
+            if (dirName == "en") {
+                keywordMap.forEach { key, value ->
+                    for (entry in emojisGroupedByDescription.entries) {
+                        if (entry.value.find { it.emoji == key } != null) {
+                            entry.value.forEach { em -> em.keywords = value?.toSet()!! }
+                            break
                         }
                     }
                 }
             }
-
-            fileNameList.add(dirName)
         }
 
-        ////////////////////////
-        ////////////////////////
-        ////////////////////////
-        writeContentToPublicFiles("emojis", allUnicodeEmojis)
+        fileNameList.add(dirName)
+    }
+
+    ////////////////////////
+    ////////////////////////
+    ////////////////////////
+    writeContentToPublicFiles("emojis", allUnicodeEmojis)
+
+    if (generateAll) {
         for (emoji in allUnicodeEmojis) {
-            val a = buildMap<String, String?> {
+            val descriptionMap = buildMap<String, String?> {
                 descriptionNodesLanguageMap.forEach { p0, p1 ->
                     if (p1.containsKey(emoji.emoji)) {
                         put(p0, p1[emoji.emoji])
@@ -353,9 +366,9 @@ tasks.register("generate") {
                     }
                 }
             }
-            emoji.description = a
+            emoji.description = descriptionMap
 
-            val b = buildMap<String, List<String>?> {
+            val keywordsMap = buildMap<String, List<String>?> {
                 keywordsNodesLanguageMap.forEach { p0, p1 ->
                     if (p1.containsKey(emoji.emoji)) {
                         put(p0, p1[emoji.emoji])
@@ -364,8 +377,9 @@ tasks.register("generate") {
                     }
                 }
             }
-            emoji.keywords = b
+            emoji.keywords = keywordsMap
         }
+
         writeContentToPublicFiles("emojis-full", allUnicodeEmojis)
 
         descriptionNodesLanguageMap.toMap().run {
@@ -394,10 +408,10 @@ tasks.register("generate") {
             )
         }
         keywordsNodesLanguageMap.forEach { entry -> writeContentToPublicFiles("keywords/${entry.key}", entry.value) }
-
-        generateEmojiLanguageEnum(fileNameList)
-        generateJavaSourceFiles()
     }
+
+    generateEmojiLanguageEnum(fileNameList)
+    generateJavaSourceFiles()
 }
 
 fun writeContentToPublicFiles(fileName: String, content: Any) {
