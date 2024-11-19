@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
@@ -414,7 +415,7 @@ fun generate(generateAll: Boolean = false) {
 fun writeContentToPublicFiles(fileName: String, content: Any) {
     val publicFile = File("$rootDir/public/$fileName.json")
     val publicFileMin = File("$rootDir/public/$fileName.min.json")
-    val mapper = jacksonObjectMapper().registerModule(Jdk8Module())
+    val mapper = jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
     publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
     publicFileMin.writeText(mapper.writeValueAsString(content))
 }
