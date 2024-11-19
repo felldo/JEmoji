@@ -172,19 +172,19 @@ fun generate(generateAll: Boolean = false) {
     // drop the first block as it's just the header
     val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
 
-//          "group" is a string containing everything from a group which looks like:
-//          # group: Smileys & Emotion
-//          # subgroup: face-smiling
-//          1F600     ; fully-qualified     # 😀 E0.6 grinning face
+//      "group" is a string containing everything from a group which looks like:
+//      # group: Smileys & Emotion
+//      # subgroup: face-smiling
+//      1F600     ; fully-qualified     # 😀 E0.6 grinning face
 //
-//          # subgroup: face-affection
-//          1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
+//      # subgroup: face-affection
+//      1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
 
 
-//          "groupSplit" is a list containing the group name and all subgroups
-//          [0] = group name
-//          [1] = subgroup 1
-//          [2] = subgroup 2
+//      "groupSplit" is a list containing the group name and all subgroups
+//      [0] = group name
+//      [1] = subgroup 1
+//      [2] = subgroup 2
 
         val groupSplit = group.split("# subgroup: ")
 
@@ -192,14 +192,13 @@ fun generate(generateAll: Boolean = false) {
         val groupName = groupSplit[0].lines()[0]
 
         groupSplit.drop(1).flatMap { subGroup ->
-            /*
-                "subGroup" is a string containing everything from a subgroup which looks like:
-                face-smiling
-                1F600     ; fully-qualified     # 😀 E0.6 grinning face
 
-                face-affection
-                1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
-             */
+//          "subGroup" is a string containing everything from a subgroup which looks like:
+//          face-smiling
+//          1F600     ; fully-qualified     # 😀 E0.6 grinning face
+//
+//          face-affection
+//          1F970     ; fully-qualified     # 🥰 E11.0 smiling face with hearts
             val subGroupLines = subGroup.lines()
             val subGroupName = subGroupLines[0]
             //println(subGroupName)
@@ -282,7 +281,6 @@ fun generate(generateAll: Boolean = false) {
         mapper.readValue(client.newCall(requestBuilder.build()).execute().body!!.string())
     // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
     // So there might be a description or keywords for the unqualified version but not the fully-qualified
-    //val emojisGroupedByDescription = EmojiManager.getAllEmojis().groupBy { it.description }
     val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
     val keywordsNodesLanguageMap = mutableMapOf<String, MutableMap<String, List<String>?>>()
     val fileNameList = mutableListOf<String>()
@@ -325,7 +323,9 @@ fun generate(generateAll: Boolean = false) {
         }
 
         "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
-            FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+            if (generateAll) {
+                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+            }
             descriptionNodesLanguageMap.put(dirName, descriptionMap)
         }
 
@@ -333,7 +333,9 @@ fun generate(generateAll: Boolean = false) {
         val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
         //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
         "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
-            FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
+            if (generateAll) {
+                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
+            }
             keywordsNodesLanguageMap.put(dirName, keywordMap)
             if (dirName == "en") {
                 keywordMap.forEach { key, value ->
@@ -358,22 +360,22 @@ fun generate(generateAll: Boolean = false) {
     if (generateAll) {
         for (emoji in allUnicodeEmojis) {
             val descriptionMap = buildMap<String, String?> {
-                descriptionNodesLanguageMap.forEach { p0, p1 ->
-                    if (p1.containsKey(emoji.emoji)) {
-                        put(p0, p1[emoji.emoji])
+                descriptionNodesLanguageMap.forEach { key, value ->
+                    if (value.containsKey(emoji.emoji)) {
+                        put(key, value[emoji.emoji])
                     } else {
-                        put(p0, null)
+                        put(key, null)
                     }
                 }
             }
             emoji.description = descriptionMap
 
             val keywordsMap = buildMap<String, List<String>?> {
-                keywordsNodesLanguageMap.forEach { p0, p1 ->
-                    if (p1.containsKey(emoji.emoji)) {
-                        put(p0, p1[emoji.emoji])
+                keywordsNodesLanguageMap.forEach { key, value ->
+                    if (value.containsKey(emoji.emoji)) {
+                        put(key, value[emoji.emoji])
                     } else {
-                        put(p0, null)
+                        put(key, null)
                     }
                 }
             }
@@ -401,13 +403,8 @@ fun generate(generateAll: Boolean = false) {
             }
         }
 
-        descriptionNodesLanguageMap.forEach { entry ->
-            writeContentToPublicFiles(
-                "description/${entry.key}",
-                entry.value
-            )
-        }
-        keywordsNodesLanguageMap.forEach { entry -> writeContentToPublicFiles("keywords/${entry.key}", entry.value) }
+        descriptionNodesLanguageMap.forEach { writeContentToPublicFiles("description/${it.key}", it.value) }
+        keywordsNodesLanguageMap.forEach { writeContentToPublicFiles("keywords/${it.key}", it.value) }
     }
 
     generateEmojiLanguageEnum(fileNameList)
