@@ -36,7 +36,10 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 import kotlin.math.ceil
 
-plugins {}
+plugins {
+    id("base")
+    id("org.jreleaser") version "1.15.0"
+}
 
 allprojects {
     apply(plugin = "maven-publish")

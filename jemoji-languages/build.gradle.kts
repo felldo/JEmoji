@@ -1,8 +1,10 @@
 plugins {
     `java-library`
     `maven-publish`
-    signing
+    id("org.jreleaser") version "1.15.0"
+
     id("com.github.ben-manes.versions") version "0.51.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 val java9: SourceSet by sourceSets.creating
@@ -75,8 +77,8 @@ tasks.withType<JavaCompile> {
 
 tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
-}
-
+}/*
+val stagingDir: Provider<Directory> = layout.buildDirectory.dir("staging-deploy")
 publishing {
     if (project.gradle.startParameter.taskNames.contains("publish")
         or project.gradle.startParameter.taskNames.contains("publishToMavenLocal")
@@ -128,37 +130,50 @@ publishing {
 
     repositories {
         maven {
-            val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-            url = if (isReleaseVersion) {
-                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            } else {
-                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            }
-            credentials {
-                username = findPropertyOrNull("NEXUS_API_TOKEN_USERNAME")
-                password = findPropertyOrNull("NEXUS_API_TOKEN_PASSWORD")
-            }
+            url = stagingDir.get().asFile.toURI()
         }
     }
 }
 
-fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
+jreleaser {
+    gitRootSearch = true
+    signing {
+        active = org.jreleaser.model.Active.ALWAYS
+        armored = true
 
-signing {
-    val signingKey = findPropertyOrNull("JEMOJI_SINGING_SECRET_KEY_RING_FILE")
-    val signingKeyId = findPropertyOrNull("JEMOJI_SIGNING_KEY_ID")
-    val signingPassword = findPropertyOrNull("JEMOJI_SIGNING_PASSWORD")
-    isRequired = !signingKey.isNullOrBlank()
-
-    if (project.gradle.startParameter.taskNames.any { anyTask ->
-            tasks.mapNotNull { if (it.group == "publishing") it.name else null }.contains(anyTask)
-        }) {
-        println("Executing a publishing task. The jar will be signed: $isRequired")
     }
 
-    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-    sign(publishing.publications["JEMOJI_LANGUAGES"])
-}
+    release {
+        github {
+            repoOwner = "felldo"
+            repoUrl = "https://github.com/felldo/JEmoji"
+            skipRelease = true
+            skipTag = true
+            sign = true
+            branch = "main"
+            branchPush = "main"
+            overwrite = true
+        }
+    }
+
+    deploy {
+        maven {
+            //Portal Publisher API
+            mavenCentral {
+                create("sonatype") {
+                    active = org.jreleaser.model.Active.ALWAYS
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    applyMavenCentralRules = true
+                    //snapshotSupported = true
+                    println(stagingDir.get().toString())
+                    stagingRepository(stagingDir.get().toString())
+                }
+            }
+
+        }
+    }
+}*/
+fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
 
 val prePublishTask by tasks.register("prePublishTask") {
     doFirst {
