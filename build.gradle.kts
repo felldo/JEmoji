@@ -39,24 +39,46 @@ import kotlin.math.ceil
 plugins {
     id("base")
     id("org.jreleaser") version "1.15.0"
+    `java-library`
+    `maven-publish`
 }
 
-allprojects {
+subprojects {
     apply(plugin = "maven-publish")
-//    repositories {
-//        maven {
-//            val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-//            url = if (isReleaseVersion) {
-//                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//            } else {
-//                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-//            }
-//            credentials {
-//                username = findPropertyOrNull("NEXUS_API_TOKEN_USERNAME")
-//                password = findPropertyOrNull("NEXUS_API_TOKEN_PASSWORD")
-//            }
-//        }
-//    }
+    apply(plugin = "org.jreleaser")
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
+
+    tasks.withType<Javadoc>().configureEach {
+        options {
+            this as StandardJavadocDocletOptions
+            locale = "en"
+            encoding = "UTF-8"
+
+            docTitle = "${project.property("docTitle")} ${project.version}"
+            windowTitle = "$docTitle Documentation"
+            links("https://docs.oracle.com/javase/8/docs/api/")
+            isUse = true
+            isVersion = true
+            isAuthor = true
+            isSplitIndex = true
+
+            val toolchain = javadocTool
+                .map { JavaVersion.toVersion(it.metadata.languageVersion) }
+                .orElse(provider { JavaVersion.current() })
+                .get()
+            if (toolchain.isCompatibleWith(JavaVersion.VERSION_1_9)) {
+                addBooleanOption("html5", true)
+                addStringOption("-release", java.targetCompatibility.majorVersion)
+                if (toolchain.isCompatibleWith(JavaVersion.VERSION_11) && !toolchain.isCompatibleWith(JavaVersion.VERSION_13)) {
+                    addBooleanOption("-no-module-directories", true)
+                }
+            } else {
+                source = java.sourceCompatibility.toString()
+            }
+        }
+    }
+
 }
 
 fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
@@ -418,7 +440,8 @@ fun generate(generateAll: Boolean = false) {
 fun writeContentToPublicFiles(fileName: String, content: Any) {
     val publicFile = File("$rootDir/public/$fileName.json")
     val publicFileMin = File("$rootDir/public/$fileName.min.json")
-    val mapper = jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
+    val mapper =
+        jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
     publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
     publicFileMin.writeText(mapper.writeValueAsString(content))
 }

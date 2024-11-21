@@ -1,10 +1,7 @@
 plugins {
-    `java-library`
-    `maven-publish`
-    id("org.jreleaser") version "1.15.0"
-
     id("com.github.ben-manes.versions") version "0.51.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("myproject.library-conventions")
 }
 
 val java9: SourceSet by sourceSets.creating
@@ -44,40 +41,12 @@ val java9Implementation by configurations.existing {
     extendsFrom(configurations.implementation.get())
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     compileOnly(project(":jemoji"))
     testImplementation(project(":jemoji"))
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }
-}
 
-testing {
-    suites {
-        // Configure the built-in test suite
-        val test by getting(JvmTestSuite::class) {
-            // Use JUnit4 test framework
-            useJUnitJupiter("5.11.3")
-        }
-    }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<Test> {
-    systemProperty("file.encoding", "UTF-8")
-}/*
 val stagingDir: Provider<Directory> = layout.buildDirectory.dir("staging-deploy")
 publishing {
     if (project.gradle.startParameter.taskNames.contains("publish")
@@ -172,7 +141,7 @@ jreleaser {
 
         }
     }
-}*/
+}
 fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
 
 val prePublishTask by tasks.register("prePublishTask") {
@@ -186,33 +155,4 @@ val prePublishTask by tasks.register("prePublishTask") {
 // When publishing, check if the secrets are available
 tasks.named("publish") {
     dependsOn(prePublishTask)
-}
-
-tasks.withType<Javadoc>().configureEach {
-    options {
-        this as StandardJavadocDocletOptions
-        locale = "en"
-        encoding = "UTF-8"
-        docTitle = "JEmoji Languages ${project.version}"
-        windowTitle = "$docTitle Documentation"
-        links("https://docs.oracle.com/javase/8/docs/api/")
-        isUse = true
-        isVersion = true
-        isAuthor = true
-        isSplitIndex = true
-
-        val toolchain = javadocTool
-            .map { JavaVersion.toVersion(it.metadata.languageVersion) }
-            .orElse(provider { JavaVersion.current() })
-            .get()
-        if (toolchain.isCompatibleWith(JavaVersion.VERSION_1_9)) {
-            addBooleanOption("html5", true)
-            addStringOption("-release", java.targetCompatibility.majorVersion)
-            if (toolchain.isCompatibleWith(JavaVersion.VERSION_11) && !toolchain.isCompatibleWith(JavaVersion.VERSION_13)) {
-                addBooleanOption("-no-module-directories", true)
-            }
-        } else {
-            source = java.sourceCompatibility.toString()
-        }
-    }
 }
