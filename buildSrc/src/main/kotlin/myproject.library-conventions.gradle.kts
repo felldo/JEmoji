@@ -35,3 +35,33 @@ tasks.withType<JavaCompile> {
 tasks.withType<Test> {
     systemProperty("file.encoding", "UTF-8")
 }
+
+tasks.withType<Javadoc>().configureEach {
+    options {
+        this as StandardJavadocDocletOptions
+        locale = "en"
+        encoding = "UTF-8"
+
+        docTitle = "${project.property("docTitle")} ${project.version}"
+        windowTitle = "$docTitle Documentation"
+        links("https://docs.oracle.com/javase/8/docs/api/")
+        isUse = true
+        isVersion = true
+        isAuthor = true
+        isSplitIndex = true
+
+        val toolchain = javadocTool
+            .map { JavaVersion.toVersion(it.metadata.languageVersion) }
+            .orElse(provider { JavaVersion.current() })
+            .get()
+        if (toolchain.isCompatibleWith(JavaVersion.VERSION_1_9)) {
+            addBooleanOption("html5", true)
+            addStringOption("-release", java.targetCompatibility.majorVersion)
+            if (toolchain.isCompatibleWith(JavaVersion.VERSION_11) && !toolchain.isCompatibleWith(JavaVersion.VERSION_13)) {
+                addBooleanOption("-no-module-directories", true)
+            }
+        } else {
+            source = java.sourceCompatibility.toString()
+        }
+    }
+}
