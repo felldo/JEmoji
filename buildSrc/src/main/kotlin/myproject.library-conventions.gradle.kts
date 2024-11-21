@@ -4,6 +4,7 @@ plugins {
     id("myproject.java-conventions")
 }
 
+apply(plugin = "org.jreleaser")
 
 repositories {
     mavenCentral()

@@ -39,16 +39,16 @@ import kotlin.math.ceil
 plugins {
     id("base")
     id("org.jreleaser") version "1.15.0"
-    `java-library`
-    `maven-publish`
+    //`java-library`
+    //`maven-publish`
 }
 
-subprojects {
-    apply(plugin = "maven-publish")
+//subprojects {
+    /*apply(plugin = "maven-publish")
     apply(plugin = "org.jreleaser")
     apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
-}
+    apply(plugin = "maven-publish")*/
+//}
 
 fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
 
