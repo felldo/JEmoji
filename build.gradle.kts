@@ -30,36 +30,30 @@ import org.htmlunit.html.HtmlPage
 import org.htmlunit.html.HtmlScript
 import org.jsoup.Connection
 import org.jsoup.Jsoup
+import java.io.BufferedWriter
 import java.io.FileOutputStream
+import java.io.FileWriter
 import java.io.ObjectOutputStream
+import java.io.Writer
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 import kotlin.math.ceil
 
 plugins {
     id("base")
-    id("org.jreleaser") version "1.15.0"
+    alias(libs.plugins.versions.catalog)
+    //alias(libs.plugins.jreleaser)
+    //`java-library`
+    //`maven-publish`
 }
 
-allprojects {
-    apply(plugin = "maven-publish")
-//    repositories {
-//        maven {
-//            val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-//            url = if (isReleaseVersion) {
-//                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//            } else {
-//                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-//            }
-//            credentials {
-//                username = findPropertyOrNull("NEXUS_API_TOKEN_USERNAME")
-//                password = findPropertyOrNull("NEXUS_API_TOKEN_PASSWORD")
-//            }
-//        }
-//    }
-}
+//subprojects {
+/*apply(plugin = "maven-publish")
+apply(plugin = "org.jreleaser")
+apply(plugin = "java-library")
+apply(plugin = "maven-publish")*/
+//}
 
-fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
 
 tasks.register("publishAll") {
     subprojects.forEach { subproject ->
@@ -72,17 +66,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.fasterxml.jackson.core:jackson-databind:2.18.1")
-        classpath("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.1")
-        classpath("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1")
-        classpath("com.squareup.okhttp3:okhttp:4.9.3")
-
-        classpath("org.jsoup:jsoup:1.17.2")
-        classpath("org.htmlunit:htmlunit:4.4.0")
-        classpath("com.github.javaparser:javaparser-symbol-solver-core:3.25.10")
+        classpath(libs.jackson.databind)
+        classpath(libs.jackson.module.kotlin)
+        classpath(libs.jackson.datatype.jdk8)
+        classpath(libs.okhttp)
+        classpath(libs.jsoup)
+        classpath(libs.htmlunit)
+        classpath(libs.javaparser.symbol.solver.core)
+        classpath(libs.kotlinx.coroutines.core)
+        classpath(libs.kotlinx.coroutines.jdk8)
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
-        classpath("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC.2")
-        classpath("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.9.0-RC.2")
     }
 }
 
@@ -315,11 +308,11 @@ fun generate(generateAll: Boolean = false) {
 
         val fileOutputDir = project(":jemoji-languages").projectDir
 
-        val descriptionMap: MutableMap<String, String?> = mapper.treeToValue(descriptionNodeOutput)
+        val descriptionMap: MutableMap<String, String> = mapper.treeToValue(descriptionNodeOutput)
         // Emojis should also have a distinct description by emoji.
         // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
         descriptionMap.toMap().forEach { key, value ->
-            emojisGroupedByDescription[value!!]?.forEach { emoji ->
+            emojisGroupedByDescription[value]?.forEach { emoji ->
                 if (!descriptionMap.containsKey(emoji.emoji)) {
                     descriptionMap.put(emoji.emoji, value)
                 }
@@ -328,9 +321,11 @@ fun generate(generateAll: Boolean = false) {
 
         "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
             if (generateAll) {
-                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+                FileWriter(it).use { writer: Writer ->
+                    descriptionMap.toProperties().store(writer, null)
+                }
             }
-            descriptionNodesLanguageMap.put(dirName, descriptionMap)
+            descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String,String?>)
         }
 
         // Emoji to List<keywords>
@@ -418,7 +413,8 @@ fun generate(generateAll: Boolean = false) {
 fun writeContentToPublicFiles(fileName: String, content: Any) {
     val publicFile = File("$rootDir/public/$fileName.json")
     val publicFileMin = File("$rootDir/public/$fileName.min.json")
-    val mapper = jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
+    val mapper =
+        jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
     publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
     publicFileMin.writeText(mapper.writeValueAsString(content))
 }
