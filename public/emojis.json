@@ -29682,7 +29682,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶‍➡",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u27A1",
@@ -29697,7 +29697,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
@@ -29712,7 +29712,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u27A1",
@@ -29727,7 +29727,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
@@ -29742,7 +29742,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u27A1",
@@ -29757,7 +29757,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
@@ -29772,7 +29772,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u27A1",
@@ -29787,7 +29787,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
@@ -29802,7 +29802,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u27A1",
@@ -29817,7 +29817,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
@@ -29832,7 +29832,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u27A1",
@@ -29847,7 +29847,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "person", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "person", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -29862,7 +29862,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -29877,7 +29877,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -29892,7 +29892,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2640\\u200D\\u27A1",
@@ -29907,7 +29907,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏻‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -29922,7 +29922,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏻‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -29937,7 +29937,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏻‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -29952,7 +29952,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏻‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1",
@@ -29967,7 +29967,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏼‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -29982,7 +29982,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏼‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -29997,7 +29997,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏼‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -30012,7 +30012,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏼‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1",
@@ -30027,7 +30027,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏽‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30042,7 +30042,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏽‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -30057,7 +30057,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏽‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -30072,7 +30072,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏽‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1",
@@ -30087,7 +30087,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏾‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30102,7 +30102,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏾‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -30117,7 +30117,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏾‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -30132,7 +30132,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏾‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1",
@@ -30147,7 +30147,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏿‍♀️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30162,7 +30162,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏿‍♀‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -30177,7 +30177,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏿‍♀️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -30192,7 +30192,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶🏿‍♀‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1",
@@ -30207,7 +30207,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking", "woman" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking", "woman" ]
 }, {
   "emoji" : "🚶‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30222,7 +30222,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30237,7 +30237,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30252,7 +30252,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\u200D\\u2642\\u200D\\u27A1",
@@ -30267,7 +30267,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30282,7 +30282,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30297,7 +30297,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30312,7 +30312,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏻‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1",
@@ -30327,7 +30327,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "light skin tone", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30342,7 +30342,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30357,7 +30357,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30372,7 +30372,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏼‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1",
@@ -30387,7 +30387,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-light skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30402,7 +30402,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30417,7 +30417,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30432,7 +30432,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏽‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1",
@@ -30447,7 +30447,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30462,7 +30462,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30477,7 +30477,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30492,7 +30492,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏾‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1",
@@ -30507,7 +30507,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "facing", "gait", "hike", "man", "medium-dark skin tone", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍♂️‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -30522,7 +30522,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍♂‍➡️",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -30537,7 +30537,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍♂️‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -30552,7 +30552,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🚶🏿‍♂‍➡",
   "unicode" : "\\uD83D\\uDEB6\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1",
@@ -30567,7 +30567,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "amble", "gait", "hike", "man", "pace", "pedestrian", "stride", "stroll", "walk", "walking" ]
+  "keywords" : [ "amble", "dark skin tone", "facing", "gait", "hike", "man", "pace", "pedestrian", "right", "stride", "stroll", "walk", "walking" ]
 }, {
   "emoji" : "🧍",
   "unicode" : "\\uD83E\\uDDCD",
@@ -31482,7 +31482,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "person", "right" ]
 }, {
   "emoji" : "🧎‍➡",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u27A1",
@@ -31497,7 +31497,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "person", "right" ]
 }, {
   "emoji" : "🧎🏻‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
@@ -31512,7 +31512,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏻‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u27A1",
@@ -31527,7 +31527,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏼‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
@@ -31542,7 +31542,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏼‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u27A1",
@@ -31557,7 +31557,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏽‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
@@ -31572,7 +31572,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏽‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u27A1",
@@ -31587,7 +31587,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏾‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
@@ -31602,7 +31602,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏾‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u27A1",
@@ -31617,7 +31617,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "person", "right" ]
 }, {
   "emoji" : "🧎🏿‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
@@ -31632,7 +31632,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "person", "right" ]
 }, {
   "emoji" : "🧎🏿‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u27A1",
@@ -31647,7 +31647,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "person" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "person", "right" ]
 }, {
   "emoji" : "🧎‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31662,7 +31662,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31677,7 +31677,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31692,7 +31692,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2640\\u200D\\u27A1",
@@ -31707,7 +31707,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎🏻‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31722,7 +31722,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏻‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31737,7 +31737,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏻‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31752,7 +31752,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏻‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1",
@@ -31767,7 +31767,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏼‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31782,7 +31782,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏼‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31797,7 +31797,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏼‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31812,7 +31812,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏼‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1",
@@ -31827,7 +31827,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-light skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏽‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31842,7 +31842,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏽‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31857,7 +31857,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏽‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31872,7 +31872,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏽‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1",
@@ -31887,7 +31887,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏾‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31902,7 +31902,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏾‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31917,7 +31917,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏾‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31932,7 +31932,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏾‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1",
@@ -31947,7 +31947,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "medium-dark skin tone", "right", "woman" ]
 }, {
   "emoji" : "🧎🏿‍♀️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -31962,7 +31962,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎🏿‍♀‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -31977,7 +31977,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎🏿‍♀️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -31992,7 +31992,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎🏿‍♀‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1",
@@ -32007,7 +32007,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "right", "woman" ]
 }, {
   "emoji" : "🧎‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32022,7 +32022,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32037,7 +32037,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32052,7 +32052,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\u200D\\u2642\\u200D\\u27A1",
@@ -32067,7 +32067,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎🏻‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32082,7 +32082,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "man", "right" ]
 }, {
   "emoji" : "🧎🏻‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32097,7 +32097,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "man", "right" ]
 }, {
   "emoji" : "🧎🏻‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32112,7 +32112,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "man", "right" ]
 }, {
   "emoji" : "🧎🏻‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1",
@@ -32127,7 +32127,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "light skin tone", "man", "right" ]
 }, {
   "emoji" : "🧎🏼‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32142,7 +32142,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-light skin tone", "right" ]
 }, {
   "emoji" : "🧎🏼‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32157,7 +32157,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-light skin tone", "right" ]
 }, {
   "emoji" : "🧎🏼‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32172,7 +32172,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-light skin tone", "right" ]
 }, {
   "emoji" : "🧎🏼‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1",
@@ -32187,7 +32187,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-light skin tone", "right" ]
 }, {
   "emoji" : "🧎🏽‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32202,7 +32202,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium skin tone", "right" ]
 }, {
   "emoji" : "🧎🏽‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32217,7 +32217,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium skin tone", "right" ]
 }, {
   "emoji" : "🧎🏽‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32232,7 +32232,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium skin tone", "right" ]
 }, {
   "emoji" : "🧎🏽‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1",
@@ -32247,7 +32247,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium skin tone", "right" ]
 }, {
   "emoji" : "🧎🏾‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32262,7 +32262,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-dark skin tone", "right" ]
 }, {
   "emoji" : "🧎🏾‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32277,7 +32277,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-dark skin tone", "right" ]
 }, {
   "emoji" : "🧎🏾‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32292,7 +32292,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-dark skin tone", "right" ]
 }, {
   "emoji" : "🧎🏾‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1",
@@ -32307,7 +32307,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "facing", "kneel", "kneeling", "knees", "man", "medium-dark skin tone", "right" ]
 }, {
   "emoji" : "🧎🏿‍♂️‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -32322,7 +32322,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎🏿‍♂‍➡️",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -32337,7 +32337,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎🏿‍♂️‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -32352,7 +32352,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧎🏿‍♂‍➡",
   "unicode" : "\\uD83E\\uDDCE\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1",
@@ -32367,7 +32367,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "kneel", "kneeling", "knees", "man" ]
+  "keywords" : [ "dark skin tone", "facing", "kneel", "kneeling", "knees", "man", "right" ]
 }, {
   "emoji" : "🧑‍🦯",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDAF",
@@ -32472,7 +32472,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32487,7 +32487,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏻‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32502,7 +32502,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏻‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32517,7 +32517,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏼‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32532,7 +32532,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-light skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏼‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32547,7 +32547,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-light skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏽‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32562,7 +32562,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏽‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32577,7 +32577,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏾‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32592,7 +32592,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-dark skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏾‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32607,7 +32607,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-dark skin tone", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏿‍🦯‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32622,7 +32622,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "🧑🏿‍🦯‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32637,7 +32637,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "person", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "person", "probing", "right", "white" ]
 }, {
   "emoji" : "👨‍🦯",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDAF",
@@ -32742,7 +32742,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👨‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32757,7 +32757,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏻‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32772,7 +32772,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏻‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32787,7 +32787,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏼‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32802,7 +32802,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium-light skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏼‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32817,7 +32817,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium-light skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏽‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32832,7 +32832,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏽‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32847,7 +32847,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏾‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32862,7 +32862,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium-dark skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏾‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32877,7 +32877,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "man", "medium-dark skin tone", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏿‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -32892,7 +32892,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👨🏿‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -32907,7 +32907,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "man", "probing", "white" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "man", "probing", "right", "white" ]
 }, {
   "emoji" : "👩‍🦯",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDAF",
@@ -33012,7 +33012,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33027,7 +33027,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -33042,7 +33042,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33057,7 +33057,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "light skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -33072,7 +33072,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-light skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33087,7 +33087,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-light skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -33102,7 +33102,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33117,7 +33117,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -33132,7 +33132,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-dark skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33147,7 +33147,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "facing", "medium-dark skin tone", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦯‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1\\uFE0F",
@@ -33162,7 +33162,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦯‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDAF\\u200D\\u27A1",
@@ -33177,7 +33177,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "blind", "cane", "probing", "white", "woman" ]
+  "keywords" : [ "accessibility", "blind", "cane", "dark skin tone", "facing", "probing", "right", "white", "woman" ]
 }, {
   "emoji" : "🧑‍🦼",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBC",
@@ -33282,7 +33282,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33297,7 +33297,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏻‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33312,7 +33312,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏻‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33327,7 +33327,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏼‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33342,7 +33342,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium-light skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏼‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33357,7 +33357,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium-light skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏽‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33372,7 +33372,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏽‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33387,7 +33387,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏾‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33402,7 +33402,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium-dark skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏾‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33417,7 +33417,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "medium-dark skin tone", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏿‍🦼‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33432,7 +33432,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏿‍🦼‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33447,7 +33447,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "motorized", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "👨‍🦼",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBC",
@@ -33552,7 +33552,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33567,7 +33567,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏻‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33582,7 +33582,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏻‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33597,7 +33597,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏼‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33612,7 +33612,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium-light skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏼‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33627,7 +33627,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium-light skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏽‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33642,7 +33642,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏽‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33657,7 +33657,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏾‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33672,7 +33672,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium-dark skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏾‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33687,7 +33687,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "medium-dark skin tone", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏿‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33702,7 +33702,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏿‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33717,7 +33717,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "motorized", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "man", "motorized", "right", "wheelchair" ]
 }, {
   "emoji" : "👩‍🦼",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBC",
@@ -33822,7 +33822,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33837,7 +33837,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33852,7 +33852,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33867,7 +33867,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33882,7 +33882,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium-light skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33897,7 +33897,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium-light skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33912,7 +33912,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33927,7 +33927,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33942,7 +33942,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium-dark skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33957,7 +33957,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "medium-dark skin tone", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦼‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1\\uFE0F",
@@ -33972,7 +33972,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦼‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBC\\u200D\\u27A1",
@@ -33987,7 +33987,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "motorized", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "motorized", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "🧑‍🦽",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBD",
@@ -34092,7 +34092,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34107,7 +34107,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏻‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34122,7 +34122,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏻‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34137,7 +34137,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏼‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34152,7 +34152,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-light skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏼‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34167,7 +34167,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-light skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏽‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34182,7 +34182,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏽‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34197,7 +34197,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏾‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34212,7 +34212,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-dark skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏾‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34227,7 +34227,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-dark skin tone", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏿‍🦽‍➡️",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34242,7 +34242,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "🧑🏿‍🦽‍➡",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34257,7 +34257,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "person", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "manual", "person", "right", "wheelchair" ]
 }, {
   "emoji" : "👨‍🦽",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBD",
@@ -34362,7 +34362,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👨‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34377,7 +34377,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏻‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34392,7 +34392,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏻‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34407,7 +34407,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏼‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34422,7 +34422,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium-light skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏼‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34437,7 +34437,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium-light skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏽‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34452,7 +34452,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏽‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34467,7 +34467,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏾‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34482,7 +34482,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium-dark skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏾‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34497,7 +34497,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "facing", "man", "manual", "medium-dark skin tone", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏿‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34512,7 +34512,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👨🏿‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34527,7 +34527,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "man", "manual", "wheelchair" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "man", "manual", "right", "wheelchair" ]
 }, {
   "emoji" : "👩‍🦽",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBD",
@@ -34632,7 +34632,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34647,7 +34647,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34662,7 +34662,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏻‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34677,7 +34677,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "light skin tone", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34692,7 +34692,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-light skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏼‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34707,7 +34707,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-light skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34722,7 +34722,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏽‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34737,7 +34737,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34752,7 +34752,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-dark skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏾‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34767,7 +34767,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "facing", "manual", "medium-dark skin tone", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦽‍➡️",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1\\uFE0F",
@@ -34782,7 +34782,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "👩🏿‍🦽‍➡",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDDBD\\u200D\\u27A1",
@@ -34797,7 +34797,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "accessibility", "manual", "wheelchair", "woman" ]
+  "keywords" : [ "accessibility", "dark skin tone", "facing", "manual", "right", "wheelchair", "woman" ]
 }, {
   "emoji" : "🏃",
   "unicode" : "\\uD83C\\uDFC3",
@@ -35262,7 +35262,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃‍➡",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u27A1",
@@ -35277,7 +35277,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u27A1\\uFE0F",
@@ -35292,7 +35292,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u27A1",
@@ -35307,7 +35307,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u27A1\\uFE0F",
@@ -35322,7 +35322,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u27A1",
@@ -35337,7 +35337,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u27A1\\uFE0F",
@@ -35352,7 +35352,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u27A1",
@@ -35367,7 +35367,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u27A1\\uFE0F",
@@ -35382,7 +35382,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u27A1",
@@ -35397,7 +35397,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u27A1\\uFE0F",
@@ -35412,7 +35412,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u27A1",
@@ -35427,7 +35427,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "person", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35442,7 +35442,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35457,7 +35457,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35472,7 +35472,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2640\\u200D\\u27A1",
@@ -35487,7 +35487,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏻‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35502,7 +35502,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏻‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35517,7 +35517,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏻‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35532,7 +35532,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏻‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2640\\u200D\\u27A1",
@@ -35547,7 +35547,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏼‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35562,7 +35562,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏼‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35577,7 +35577,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏼‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35592,7 +35592,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏼‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2640\\u200D\\u27A1",
@@ -35607,7 +35607,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏽‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35622,7 +35622,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏽‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35637,7 +35637,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏽‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35652,7 +35652,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏽‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2640\\u200D\\u27A1",
@@ -35667,7 +35667,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏾‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35682,7 +35682,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏾‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35697,7 +35697,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏾‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35712,7 +35712,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏾‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2640\\u200D\\u27A1",
@@ -35727,7 +35727,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "facing", "fast", "hurry", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏿‍♀️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35742,7 +35742,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏿‍♀‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1\\uFE0F",
@@ -35757,7 +35757,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏿‍♀️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F\\u200D\\u27A1",
@@ -35772,7 +35772,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃🏿‍♀‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2640\\u200D\\u27A1",
@@ -35787,7 +35787,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed", "woman" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed", "woman" ]
 }, {
   "emoji" : "🏃‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35802,7 +35802,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -35817,7 +35817,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -35832,7 +35832,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\u200D\\u2642\\u200D\\u27A1",
@@ -35847,7 +35847,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35862,7 +35862,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -35877,7 +35877,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -35892,7 +35892,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏻‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFB\\u200D\\u2642\\u200D\\u27A1",
@@ -35907,7 +35907,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "light skin tone", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35922,7 +35922,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -35937,7 +35937,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -35952,7 +35952,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏼‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFC\\u200D\\u2642\\u200D\\u27A1",
@@ -35967,7 +35967,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-light skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -35982,7 +35982,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -35997,7 +35997,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -36012,7 +36012,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏽‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFD\\u200D\\u2642\\u200D\\u27A1",
@@ -36027,7 +36027,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -36042,7 +36042,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -36057,7 +36057,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -36072,7 +36072,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏾‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFE\\u200D\\u2642\\u200D\\u27A1",
@@ -36087,7 +36087,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "facing", "fast", "hurry", "man", "marathon", "medium-dark skin tone", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍♂️‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1\\uFE0F",
@@ -36102,7 +36102,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍♂‍➡️",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1\\uFE0F",
@@ -36117,7 +36117,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍♂️‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F\\u200D\\u27A1",
@@ -36132,7 +36132,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "🏃🏿‍♂‍➡",
   "unicode" : "\\uD83C\\uDFC3\\uD83C\\uDFFF\\u200D\\u2642\\u200D\\u27A1",
@@ -36147,7 +36147,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "run", "rush", "speed" ]
+  "keywords" : [ "dark skin tone", "facing", "fast", "hurry", "man", "marathon", "move", "quick", "race", "racing", "right", "run", "rush", "speed" ]
 }, {
   "emoji" : "💃",
   "unicode" : "\\uD83D\\uDC83",
