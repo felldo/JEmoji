@@ -16,6 +16,9 @@ public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
     private final String unicode;
+    private final String htmlDec;
+    private final String htmlHex;
+    private final String urlEncoded;
     private final List<String> discordAliases;
     private final List<String> githubAliases;
     private final List<String> slackAliases;
@@ -34,6 +37,9 @@ public final class Emoji implements Comparable<Emoji> {
     Emoji(
             final String emoji,
             final String unicode,
+            final String htmlDec,
+            final String htmlHex,
+            final String urlEncoded,
             final List<String> discordAliases,
             final List<String> slackAliases,
             final List<String> githubAliases,
@@ -48,6 +54,9 @@ public final class Emoji implements Comparable<Emoji> {
             final boolean hasVariationSelectors) {
         this.emoji = emoji;
         this.unicode = unicode;
+        this.htmlDec = htmlDec;
+        this.htmlHex = htmlHex;
+        this.urlEncoded = urlEncoded;
         this.discordAliases = discordAliases;
         this.githubAliases = githubAliases;
         this.slackAliases = slackAliases;
@@ -65,6 +74,7 @@ public final class Emoji implements Comparable<Emoji> {
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
         allAliases = Collections.unmodifiableList(new ArrayList<>(aliases));
+
     }
 
     /**

@@ -16,6 +16,7 @@ import com.github.javaparser.ast.body.FieldDeclaration
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.github.javaparser.ast.comments.JavadocComment
 import com.github.javaparser.ast.expr.*
+import net.fellbaum.jemoji.EmojiManager
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
 import okhttp3.HttpUrl
@@ -35,6 +36,8 @@ import java.io.FileOutputStream
 import java.io.FileWriter
 import java.io.ObjectOutputStream
 import java.io.Writer
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 import kotlin.math.ceil
@@ -246,6 +249,9 @@ fun generate(generateAll: Boolean = false) {
                         codepointsString,
                         //Get each char and fill with leading 0 as the representation is: \u0000
                         codepointsString.asSequence().joinToString(separator = "") { "\\u%04X".format(it.code) },
+                        codepointsString.codePoints().mapToObj { operand -> "&#$operand" }.collect(Collectors.joining(";")) + ";",
+                        codepointsString.codePoints().mapToObj{operand -> "&#x" + Integer.toHexString(operand).uppercase()}.collect(Collectors.joining(";")) + ";",
+                        URLEncoder.encode(codepointsString, StandardCharsets.UTF_8.toString()),
                         completeDiscordAliases,
                         completeGitHubAliases,
                         completeSlackAliases,
@@ -654,6 +660,9 @@ fun getStringWithColon(str: String) = ":$str:"
 data class Emoji(
     val emoji: String,
     val unicode: String,
+    val htmlDec: String,
+    val htmlHex: String,
+    val urlEncoded: String,
     val discordAliases: Set<String>,
     val githubAliases: Set<String>,
     val slackAliases: Set<String>,
@@ -728,6 +737,9 @@ fun generateJavaSourceFiles() {
                         it.get("emoji").asText().asSequence()
                             .joinToString(separator = "") { "\\\\u%04X".format(it.code) })
                 )
+                addArgument(StringLiteralExpr(it.get("htmlDec").asText()))
+                addArgument(StringLiteralExpr(it.get("htmlHex").asText()))
+                addArgument(StringLiteralExpr(it.get("urlEncoded").asText()))
                 addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
                 addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
                 addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
