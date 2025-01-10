@@ -321,8 +321,10 @@ public class EmojiManagerTest {
 
     @Test
     public void testIfAllEmojisAreUniquesssssssss() {
+        EmojiManager.getAllEmojis().stream().mapToInt(value -> Arrays.asList(value.getHtmlDecimalCode().split(";")).stream().mapToInt(s -> s.length()-2).max().getAsInt()).max().ifPresent(System.out::println);
+        EmojiManager.getAllEmojis().stream().mapToInt(value -> Arrays.asList(value.getHtmlHexadecimalCode().split(";")).stream().mapToInt(s -> s.length()-3).max().getAsInt()).max().ifPresent(System.out::println);
 
-        Map<String, List<Emoji>> groupedByAlias = EmojiManager.getAllEmojis().stream()
+        /*Map<String, List<Emoji>> groupedByAlias = EmojiManager.getAllEmojis().stream()
                 .flatMap(emoji -> emoji.getAllAliases().stream()
                         .map(alias -> new AbstractMap.SimpleEntry<>(alias, emoji)))
                 .collect(Collectors.groupingBy(Map.Entry::getKey,
@@ -330,7 +332,7 @@ public class EmojiManagerTest {
 
         // Print the grouped results
         System.out.println(groupedByAlias.entrySet().stream().sorted((o1, o2) -> o2.getValue().size() - o1.getValue().size())
-                .filter(entry -> entry.getValue().size() > 1).count());
+                .filter(entry -> entry.getValue().size() > 1).count());*/
         //.forEach(stringListEntry -> System.out.println(stringListEntry.getKey() + " : " + stringListEntry.getValue().size()));
     }
 

@@ -78,7 +78,7 @@ final class InternalEmojiUtils {
         return null;
     }
 
-    private static final int ARBITRARY_MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT = 9;
+    private static final int MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT = 6;
 
     @Nullable
     static EmojiFindResult findHtmlDecimalEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
@@ -86,13 +86,15 @@ final class InternalEmojiUtils {
             return null; // Sequence does not start with "&#x"
         }
 
-        int sequenceCount = 0;
+        // Value which checks how many numbers have been after &# so it break out,
+        // when something like this appears &#123456789123456789;
+        int numberSequenceCount = 0;
         int currentIndex = textIndex;
         int lastValidSemicolonIndex = -1;
         final StringBuilder sequenceBuilder = new StringBuilder();
 
         int leadingZeros = 0;
-        while (sequenceCount < MAX_HTML_DECIMAL_SINGLE_EMOJI_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
+        while (numberSequenceCount < MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
             // Ensure each sequence starts with "&#"
             if (isHex ? isInvalidHtmlHexadecimalSequence(textCodePointsArray, currentIndex) : isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex)) {
                 break;
@@ -102,7 +104,7 @@ final class InternalEmojiUtils {
 
             int digitCount = 0;
             boolean isLeadingZero = true;
-            while (digitCount < (ARBITRARY_MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT + leadingZeros) && currentIndex < textCodePointsLength
+            while (digitCount < (MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT + leadingZeros) && currentIndex < textCodePointsLength
                     && (isHex ? isValidHexadecimalCharacter(textCodePointsArray[currentIndex]) : isValidDecimalCharacter(textCodePointsArray[currentIndex]))) {
                 if (isLeadingZero && textCodePointsArray[currentIndex + leadingZeros] == '0') {
                     leadingZeros++;
@@ -121,7 +123,7 @@ final class InternalEmojiUtils {
 
             currentIndex++; // Move past the semicolon
             lastValidSemicolonIndex = currentIndex;
-            sequenceCount++;
+            numberSequenceCount++;
         }
 
         // No valid HTML character entity found

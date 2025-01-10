@@ -20,9 +20,9 @@ public final class EmojiManager {
     static final Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI;
-    //private static final int MAX_HTML_DECIMAL_LENGTH;
     static final int MIN_HTML_DECIMAL_CODEPOINT_LENGTH;
-    static final int MAX_HTML_DECIMAL_SINGLE_EMOJI_LENGTH;
+    // Emojis which consist of multiple single emojis
+    static final int MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
 
     // Get emoji by alias
@@ -45,7 +45,7 @@ public final class EmojiManager {
         EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 
         EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(getEmojiLinkedHashMapCollector()));
-        //EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.entrySet().stream().sorted((o1, o2) -> o2.getValue().size() - o1.getValue().size()).forEach(integerListEntry -> System.out.println(integerListEntry.getKey() + ": " + integerListEntry.getValue().size()));
+
         EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = Collections.unmodifiableMap(
                 emojis.stream().collect(Collectors.toMap(
                         o -> o.getHtmlDecimalCode().toUpperCase(),
@@ -66,14 +66,8 @@ public final class EmojiManager {
                         emoji -> emoji,
                         (existing, replacement) -> existing)
                 ));
-        /*MAX_HTML_DECIMAL_LENGTH = EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.stream()
-                .map(Emoji::getHtmlDecimalCode)
-                .map(InternalEmojiUtils::stringToCodePoints)
-                .map(ints -> ints.length)
-                .max(Comparator.comparingInt(Integer::intValue))
-                .orElseThrow(IllegalStateException::new);*/
 
-        MAX_HTML_DECIMAL_SINGLE_EMOJI_LENGTH = (int) EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.keySet().stream()
+        MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH = (int) EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.keySet().stream()
                 .mapToLong(value -> value.chars().filter(ch -> ch == ';').count())
                 .max()
                 .orElseThrow(IllegalStateException::new);
