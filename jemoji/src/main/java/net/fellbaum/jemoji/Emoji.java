@@ -68,7 +68,7 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
-     * Gets the emoji.
+     * Gets the emoji value 🙂.
      *
      * @return The emoji
      */
@@ -77,7 +77,8 @@ public final class Emoji implements Comparable<Emoji> {
     }
 
     /**
-     * Gets the unicode representation of the emoji as a string i.e. \uD83D\uDC4D.
+     * Gets the Unicode representation of the emoji as a string i.e. {@literal \\uD83D\\uDE42}
+     * instead of displaying the actual emoji 🙂.
      *
      * @return The Unicode representation of the emoji
      */

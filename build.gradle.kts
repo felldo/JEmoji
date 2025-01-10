@@ -321,9 +321,10 @@ fun generate(generateAll: Boolean = false) {
 
         "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
             if (generateAll) {
-                FileWriter(it).use { writer: Writer ->
+                /*FileWriter(it).use { writer: Writer ->
                     descriptionMap.toProperties().store(writer, null)
-                }
+                }*/
+                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
             }
             descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String,String?>)
         }
