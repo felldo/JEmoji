@@ -1,5 +1,7 @@
 package net.fellbaum.jemoji;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -102,7 +104,7 @@ public final class Emoji implements Comparable<Emoji> {
      * @return The HTML decimal code for this emoji.
      */
     public String getHtmlDecimalCode() {
-        return getEmoji().codePoints().mapToObj(operand -> "&#" + operand).collect(Collectors.joining(";")) + ";";
+        return htmlDec;
     }
 
     /**
@@ -111,7 +113,7 @@ public final class Emoji implements Comparable<Emoji> {
      * @return The HTML hexadecimal code for this emoji.
      */
     public String getHtmlHexadecimalCode() {
-        return getEmoji().codePoints().mapToObj(operand -> "&#x" + Integer.toHexString(operand).toUpperCase()).collect(Collectors.joining(";")) + ";";
+        return htmlHex;
     }
 
     /**
@@ -135,11 +137,7 @@ public final class Emoji implements Comparable<Emoji> {
      * @return The URL encoded emoji
      */
     public String getURLEncoded() {
-        try {
-            return URLEncoder.encode(getEmoji(), StandardCharsets.UTF_8.toString());
-        } catch (final UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        return urlEncoded;
     }
 
     /**
