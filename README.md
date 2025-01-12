@@ -5,7 +5,7 @@
 
 # Java Emoji (JEmoji)
 
-JEmoji is a lightweight and fast emoji library for Java with a complete list of all emojis from the Unicode consortium.
+JEmoji is a lightweight, fast and auto generated emoji library for Java with a complete list of all emojis from the Unicode consortium.
 
 With many utility methods and **type safe** direct access to Emojis,
 JEmoji aims to improve your experience and development when working with Emojis.
@@ -178,6 +178,17 @@ String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍",Emoji::getHtml
 
 ```java
 String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>", Emojis.GRINNING_FACE); // "Hello <an emoji was here> World 👍"
+
+```
+#### Overloaded methods with EnumSet<EmojiType>
+
+An additional EnumSet<EmojiType> may be present for some methods,
+which allows you to specify the appearance of an emoji which should be affected by the method.
+This can be, for example, a `UNICODE` emoji (👍) that is the default for all methods.
+There are also `HTML_DECIMAL` (	&amp;#128077;), `HTML_HEXADECIMAL` notations and more available.
+
+```java
+String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍 &amp;#128077;", "<replaced>", EnumSet.of(EmojiType.HTML_DECIMAL)); // "Hello 😀 World 👍 <replaced>" -> &amp;#128077; is the HTML character entity for the emoji 👍
 ```
 
 ### EmojiLoader

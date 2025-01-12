@@ -4,6 +4,7 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiManager;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +16,7 @@ public class EmojiManagerAliasBenchmark {
     private String alias;
 
     @Benchmark
-    public Optional<Emoji> getByAlias() {
+    public Optional<List<Emoji>> getByAlias() {
         return EmojiManager.getByAlias(alias);
     }
 }

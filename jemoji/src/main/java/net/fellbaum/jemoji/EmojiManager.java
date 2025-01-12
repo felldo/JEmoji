@@ -20,13 +20,11 @@ public final class EmojiManager {
     static final Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI;
+    static final Map<String, List<Emoji>> EMOJI_ALIAS_TO_EMOJIS;
     static final int MIN_HTML_DECIMAL_CODEPOINT_LENGTH;
-    // Emojis which consist of multiple single emojis
+    // Emojis, which consist of multiple single emojis
     static final int MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH;
     private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
-
-    // Get emoji by alias
-    private static final Map<InternalAliasGroup, Map<String, Emoji>> ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI = new EnumMap<>(InternalAliasGroup.class);
 
     private static @Nullable Pattern EMOJI_PATTERN;
     private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
@@ -77,6 +75,10 @@ public final class EmojiManager {
                 .map(ints -> ints.length)
                 .min(Comparator.comparingInt(Integer::intValue))
                 .orElseThrow(IllegalStateException::new);
+
+        EMOJI_ALIAS_TO_EMOJIS = EmojiManager.getAllEmojis().stream()
+                .flatMap(emoji -> emoji.getAllAliases().stream().map(alias -> new AbstractMap.SimpleEntry<>(alias, emoji)))
+                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
     }
 
     private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
@@ -114,18 +116,6 @@ public final class EmojiManager {
     @SuppressWarnings("unchecked")
     static Optional<List<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
         return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, List<String>>) readFromAllLanguageResourceFiles("/emoji_sources/keyword/", emojiLanguage)).get(emoji));
-    }
-
-    private static Map<String, Emoji> getEmojiAliasToEmoji(final InternalAliasGroup internalAliasGroup) {
-        return ALIAS_GROUP_TO_EMOJI_ALIAS_TO_EMOJI.computeIfAbsent(internalAliasGroup, group -> {
-            final Map<String, Emoji> emojiAliasToEmoji = new HashMap<>();
-            for (final Emoji emoji : EMOJIS_LENGTH_DESCENDING) {
-                for (final String alias : group.getAliasCollectionSupplier().apply(emoji)) {
-                    emojiAliasToEmoji.put(alias, emoji);
-                }
-            }
-            return Collections.unmodifiableMap(emojiAliasToEmoji);
-        });
     }
 
     private EmojiManager() {
@@ -215,16 +205,9 @@ public final class EmojiManager {
      * @param alias The alias of the emoji.
      * @return The emoji.
      */
-    public static Optional<Emoji> getByAlias(final String alias) {
+    public static Optional<List<Emoji>> getByAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String aliasWithoutColon = removeColonFromAlias(alias);
-        final String aliasWithColon = addColonToAlias(alias);
-        return Arrays.stream(InternalAliasGroup.values())
-                .map(EmojiManager::getEmojiAliasToEmoji)
-                .filter(m -> m.containsKey(aliasWithColon) || m.containsKey(aliasWithoutColon))
-                .map(m -> findEmojiByEitherAlias(m, aliasWithColon, aliasWithoutColon))
-                .findAny()
-                .flatMap(Function.identity());
+        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias);
     }
 
     /**
@@ -235,9 +218,14 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getByDiscordAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String aliasWithoutColon = removeColonFromAlias(alias);
-        final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.DISCORD), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+            for (Emoji emoji : emojis) {
+                if (!emoji.getDiscordAliases().isEmpty()) {
+                    return Optional.of(emoji);
+                }
+            }
+            return Optional.empty();
+        });
     }
 
     /**
@@ -248,9 +236,14 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getByGithubAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String aliasWithoutColon = removeColonFromAlias(alias);
-        final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.GITHUB), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+            for (Emoji emoji : emojis) {
+                if (!emoji.getGithubAliases().isEmpty()) {
+                    return Optional.of(emoji);
+                }
+            }
+            return Optional.empty();
+        });
     }
 
     /**
@@ -261,9 +254,14 @@ public final class EmojiManager {
      */
     public static Optional<Emoji> getBySlackAlias(final String alias) {
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        final String aliasWithoutColon = removeColonFromAlias(alias);
-        final String aliasWithColon = addColonToAlias(alias);
-        return findEmojiByEitherAlias(getEmojiAliasToEmoji(InternalAliasGroup.SLACK), aliasWithColon, aliasWithoutColon);
+        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+            for (Emoji emoji : emojis) {
+                if (!emoji.getSlackAliases().isEmpty()) {
+                    return Optional.of(emoji);
+                }
+            }
+            return Optional.empty();
+        });
     }
 
     /**
@@ -319,47 +317,45 @@ public final class EmojiManager {
     }
 
     /**
+     * Extracts all emojis from the given text.
+     *
+     * @param text The text to extract emojis from.
+     * @return A list of emojis.
+     */
+    public static Set<Emoji> extractEmojis(final String text) {
+        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
+    }
+
+    /**
+     * Extracts all emojis from the given text.
+     *
+     * @param text      The text to extract emojis from.
+     * @param emojiType The type of the emoji appearance in the string which should be extracted.
+     * @return A list of emojis.
+     */
+    public static Set<Emoji> extractEmojis(final String text, EnumSet<EmojiType> emojiType) {
+        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text, emojiType)));
+    }
+
+    /**
      * Extracts all emojis from the given text in the order they appear.
      *
      * @param text The text to extract emojis from.
      * @return A list of emojis.
      */
     public static List<Emoji> extractEmojisInOrder(final String text) {
-        if (isStringNullOrEmpty(text)) return Collections.emptyList();
+        return extractEmojisInOrderWithIndex(text).stream().map(IndexedEmoji::getEmoji).collect(Collectors.toList());
+    }
 
-        final List<Emoji> emojis = new ArrayList<>();
-
-        final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
-
-        // JDK 21 Characters.isEmoji
-
-        nextTextIteration:
-        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            final int currentCodepoint = textCodePointsArray[textIndex];
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
-            if (emojisByCodePoint == null) continue;
-            for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
-                final int emojiCodePointsLength = emojiCodePointsArray.length;
-                // Emoji code points are in bounds of the text code points
-                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
-                    continue;
-                }
-
-                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
-                        break;
-                    }
-                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                        emojis.add(emoji);
-                        textIndex += emojiCodePointsLength - 1;
-                        continue nextTextIteration;
-                    }
-                }
-            }
-        }
-        return Collections.unmodifiableList(emojis);
+    /**
+     * Extracts all emojis from the given text in the order they appear.
+     *
+     * @param text      The text to extract emojis from.
+     * @param emojiType The type of the emoji appearance in the string which should be extracted.
+     * @return A list of emojis.
+     */
+    public static List<Emoji> extractEmojisInOrder(final String text, EnumSet<EmojiType> emojiType) {
+        return extractEmojisInOrderWithIndex(text, emojiType).stream().map(IndexedEmoji::getEmoji).collect(Collectors.toList());
     }
 
     /**
@@ -369,6 +365,17 @@ public final class EmojiManager {
      * @return A list of indexed emojis.
      */
     public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text) {
+        return extractEmojisInOrderWithIndex(text, EnumSet.of(EmojiType.UNICODE));
+    }
+
+    /**
+     * Extracts all emojis from the given text in the order they appear.
+     *
+     * @param text      The text to extract emojis from.
+     * @param emojiType The type of the emoji appearance in the string which should be extracted.
+     * @return A list of indexed emojis.
+     */
+    public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text, EnumSet<EmojiType> emojiType) {
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<IndexedEmoji> emojis = new ArrayList<>();
@@ -380,30 +387,24 @@ public final class EmojiManager {
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
-            if (emojisByCodePoint == null) {
-                charIndex += Character.charCount(currentCodepoint);
-                continue;
-            }
-            for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
-                final int emojiCodePointsLength = emojiCodePointsArray.length;
-                // Emoji code points are in bounds of the text code points
-                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+
+            for (final EmojiType type : emojiType) {
+                final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
+                if (uniqueEmojiFoundResult == null) {
                     continue;
                 }
 
-                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
-                        break;
-                    }
-                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                        emojis.add(new IndexedEmoji(emoji, charIndex, textIndex));
-                        textIndex += emojiCodePointsLength - 1;
-                        charIndex += emoji.getEmoji().length();
-                        continue nextTextIteration;
-                    }
+                final int startCharIndex = charIndex;
+                final int startTextIndex = textIndex;
+
+                for (int i = textIndex; i < uniqueEmojiFoundResult.getEndIndex(); i++) {
+                    charIndex += Character.charCount(textCodePointsArray[i]);
                 }
+                emojis.add(new IndexedEmoji(uniqueEmojiFoundResult.getEmoji(), startCharIndex, startTextIndex, charIndex, textIndex));
+                //-1 because loop adds +1
+                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
+
+                continue nextTextIteration;
             }
 
             charIndex += Character.charCount(currentCodepoint);
@@ -413,23 +414,24 @@ public final class EmojiManager {
     }
 
     /**
-     * Extracts all emojis from the given text.
-     *
-     * @param text The text to extract emojis from.
-     * @return A list of emojis.
-     */
-    public static Set<Emoji> extractEmojis(final String text) {
-        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
-    }
-
-    /**
      * Removes all emojis from the given text.
      *
      * @param text The text to remove emojis from.
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text) {
-        return removeAllEmojisExcept(text, Collections.emptyList());
+        return removeAllEmojisExcept(text, Collections.emptyList(), EnumSet.of(EmojiType.UNICODE));
+    }
+
+    /**
+     * Removes all emojis from the given text.
+     *
+     * @param text      The text to remove emojis from.
+     * @param emojiType The type of the emoji appearance in the string which should be removed.
+     * @return The text without emojis.
+     */
+    public static String removeAllEmojis(final String text, EnumSet<EmojiType> emojiType) {
+        return removeAllEmojisExcept(text, Collections.emptyList(), emojiType);
     }
 
     /**
@@ -451,9 +453,21 @@ public final class EmojiManager {
      * @return The text without the given emojis.
      */
     public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove) {
+        return removeEmojis(text, emojisToRemove, EnumSet.of(EmojiType.UNICODE));
+    }
+
+    /**
+     * Removes the given emojis from the given text.
+     *
+     * @param text           The text to remove emojis from.
+     * @param emojisToRemove The emojis to remove.
+     * @param emojiType      The type of the emoji appearance in the string which should be removed.
+     * @return The text without the given emojis.
+     */
+    public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove, EnumSet<EmojiType> emojiType) {
         final Set<Emoji> emojis = new HashSet<>(EMOJIS_LENGTH_DESCENDING);
         emojis.removeAll(emojisToRemove);
-        return removeAllEmojisExcept(text, emojis);
+        return removeAllEmojisExcept(text, emojis, emojiType);
     }
 
     /**
@@ -475,7 +489,21 @@ public final class EmojiManager {
      * @return The text with only the given emojis.
      */
     public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep) {
+        return removeAllEmojisExcept(text, emojisToKeep, EnumSet.of(EmojiType.UNICODE));
+    }
+
+    /**
+     * Removes all emojis except the given emojis from the given text.
+     *
+     * @param text         The text to remove emojis from.
+     * @param emojisToKeep The emojis to keep.
+     * @param emojiType    The type of the emoji appearance in the string which should be removed.
+     * @return The text with only the given emojis.
+     */
+    public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep, EnumSet<EmojiType> emojiType) {
+        // TODO: Could be replaced by #replaceEmojis?
         if (isStringNullOrEmpty(text)) return "";
+
         final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
@@ -485,37 +513,24 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
-
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint);
-            if (emojisByCodePoint == null) continue;
-            for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
-                final int emojiCodePointsLength = emojiCodePointsArray.length;
-                // Check if Emoji code points are in bounds of the text code points
-                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+            for (final EmojiType type : emojiType) {
+                final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
+                if (uniqueEmojiFoundResult == null) {
                     continue;
                 }
 
-                for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                    //break out because the emoji is not the same
-                    if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
-                        break;
+                if (emojisToKeep.contains(uniqueEmojiFoundResult.getEmoji())) {
+                    for (int i = textIndex + 1; i < uniqueEmojiFoundResult.getEndIndex(); i++) {
+                        sb.appendCodePoint(textCodePointsArray[i]);
                     }
-
-                    if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                        textIndex += emojiCodePointsLength - 1;
-                        sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
-
-                        if (emojisToKeep.contains(emoji)) {
-                            // if the emoji should be kept, add it again
-                            sb.append(emoji.getEmoji());
-                        }
-                        continue nextTextIteration;
-                    }
+                } else {
+                    sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
                 }
+                //-1 because loop adds +1
+                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
+                continue nextTextIteration;
             }
         }
-
         return sb.toString();
     }
 
@@ -557,6 +572,7 @@ public final class EmojiManager {
      *
      * @param text                The text to replace emojis from.
      * @param replacementFunction The replacement function.
+     * @param emojiType           The type of the emoji appearance in the string which should be replaced.
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final Function<Emoji, String> replacementFunction, final EnumSet<EmojiType> emojiType) {
@@ -581,6 +597,7 @@ public final class EmojiManager {
      * @param text              The text to replace emojis from.
      * @param replacementString The replacement string.
      * @param emojisToReplace   The emojis to replace.
+     * @param emojiType         The type of the emoji appearance in the string which should be replaced.
      * @return The text with the given emojis replaced.
      */
     public static String replaceEmojis(final String text, final String replacementString, final Collection<Emoji> emojisToReplace, final EnumSet<EmojiType> emojiType) {
@@ -596,18 +613,6 @@ public final class EmojiManager {
      * @return The text with the given emojis replaced.
      */
     public static String replaceEmojis(final String text, final String replacementString, final Emoji... emojisToReplace) {
-        return replaceEmojis(text, emoji -> replacementString, Arrays.asList(emojisToReplace));
-    }
-
-    /**
-     * Replaces the given emojis with the given replacement string.
-     *
-     * @param text              The text to replace emojis from.
-     * @param replacementString The replacement string.
-     * @param emojisToReplace   The emojis to replace.
-     * @return The text with the given emojis replaced.
-     */
-    public static String replaceEmojis(final String text, final String replacementString, final EnumSet<EmojiType> emojiType, final Emoji... emojisToReplace) {
         return replaceEmojis(text, emoji -> replacementString, Arrays.asList(emojisToReplace));
     }
 
@@ -629,18 +634,7 @@ public final class EmojiManager {
      * @param text                The text to replace emojis from.
      * @param replacementFunction The replacement function.
      * @param emojisToReplace     The emojis to replace.
-     * @return The text with all emojis replaced.
-     */
-    public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final EnumSet<EmojiType> emojiType, final Collection<Emoji> emojisToReplace) {
-        return replaceEmojis(text, replacementFunction, emojisToReplace, emojiType);
-    }
-
-    /**
-     * Replaces all emojis in the text with the given replacement function.
-     *
-     * @param text                The text to replace emojis from.
-     * @param replacementFunction The replacement function.
-     * @param emojisToReplace     The emojis to replace.
+     * @param emojiType           The type of the emoji appearance in the string which should be replaced.
      * @return The text with all emojis replaced.
      */
     public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace, final EnumSet<EmojiType> emojiType) {
@@ -656,44 +650,21 @@ public final class EmojiManager {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
             for (final EmojiType type : emojiType) {
-                final EmojiFindResult emojiFindResult;
-                switch (type) {
-                    case UNICODE: {
-                        emojiFindResult = findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-                        break;
-                    }
-                    case HTML_DECIMAL: {
-                        emojiFindResult = findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, false);
-                        break;
-                    }
-                    case HTML_HEXADECIMAL: {
-                        emojiFindResult = findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
-                        break;
-                    }
-                    case ALIAS:{
-                        throw new UnsupportedOperationException("This EmojiType is not allowed for replacing emojis. Please use EmojiManager#replaceEmojiAliases instead");
-                    }
-                    default: {
-                        throw new IllegalArgumentException("Unknown EmojiType: " + type);
-                    }
-                }
-
-                if (emojiFindResult == null) {
+                final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
+                if (uniqueEmojiFoundResult == null) {
                     continue;
                 }
 
                 //-1 because loop adds +1
-                textIndex = emojiFindResult.getEndIndex() - 1;
+                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
                 sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
-                if (emojisToReplace.contains(emojiFindResult.getEmoji())) {
-                    sb.append(replacementFunction.apply(emojiFindResult.getEmoji()));
+                if (emojisToReplace.contains(uniqueEmojiFoundResult.getEmoji())) {
+                    sb.append(replacementFunction.apply(uniqueEmojiFoundResult.getEmoji()));
                 } else {
-                    sb.append(emojiFindResult.getEmoji().getEmoji());
+                    sb.append(uniqueEmojiFoundResult.getEmoji().getEmoji());
                 }
                 continue nextTextIteration;
             }
-
-
         }
 
         return sb.toString();

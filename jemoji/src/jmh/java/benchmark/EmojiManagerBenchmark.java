@@ -9,10 +9,7 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -44,6 +41,12 @@ public class EmojiManagerBenchmark {
     }
 
     private static final String EMOJIS_RANDOM_ORDER = String.join("", EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(toShuffledList()));
+
+    @Benchmark
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    public Optional<Emoji> getByDiscordAlias() {
+        return EmojiManager.getByDiscordAlias(":merman::skin-tone-5:");
+    }
 
     @Benchmark
     //@BenchmarkMode(Mode.AverageTime)

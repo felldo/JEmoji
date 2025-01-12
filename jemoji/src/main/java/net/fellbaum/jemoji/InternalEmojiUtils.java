@@ -15,6 +15,7 @@ final class InternalEmojiUtils {
 
     public static final char TEXT_VARIATION_CHARACTER = '\uFE0E';
     public static final char EMOJI_VARIATION_CHARACTER = '\uFE0F';
+    private static final int MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT = 6;
 
     public static int getCodePointCount(final String string) {
         return string.codePointCount(0, string.length());
@@ -32,10 +33,10 @@ final class InternalEmojiUtils {
         return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
     }
 
-    public static <K, V> Optional<V> findEmojiByEitherAlias(final Map<K, V> map, final K aliasWithColon, final K aliasWithoutColon) {
-        final V firstValue = map.get(aliasWithColon);
+    public static Optional<List<Emoji>> findEmojiByEitherAlias(final Map<String, List<Emoji>> map, final String alias) {
+        final List<Emoji> firstValue = map.get(addColonToAlias(alias));
         if (firstValue != null) return Optional.of(firstValue);
-        final V secondValue = map.get(aliasWithoutColon);
+        final List<Emoji> secondValue = map.get(removeColonFromAlias(alias));
         if (secondValue != null) return Optional.of(secondValue);
         return Optional.empty();
     }
@@ -52,7 +53,7 @@ final class InternalEmojiUtils {
     }
 
     @Nullable
-    static EmojiFindResult findUnicodeEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
+    static UniqueEmojiFoundResult findUnicodeEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
         final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
         if (emojisByCodePoint == null) return null;
         for (final Emoji emoji : emojisByCodePoint) {
@@ -70,7 +71,7 @@ final class InternalEmojiUtils {
                 }
 
                 if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                    return new EmojiFindResult(emoji, textIndex + emojiCodePointsLength);
+                    return new UniqueEmojiFoundResult(emoji, textIndex + emojiCodePointsLength);
                 }
             }
         }
@@ -78,10 +79,8 @@ final class InternalEmojiUtils {
         return null;
     }
 
-    private static final int MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT = 6;
-
     @Nullable
-    static EmojiFindResult findHtmlDecimalEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
+    static UniqueEmojiFoundResult findHtmlDecimalEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
         if (isHex ? ((textIndex >= textCodePointsLength - 3) || isInvalidHtmlHexadecimalSequence(textCodePointsArray, textIndex)) : textIndex >= textCodePointsLength - 2 || isInvalidHtmlDecimalSequence(textCodePointsArray, textIndex)) {
             return null; // Sequence does not start with "&#x"
         }
@@ -138,7 +137,7 @@ final class InternalEmojiUtils {
 
             final Emoji emoji = isHex ? EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity) : EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity);
             if (emoji != null) {
-                return new EmojiFindResult(emoji, textIndex + htmlEmojiString.length());
+                return new UniqueEmojiFoundResult(emoji, textIndex + htmlEmojiString.length());
             }
             htmlEmoji.delete(htmlEmoji.lastIndexOf("&"), htmlEmojiString.length());
         }
@@ -186,20 +185,68 @@ final class InternalEmojiUtils {
     private static boolean isValidDecimalCharacter(final int character) {
         return Character.digit(character, 10) != -1;
     }
+
+    @Nullable
+    static UniqueEmojiFoundResult findUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength, final EmojiType type) {
+        switch (type) {
+            case UNICODE: {
+                return findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
+            }
+            case HTML_DECIMAL: {
+                return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, false);
+            }
+            case HTML_HEXADECIMAL: {
+                return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
+            }
+            case ALIAS: {
+                throw new UnsupportedOperationException("This EmojiType is not allowed for replacing emojis. Please use EmojiManager#replaceEmojiAliases instead");
+            }
+            default: {
+                throw new IllegalArgumentException("Unknown EmojiType: " + type);
+            }
+        }
+    }
 }
 
-class EmojiFindResult {
+class UniqueEmojiFoundResult {
 
     private final Emoji emoji;
     private final int endIndex;
 
-    public EmojiFindResult(Emoji emoji, int endIndex) {
+    public UniqueEmojiFoundResult(Emoji emoji, int endIndex) {
         this.emoji = emoji;
         this.endIndex = endIndex;
     }
 
     public Emoji getEmoji() {
         return emoji;
+    }
+
+    public int getEndIndex() {
+        return endIndex;
+    }
+
+    @Override
+    public String toString() {
+        return "UniqueEmojiFoundResult{" +
+                "emoji=" + emoji +
+                ", endIndex=" + endIndex +
+                '}';
+    }
+}
+
+class NonUniqueEmojiFoundResult {
+
+    private final List<Emoji> emojis;
+    private final int endIndex;
+
+    public NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex) {
+        this.emojis = emojis;
+        this.endIndex = endIndex;
+    }
+
+    public List<Emoji> getEmojis() {
+        return emojis;
     }
 
     public int getEndIndex() {
