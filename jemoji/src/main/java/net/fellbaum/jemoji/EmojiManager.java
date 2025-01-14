@@ -284,33 +284,30 @@ public final class EmojiManager {
      * @param text The text to check.
      * @return True if the given text contains emojis.
      */
-    public static boolean containsEmoji(final String text) {
-        if (isStringNullOrEmpty(text)) return false;
+    public static boolean containsAnyEmoji(final String text) {
+        return containsAnyEmoji(text, EnumSet.of(EmojiType.UNICODE));
+    }
 
-        final List<Emoji> emojis = new ArrayList<>();
+    /**
+     * Checks if the given text contains emojis.
+     *
+     * @param text      The text to check.
+     * @param emojiType The type of the emoji appearance in the string which should be checked against.
+     * @return True if the given text contains emojis.
+     */
+    public static boolean containsAnyEmoji(final String text, EnumSet<EmojiType> emojiType) {
+        if (isStringNullOrEmpty(text)) return false;
 
         final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
-            if (emojisByCodePoint == null) continue;
-            for (final Emoji emoji : emojisByCodePoint) {
-                final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
-                final int emojiCodePointsLength = emojiCodePointsArray.length;
-                // Emoji code points are in bounds of the text code points
-                if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+            for (final EmojiType type : emojiType) {
+                final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
+                if (uniqueEmojiFoundResult == null) {
                     continue;
                 }
-
-                for (int i = 0; i < emojiCodePointsLength; i++) {
-                    if (textCodePointsArray[textIndex + i] != emojiCodePointsArray[i]) {
-                        break;
-                    }
-                    if (i == emojiCodePointsLength - 1) {
-                        return true;
-                    }
-                }
+                return true;
             }
         }
         return false;
