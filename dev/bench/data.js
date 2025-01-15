@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1736715557507,
+  "lastUpdate": 1736981534726,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -4336,6 +4336,36 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
             "value": 6.102822510591634,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "committer": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "distinct": true,
+          "id": "34bdf0c0d0da0875a5210372adab2c49aa9cd5c2",
+          "message": "Performance improvements",
+          "timestamp": "2025-01-15T23:44:52+01:00",
+          "tree_id": "8ee1b22dda8a59164e17babeeb72e486b2323867",
+          "url": "https://github.com/felldo/JEmoji/commit/34bdf0c0d0da0875a5210372adab2c49aa9cd5c2"
+        },
+        "date": 1736981532562,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 4.0829200784285495,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 2\nthreads: 1"
           }
