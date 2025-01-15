@@ -42,19 +42,19 @@ public class EmojiManagerBenchmark {
 
     private static final String EMOJIS_RANDOM_ORDER = String.join("", EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(toShuffledList()));
 
-    @Benchmark
+  /*  @Benchmark
     @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public Optional<Emoji> getByDiscordAlias() {
         return EmojiManager.getByDiscordAlias(":merman::skin-tone-5:");
     }
-
+*/
     @Benchmark
     //@BenchmarkMode(Mode.AverageTime)
     //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
     }
-
+/*
     @Benchmark
     public String replaceAllEmojisFunction() {
         return EmojiManager.replaceAllEmojis(TEXT, emoji -> emoji.getGroup().toString());
@@ -89,5 +89,5 @@ public class EmojiManagerBenchmark {
     public boolean containsEmoji() {
         return EmojiManager.containsEmoji(CONTAINS_EMOJI_TEXT);
     }
-
+*/
 }

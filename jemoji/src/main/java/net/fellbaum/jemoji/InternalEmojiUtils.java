@@ -145,6 +145,76 @@ final class InternalEmojiUtils {
         return null;
     }
 
+
+    @Nullable
+    static UniqueEmojiFoundResult findUrlEncodedEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
+        //TODO
+        if (true)
+            throw new UnsupportedOperationException();
+        if (isHex ? ((textIndex >= textCodePointsLength - 3) || isInvalidHtmlHexadecimalSequence(textCodePointsArray, textIndex)) : textIndex >= textCodePointsLength - 2 || isInvalidHtmlDecimalSequence(textCodePointsArray, textIndex)) {
+            return null; // Sequence does not start with "&#x"
+        }
+
+        // Value which checks how many numbers have been after &# so it break out,
+        // when something like this appears &#123456789123456789;
+        int numberSequenceCount = 0;
+        int currentIndex = textIndex;
+        int lastValidSemicolonIndex = -1;
+        final StringBuilder sequenceBuilder = new StringBuilder();
+
+        int leadingZeros = 0;
+        while (numberSequenceCount < MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
+            // Ensure each sequence starts with "&#"
+            if (isHex ? isInvalidHtmlHexadecimalSequence(textCodePointsArray, currentIndex) : isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex)) {
+                break;
+            }
+
+            currentIndex += (isHex ? 3 : 2); // Skip "&#x"
+
+            int digitCount = 0;
+            boolean isLeadingZero = true;
+            while (digitCount < (MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT + leadingZeros) && currentIndex < textCodePointsLength
+                    && (isHex ? isValidHexadecimalCharacter(textCodePointsArray[currentIndex]) : isValidDecimalCharacter(textCodePointsArray[currentIndex]))) {
+                if (isLeadingZero && textCodePointsArray[currentIndex + leadingZeros] == '0') {
+                    leadingZeros++;
+                    continue;
+                } else {
+                    isLeadingZero = false;
+                }
+                digitCount++;
+                currentIndex++;
+            }
+
+            // Validate the sequence ends with a semicolon
+            if (digitCount == 0 || currentIndex >= textCodePointsLength || textCodePointsArray[currentIndex] != ';') {
+                break;
+            }
+
+            currentIndex++; // Move past the semicolon
+            lastValidSemicolonIndex = currentIndex;
+            numberSequenceCount++;
+        }
+
+        // No valid HTML character entity found
+        if (lastValidSemicolonIndex == -1) {
+            return null;
+        }
+
+        final StringBuilder htmlEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, lastValidSemicolonIndex - textIndex).toUpperCase());
+        while (htmlEmoji.length() != 0) {
+            final String htmlEmojiString = htmlEmoji.toString();
+            String formattedHtmlCharacterEntity = leadingZeros != 0 ? removeLeadingZerosFromHtmlCharacterEntity(htmlEmojiString, isHex) : htmlEmojiString;
+
+            final Emoji emoji = isHex ? EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity) : EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity);
+            if (emoji != null) {
+                return new UniqueEmojiFoundResult(emoji, textIndex + htmlEmojiString.length());
+            }
+            htmlEmoji.delete(htmlEmoji.lastIndexOf("&"), htmlEmojiString.length());
+        }
+
+        return null;
+    }
+
     private static String removeLeadingZerosFromHtmlCharacterEntity(final String str, final boolean isHex) {
         final StringBuilder sb = new StringBuilder(str);
         int i = 0;
@@ -170,24 +240,59 @@ final class InternalEmojiUtils {
         return sb.toString();
     }
 
+    /**
+     * Checks whether this is a valid decimal emoji starting sequence.
+     *
+     * @param textCodePointsArray The textCodePointsArray to check if it starts with a decimal emoji sequence.
+     * @param currentIndex        The current index.
+     * @return Whether the textCodePointsArray at textIndex start if a valid decimal emoji sequence.
+     */
     private static boolean isInvalidHtmlHexadecimalSequence(final int[] textCodePointsArray, final int currentIndex) {
         return isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex) || (textCodePointsArray[currentIndex + 2] != 'x' && textCodePointsArray[currentIndex + 2] != 'X');
     }
 
+    /**
+     * Checks whether this is a valid hexadecimal emoji starting sequence.
+     *
+     * @param textCodePointsArray The textCodePointsArray to check if it starts with a hexadecimal emoji sequence.
+     * @param currentIndex        The current index.
+     * @return Whether the textCodePointsArray at textIndex start if a valid hexadecimal emoji sequence.
+     */
     private static boolean isInvalidHtmlDecimalSequence(final int[] textCodePointsArray, final int currentIndex) {
         return textCodePointsArray[currentIndex] != '&' || textCodePointsArray[currentIndex + 1] != '#';
     }
 
+    /**
+     * Checks whether the character is a valid hexadecimal number of the base of 16.
+     *
+     * @param character The character to check.
+     * @return Whether the character is a valid base 16 number.
+     */
     private static boolean isValidHexadecimalCharacter(final int character) {
         return Character.digit(character, 16) != -1;
     }
 
+    /**
+     * Checks whether the character is a valid decimal number of the base of 10.
+     *
+     * @param character The character to check.
+     * @return Whether the character is a valid base 10 number.
+     */
     private static boolean isValidDecimalCharacter(final int character) {
         return Character.digit(character, 10) != -1;
     }
 
+    /**
+     * Finds a unique emoji starting at the position textIndex in the textCodePointsArray.
+     *
+     * @param textCodePointsArray  The textCodePointsArray to check if it contains an emoji.
+     * @param textIndex            The current text index.
+     * @param textCodePointsLength The length of the textCodePointsArray.
+     * @param type                 The {@link EmojiType} to check the codepoint against.
+     * @return The found emoji, otherwise {@code null}.
+     */
     @Nullable
-    static UniqueEmojiFoundResult findUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength, final EmojiType type) {
+    public static UniqueEmojiFoundResult findUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength, final EmojiType type) {
         switch (type) {
             case UNICODE: {
                 return findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
@@ -198,13 +303,27 @@ final class InternalEmojiUtils {
             case HTML_HEXADECIMAL: {
                 return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
             }
-            case ALIAS: {
-                throw new UnsupportedOperationException("This EmojiType is not allowed for replacing emojis. Please use EmojiManager#replaceEmojiAliases instead");
+            case URL_ENCODED: {
+                return findUrlEncodedEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
             }
+            /*case ALIAS: {
+                throw new UnsupportedOperationException("This EmojiType is not allowed for replacing emojis. Please use EmojiManager#replaceEmojiAliases instead");
+            }*/
             default: {
                 throw new IllegalArgumentException("Unknown EmojiType: " + type);
             }
         }
+    }
+
+    /**
+     * Checks if the codepoint is a valid starter character for any {@link EmojiType}.
+     * This avoids running unnecessary for loops which take ~1ms longer.
+     *
+     * @param currentCodepoint The codepoint to check.
+     * @return Whether the codepoint is a valid starter.
+     */
+    public static boolean checkIfCodepointIsValidEmojiStarter(final int currentCodepoint) {
+        return (!(EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) != null || currentCodepoint == '&' || currentCodepoint == '%'));
     }
 }
 

@@ -302,6 +302,9 @@ public final class EmojiManager {
         final long textCodePointsLength = textCodePointsArray.length;
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            if (checkIfCodepointIsValidEmojiStarter(textCodePointsArray[textIndex])) {
+                continue;
+            }
             for (final EmojiType type : emojiType) {
                 final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
                 if (uniqueEmojiFoundResult == null) {
@@ -312,6 +315,10 @@ public final class EmojiManager {
         }
         return false;
     }
+
+    // =======================================================
+    // ======================== EXTRACT ======================
+    // =======================================================
 
     /**
      * Extracts all emojis from the given text.
@@ -384,7 +391,10 @@ public final class EmojiManager {
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
-
+            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+                charIndex += Character.charCount(currentCodepoint);
+                continue;
+            }
             for (final EmojiType type : emojiType) {
                 final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
                 if (uniqueEmojiFoundResult == null) {
@@ -403,12 +413,15 @@ public final class EmojiManager {
 
                 continue nextTextIteration;
             }
-
             charIndex += Character.charCount(currentCodepoint);
         }
 
         return Collections.unmodifiableList(emojis);
     }
+
+    // ======================================================
+    // ======================== REMOVE ======================
+    // ======================================================
 
     /**
      * Removes all emojis from the given text.
@@ -510,6 +523,9 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
+            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+                continue;
+            }
             for (final EmojiType type : emojiType) {
                 final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
                 if (uniqueEmojiFoundResult == null) {
@@ -530,6 +546,10 @@ public final class EmojiManager {
         }
         return sb.toString();
     }
+
+    // =======================================================
+    // ======================== REPLACE ======================
+    // =======================================================
 
     /**
      * Replaces all emojis in the text with the given replacement string.
@@ -646,6 +666,9 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
+            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+                continue;
+            }
             for (final EmojiType type : emojiType) {
                 final UniqueEmojiFoundResult uniqueEmojiFoundResult = findUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength, type);
                 if (uniqueEmojiFoundResult == null) {

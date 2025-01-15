@@ -7,7 +7,7 @@ import org.openjdk.jmh.annotations.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
+/*
 @State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class EmojiManagerAliasBenchmark {
@@ -19,4 +19,4 @@ public class EmojiManagerAliasBenchmark {
     public Optional<List<Emoji>> getByAlias() {
         return EmojiManager.getByAlias(alias);
     }
-}
+}*/

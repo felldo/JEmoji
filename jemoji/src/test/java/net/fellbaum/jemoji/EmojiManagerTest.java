@@ -152,7 +152,7 @@ public class EmojiManagerTest {
 
     @Test
     public void containsEmoji() {
-        assertTrue(EmojiManager.containsEmoji(SIMPLE_EMOJI_STRING));
+        assertTrue(EmojiManager.containsAnyEmoji(SIMPLE_EMOJI_STRING));
     }
 
     @Test

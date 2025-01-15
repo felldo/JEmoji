@@ -1,17 +1,16 @@
 package net.fellbaum.jemoji;
 
-import java.util.EnumSet;
-
 public enum EmojiType {
 
     HTML_DECIMAL,
     HTML_HEXADECIMAL,
-    UNICODE,
-    ALIAS;
+    //ALIAS,
+    URL_ENCODED,
+    UNICODE;
 
-    public static EnumSet<EmojiType> allExceptAliases() {
+    /*public static EnumSet<EmojiType> allExceptAliases() {
         return EnumSet.complementOf(EnumSet.of(ALIAS));
-    }
+    }*/
 
 }
 
