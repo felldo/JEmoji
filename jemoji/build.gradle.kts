@@ -49,7 +49,6 @@ val java9Implementation by configurations.existing {
 
 dependencies {
     compileOnlyApi(libs.jspecify)
-    implementation("com.vdurmont:emoji-java:5.1.1")
 }
 
 jmh {

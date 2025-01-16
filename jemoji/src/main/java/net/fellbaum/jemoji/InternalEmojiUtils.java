@@ -146,7 +146,34 @@ final class InternalEmojiUtils {
     }
 
 
-    @Nullable
+
+    /*
+    Possible starting characters
+%
+2%EF%B8%8F%E2%83%A3
+*%EF%B8%8F%E2%83%A3
+3%EF%B8%8F%E2%83%A3
+*%E2%83%A3
+0%E2%83%A3
+1%E2%83%A3
+2%E2%83%A3
+3%E2%83%A3
+4%E2%83%A3
+5%E2%83%A3
+6%E2%83%A3
+7%E2%83%A3
+8%E2%83%A3
+9%E2%83%A3
+4%EF%B8%8F%E2%83%A3
+5%EF%B8%8F%E2%83%A3
+6%EF%B8%8F%E2%83%A3
+7%EF%B8%8F%E2%83%A3
+8%EF%B8%8F%E2%83%A3
+0%EF%B8%8F%E2%83%A3
+9%EF%B8%8F%E2%83%A3
+1%EF%B8%8F%E2%83%A3
+     */
+    /*@Nullable
     static UniqueEmojiFoundResult findUrlEncodedEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
         //TODO
         if (true)
@@ -213,7 +240,7 @@ final class InternalEmojiUtils {
         }
 
         return null;
-    }
+    }*/
 
     private static String removeLeadingZerosFromHtmlCharacterEntity(final String str, final boolean isHex) {
         final StringBuilder sb = new StringBuilder(str);
@@ -303,11 +330,8 @@ final class InternalEmojiUtils {
             case HTML_HEXADECIMAL: {
                 return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
             }
-            case URL_ENCODED: {
+            /*case URL_ENCODED: {
                 return findUrlEncodedEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
-            }
-            /*case ALIAS: {
-                throw new UnsupportedOperationException("This EmojiType is not allowed for replacing emojis. Please use EmojiManager#replaceEmojiAliases instead");
             }*/
             default: {
                 throw new IllegalArgumentException("Unknown EmojiType: " + type);
