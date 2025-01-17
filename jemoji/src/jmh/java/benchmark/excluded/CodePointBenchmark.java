@@ -68,9 +68,8 @@ public class CodePointBenchmark {
     @Benchmark
     @OutputTimeUnit(TimeUnit.MICROSECONDS)
     public int[] codepointsArrayForIndex() {
-        int[] codePoints = new int[getCodePointCount(TEXT)];
-        int j = 0;
-        for (int i = 0; i < TEXT.length(); ) {
+        final int[] codePoints = new int[getCodePointCount(TEXT)];
+        for (int i = 0, j = 0; i < TEXT.length(); ) {
             final int codePoint = TEXT.codePointAt(i);
             codePoints[j++] = codePoint;
             i += Character.charCount(codePoint);

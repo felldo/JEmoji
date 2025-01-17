@@ -302,7 +302,7 @@ public final class EmojiManager {
         final long textCodePointsLength = textCodePointsArray.length;
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
-            if (checkIfCodepointIsValidEmojiStarter(textCodePointsArray[textIndex])) {
+            if (checkIfCodepointIsInvalidEmojiStarter(textCodePointsArray[textIndex])) {
                 continue;
             }
             for (final EmojiType type : emojiType) {
@@ -391,7 +391,7 @@ public final class EmojiManager {
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
-            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+            if (checkIfCodepointIsInvalidEmojiStarter(currentCodepoint)) {
                 charIndex += Character.charCount(currentCodepoint);
                 continue;
             }
@@ -523,7 +523,7 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
-            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+            if (checkIfCodepointIsInvalidEmojiStarter(currentCodepoint)) {
                 continue;
             }
             for (final EmojiType type : emojiType) {
@@ -666,7 +666,7 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
-            if (checkIfCodepointIsValidEmojiStarter(currentCodepoint)) {
+            if (checkIfCodepointIsInvalidEmojiStarter(currentCodepoint)) {
                 continue;
             }
             for (final EmojiType type : emojiType) {

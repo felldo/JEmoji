@@ -6,6 +6,8 @@ import net.fellbaum.jemoji.EmojiManagerTest;
 import net.fellbaum.jemoji.IndexedEmoji;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +15,9 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+@State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class EmojiManagerBenchmark {
 
@@ -40,6 +44,10 @@ public class EmojiManagerBenchmark {
         return (Collector<T, ?, List<T>>) SHUFFLER;
     }
 
+    public static final String EMOJI_STARTER_STRING = IntStream.range(0, 1000000)
+            .mapToObj(i -> "#")
+            .collect(Collectors.joining());
+
     private static final String EMOJIS_RANDOM_ORDER = String.join("", EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(toShuffledList()));
 
     @Benchmark
@@ -53,6 +61,11 @@ public class EmojiManagerBenchmark {
     //@Warmup(iterations = 1)
     public String replaceAllEmojis() {
         return EmojiManager.replaceAllEmojis(TEXT, "<replaced emoji>");
+    }
+
+    @Benchmark
+    public String replaceAllEmojisManyStarter() {
+        return EmojiManager.replaceAllEmojis(EMOJI_STARTER_STRING, "<replaced emoji>");
     }
 
     @Benchmark

@@ -346,8 +346,8 @@ final class InternalEmojiUtils {
      * @param currentCodepoint The codepoint to check.
      * @return Whether the codepoint is a valid starter.
      */
-    public static boolean checkIfCodepointIsValidEmojiStarter(final int currentCodepoint) {
-        return (!(EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) != null || currentCodepoint == '&' || currentCodepoint == '%'));
+    public static boolean checkIfCodepointIsInvalidEmojiStarter(final int currentCodepoint) {
+        return EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) == null && currentCodepoint != '&' && currentCodepoint != '%';
     }
 }
 
