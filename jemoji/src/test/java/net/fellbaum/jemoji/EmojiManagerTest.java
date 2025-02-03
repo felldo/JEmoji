@@ -227,6 +227,24 @@ public class EmojiManagerTest {
     }
 
     @Test
+    public void testUrlEncodedEmojiScenarios() {
+        Object[][] testCases = {
+                {"abc2%EF%B8%8F%E2%83%A3xyz", "abc<replaced>xyz", EnumSet.of(EmojiType.URL_ENCODED)},
+                {"!!3%E2%83%A3%EF%B8%8F??", "!!<replaced>%EF%B8%8F??", EnumSet.of(EmojiType.URL_ENCODED)},
+                {"random*%EF%B8%8F%E2%83%A3text", "random<replaced>text", EnumSet.of(EmojiType.URL_ENCODED)},
+                {"1%E2%83%A3*%EF%B8%8F!!", "<replaced>*%EF%B8%8F!!", EnumSet.of(EmojiType.URL_ENCODED)}
+        };
+
+        for (Object[] testCase : testCases) {
+            String input = (String) testCase[0];
+            String expectedOutput = (String) testCase[1];
+            EnumSet<EmojiType> emojiTypes = (EnumSet<EmojiType>) testCase[2];
+            assertEquals(expectedOutput, EmojiManager.replaceAllEmojis(input, "<replaced>", emojiTypes),
+                    "Failed for input: " + input);
+        }
+    }
+
+    @Test
     public void replaceOnlyUnqualifiedEmoji() {
         assertEquals("Hello ❤️ :heart: :heart:❤️ World", EmojiManager.replaceEmojis(SIMPLE_EMOJI_STRING, ":heart:", Emojis.RED_HEART_UNQUALIFIED));
     }

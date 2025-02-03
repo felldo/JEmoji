@@ -23,6 +23,12 @@ public final class EmojiManager {
     static final Set<Integer> POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS;
     static final int ALIAS_EMOJI_MAX_LENGTH;
 
+    static final Set<Integer> POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS;
+    static final int MINIMUM_EMOJI_URL_ENCODED_LENGTH;
+    static final int MAXIMUM_EMOJI_URL_ENCODED_LENGTH;
+    static final Set<String> ALLOWED_EMOJI_URL_ENCODED_SEQUENCES;
+
+
     static final Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI;
@@ -89,6 +95,11 @@ public final class EmojiManager {
         POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS = emojis.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(s -> s.codePointAt(0)).collect(Collectors.toSet());
         ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = mapAliasesToEmojis(EMOJIS_LENGTH_DESCENDING);
         ALIAS_EMOJI_MAX_LENGTH = EMOJIS_LENGTH_DESCENDING.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(InternalEmojiUtils::getCodePointCount).max(Comparator.naturalOrder()).orElse(0);
+
+        POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS = emojis.stream().map(Emoji::getURLEncoded).distinct().map(s -> s.codePointAt(0)).collect(Collectors.toSet());
+        MINIMUM_EMOJI_URL_ENCODED_LENGTH = emojis.stream().map(Emoji::getURLEncoded).distinct().map(InternalEmojiUtils::getCodePointCount).min(Comparator.naturalOrder()).orElse(0);
+        MAXIMUM_EMOJI_URL_ENCODED_LENGTH = emojis.stream().map(Emoji::getURLEncoded).distinct().map(InternalEmojiUtils::getCodePointCount).max(Comparator.naturalOrder()).orElse(0);
+        ALLOWED_EMOJI_URL_ENCODED_SEQUENCES = emojis.stream().map(Emoji::getURLEncoded).distinct().flatMap(s -> Arrays.stream(s.split("%"))).collect(Collectors.toSet());
     }
 
     private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final List<Emoji> emojis) {
