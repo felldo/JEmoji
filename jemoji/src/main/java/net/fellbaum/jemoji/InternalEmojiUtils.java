@@ -2,6 +2,7 @@ package net.fellbaum.jemoji;
 
 import org.jspecify.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -340,6 +341,68 @@ final class InternalEmojiUtils {
     }
 
     /**
+     * Finds a unique emoji starting at the position textIndex in the textCodePointsArray.
+     *
+     * @param textCodePointsArray  The textCodePointsArray to check if it contains an emoji.
+     * @param textIndex            The current text index.
+     * @param textCodePointsLength The length of the textCodePointsArray.
+     * @return The found emoji, otherwise {@code null}.
+     */
+    @Nullable
+    public static NonUniqueEmojiFoundResult findNonUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength) {
+        return findAliasEmoji(textCodePointsArray, textCodePointsLength, textIndex);
+    }
+
+    @Nullable
+    static NonUniqueEmojiFoundResult findAliasEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
+        if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) return null;
+
+        InternalCodepointSequence lastKnownCodepointSequence = null;
+        for (int aliasCodePointIndex = 0; aliasCodePointIndex < ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
+            final InternalCodepointSequence tempCodepointSequence = new InternalCodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
+            if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
+                lastKnownCodepointSequence = tempCodepointSequence;
+            }
+        }
+
+        if (lastKnownCodepointSequence != null) {
+            return new NonUniqueEmojiFoundResult(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(lastKnownCodepointSequence), textIndex + lastKnownCodepointSequence.getCodepoints().length, lastKnownCodepointSequence);
+        }
+
+        return null;
+    }
+
+
+
+    /*@Nullable
+    static NonUniqueEmojiFoundResult findAliasEmojis(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
+        final List<Emoji> emojisByCodePoint = ALIAS_EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
+        if (emojisByCodePoint == null) return null;
+        for (final Emoji emoji : emojisByCodePoint) {
+            final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
+            final int emojiCodePointsLength = emojiCodePointsArray.length;
+            // Check if Emoji code points are in bounds of the text code points
+            if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
+                continue;
+            }
+
+            for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
+                //break out because the emoji is not the same
+                if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
+                    break;
+                }
+
+                if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
+                    return new NonUniqueEmojiFoundResult(emoji, textIndex + emojiCodePointsLength);
+                }
+            }
+        }
+
+        return null;
+    }*/
+
+
+    /**
      * Checks if the codepoint is a valid starter character for any {@link EmojiType}.
      * This avoids running unnecessary for loops which take ~1ms longer.
      *
@@ -351,7 +414,7 @@ final class InternalEmojiUtils {
     }
 }
 
-class UniqueEmojiFoundResult {
+final class UniqueEmojiFoundResult {
 
     private final Emoji emoji;
     private final int endIndex;
@@ -378,14 +441,16 @@ class UniqueEmojiFoundResult {
     }
 }
 
-class NonUniqueEmojiFoundResult {
+final class NonUniqueEmojiFoundResult {
 
     private final List<Emoji> emojis;
     private final int endIndex;
+    private final InternalCodepointSequence codepointSequence;
 
-    public NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex) {
+    public NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex, InternalCodepointSequence codepointSequence) {
         this.emojis = emojis;
         this.endIndex = endIndex;
+        this.codepointSequence = codepointSequence;
     }
 
     public List<Emoji> getEmojis() {
@@ -396,4 +461,7 @@ class NonUniqueEmojiFoundResult {
         return endIndex;
     }
 
+    public InternalCodepointSequence getCodepointSequence() {
+        return codepointSequence;
+    }
 }

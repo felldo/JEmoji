@@ -178,7 +178,6 @@ String text=EmojiManager.replaceAllEmojis("Hello 😀 World 👍",Emoji::getHtml
 
 ```java
 String text=EmojiManager.replaceEmojis("Hello 😀 World 👍","<an emoji was here>", Emojis.GRINNING_FACE); // "Hello <an emoji was here> World 👍"
-
 ```
 #### Overloaded methods with EnumSet<EmojiType>
 
@@ -189,6 +188,32 @@ There are also `HTML_DECIMAL` (	&amp;#128077;), `HTML_HEXADECIMAL` notations and
 
 ```java
 String text = EmojiManager.replaceAllEmojis("Hello 😀 World 👍 &amp;#128077;", "<replaced>", EnumSet.of(EmojiType.HTML_DECIMAL)); // "Hello 😀 World 👍 <replaced>" -> &amp;#128077; is the HTML character entity for the emoji 👍
+```
+
+#### Replacing aliases
+
+```java
+String text = EmojiManager.replaceAliases(
+        // The text you want to process
+        ":beach_umbrella:",
+        // Decide which emoji to use, as it's possible that multiple emojis share the same alias depending on which platform you are working on.
+        // For example, when replacing the alias ":beach_umbrella:", these two emojis will be available.
+        // {emoji='🏖️', unicode='\uD83C\uDFD6\uFE0F', discordAliases=[:beach:, :beach_with_umbrella:], githubAliases=[:beach_umbrella:], slackAliases=[:beach_with_umbrella:], hasFitzpatrick=false, hasHairStyle=false, version=0.7, qualification=FULLY_QUALIFIED, description='beach with umbrella', group=TRAVEL_AND_PLACES, subgroup=PLACE_GEOGRAPHIC, hasVariationSelectors=false, allAliases=[:beach:, :beach_umbrella:, :beach_with_umbrella:]},
+        // {emoji='⛱️', unicode='\u26F1\uFE0F', discordAliases=[:beach_umbrella:, :umbrella_on_ground:], githubAliases=[:parasol_on_ground:], slackAliases=[:umbrella_on_ground:], hasFitzpatrick=false, hasHairStyle=false, version=0.7, qualification=FULLY_QUALIFIED, description='umbrella on ground', group=TRAVEL_AND_PLACES, subgroup=SKY_AND_WEATHER, hasVariationSelectors=false, allAliases=[:beach_umbrella:, :umbrella_on_ground:, :parasol_on_ground:]}
+        // Note that the first contains the alias in the GitHub aliases and the 2nd in the discord aliases. The shown way of handling the choosing always picks the discord emoji.
+        // With this function, you can also filter for specific emojis if you want to, and in case you don't want to replace an alias, return the provided alias.
+        // Use this example with caution as this may not work with other aliases as this assumes that an emoji with this alias for discord exists in the list.
+        (alias, emojis) -> emojis.stream().filter(emoji -> emoji.getDiscordAliases().contains(alias)).findFirst().orElseThrow(IllegalStateException::new).getEmoji()
+);
+
+// Other replacements function examples:
+
+// Replacing all discord aliases in a string with the description of an emoji, otherwise return the alias that does not exist in discord (keeping the original text).
+BiFunction<String, List<Emoji>> function = (alias, emojis) -> emojis.stream().filter(emoji -> emoji.getDiscordAliases().contains(alias)).findAny().map(Emoji::getDescription).orElse(alias);
+// Replacing only specific emojis with the description, otherwise return the alias (original text).
+BiFunction<String, List<Emoji>> function = (alias, emojis) -> emojis.stream().filter(emoji -> Arrays.asList(Emojis.THUMBS_UP, Emojis.THUMBS_DOWN).contains(emoji)).findAny().map(Emoji::getDescription).orElse(alias);
+// Replacing emojis from a specific group with the description, otherwise return the alias (original text).
+BiFunction<String, List<Emoji>> function = (alias, emojis) -> emojis.stream().filter(emoji -> emoji.getGroup() == EmojiGroup.ACTIVITIES).findAny().map(Emoji::getDescription).orElse(alias);
 ```
 
 ### EmojiLoader

@@ -252,4 +252,53 @@ public class EmojiManagerTest {
         assertFalse(EmojiManager.getEmojiPattern().matcher("/").matches());
     }
 
+    @Test
+    public void replaceDiscordAliases() {
+        assertEquals(
+                Emojis.THUMBS_UP.getEmoji(),
+                EmojiManager.replaceAliases(
+                        Emojis.THUMBS_UP.getDiscordAliases().get(0),
+                        (alias, emojis) -> emojis.stream()
+                                .filter(emoji -> emoji.getDiscordAliases().contains(alias))
+                                .findFirst()
+                                .orElseThrow(IllegalStateException::new).getEmoji()));
+
+        assertEquals(
+                "Hello World " + Emojis.THUMBS_UP.getEmoji(),
+                EmojiManager.replaceAliases(
+                        "Hello World " + Emojis.THUMBS_UP.getDiscordAliases().get(0),
+                        (alias, emojis) -> emojis.stream()
+                                .filter(emoji -> emoji.getDiscordAliases().contains(alias))
+                                .findFirst()
+                                .orElseThrow(IllegalStateException::new).getEmoji()));
+
+        assertEquals(
+                Emojis.THUMBS_UP.getEmoji() + " Hello World",
+                EmojiManager.replaceAliases(
+                        Emojis.THUMBS_UP.getDiscordAliases().get(0) + " Hello World",
+                        (alias, emojis) -> emojis.stream()
+                                .filter(emoji -> emoji.getDiscordAliases().contains(alias))
+                                .findFirst()
+                                .orElseThrow(IllegalStateException::new).getEmoji()));
+
+        assertEquals(
+                "Hello " + Emojis.THUMBS_UP.getEmoji() + " World",
+                EmojiManager.replaceAliases(
+                        "Hello " + Emojis.THUMBS_UP.getDiscordAliases().get(0) + " World",
+                        (alias, emojis) -> emojis.stream()
+                                .filter(emoji -> emoji.getDiscordAliases().contains(alias))
+                                .findFirst()
+                                .orElseThrow(IllegalStateException::new).getEmoji()));
+    }
+
+    @Test
+    public void extractAliases() {
+        assertEquals(2, EmojiManager.extractAliases(Emojis.THUMBS_UP.getDiscordAliases().get(0) + " test 1 2 3 " + Emojis.THUMBS_DOWN.getDiscordAliases().get(0)).size());
+    }
+
+    @Test
+    public void extractAliasesInOrder() {
+        assertEquals(Arrays.asList(":thumbsup:", ":thumbsdown:"), EmojiManager.extractAliasesInOrder(Emojis.THUMBS_UP.getDiscordAliases().get(0) + " test 1 2 3 " + Emojis.THUMBS_DOWN.getDiscordAliases().get(0)));
+    }
+
 }

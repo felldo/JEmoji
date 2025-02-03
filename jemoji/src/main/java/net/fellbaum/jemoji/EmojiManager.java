@@ -3,6 +3,7 @@ package net.fellbaum.jemoji;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collector;
@@ -17,6 +18,11 @@ public final class EmojiManager {
 
     private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
     static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
+
+    static final Map<InternalCodepointSequence, List<Emoji>> ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
+    static final Set<Integer> POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS;
+    static final int ALIAS_EMOJI_MAX_LENGTH;
+
     static final Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI;
     static final Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI;
@@ -79,6 +85,21 @@ public final class EmojiManager {
         EMOJI_ALIAS_TO_EMOJIS = EmojiManager.getAllEmojis().stream()
                 .flatMap(emoji -> emoji.getAllAliases().stream().map(alias -> new AbstractMap.SimpleEntry<>(alias, emoji)))
                 .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
+
+        POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS = emojis.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(s -> s.codePointAt(0)).collect(Collectors.toSet());
+        ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = mapAliasesToEmojis(EMOJIS_LENGTH_DESCENDING);
+        ALIAS_EMOJI_MAX_LENGTH = EMOJIS_LENGTH_DESCENDING.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(InternalEmojiUtils::getCodePointCount).max(Comparator.naturalOrder()).orElse(0);
+    }
+
+    private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final List<Emoji> emojis) {
+        return emojis.stream()
+                .flatMap(emoji -> emoji.getAllAliases().stream()
+                        .map(alias -> new AbstractMap.SimpleEntry<>(new InternalCodepointSequence(stringToCodePoints(alias)), emoji)))
+                .collect(Collectors.groupingBy(
+                        AbstractMap.SimpleEntry::getKey,
+                        HashMap::new,
+                        Collectors.mapping(AbstractMap.SimpleEntry::getValue, Collectors.toList())
+                ));
     }
 
     private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
@@ -686,8 +707,117 @@ public final class EmojiManager {
                 continue nextTextIteration;
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Replaces all aliases in the text with the given replacement function.
+     *
+     * @param text                The text to replace aliases from.
+     * @param replacementFunction A non-empty list.
+     *                            Always contains at least one emoji, but there may be more than 1 available for one alias.
+     *                            Therefore, it's up to you to decide which one you take.
+     *                            <p>
+     *                            For example, when replacing the alias ":beach_umbrella:", these two emojis will be available.
+     *                            {emoji='🏖️', unicode='\uD83C\uDFD6\uFE0F', discordAliases=[:beach:, :beach_with_umbrella:], githubAliases=[:beach_umbrella:], slackAliases=[:beach_with_umbrella:], hasFitzpatrick=false, hasHairStyle=false, version=0.7, qualification=FULLY_QUALIFIED, description='beach with umbrella', group=TRAVEL_AND_PLACES, subgroup=PLACE_GEOGRAPHIC, hasVariationSelectors=false, allAliases=[:beach:, :beach_umbrella:, :beach_with_umbrella:]},
+     *                            {emoji='⛱️', unicode='\u26F1\uFE0F', discordAliases=[:beach_umbrella:, :umbrella_on_ground:], githubAliases=[:parasol_on_ground:], slackAliases=[:umbrella_on_ground:], hasFitzpatrick=false, hasHairStyle=false, version=0.7, qualification=FULLY_QUALIFIED, description='umbrella on ground', group=TRAVEL_AND_PLACES, subgroup=SKY_AND_WEATHER, hasVariationSelectors=false, allAliases=[:beach_umbrella:, :umbrella_on_ground:, :parasol_on_ground:]}
+     *                            </p>
+     * @return The text with the aliases replaced.
+     */
+    public static String replaceAliases(final String text, final BiFunction<String, List<Emoji>, String> replacementFunction) {
+        if (isStringNullOrEmpty(text)) return "";
+
+        final int[] textCodePointsArray = stringToCodePoints(text);
+        final long textCodePointsLength = textCodePointsArray.length;
+
+        final StringBuilder sb = new StringBuilder();
+
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final int currentCodepoint = textCodePointsArray[textIndex];
+            sb.appendCodePoint(currentCodepoint);
+
+            if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
+                continue;
+            }
+
+            final NonUniqueEmojiFoundResult nonUniqueEmojiFoundResult = findNonUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength);
+            if (nonUniqueEmojiFoundResult == null) {
+                continue;
+            }
+
+            //-1 because loop adds +1
+            textIndex = nonUniqueEmojiFoundResult.getEndIndex() - 1;
+            sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
+
+            sb.append(replacementFunction.apply(new String(nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints(), 0, nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints().length), nonUniqueEmojiFoundResult.getEmojis()));
+        }
 
         return sb.toString();
     }
 
+    /**
+     * Extracts all aliases from the given text.
+     *
+     * @param text The text to extract aliases from.
+     * @return A set of aliases.
+     */
+    public static Set<String> extractAliases(final String text) {
+        return Collections.unmodifiableSet(new HashSet<>(extractAliasesInOrder(text)));
+    }
+
+    /**
+     * Extracts all aliases from the given text in the order they appear.
+     *
+     * @param text The text to extract aliases from.
+     * @return A list of aliases.
+     */
+    public static List<String> extractAliasesInOrder(final String text) {
+        return extractAliasesInOrderWithIndex(text).stream().map(IndexedAlias::getAlias).collect(Collectors.toList());
+    }
+
+    /**
+     * Extracts all aliases from the given text in the order they appear.
+     *
+     * @param text The text to extract aliases from.
+     * @return A list of indexed aliases.
+     */
+    public static List<IndexedAlias> extractAliasesInOrderWithIndex(final String text) {
+        if (isStringNullOrEmpty(text)) return Collections.emptyList();
+
+        final int[] textCodePointsArray = stringToCodePoints(text);
+        final long textCodePointsLength = textCodePointsArray.length;
+        final List<IndexedAlias> indexedAliases = new ArrayList<>();
+        int charIndex = 0;
+        for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
+            final int currentCodepoint = textCodePointsArray[textIndex];
+
+            if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
+                charIndex += Character.charCount(currentCodepoint);
+                continue;
+            }
+
+            final NonUniqueEmojiFoundResult nonUniqueEmojiFoundResult = findNonUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength);
+            if (nonUniqueEmojiFoundResult == null) {
+                continue;
+            }
+
+            final int startCharIndex = charIndex;
+            final int startTextIndex = textIndex;
+            for (int i = textIndex; i < nonUniqueEmojiFoundResult.getEndIndex(); i++) {
+                charIndex += Character.charCount(textCodePointsArray[i]);
+            }
+
+            indexedAliases.add(new IndexedAlias(new String(
+                    nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints(), 0, nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints().length),
+                    nonUniqueEmojiFoundResult.getEmojis(),
+                    startCharIndex,
+                    startTextIndex,
+                    charIndex,
+                    textIndex));
+
+            //-1 because loop adds +1
+            textIndex = nonUniqueEmojiFoundResult.getEndIndex() - 1;
+        }
+        return indexedAliases;
+    }
 }
