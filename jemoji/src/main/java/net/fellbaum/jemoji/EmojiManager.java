@@ -599,6 +599,7 @@ public final class EmojiManager {
      *
      * @param text              The text to replace emojis from.
      * @param replacementString The replacement string.
+     * @param emojiType         The type of the emoji appearance in the string which should be replaced.
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final String replacementString, final EnumSet<EmojiType> emojiType) {
