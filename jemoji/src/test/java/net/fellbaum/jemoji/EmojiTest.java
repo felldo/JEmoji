@@ -8,7 +8,7 @@ public class EmojiTest {
 
     @Test
     public void testUnicode() {
-        assertEquals("\\uD83D\\uDC4D", Emojis.THUMBS_UP.getUnicode());
+        assertEquals("\\uD83D\\uDC4D", Emojis.THUMBS_UP.getUnicodeText());
     }
 
     @Test

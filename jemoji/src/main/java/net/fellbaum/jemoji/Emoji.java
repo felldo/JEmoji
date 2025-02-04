@@ -88,8 +88,20 @@ public final class Emoji implements Comparable<Emoji> {
      * instead of displaying the actual emoji 🙂.
      *
      * @return The Unicode representation of the emoji
+     * @deprecated Use {@link Emoji#getUnicodeText()} instead
      */
+    @Deprecated
     public String getUnicode() {
+        return unicode;
+    }
+
+    /**
+     * Gets the Unicode representation of the emoji as a string i.e. {@literal \\uD83D\\uDE42}
+     * instead of displaying the actual emoji 🙂.
+     *
+     * @return The Unicode representation of the emoji
+     */
+    public String getUnicodeText() {
         return unicode;
     }
 
