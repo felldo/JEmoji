@@ -10,6 +10,13 @@ JEmoji is a lightweight, fast and auto generated emoji library for Java with a c
 With many utility methods and **type safe** direct access to Emojis,
 JEmoji aims to improve your experience and development when working with Emojis.
 
+## ⭐ Highlights
+- Extract, replace and remove emojis from text.
+- Ability to detect emoji in other representations than Unicode (HTML dec / hex, url encoded).
+- Auto generated type safe constant emojis are directly accessible `Emojis.THUMBS_UP` .
+- Get emojis dynamically with `getEmoji`, `getByAlias`, `getByHtmlDecimal`,`getByHtmlHexadecimal`,`getByUrlEncoded`.
+- 1 click to update the library to the newest Unicode consortium emoji specification.
+
 ## ❓ Why another emoji library?
 
 While several other emoji libraries for Java exist, most of them are incomplete or outdated. JEmoji, on the other
