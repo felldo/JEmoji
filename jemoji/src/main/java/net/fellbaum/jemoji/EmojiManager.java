@@ -232,7 +232,7 @@ public final class EmojiManager {
     }
 
     /**
-     * Gets an emoji for the given HTML decimal i.e. &#128077; (thumbsup emoji) if present.
+     * Gets an emoji for the given HTML decimal i.e. {@literal &#128077;} (thumbsup emoji) if present.
      *
      * @param htmlDecimal The HTML decimal of the emoji.
      * @return The emoji.
@@ -243,7 +243,7 @@ public final class EmojiManager {
     }
 
     /**
-     * Gets an emoji for the given HTML hexadecimal i.e. &#x1F44D; (thumbsup emoji) if present.
+     * Gets an emoji for the given HTML hexadecimal i.e. {@literal &#x1F44D;} (thumbsup emoji) if present.
      *
      * @param htmlHexadecimal The HTML hexadecimal of the emoji.
      * @return The emoji.
@@ -254,7 +254,7 @@ public final class EmojiManager {
     }
 
     /**
-     * Gets an emoji for the given url encoded emoji i.e. %F0%9F%91%8D (thumbsup emoji) if present.
+     * Gets an emoji for the given url encoded emoji i.e. {@literal %F0%9F%91%8D} (thumbsup emoji) if present.
      *
      * @param urlEncodedEmoji The HTML hexadecimal of the emoji.
      * @return The emoji.
