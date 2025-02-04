@@ -232,6 +232,39 @@ public final class EmojiManager {
     }
 
     /**
+     * Gets an emoji for the given HTML decimal i.e. &#128077; (thumbsup emoji) if present.
+     *
+     * @param htmlDecimal The HTML decimal of the emoji.
+     * @return The emoji.
+     */
+    public static Optional<Emoji> getByHtmlDecimal(final String htmlDecimal) {
+        if (isStringNullOrEmpty(htmlDecimal)) return Optional.empty();
+        return Optional.ofNullable(EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(htmlDecimal));
+    }
+
+    /**
+     * Gets an emoji for the given HTML hexadecimal i.e. &#x1F44D; (thumbsup emoji) if present.
+     *
+     * @param htmlHexadecimal The HTML hexadecimal of the emoji.
+     * @return The emoji.
+     */
+    public static Optional<Emoji> getByHtmlHexadecimal(final String htmlHexadecimal) {
+        if (isStringNullOrEmpty(htmlHexadecimal)) return Optional.empty();
+        return Optional.ofNullable(EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(htmlHexadecimal));
+    }
+
+    /**
+     * Gets an emoji for the given url encoded emoji i.e. %F0%9F%91%8D (thumbsup emoji) if present.
+     *
+     * @param urlEncodedEmoji The HTML hexadecimal of the emoji.
+     * @return The emoji.
+     */
+    public static Optional<Emoji> getByUrlEncoded(final String urlEncodedEmoji) {
+        if (isStringNullOrEmpty(urlEncodedEmoji)) return Optional.empty();
+        return Optional.ofNullable(EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji));
+    }
+
+    /**
      * Gets an emoji for the given alias i.e. :thumbsup: if present.
      *
      * @param alias The alias of the emoji.
