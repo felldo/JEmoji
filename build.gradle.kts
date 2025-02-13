@@ -9,14 +9,15 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.github.javaparser.JavaParser
+import com.github.javaparser.StaticJavaParser
 import com.github.javaparser.ast.CompilationUnit
+import com.github.javaparser.ast.Modifier
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.EnumConstantDeclaration
 import com.github.javaparser.ast.body.FieldDeclaration
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.github.javaparser.ast.comments.JavadocComment
 import com.github.javaparser.ast.expr.*
-import net.fellbaum.jemoji.EmojiManager
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
 import okhttp3.HttpUrl
@@ -31,11 +32,8 @@ import org.htmlunit.html.HtmlPage
 import org.htmlunit.html.HtmlScript
 import org.jsoup.Connection
 import org.jsoup.Jsoup
-import java.io.BufferedWriter
 import java.io.FileOutputStream
-import java.io.FileWriter
 import java.io.ObjectOutputStream
-import java.io.Writer
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.atomic.AtomicInteger
@@ -249,8 +247,11 @@ fun generate(generateAll: Boolean = false) {
                         codepointsString,
                         //Get each char and fill with leading 0 as the representation is: \u0000
                         codepointsString.asSequence().joinToString(separator = "") { "\\u%04X".format(it.code) },
-                        codepointsString.codePoints().mapToObj { operand -> "&#$operand" }.collect(Collectors.joining(";")) + ";",
-                        codepointsString.codePoints().mapToObj{operand -> "&#x" + Integer.toHexString(operand).uppercase()}.collect(Collectors.joining(";")) + ";",
+                        codepointsString.codePoints().mapToObj { operand -> "&#$operand" }
+                            .collect(Collectors.joining(";")) + ";",
+                        codepointsString.codePoints()
+                            .mapToObj { operand -> "&#x" + Integer.toHexString(operand).uppercase() }
+                            .collect(Collectors.joining(";")) + ";",
                         URLEncoder.encode(codepointsString, StandardCharsets.UTF_8.toString()),
                         completeDiscordAliases,
                         completeGitHubAliases,
@@ -332,7 +333,7 @@ fun generate(generateAll: Boolean = false) {
                 }*/
                 FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
             }
-            descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String,String?>)
+            descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String, String?>)
         }
 
         // Emoji to List<keywords>
@@ -697,6 +698,8 @@ fun generateJavaSourceFiles() {
     val emojiArrayNode =
         jacksonObjectMapper().readTree(file(rootDir.absolutePath + "\\public\\emojis.json"))
 
+    createStaticConstantsClassFromPreComputation(jemojiPackagePath, emojiArrayNode)
+
     val emojisCompilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
     emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${jemojiPackagePath.joinToString("/")}/Emojis.java").toPath())
     val emojisInterface = emojisCompilationUnit.addInterface("Emojis")
@@ -852,6 +855,160 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
 }
 
 
+fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayNode: JsonNode) {
+    val emojiSubgroupFilePath = "${path.joinToString("/")}/PreComputedConstants.java"
+    val emojiSubGroupCompilationUnit = CompilationUnit(path.joinToString("."))
+        .setStorage(file("$generatedSourcesDir/$emojiSubgroupFilePath").toPath())
+
+    emojiSubGroupCompilationUnit.run {
+        addImport("java.util.Arrays")
+        addImport("java.util.Set")
+        addImport("java.util.HashSet")
+    }
+
+    val emojiSubGroupClassFile = emojiSubGroupCompilationUnit.addClass("PreComputedConstants").setPublic(false)
+
+    emojiSubGroupClassFile.addSingleMemberAnnotation(
+        "SuppressWarnings",
+        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused")))
+    )
+
+    val modifiers = listOf(Modifier.Keyword.PUBLIC, Modifier.Keyword.STATIC, Modifier.Keyword.FINAL)
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "int",
+        "MAXIMUM_EMOJI_URL_ENCODED_LENGTH",
+        IntegerLiteralExpr(
+            emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                .maxOfOrNull { it.codePointCount(0, it.length) }!!
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "int",
+        "MINIMUM_EMOJI_URL_ENCODED_LENGTH",
+        IntegerLiteralExpr(
+            emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                .minOfOrNull { it.codePointCount(0, it.length) }!!
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "int",
+        "ALIAS_EMOJI_MAX_LENGTH",
+        IntegerLiteralExpr(
+            emojiArrayNode.flatMap { node ->
+                listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
+                    node[key]?.map { it.asText() } ?: emptyList()
+                }
+            }.distinct().maxOfOrNull { it.codePointCount(0, it.length) }!!
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "int",
+        "MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH",
+        IntegerLiteralExpr(
+            emojiArrayNode.map { it.get("htmlDec").asText() }
+                .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt()
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "int",
+        "MIN_HTML_DECIMAL_CODEPOINT_LENGTH",
+        IntegerLiteralExpr(
+            emojiArrayNode.map { it.get("htmlDec").asText() }
+                .minOfOrNull { text: String -> text.codePoints().toArray().size }!!
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "Set<Integer>",
+        "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
+        ObjectCreationExpr(
+            null,
+            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
+            NodeList(
+                MethodCallExpr(
+                    NameExpr("Arrays"),
+                    "asList",
+                    NodeList(
+                        *emojiArrayNode.flatMap { node ->
+                            listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
+                                node[key]?.map { it.asText() } ?: emptyList()
+                            }
+                        }
+                            .distinct()
+                            .map { it.codePointAt(0) } // Zu String konvertieren
+                            .distinct()
+                            .sorted()
+                            .map { IntegerLiteralExpr(it) }
+                            .toTypedArray()
+                    )
+                )
+            )
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "Set<Integer>",
+        "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
+        ObjectCreationExpr(
+            null,
+            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
+            NodeList(
+                MethodCallExpr(
+                    NameExpr("Arrays"),
+                    "asList",
+                    NodeList(
+                        *emojiArrayNode.map { it.get("urlEncoded").asText() }
+                            .map { it.codePointAt(0) }
+                            .distinct()
+                            .sorted()
+                            .map { IntegerLiteralExpr(it) }
+                            .toTypedArray()
+                    )
+                )
+            )
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupClassFile.addFieldWithInitializer(
+        "Set<String>",
+        "ALLOWED_EMOJI_URL_ENCODED_SEQUENCES",
+        ObjectCreationExpr(
+            null,
+            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
+            NodeList(
+                MethodCallExpr(
+                    NameExpr("Arrays"),
+                    "asList",
+                    NodeList(
+                        *emojiArrayNode.map { it.get("urlEncoded").asText() }
+                            .flatMap { it.split("%") }
+                            .distinct()
+                            .filter { it.isNotEmpty() }
+                            .sorted()
+                            .map { StringLiteralExpr(it) }
+                            .toTypedArray()
+                    )
+                )
+            )
+        ),
+        *modifiers.toTypedArray()
+    )
+
+    emojiSubGroupCompilationUnit.storage.get().save()
+}
+
 fun createEmojiLoaderInterface(
     path: List<String>,
     filename: String,
@@ -878,7 +1035,8 @@ fun createEmojiLoaderInterface(
 
     emojiSubGroupInterfaceConstantVariables.forEach { pair ->
         pair.second.forEach {
-            emojisArrayCreationExpr.addArgument(pair.first + "." + it.getVariable(0).name.toString())
+            emojiSubGroupCompilationUnit.addImport("net.fellbaum.jemoji.${pair.first}", true, true)
+            emojisArrayCreationExpr.addArgument(it.getVariable(0).name.toString())
         }
     }
 

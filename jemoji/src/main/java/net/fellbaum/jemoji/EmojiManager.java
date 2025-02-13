@@ -16,128 +16,142 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
-    private static final Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI;
-    static final Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
+    @Nullable
+    private static List<Emoji> EMOJIS_LENGTH_DESCENDING = null;
+    @Nullable
+    private static Map<String, Emoji> EMOJI_UNICODE_TO_EMOJI = null;
+    @Nullable
+    static Map<Integer, List<Emoji>> EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = null;
+    @Nullable
+    static Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = null;
+    @Nullable
+    static Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = null;
+    @Nullable
+    static Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = null;
 
-    static final Map<InternalCodepointSequence, List<Emoji>> ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING;
-    static final Set<Integer> POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS;
-    static final int ALIAS_EMOJI_MAX_LENGTH;
+    @Nullable
+    static Map<InternalCodepointSequence, List<Emoji>> ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = null;
 
-    static final Set<Integer> POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS;
-    static final int MINIMUM_EMOJI_URL_ENCODED_LENGTH;
-    static final int MAXIMUM_EMOJI_URL_ENCODED_LENGTH;
-    static final Set<String> ALLOWED_EMOJI_URL_ENCODED_SEQUENCES;
-
-
-    static final Map<String, Emoji> EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI;
-    static final Map<String, Emoji> EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI;
-    static final Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI;
-    static final Map<String, List<Emoji>> EMOJI_ALIAS_TO_EMOJIS;
-    static final int MIN_HTML_DECIMAL_CODEPOINT_LENGTH;
-    // Emojis, which consist of multiple single emojis
-    static final int MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH;
-    private static final List<Emoji> EMOJIS_LENGTH_DESCENDING;
-
-    private static @Nullable Pattern EMOJI_PATTERN;
-    private static final Pattern NOT_WANTED_EMOJI_CHARACTERS = Pattern.compile("[\\p{Alpha}\\p{Z}]");
+    @Nullable
+    private static Pattern EMOJI_PATTERN;
 
     private static final Map<EmojiLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
     private static final Map<EmojiLanguage, Map<String, List<String>>> EMOJI_KEYWORD_LANGUAGE_MAP = new HashMap<>();
 
-    static {
-        //TODO: Automate somehow loading the emoji loader files?
-        final Set<Emoji> emojis = new HashSet<>();
-        emojis.addAll(EmojiLoaderA.EMOJI_LIST);
-        emojis.addAll(EmojiLoaderB.EMOJI_LIST);
-
-        EMOJI_UNICODE_TO_EMOJI = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
-
-        EMOJIS_LENGTH_DESCENDING = Collections.unmodifiableList(emojis.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
-
-        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = Collections.unmodifiableMap(prepareEmojisStreamForInitialization(emojis).collect(getEmojiLinkedHashMapCollector()));
-
-        EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = Collections.unmodifiableMap(
-                emojis.stream().collect(Collectors.toMap(
-                        o -> o.getHtmlDecimalCode().toUpperCase(),
-                        emoji -> emoji,
-                        (existing, replacement) -> existing)
-                ));
-
-        EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = Collections.unmodifiableMap(
-                emojis.stream().collect(Collectors.toMap(
-                        o -> o.getHtmlHexadecimalCode().toUpperCase(),
-                        emoji -> emoji,
-                        (existing, replacement) -> existing)
-                ));
-
-        EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = Collections.unmodifiableMap(
-                emojis.stream().collect(Collectors.toMap(
-                        o -> o.getURLEncoded().toUpperCase(),
-                        emoji -> emoji,
-                        (existing, replacement) -> existing)
-                ));
-
-        MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH = (int) EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.keySet().stream()
-                .mapToLong(value -> value.chars().filter(ch -> ch == ';').count())
-                .max()
-                .orElseThrow(IllegalStateException::new);
-
-        MIN_HTML_DECIMAL_CODEPOINT_LENGTH = EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.keySet().stream()
-                .map(InternalEmojiUtils::stringToCodePoints)
-                .map(ints -> ints.length)
-                .min(Comparator.comparingInt(Integer::intValue))
-                .orElseThrow(IllegalStateException::new);
-
-        EMOJI_ALIAS_TO_EMOJIS = EmojiManager.getAllEmojis().stream()
-                .flatMap(emoji -> emoji.getAllAliases().stream().map(alias -> new AbstractMap.SimpleEntry<>(alias, emoji)))
-                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
-
-        POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS = emojis.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(s -> s.codePointAt(0)).collect(Collectors.toSet());
-        ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = mapAliasesToEmojis(EMOJIS_LENGTH_DESCENDING);
-        ALIAS_EMOJI_MAX_LENGTH = EMOJIS_LENGTH_DESCENDING.stream().flatMap(emoji -> emoji.getAllAliases().stream()).distinct().map(InternalEmojiUtils::getCodePointCount).max(Comparator.naturalOrder()).orElse(0);
-
-        POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS = emojis.stream().map(Emoji::getURLEncoded).distinct().map(s -> s.codePointAt(0)).collect(Collectors.toSet());
-        MINIMUM_EMOJI_URL_ENCODED_LENGTH = emojis.stream().map(Emoji::getURLEncoded).distinct().map(InternalEmojiUtils::getCodePointCount).min(Comparator.naturalOrder()).orElse(0);
-        MAXIMUM_EMOJI_URL_ENCODED_LENGTH = emojis.stream().map(Emoji::getURLEncoded).distinct().map(InternalEmojiUtils::getCodePointCount).max(Comparator.naturalOrder()).orElse(0);
-        ALLOWED_EMOJI_URL_ENCODED_SEQUENCES = emojis.stream().map(Emoji::getURLEncoded).distinct().flatMap(s -> Arrays.stream(s.split("%"))).collect(Collectors.toSet());
+    private static void initUnicode() {
+        EMOJIS_LENGTH_DESCENDING = InitHelper.emojisLengthDescending();
+        EMOJI_UNICODE_TO_EMOJI = InitHelper.emojiUnicodeToEmoji();
+        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = InitHelper.emojiFirstCodepointToEmojisOrderCodepointLengthDescending();
+        EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlDecimalRepresentationToEmoji();
+        EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlHexadecimalRepresentationToEmoji();
+        EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = InitHelper.emojiUrlEncodedRepresentationToEmoji();
     }
 
-    private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final List<Emoji> emojis) {
-        return emojis.stream()
-                .flatMap(emoji -> emoji.getAllAliases().stream()
-                        .map(alias -> new AbstractMap.SimpleEntry<>(new InternalCodepointSequence(stringToCodePoints(alias)), emoji)))
-                .collect(Collectors.groupingBy(
-                        AbstractMap.SimpleEntry::getKey,
-                        HashMap::new,
-                        Collectors.mapping(AbstractMap.SimpleEntry::getValue, Collectors.toList())
-                ));
+    private static void initAlias() {
+        ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = InitHelper.aliasEmojiToEmojisOrderCodepointLengthDescending();
     }
 
-    private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
-        return Collectors.groupingBy(
-                entry -> entry.getValue().getEmoji().codePointAt(0),
-                LinkedHashMap::new,
-                Collectors.collectingAndThen(
-                        Collectors.mapping(Map.Entry::getValue, Collectors.toList()),
-                        list -> {
-                            list.sort((e1, e2) -> Integer.compare(e2.getEmoji().length(), e1.getEmoji().length()));
-                            return list;
+    //https://pangin.pro/posts/computation-in-static-initializer
+    private static final class InitHelper {
+
+        @Nullable
+        private static Set<Emoji> EMOJIS = null;
+
+        static Set<Emoji> getEmojis() {
+            if (EMOJIS == null) {
+                final Set<Emoji> localEmojis = new HashSet<>();
+                localEmojis.addAll(EmojiLoaderA.EMOJI_LIST);
+                localEmojis.addAll(EmojiLoaderB.EMOJI_LIST);
+                EMOJIS = localEmojis;
+            }
+            return EMOJIS;
+        }
+
+        static List<Emoji> emojisLengthDescending() {
+            return Collections.unmodifiableList(getEmojis().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+        }
+
+        static Map<String, Emoji> emojiUnicodeToEmoji() {
+            return Collections.unmodifiableMap(prepareEmojisStreamForInitialization(getEmojis()).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
+        }
+
+        static Map<Integer, List<Emoji>> emojiFirstCodepointToEmojisOrderCodepointLengthDescending() {
+            return Collections.unmodifiableMap(prepareEmojisStreamForInitialization(getEmojis()).collect(getEmojiLinkedHashMapCollector()));
+        }
+
+        static Map<InternalCodepointSequence, List<Emoji>> aliasEmojiToEmojisOrderCodepointLengthDescending() {
+            return mapAliasesToEmojis(getEmojis());
+        }
+
+        static Map<String, Emoji> emojiHtmlDecimalRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getHtmlDecimalCode().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static Map<String, Emoji> emojiHtmlHexadecimalRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getHtmlHexadecimalCode().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static Map<String, Emoji> emojiUrlEncodedRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getURLEncoded().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static boolean initFinished() {
+            EMOJIS = null;
+            return true;
+        }
+
+        private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final Set<Emoji> emojis) {
+            return emojis.stream()
+                    .flatMap(emoji -> emoji.getAllAliases().stream()
+                            .map(alias -> new AbstractMap.SimpleEntry<>(new InternalCodepointSequence(stringToCodePoints(alias)), emoji)))
+                    .collect(Collectors.groupingBy(
+                            AbstractMap.SimpleEntry::getKey,
+                            HashMap::new,
+                            Collectors.mapping(AbstractMap.SimpleEntry::getValue, Collectors.toList())
+                    ));
+        }
+
+        private static Collector<AbstractMap.SimpleEntry<String, Emoji>, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
+            return Collectors.groupingBy(
+                    entry -> entry.getValue().getEmoji().codePointAt(0),
+                    LinkedHashMap::new,
+                    Collectors.collectingAndThen(
+                            Collectors.mapping(Map.Entry::getValue, Collectors.toList()),
+                            list -> {
+                                list.sort((e1, e2) -> Integer.compare(e2.getEmoji().length(), e1.getEmoji().length()));
+                                return list;
+                            }
+                    )
+            );
+        }
+
+        private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Set<Emoji> emojis) {
+            return emojis.stream()
+                    .flatMap(emoji -> {
+                        final Stream.Builder<AbstractMap.SimpleEntry<String, Emoji>> streamBuilder = Stream.builder();
+                        streamBuilder.add(new AbstractMap.SimpleEntry<>(emoji.getEmoji(), emoji));
+                        if (emoji.hasVariationSelectors()) {
+                            emoji.getTextVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
+                            emoji.getEmojiVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
                         }
-                )
-        );
-    }
-
-    private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Set<Emoji> emojis) {
-        return emojis.stream()
-                .flatMap(emoji -> {
-                    final Stream.Builder<AbstractMap.SimpleEntry<String, Emoji>> streamBuilder = Stream.builder();
-                    streamBuilder.add(new AbstractMap.SimpleEntry<>(emoji.getEmoji(), emoji));
-                    if (emoji.hasVariationSelectors()) {
-                        emoji.getTextVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
-                        emoji.getEmojiVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
-                    }
-                    return streamBuilder.build();
-                });
+                        return streamBuilder.build();
+                    });
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -160,6 +174,9 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getEmoji(final String emoji) {
+        if (EMOJI_UNICODE_TO_EMOJI == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(emoji)) return Optional.empty();
         return Optional.ofNullable(EMOJI_UNICODE_TO_EMOJI.get(emoji));
     }
@@ -171,6 +188,9 @@ public final class EmojiManager {
      * @return True if the given string is an emoji.
      */
     public static boolean isEmoji(final String emoji) {
+        if (EMOJI_UNICODE_TO_EMOJI == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(emoji)) return false;
         return EMOJI_UNICODE_TO_EMOJI.containsKey(emoji);
     }
@@ -181,6 +201,9 @@ public final class EmojiManager {
      * @return A set of all emojis.
      */
     public static Set<Emoji> getAllEmojis() {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return new HashSet<>(EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -190,6 +213,9 @@ public final class EmojiManager {
      * @return A map of all emojis mapped to their group.
      */
     public static Map<EmojiGroup, Set<Emoji>> getAllEmojisGrouped() {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return EMOJIS_LENGTH_DESCENDING.stream().collect(Collectors.groupingBy(Emoji::getGroup, Collectors.toSet()));
     }
 
@@ -199,6 +225,9 @@ public final class EmojiManager {
      * @return A map of all emojis mapped to their subgroup.
      */
     public static Map<EmojiSubGroup, Set<Emoji>> getAllEmojisSubGrouped() {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return EMOJIS_LENGTH_DESCENDING.stream().collect(Collectors.groupingBy(Emoji::getSubgroup, Collectors.toSet()));
     }
 
@@ -209,6 +238,9 @@ public final class EmojiManager {
      * @return A set of all emojis that are part of the given group.
      */
     public static Set<Emoji> getAllEmojisByGroup(final EmojiGroup group) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getGroup() == group).collect(Collectors.toSet());
     }
 
@@ -219,6 +251,9 @@ public final class EmojiManager {
      * @return A set of all emojis that are part of the given subgroup.
      */
     public static Set<Emoji> getAllEmojisBySubGroup(final EmojiSubGroup subgroup) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getSubgroup() == subgroup).collect(Collectors.toSet());
     }
 
@@ -228,6 +263,9 @@ public final class EmojiManager {
      * @return A list of all emojis.
      */
     public static List<Emoji> getAllEmojisLengthDescending() {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return EMOJIS_LENGTH_DESCENDING;
     }
 
@@ -238,6 +276,9 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getByHtmlDecimal(final String htmlDecimal) {
+        if (EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(htmlDecimal)) return Optional.empty();
         return Optional.ofNullable(EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(htmlDecimal));
     }
@@ -249,6 +290,9 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getByHtmlHexadecimal(final String htmlHexadecimal) {
+        if (EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(htmlHexadecimal)) return Optional.empty();
         return Optional.ofNullable(EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(htmlHexadecimal));
     }
@@ -260,6 +304,9 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getByUrlEncoded(final String urlEncodedEmoji) {
+        if (EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(urlEncodedEmoji)) return Optional.empty();
         return Optional.ofNullable(EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji));
     }
@@ -271,8 +318,11 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<List<Emoji>> getByAlias(final String alias) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias);
+        return findEmojiByEitherAlias(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING, alias);
     }
 
     /**
@@ -282,8 +332,11 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getByDiscordAlias(final String alias) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+        return findEmojiByEitherAlias(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING, alias).flatMap(emojis -> {
             for (Emoji emoji : emojis) {
                 if (!emoji.getDiscordAliases().isEmpty()) {
                     return Optional.of(emoji);
@@ -300,8 +353,11 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getByGithubAlias(final String alias) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+        return findEmojiByEitherAlias(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING, alias).flatMap(emojis -> {
             for (Emoji emoji : emojis) {
                 if (!emoji.getGithubAliases().isEmpty()) {
                     return Optional.of(emoji);
@@ -318,8 +374,11 @@ public final class EmojiManager {
      * @return The emoji.
      */
     public static Optional<Emoji> getBySlackAlias(final String alias) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(alias)) return Optional.empty();
-        return findEmojiByEitherAlias(EMOJI_ALIAS_TO_EMOJIS, alias).flatMap(emojis -> {
+        return findEmojiByEitherAlias(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING, alias).flatMap(emojis -> {
             for (Emoji emoji : emojis) {
                 if (!emoji.getSlackAliases().isEmpty()) {
                     return Optional.of(emoji);
@@ -335,6 +394,9 @@ public final class EmojiManager {
      * @return The pattern for all emojis.
      */
     public static Pattern getEmojiPattern() {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         if (EMOJI_PATTERN == null) {
             EMOJI_PATTERN = Pattern.compile(EMOJIS_LENGTH_DESCENDING.stream()
                     .map(s -> "(" + Pattern.quote(s.getEmoji()) + ")").collect(Collectors.joining("|")));
@@ -361,6 +423,9 @@ public final class EmojiManager {
      * @return True if the given text contains emojis.
      */
     public static boolean containsAnyEmoji(final String text, EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(text)) return false;
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -445,6 +510,9 @@ public final class EmojiManager {
      * @return A list of indexed emojis.
      */
     public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text, EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final List<IndexedEmoji> emojis = new ArrayList<>();
@@ -540,6 +608,9 @@ public final class EmojiManager {
      * @return The text without the given emojis.
      */
     public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove, EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         final Set<Emoji> emojis = new HashSet<>(EMOJIS_LENGTH_DESCENDING);
         emojis.removeAll(emojisToRemove);
         return removeAllEmojisExcept(text, emojis, emojiType);
@@ -577,6 +648,9 @@ public final class EmojiManager {
      */
     public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep, EnumSet<EmojiType> emojiType) {
         // TODO: Could be replaced by #replaceEmojis?
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -624,6 +698,9 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final String replacementString) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return replaceEmojis(text, replacementString, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -636,6 +713,9 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final String replacementString, final EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return replaceEmojis(text, replacementString, EMOJIS_LENGTH_DESCENDING, emojiType);
     }
 
@@ -647,6 +727,9 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final Function<Emoji, String> replacementFunction) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING);
     }
 
@@ -659,6 +742,9 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceAllEmojis(final String text, final Function<Emoji, String> replacementFunction, final EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         return replaceEmojis(text, replacementFunction, EMOJIS_LENGTH_DESCENDING, emojiType);
     }
 
@@ -721,6 +807,9 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace, final EnumSet<EmojiType> emojiType) {
+        if (EMOJIS_LENGTH_DESCENDING == null) {
+            initUnicode();
+        }
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -770,6 +859,9 @@ public final class EmojiManager {
      * @return The text with the aliases replaced.
      */
     public static String replaceAliases(final String text, final BiFunction<String, List<Emoji>, String> replacementFunction) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -781,7 +873,7 @@ public final class EmojiManager {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
 
-            if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
+            if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
                 continue;
             }
 
@@ -827,6 +919,9 @@ public final class EmojiManager {
      * @return A list of indexed aliases.
      */
     public static List<IndexedAlias> extractAliasesInOrderWithIndex(final String text) {
+        if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING == null) {
+            initAlias();
+        }
         if (isStringNullOrEmpty(text)) return Collections.emptyList();
 
         final int[] textCodePointsArray = stringToCodePoints(text);
@@ -836,7 +931,7 @@ public final class EmojiManager {
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
 
-            if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
+            if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
                 charIndex += Character.charCount(currentCodepoint);
                 continue;
             }

@@ -15,6 +15,10 @@ final class InternalCodepointSequence {
         this.hash = Arrays.hashCode(codepoints);
     }
 
+    public InternalCodepointSequence(String text) {
+        this(InternalEmojiUtils.stringToCodePoints(text));
+    }
+
     @Override
     public boolean equals(Object obj) {
         return obj instanceof InternalCodepointSequence && Arrays.equals(this.codepoints, ((InternalCodepointSequence) obj).codepoints);

@@ -34,10 +34,10 @@ final class InternalEmojiUtils {
         return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
     }
 
-    public static Optional<List<Emoji>> findEmojiByEitherAlias(final Map<String, List<Emoji>> map, final String alias) {
-        final List<Emoji> firstValue = map.get(addColonToAlias(alias));
+    public static Optional<List<Emoji>> findEmojiByEitherAlias(final Map<InternalCodepointSequence, List<Emoji>> map, final String alias) {
+        final List<Emoji> firstValue = map.get(new InternalCodepointSequence(addColonToAlias(alias)));
         if (firstValue != null) return Optional.of(firstValue);
-        final List<Emoji> secondValue = map.get(removeColonFromAlias(alias));
+        final List<Emoji> secondValue = map.get(new InternalCodepointSequence(removeColonFromAlias(alias)));
         if (secondValue != null) return Optional.of(secondValue);
         return Optional.empty();
     }
@@ -94,7 +94,7 @@ final class InternalEmojiUtils {
         final StringBuilder sequenceBuilder = new StringBuilder();
 
         int leadingZeros = 0;
-        while (numberSequenceCount < MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
+        while (numberSequenceCount < PreComputedConstants.MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
             // Ensure each sequence starts with "&#"
             if (isHex ? isInvalidHtmlHexadecimalSequence(textCodePointsArray, currentIndex) : isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex)) {
                 break;
@@ -148,7 +148,7 @@ final class InternalEmojiUtils {
 
     @Nullable
     static UniqueEmojiFoundResult findUrlEncodedEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        if ((textIndex + MINIMUM_EMOJI_URL_ENCODED_LENGTH >= textCodePointsLength) || !POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) {
+        if ((textIndex + PreComputedConstants.MINIMUM_EMOJI_URL_ENCODED_LENGTH >= textCodePointsLength) || !PreComputedConstants.POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) {
             return null;
         }
 
@@ -160,7 +160,7 @@ final class InternalEmojiUtils {
             currentIndex++;
         }
 
-        while ((currentIndex - textIndex) < MAXIMUM_EMOJI_URL_ENCODED_LENGTH && (currentIndex + 1) <= textCodePointsLength) {
+        while ((currentIndex - textIndex) < PreComputedConstants.MAXIMUM_EMOJI_URL_ENCODED_LENGTH && (currentIndex + 1) <= textCodePointsLength) {
             // Break out when it does not start with a '%', should always be true on the first run
             if (textCodePointsArray[currentIndex] != '%') {
                 break;
@@ -169,13 +169,13 @@ final class InternalEmojiUtils {
             currentIndex++;
 
             if (currentIndex + 2 <= textCodePointsLength) {
-                if (ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 2))) {
+                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 2))) {
                     currentIndex = currentIndex + 2;
-                } else if (ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
+                } else if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
                     currentIndex = currentIndex + 1;
                 }
             } else if (currentIndex + 1 <= textCodePointsLength) {
-                if (ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
+                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
                     currentIndex = currentIndex + 1;
                 }
             } else {
@@ -308,10 +308,10 @@ final class InternalEmojiUtils {
 
     @Nullable
     static NonUniqueEmojiFoundResult findAliasEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        if (!POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) return null;
+        if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) return null;
 
         InternalCodepointSequence lastKnownCodepointSequence = null;
-        for (int aliasCodePointIndex = 0; aliasCodePointIndex < ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
+        for (int aliasCodePointIndex = 0; aliasCodePointIndex < PreComputedConstants.ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
             final InternalCodepointSequence tempCodepointSequence = new InternalCodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
             if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
                 lastKnownCodepointSequence = tempCodepointSequence;
