@@ -115,7 +115,7 @@ public final class EmojiManager {
             return true;
         }
 
-        private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final Set<Emoji> emojis) {
+        private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final Collection<Emoji> emojis) {
             return emojis.stream()
                     .flatMap(emoji -> emoji.getAllAliases().stream()
                             .map(alias -> new AbstractMap.SimpleEntry<>(new InternalCodepointSequence(stringToCodePoints(alias)), emoji)))
@@ -140,7 +140,7 @@ public final class EmojiManager {
             );
         }
 
-        private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Set<Emoji> emojis) {
+        private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Collection<Emoji> emojis) {
             return emojis.stream()
                     .flatMap(emoji -> {
                         final Stream.Builder<AbstractMap.SimpleEntry<String, Emoji>> streamBuilder = Stream.builder();

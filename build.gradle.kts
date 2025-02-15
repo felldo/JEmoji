@@ -1034,8 +1034,8 @@ fun createEmojiLoaderInterface(
     val emojisArrayCreationExpr = MethodCallExpr(NameExpr("Arrays"), "asList")
 
     emojiSubGroupInterfaceConstantVariables.forEach { pair ->
+        emojiSubGroupCompilationUnit.addImport("net.fellbaum.jemoji.${pair.first}", true, true)
         pair.second.forEach {
-            emojiSubGroupCompilationUnit.addImport("net.fellbaum.jemoji.${pair.first}", true, true)
             emojisArrayCreationExpr.addArgument(it.getVariable(0).name.toString())
         }
     }
