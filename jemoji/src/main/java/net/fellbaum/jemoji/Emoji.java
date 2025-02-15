@@ -71,7 +71,6 @@ public final class Emoji implements Comparable<Emoji> {
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
         allAliases = Collections.unmodifiableList(new ArrayList<>(aliases));
-
     }
 
     /**
