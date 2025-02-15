@@ -160,6 +160,7 @@ jreleaser {
                     active = org.jreleaser.model.Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
                     applyMavenCentralRules = true
+                    maxRetries = 100
                     //snapshotSupported = true
                     stagingRepository(stagingDir.get().toString())
                 }
