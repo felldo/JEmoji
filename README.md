@@ -30,7 +30,7 @@ as possible.
 
 ### Fetched sources:
 
-- [unicode.org](https://unicode.org/Public/emoji/latest/emoji-test.txt) for all unicode emojis
+- [unicode.org](https://unicode.org/Public/emoji/latest/emoji-test.txt) for all Unicode emojis
 - [Discord](https://discord.com) custom script for fetching additional information about emojis for Discord
 - [Slack](https://slack.com) custom script for fetching additional information about emojis for Slack
 
@@ -58,7 +58,7 @@ implementation("net.fellbaum:jemoji:VERSION")
 
 The translation files for emoji descriptions and keywords are quite large (13 MB), 
 while the main library is optimized for minimal size (~600 KB). 
-To address this, a separate module, emoji-language, 
+To address this, a separate module, `jemoji-language`, 
 has been introduced to provide translation files for over 160 languages as an optional dependency. 
 
 The version is always kept in sync with the main module.
@@ -153,12 +153,12 @@ List<Emoji> emojis=EmojiManager.extractEmojisInOrder("Hello 😀 World 👍"); /
 #### Extract all emojis from a string in the order they appear, with their found index
 
 ```java 
-List<IndexedEmoji> emojis=EmojiManager.extractEmojisInOrderWithIndex("Hello 😀 World 👍");
+List<IndexedEmoji> emojis = EmojiManager.extractEmojisInOrderWithIndex("Hello 😀 World 👍");
 emojis.get(0).getCharIndex(); // Prints "6"
-emojis.get(0).getCodePointIndex() // Prints "6"
-emojis.get(1).getCharIndex() // Prints "15"
-emojis.get(1).getCodePointIndex() // Prints "14"
-emojis.get(0).getEmoji() // Gets the Emoji object
+emojis.get(0).getCodePointIndex(); // Prints "6"
+emojis.get(1).getCharIndex(); // Prints "15"
+emojis.get(1).getCodePointIndex(); // Prints "14"
+emojis.get(0).getEmoji(); // Gets the Emoji object
 ```
 
 #### Remove all emojis from a string
