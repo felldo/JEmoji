@@ -750,7 +750,7 @@ fun generateJavaSourceFiles() {
                 addArgument(BooleanLiteralExpr(it.get("hasFitzpatrick").asBoolean()))
                 addArgument(BooleanLiteralExpr(it.get("hasHairStyle").asBoolean()))
                 addArgument(DoubleLiteralExpr(it.get("version").asDouble()))
-                addArgument(MethodCallExpr("Qualification.fromString").addArgument(StringLiteralExpr(qualification)))
+                addArgument(qualification.uppercase().replace("-", "_"))
                 addArgument(StringLiteralExpr(it.get("description").asText()))
                 addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
                 addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
@@ -1056,6 +1056,7 @@ fun createSubGroupEmojiInterface(
     emojiSubGroupCompilationUnit.run {
         addImport("java.util.Arrays")
         addImport("java.util.Collections")
+        addImport("net.fellbaum.jemoji.Qualification", true, true)
     }
 
     emojiSubGroupInterfaceConstantVariables.forEach(emojiSubGroupInterfaceFile::addMember)
