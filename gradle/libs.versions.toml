@@ -6,7 +6,7 @@ jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8", version.ref = "jackson" }
 jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.9.3" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
 jsoup = { group = "org.jsoup", name = "jsoup", version = "1.17.2" }
 htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.4.0" }
 javaparser-symbol-solver-core = { group = "com.github.javaparser", name = "javaparser-symbol-solver-core", version = "3.26.3" }
