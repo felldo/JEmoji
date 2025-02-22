@@ -5,6 +5,7 @@
   ],
   "groupName": "All Dependencies",
   "prConcurrentLimit": 2,
+  "schedule": ["0 18 1 * *"],
   "packageRules": [
     {
       "matchPackagePatterns": [".*"],
