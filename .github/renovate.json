@@ -3,6 +3,12 @@
   "extends": [
     "config:recommended"
   ],
-  "groupName": "all",
-  "prHourlyLimit": 10
+  "groupName": "All Dependencies",
+  "prConcurrentLimit": 1,
+  "packageRules": [
+    {
+      "matchPackagePatterns": [".*"],
+      "groupName": "All Dependencies"
+    }
+  ]
 }
