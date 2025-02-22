@@ -5,11 +5,15 @@
   ],
   "groupName": "All Dependencies",
   "prConcurrentLimit": 2,
-  "schedule": ["* 18 1 * *"],
+  "schedule": [
+    "* 18 1 * *"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": [".*"],
-      "groupName": "All Dependencies"
+      "groupName": "All Dependencies",
+      "matchPackageNames": [
+        "/.*/"
+      ]
     }
   ]
 }
