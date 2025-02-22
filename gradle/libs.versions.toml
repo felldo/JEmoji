@@ -12,7 +12,7 @@ htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.9.0" }
 javaparser-symbol-solver-core = { group = "com.github.javaparser", name = "javaparser-symbol-solver-core", version = "3.26.3" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.9.0-RC.2" }
 kotlinx-coroutines-jdk8 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-jdk8", version = "1.9.0-RC.2" }
-gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.15.0" }
+gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.16.0" }
 
 # For buildSrc logic
 #gradleplugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version ="1.15.0" }
