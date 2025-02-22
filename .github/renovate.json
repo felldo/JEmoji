@@ -3,5 +3,6 @@
   "extends": [
     "config:recommended"
   ],
+  "groupName": "all",
   "prHourlyLimit": 10
 }
