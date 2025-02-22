@@ -7,7 +7,7 @@ jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-datab
 jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8", version.ref = "jackson" }
 jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
-jsoup = { group = "org.jsoup", name = "jsoup", version = "1.17.2" }
+jsoup = { group = "org.jsoup", name = "jsoup", version = "1.18.3" }
 htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.9.0" }
 javaparser-symbol-solver-core = { group = "com.github.javaparser", name = "javaparser-symbol-solver-core", version = "3.26.3" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.10.1" }
@@ -21,6 +21,6 @@ gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle
 versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "0.8.5" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
-jreleaser = { id = "org.jreleaser", version = "1.15.0" }
+jreleaser = { id = "org.jreleaser", version = "1.16.0" }
 #https://github.com/melix/jmh-gradle-plugin
 jmh = { id = "me.champeau.jmh", version = "0.7.3" }
