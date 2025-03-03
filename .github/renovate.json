@@ -6,6 +6,14 @@
   "groupName": "All Dependencies",
   "prConcurrentLimit": 2,
   "schedule": [
-    "* * * * *"
+    "* 18 1 * *"
+  ],
+  "packageRules": [
+    {
+      "groupName": "All Dependencies",
+      "matchPackageNames": [
+        ".*"
+      ]
+    }
   ]
 }
