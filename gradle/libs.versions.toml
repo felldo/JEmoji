@@ -1,5 +1,5 @@
 [versions]
-jackson = "2.18.2"
+jackson = "2.18.3"
 
 [libraries]
 jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
@@ -8,11 +8,11 @@ jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jack
 jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.12.0" }
 jsoup = { group = "org.jsoup", name = "jsoup", version = "1.18.3" }
-htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.9.0" }
+htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.10.0" }
 javaparser-symbol-solver-core = { group = "com.github.javaparser", name = "javaparser-symbol-solver-core", version = "3.26.3" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.10.1" }
 kotlinx-coroutines-jdk8 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-jdk8", version = "1.10.1" }
-gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.16.0" }
+gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.17.0" }
 
 # For buildSrc logic
 #gradleplugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version ="1.15.0" }
@@ -21,6 +21,6 @@ gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle
 versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "0.8.5" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
-jreleaser = { id = "org.jreleaser", version = "1.16.0" }
+jreleaser = { id = "org.jreleaser", version = "1.17.0" }
 #https://github.com/melix/jmh-gradle-plugin
 jmh = { id = "me.champeau.jmh", version = "0.7.3" }
