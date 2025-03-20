@@ -307,7 +307,7 @@ Benchmark mode: Average time, time/op
 </details>
 
 ** Score depends on many factors like text size and emoji count if used as an argument. For this benchmark relatively
-large files were used. Click [Here](./lib/src/jmh/) to see the benchmark code and resources.
+large files were used. Click [Here](./jemoji/src/jmh/) to see the benchmark code and resources.
 
 ## 💾 Emoji JSON list Generation
 
