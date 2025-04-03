@@ -12,6 +12,8 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class Emoji implements Comparable<Emoji>, Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private final String emoji;
     private final String unicode;
     private final String htmlDec;

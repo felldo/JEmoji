@@ -126,11 +126,9 @@ public class EmojiManagerTest {
     @Test
     public void getByAlias() {
         String alias = "smile";
-        //long start = System.nanoTime();
 
         Optional<List<Emoji>> emoji = EmojiManager.getByAlias(alias);
-        //long end = System.nanoTime();
-        //System.out.println((end - start) / 1000000 + "ms all");
+
         assertTrue(emoji.isPresent());
         assertEquals("😄", emoji.orElseThrow(RuntimeException::new).get(0).getEmoji());
     }
