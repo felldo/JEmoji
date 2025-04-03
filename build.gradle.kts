@@ -1117,6 +1117,7 @@ fun createSubGroupEmojiInterface(
         addImport("net.fellbaum.jemoji.Qualification", true, true)
     }*/
 
+
     emojiSubGroupInterfaceConstantVariables.forEach(emojiSubGroupInterfaceFile::addMember)
     emojiSubGroupInterfaceFile.addSingleMemberAnnotation(
         "SuppressWarnings",
