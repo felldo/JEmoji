@@ -741,8 +741,8 @@ fun generateJavaSourceFiles() {
 
 //generateEmojisDescriptionAndKeywords()
 
-    val emojisPerInterface = 300
-    val emojisPerListInterface = 5000
+    val emojisPerInterface = 900
+    //val emojisPerListInterface = 5000
     val emojiArrayNode: ArrayNode =
         jacksonObjectMapper().readTree(file(rootDir.absolutePath + "\\public\\emojis.json")) as ArrayNode
 
@@ -852,7 +852,7 @@ fun generateJavaSourceFiles() {
         }
     }
 
-    val mapEntriesListWithNoMoreThanXEntries = mutableListOf<MutableList<Pair<String, List<FieldDeclaration>>>>()
+    /*val mapEntriesListWithNoMoreThanXEntries = mutableListOf<MutableList<Pair<String, List<FieldDeclaration>>>>()
     emojiFileNameToConstants.entries.forEach {
         var added = false
 
@@ -866,7 +866,7 @@ fun generateJavaSourceFiles() {
         if (!added) {
             mapEntriesListWithNoMoreThanXEntries.add(mutableListOf(Pair(it.key, it.value)))
         }
-    }
+    }*/
 
 //Create the emoji loader interfaces grouped by max X entries per interface
     /*var startingLetter = 'A'
