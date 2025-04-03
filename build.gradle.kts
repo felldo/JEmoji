@@ -351,7 +351,7 @@ fun generate(generateAll: Boolean = false) {
         val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
         constructor.isAccessible = true
 
-        val emojiMap: MutableMap<String, Emoji> = mutableMapOf()
+        val emojiMap: HashMap<String, Emoji> = hashMapOf()
 
         allUnicodeEmojis.forEach { emoji ->
             emojiMap[emoji.emoji] = constructor.newInstance(
