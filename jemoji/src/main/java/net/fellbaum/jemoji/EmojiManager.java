@@ -2,6 +2,9 @@ package net.fellbaum.jemoji;
 
 import org.jspecify.annotations.Nullable;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -57,12 +60,26 @@ public final class EmojiManager {
         @Nullable
         private static Set<Emoji> EMOJIS = null;
 
+        static Object readFileAsObject(final String filePathName) {
+            try {
+                try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
+                    if (null == is) throw new IllegalStateException("InputStream is null");
+                    final ObjectInputStream ois = new ObjectInputStream(is);
+                    final Object readObject = ois.readObject();
+                    ois.close();
+                    return readObject;
+                } catch (final ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (final IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         static Set<Emoji> getEmojis() {
             if (EMOJIS == null) {
-                final Set<Emoji> localEmojis = new HashSet<>();
-                localEmojis.addAll(EmojiLoaderA.EMOJI_LIST);
-                localEmojis.addAll(EmojiLoaderB.EMOJI_LIST);
-                EMOJIS = localEmojis;
+                final Map<String, Emoji> map = (Map<String, Emoji>) readFileAsObject("/jemoji/serializedEmojis");
+                EMOJIS = new HashSet<>(map.values());
             }
             return EMOJIS;
         }

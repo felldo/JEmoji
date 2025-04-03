@@ -1,5 +1,6 @@
 package net.fellbaum.jemoji;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
  * Represents an emoji.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
-public final class Emoji implements Comparable<Emoji> {
+public final class Emoji implements Comparable<Emoji>, Serializable {
 
     private final String emoji;
     private final String unicode;

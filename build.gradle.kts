@@ -2,6 +2,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
@@ -18,13 +19,11 @@ import com.github.javaparser.ast.body.FieldDeclaration
 import com.github.javaparser.ast.body.VariableDeclarator
 import com.github.javaparser.ast.comments.JavadocComment
 import com.github.javaparser.ast.expr.*
-import net.fellbaum.jemoji.Fitzpatrick
-import net.fellbaum.jemoji.HairStyle
+import net.fellbaum.jemoji.*
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.internal.toHexString
 import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.htmlunit.BrowserVersion
 import org.htmlunit.WebClient
@@ -34,8 +33,10 @@ import org.jsoup.Connection
 import org.jsoup.Jsoup
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
+import java.lang.reflect.Constructor
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 import kotlin.math.ceil
@@ -43,18 +44,7 @@ import kotlin.math.ceil
 plugins {
     id("base")
     alias(libs.plugins.versions.catalog)
-    //alias(libs.plugins.jreleaser)
-    //`java-library`
-    //`maven-publish`
 }
-
-//subprojects {
-/*apply(plugin = "maven-publish")
-apply(plugin = "org.jreleaser")
-apply(plugin = "java-library")
-apply(plugin = "maven-publish")*/
-//}
-
 
 tasks.register("publishAll") {
     subprojects.forEach { subproject ->
@@ -113,10 +103,10 @@ fun requestCLDREmojiDescriptionTranslation(
 
     annotationsNode.fields().forEach {
         if (it.value.has("tts")) {
-            descriptionNodeOutput.put(it.key, it.value.get("tts").joinToString(" ") { it.asText() })
+            descriptionNodeOutput.put(it.key, it.value.get("tts").joinToString(" ") { jsonNode -> jsonNode.asText() })
             val keywordsArray = keywordsNodeOutput.putArray(it.key)
             if (it.value.has("default")) {
-                it.value.get("default").forEach { keywordsArray.add(it) }
+                it.value.get("default").forEach { jsonNode -> keywordsArray.add(jsonNode) }
             }
         }
     }
@@ -225,10 +215,6 @@ fun generate(generateAll: Boolean = false) {
                     val version = otherInformation[1].removePrefix("E").toDouble()
                     val emojiDescription = otherInformation[2].trim()
 
-                    val charsAsString = codepointsString.chars()
-                        .mapToObj { "\\u" + it.toHexString().uppercase().padStart(4, '0') }
-                        .collect(Collectors.joining(""))
-
                     val completeDiscordAliases = buildSet {
                         discordAliases[codepointsString]?.let { addAll(it) }
                     }
@@ -243,7 +229,7 @@ fun generate(generateAll: Boolean = false) {
                         }
                     }
 
-                    Emoji(
+                    GradleEmoji(
                         codepointsString,
                         //Get each char and fill with leading 0 as the representation is: \u0000
                         codepointsString.asSequence().joinToString(separator = "") { "\\u%04X".format(it.code) },
@@ -275,7 +261,6 @@ fun generate(generateAll: Boolean = false) {
     ////////////////////////
     ////////////////////////
     val repo = "unicode-org/cldr-json"
-
     val httpBuilderAnnotationsDerivedDirectory: HttpUrl.Builder =
         "https://api.github.com/repos/${repo}/contents/cldr-json/cldr-annotations-derived-full/annotationsDerived".toHttpUrl()
             .newBuilder()
@@ -318,20 +303,17 @@ fun generate(generateAll: Boolean = false) {
         val descriptionMap: MutableMap<String, String> = mapper.treeToValue(descriptionNodeOutput)
         // Emojis should also have a distinct description by emoji.
         // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
-        descriptionMap.toMap().forEach { key, value ->
+        descriptionMap.toMap().forEach { (_, value) ->
             emojisGroupedByDescription[value]?.forEach { emoji ->
                 if (!descriptionMap.containsKey(emoji.emoji)) {
-                    descriptionMap.put(emoji.emoji, value)
+                    descriptionMap[emoji.emoji] = value
                 }
             }
         }
 
         "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
             if (generateAll) {
-                /*FileWriter(it).use { writer: Writer ->
-                    descriptionMap.toProperties().store(writer, null)
-                }*/
-                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(descriptionMap) } }
+                FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(descriptionMap) } }
             }
             descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String, String?>)
         }
@@ -341,11 +323,11 @@ fun generate(generateAll: Boolean = false) {
         //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
         "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
             if (generateAll) {
-                FileOutputStream(it).use { ObjectOutputStream(it).use { it.writeObject(keywordMap) } }
+                FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(keywordMap) } }
             }
-            keywordsNodesLanguageMap.put(dirName, keywordMap)
+            keywordsNodesLanguageMap[dirName] = keywordMap
             if (dirName == "en") {
-                keywordMap.forEach { key, value ->
+                keywordMap.forEach { (key, value) ->
                     for (entry in emojisGroupedByDescription.entries) {
                         if (entry.value.find { it.emoji == key } != null) {
                             entry.value.forEach { em -> em.keywords = value?.toSet()!! }
@@ -362,12 +344,51 @@ fun generate(generateAll: Boolean = false) {
     ////////////////////////
     ////////////////////////
     ////////////////////////
+
+
+    "C:\\Users\\domme\\IdeaProjects\\JEmoji\\jemoji\\src\\main\\resources\\jemoji\\serializedEmojis".let { path ->
+        val clazz = Emoji::class.java
+        val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
+        constructor.isAccessible = true
+
+        val emojiMap: MutableMap<String, Emoji> = mutableMapOf()
+
+        allUnicodeEmojis.forEach { emoji ->
+            emojiMap[emoji.emoji] = constructor.newInstance(
+                emoji.emoji,
+                emoji.unicode,
+                emoji.htmlDec,
+                emoji.htmlHex,
+                emoji.urlEncoded,
+                emoji.discordAliases.stream().collect(Collectors.toList()),
+                emoji.slackAliases.stream().collect(Collectors.toList()),
+                emoji.githubAliases.stream().collect(Collectors.toList()),
+                Collections.emptyList<String>(),
+                emoji.hasFitzpatrick,
+                emoji.hasHairStyle,
+                emoji.version,
+                Qualification.fromString(emoji.qualification),
+                emoji.description as String,
+                EmojiGroup.fromString(emoji.group),
+                EmojiSubGroup.fromString(emoji.subgroup),
+                emoji.hasVariationSelectors
+            )
+        }
+
+        FileOutputStream(path).use { ObjectOutputStream(it).use { it.writeObject(emojiMap) } }
+
+    }
+
+
+////////////////////////
+////////////////////////
+////////////////////////
     writeContentToPublicFiles("emojis", allUnicodeEmojis)
 
     if (generateAll) {
         for (emoji in allUnicodeEmojis) {
             val descriptionMap = buildMap<String, String?> {
-                descriptionNodesLanguageMap.forEach { key, value ->
+                descriptionNodesLanguageMap.forEach { (key, value) ->
                     if (value.containsKey(emoji.emoji)) {
                         put(key, value[emoji.emoji])
                     } else {
@@ -378,7 +399,7 @@ fun generate(generateAll: Boolean = false) {
             emoji.description = descriptionMap
 
             val keywordsMap = buildMap<String, List<String>?> {
-                keywordsNodesLanguageMap.forEach { key, value ->
+                keywordsNodesLanguageMap.forEach { (key, value) ->
                     if (value.containsKey(emoji.emoji)) {
                         put(key, value[emoji.emoji])
                     } else {
@@ -393,7 +414,7 @@ fun generate(generateAll: Boolean = false) {
 
         descriptionNodesLanguageMap.toMap().run {
             allUnicodeEmojis.forEach { emoji ->
-                this.forEach { (locale, keywords) ->
+                this.forEach { (locale, _) ->
                     descriptionNodesLanguageMap[locale]?.apply {
                         putIfAbsent(emoji.emoji, null)
                     }
@@ -402,7 +423,7 @@ fun generate(generateAll: Boolean = false) {
         }
         keywordsNodesLanguageMap.toMap().run {
             allUnicodeEmojis.forEach { emoji ->
-                this.forEach { (locale, keywords) ->
+                this.forEach { (locale, _) ->
                     keywordsNodesLanguageMap[locale]?.apply {
                         putIfAbsent(emoji.emoji, null)
                     }
@@ -507,18 +528,16 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
         .maxBodySize(Integer.MAX_VALUE)
         .execute()
         .body()
-    File("./slack_emoji_shortcuts_source.js").writeText(jsContent)
     val start = ".exports=JSON.parse('{\"100\""
     jsContent = jsContent.substring(jsContent.indexOf(start) + 21)
     jsContent = jsContent.substring(0, jsContent.indexOf("\"}}')},") + 3)
-    //println(jsContent)
     val node = jacksonObjectMapper().readTree(jsContent)
-    File("./emoji_source_files/slack_emoji_shortcutssssss.min.json").writeText(node.toString())
 
     return buildMap<String, MutableList<String>> {
         node.fields().forEachRemaining {
             val key =
-                it.value.get("unicode").asText().split("-").joinToString("") { String(Character.toChars(it.toInt(16))) }
+                it.value.get("unicode").asText().split("-")
+                    .joinToString("") { str -> String(Character.toChars(str.toInt(16))) }
             if (containsKey(key)) {
                 get(key)?.add(getStringWithColon(it.value.get("name").asText()))
             } else {
@@ -528,7 +547,7 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
             if (it.value.hasNonNull("skinVariations")) {
                 it.value.get("skinVariations").fields().forEachRemaining { variation ->
                     val skinVariationsKey = variation.value.get("unicode").asText().split("-")
-                        .joinToString("") { String(Character.toChars(it.toInt(16))) }
+                        .joinToString("") { str -> String(Character.toChars(str.toInt(16))) }
                     if (containsKey(skinVariationsKey)) {
                         get(skinVariationsKey)?.add(getStringWithColon(variation.value.get("name").asText()))
                     } else {
@@ -555,13 +574,32 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
         .maxBodySize(Integer.MAX_VALUE)
         .execute()
 
-    val mainEmojiJsContentStart = "exports=JSON.parse('{\"people\":[{\""
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class DiscordEmoji(
+        val names: List<String>,
+        val surrogates: String,
+        val diversityChildren: List<Int>?,
+        val hasDiversityParent: Boolean?,
+        val diversity: List<String>?
+    )
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    data class EmojiJson(
+        val emojis: List<DiscordEmoji>,
+        val nameToEmoji: Map<String, Int>,
+    )
+
+
+    val mainEmojiJsContentStart = "exports=JSON.parse('{\"emojis\":[{\""
     var mainEmojiJsContent = response.body()
 //File("discord.js").writeText(mainEmojiJsContent)
 
     mainEmojiJsContent =
         mainEmojiJsContent.substring(mainEmojiJsContent.indexOf(mainEmojiJsContentStart) + mainEmojiJsContentStart.length - 13)
-    mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}]}')},") + 3)
+    //mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}]}')},") + 3)
+    mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}')},") + 1)
+    //File("discordmain.json").writeText(mainEmojiJsContent)
 
 
     val abbreviationsEmojiJsContentStart = "523558:function(e){\"use strict\";e.exports=JSON.parse('{\""
@@ -588,25 +626,15 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     }
 
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    data class DiscordEmojiDiversityChildren(
-        val names: List<String>,
-        val surrogates: String,
-        val diversity: List<String>
-    )
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    data class DiscordEmoji(
-        val names: List<String>,
-        val surrogates: String,
-        val diversityChildren: List<DiscordEmojiDiversityChildren>?
-    )
-
     val emojiJsonNodeeeee =
-        jacksonObjectMapper().readTree(mainEmojiJsContent.replace(Regex("\\\\x([0-9A-Fa-f]{2})"), "\\\\u00$1"))
-    val emojiJsonNodeFlattened = emojiJsonNodeeeee.fields().asSequence().flatMap { it.value }.toList()
-    val discordEmojis: List<DiscordEmoji> = jacksonObjectMapper().readValue(emojiJsonNodeFlattened.toString())
+        jacksonObjectMapper().readValue<EmojiJson>(
+            mainEmojiJsContent.replace(
+                Regex("\\\\x([0-9A-Fa-f]{2})"),
+                "\\\\u00$1"
+            )
+        )
 
+    val emojiIndexToNames = emojiJsonNodeeeee.nameToEmoji.entries.groupBy { it.value }
 
     //File("./emoji_source_files/discord_emoji_shortcuts.original.min.json").writeText(emojiArrayNode.toString())
     fun diversityToFitzPatrickAlias(diversity: String) = when (diversity) {
@@ -617,48 +645,68 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
         "1f3ff" -> ":skin-tone-5:"
         else -> throw IllegalStateException(diversity)
     }
+
     return buildMap<String, MutableList<String>> {
 //Add the normal emoji aliases
-        discordEmojis.forEach { emoji -> put(emoji.surrogates, emoji.names.map(::getStringWithColon).toMutableList()) }
+        emojiJsonNodeeeee.emojis.forEachIndexed { index, emoji ->
+            put(emoji.surrogates, emoji.names.map(::getStringWithColon).toMutableList())
+            emojiIndexToNames[index]?.let {
+                val names = it.map { it.key }.map(::getStringWithColon)
+                get(emoji.surrogates)!!.addAll(names)
+            }
+
+            if (emoji.diversity?.size == 1) {
+                emojiJsonNodeeeee.emojis.find { parentEmoji -> parentEmoji.diversityChildren?.contains(index) == true }
+                    ?.let { parentEmoji ->
+                        get(emoji.surrogates)!!.addAll(parentEmoji.names.map { name ->
+                            getStringWithColon(name) + diversityToFitzPatrickAlias(
+                                emoji.diversity[0]
+                            )
+                        })
+                    }
+            }
+
+        }
 
 //Add the abbreviations like :) >:(
         nameToShortcutMap.forEach { entry ->
-            discordEmojis.find { it.names.contains(entry.key) }?.let { get(it.surrogates)!!.addAll(entry.value) }
+            emojiJsonNodeeeee.emojis.find { it.names.contains(entry.key) }
+                ?.let { get(it.surrogates)!!.addAll(entry.value) }
         }
+        /*
+                //Add the emoji variants like dark and white color emojis
+                emojiJsonNodeeeee.emojis.filter { it.diversityChildren != null }.forEach { discordEmoji ->
+                            discordEmoji.diversityChildren!!.forEach { discordEmojiDiversityChildren ->
+                                put(
+                                    discordEmojiDiversityChildren.surrogates,
+                                    discordEmojiDiversityChildren.names.map(::getStringWithColon).toMutableList()
+                                )
 
-//Add the emoji variants like dark and white color emojis
-        discordEmojis.filter { it.diversityChildren != null }.forEach { discordEmoji ->
-            discordEmoji.diversityChildren!!.forEach { discordEmojiDiversityChildren ->
-                put(
-                    discordEmojiDiversityChildren.surrogates,
-                    discordEmojiDiversityChildren.names.map(::getStringWithColon).toMutableList()
-                )
+                // Only emojis with 1 fitzpatrick modifier seem to be compatible with
+                // :name::fitzpatrick-alias-1:
+                // :name::fitzpatrick-alias-1::fitzpatrick-alias-2: does not work
+                // Produces 2 separate emojis which will be combined by discord in the frontend?
+                // Normal emoji by alias: 👨🏼‍❤️‍💋‍👨🏼 "\uD83D\uDC68\uD83C\uDFFC\u200D❤\uFE0F\u200D\uD83D\uDC8B\u200D\uD83D\uDC68\uD83C\uDFFC"
+                // Emoji by base name + fitzpatrick modifier (results in a small emoji): 👨‍❤️‍💋‍👨🏼 "\uD83D\uDC68\u200D❤\uFE0F\u200D\uD83D\uDC8B\u200D\uD83D\uDC68\uD83C\uDFFC"
+                                if (discordEmojiDiversityChildren.diversity.size == 1) {
+                                    discordEmoji.names.map { discordEmojiName ->
+                                        get(discordEmojiDiversityChildren.surrogates)!!.add(
+                                            ":$discordEmojiName:" + discordEmojiDiversityChildren.diversity.joinToString(
+                                                ""
+                                            ) { diversityToFitzPatrickAlias(it) })
+                                    }
 
-// Only emojis with 1 fitzpatrick modifier seem to be compatible with
-// :name::fitzpatrick-alias-1:
-// :name::fitzpatrick-alias-1::fitzpatrick-alias-2: does not work
-// Produces 2 separate emojis which will be combined by discord in the frontend?
-// Normal emoji by alias: 👨🏼‍❤️‍💋‍👨🏼 "\uD83D\uDC68\uD83C\uDFFC\u200D❤\uFE0F\u200D\uD83D\uDC8B\u200D\uD83D\uDC68\uD83C\uDFFC"
-// Emoji by base name + fitzpatrick modifier (results in a small emoji): 👨‍❤️‍💋‍👨🏼 "\uD83D\uDC68\u200D❤\uFE0F\u200D\uD83D\uDC8B\u200D\uD83D\uDC68\uD83C\uDFFC"
-                if (discordEmojiDiversityChildren.diversity.size == 1) {
-                    discordEmoji.names.map { discordEmojiName ->
-                        get(discordEmojiDiversityChildren.surrogates)!!.add(
-                            ":$discordEmojiName:" + discordEmojiDiversityChildren.diversity.joinToString(
-                                ""
-                            ) { diversityToFitzPatrickAlias(it) })
-                    }
+                                }
 
-                }
-
-            }
-        }
+                            }
+                        }*/
 
     }
 }
 
 fun getStringWithColon(str: String) = ":$str:"
 
-data class Emoji(
+data class GradleEmoji(
     val emoji: String,
     val unicode: String,
     val htmlDec: String,
@@ -691,12 +739,12 @@ val generatedSourcesDir = "${project(":jemoji").layout.buildDirectory.get()}/gen
 
 fun generateJavaSourceFiles() {
 
-    //generateEmojisDescriptionAndKeywords()
+//generateEmojisDescriptionAndKeywords()
 
     val emojisPerInterface = 300
     val emojisPerListInterface = 5000
-    val emojiArrayNode =
-        jacksonObjectMapper().readTree(file(rootDir.absolutePath + "\\public\\emojis.json"))
+    val emojiArrayNode: ArrayNode =
+        jacksonObjectMapper().readTree(file(rootDir.absolutePath + "\\public\\emojis.json")) as ArrayNode
 
     createStaticConstantsClassFromPreComputation(jemojiPackagePath, emojiArrayNode)
 
@@ -704,13 +752,13 @@ fun generateJavaSourceFiles() {
     emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${jemojiPackagePath.joinToString("/")}/Emojis.java").toPath())
     val emojisInterface = emojisCompilationUnit.addInterface("Emojis")
     emojisInterface.setPublic(true)
-    emojisCompilationUnit.run {
+    /*emojisCompilationUnit.run {
         addImport("java.util.Arrays")
         addImport("java.util.List")
-    }
+    }*/
 
-    val emojisListField: FieldDeclaration = emojisInterface.addField("List<Emoji>", "EMOJI_LIST")
-    val emojisArrayCreationExpr = MethodCallExpr(NameExpr("Arrays"), "asList")
+    //val emojisListField: FieldDeclaration = emojisInterface.addField("List<Emoji>", "EMOJI_LIST")
+    //val emojisArrayCreationExpr = MethodCallExpr(NameExpr("Arrays"), "asList")
 
     val emojiClassType = JavaParser().parseClassOrInterfaceType("Emoji").result.get()
     val emojiFileNameToConstants = mutableMapOf<String, List<FieldDeclaration>>()
@@ -732,13 +780,23 @@ fun generateJavaSourceFiles() {
             val keywords = getAndSanitizeEmojiAliases(it.get("keywords"))
             val qualification = it.get("qualification").asText()
 
-            val initializer = ObjectCreationExpr().apply {
+
+            val getEmojiCall = MethodCallExpr(
+                NameExpr("EmojiManager"),
+                "getEmoji",
+                NodeList(StringLiteralExpr(it.get("emoji").asText()))
+            )
+
+            val initializer = MethodCallExpr(getEmojiCall, "orElseThrow")
+            initializer.addArgument("IllegalStateException::new")
+
+                /*ObjectCreationExpr().apply {
                 setType(emojiClassType)
                 addArgument(StringLiteralExpr(it.get("emoji").asText()))
                 addArgument(
                     StringLiteralExpr(
                         it.get("emoji").asText().asSequence()
-                            .joinToString(separator = "") { "\\\\u%04X".format(it.code) })
+                            .joinToString(separator = "") { char -> "\\\\u%04X".format(char.code) })
                 )
                 addArgument(StringLiteralExpr(it.get("htmlDec").asText()))
                 addArgument(StringLiteralExpr(it.get("htmlHex").asText()))
@@ -755,7 +813,7 @@ fun generateJavaSourceFiles() {
                 addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
                 addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
                 addArgument(BooleanLiteralExpr(it.get("hasVariationSelectors").asBoolean()))
-            }
+            }*/
             emojiConstantVariable.getVariable(0).setInitializer(initializer)
         }
 
@@ -769,9 +827,9 @@ fun generateJavaSourceFiles() {
         }
 
 // After changing duplicated names of some emojis, add them to the all emojis list
-        emojiSubGroupInterfaceConstantVariables.forEach {
+        /*emojiSubGroupInterfaceConstantVariables.forEach {
             emojisArrayCreationExpr.addArgument(it.getVariable(0).name.toString())
-        }
+        }*/
 
 // Create multiple interfaces of the same SubGroup, if there are more than X emojis
         val emojiSubgroupFileName = emojiDescriptionToFileName(entry.key)
@@ -799,7 +857,7 @@ fun generateJavaSourceFiles() {
         var added = false
 
         for (list in mapEntriesListWithNoMoreThanXEntries) {
-            if (list.sumOf { it.second.size } + it.value.size <= emojisPerListInterface) {
+            if (list.sumOf { stringListPair -> stringListPair.second.size } + it.value.size <= emojisPerListInterface) {
                 list.add(Pair(it.key, it.value))
                 added = true
                 break
@@ -811,12 +869,12 @@ fun generateJavaSourceFiles() {
     }
 
 //Create the emoji loader interfaces grouped by max X entries per interface
-    var startingLetter = 'A'
+    /*var startingLetter = 'A'
     mapEntriesListWithNoMoreThanXEntries.forEach {
         createEmojiLoaderInterface(jemojiPackagePath, "EmojiLoader" + (startingLetter++), it)
-    }
+    }*/
 
-    emojisListField.getVariable(0).setInitializer(emojisArrayCreationExpr)
+    //emojisListField.getVariable(0).setInitializer(emojisArrayCreationExpr)
     emojisCompilationUnit.storage.get().save()
 }
 
@@ -1053,16 +1111,16 @@ fun createSubGroupEmojiInterface(
     val emojiSubGroupCompilationUnit = CompilationUnit(path.joinToString("."))
         .setStorage(file("$generatedSourcesDir/$emojiSubgroupFilePath").toPath())
     val emojiSubGroupInterfaceFile = emojiSubGroupCompilationUnit.addInterface(emojiSubgroupFileName).setPublic(false)
-    emojiSubGroupCompilationUnit.run {
+    /*emojiSubGroupCompilationUnit.run {
         addImport("java.util.Arrays")
         addImport("java.util.Collections")
         addImport("net.fellbaum.jemoji.Qualification", true, true)
-    }
+    }*/
 
     emojiSubGroupInterfaceConstantVariables.forEach(emojiSubGroupInterfaceFile::addMember)
     emojiSubGroupInterfaceFile.addSingleMemberAnnotation(
         "SuppressWarnings",
-        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused"), StringLiteralExpr("UnnecessaryUnicodeEscape")))
+        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused"), /*StringLiteralExpr("UnnecessaryUnicodeEscape")*/))
     )
 
     emojiSubGroupCompilationUnit.storage.get().save()
