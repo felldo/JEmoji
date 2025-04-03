@@ -351,7 +351,7 @@ fun generate(generateAll: Boolean = false) {
         val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
         constructor.isAccessible = true
 
-        val emojiMap: HashMap<String, Emoji> = hashMapOf()
+        val emojiMap: HashMap<String, Emoji> = HashMap<String, Emoji>()
 
         allUnicodeEmojis.forEach { emoji ->
             emojiMap[emoji.emoji] = constructor.newInstance(
@@ -790,30 +790,30 @@ fun generateJavaSourceFiles() {
             val initializer = MethodCallExpr(getEmojiCall, "orElseThrow")
             initializer.addArgument("IllegalStateException::new")
 
-                /*ObjectCreationExpr().apply {
-                setType(emojiClassType)
-                addArgument(StringLiteralExpr(it.get("emoji").asText()))
-                addArgument(
-                    StringLiteralExpr(
-                        it.get("emoji").asText().asSequence()
-                            .joinToString(separator = "") { char -> "\\\\u%04X".format(char.code) })
-                )
-                addArgument(StringLiteralExpr(it.get("htmlDec").asText()))
-                addArgument(StringLiteralExpr(it.get("htmlHex").asText()))
-                addArgument(StringLiteralExpr(it.get("urlEncoded").asText()))
-                addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
-                addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
-                addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
-                addArgument(getGeneratedMethodCallExprForEntries(keywords))
-                addArgument(BooleanLiteralExpr(it.get("hasFitzpatrick").asBoolean()))
-                addArgument(BooleanLiteralExpr(it.get("hasHairStyle").asBoolean()))
-                addArgument(DoubleLiteralExpr(it.get("version").asDouble()))
-                addArgument(qualification.uppercase().replace("-", "_"))
-                addArgument(StringLiteralExpr(it.get("description").asText()))
-                addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
-                addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
-                addArgument(BooleanLiteralExpr(it.get("hasVariationSelectors").asBoolean()))
-            }*/
+            /*ObjectCreationExpr().apply {
+            setType(emojiClassType)
+            addArgument(StringLiteralExpr(it.get("emoji").asText()))
+            addArgument(
+                StringLiteralExpr(
+                    it.get("emoji").asText().asSequence()
+                        .joinToString(separator = "") { char -> "\\\\u%04X".format(char.code) })
+            )
+            addArgument(StringLiteralExpr(it.get("htmlDec").asText()))
+            addArgument(StringLiteralExpr(it.get("htmlHex").asText()))
+            addArgument(StringLiteralExpr(it.get("urlEncoded").asText()))
+            addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
+            addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
+            addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
+            addArgument(getGeneratedMethodCallExprForEntries(keywords))
+            addArgument(BooleanLiteralExpr(it.get("hasFitzpatrick").asBoolean()))
+            addArgument(BooleanLiteralExpr(it.get("hasHairStyle").asBoolean()))
+            addArgument(DoubleLiteralExpr(it.get("version").asDouble()))
+            addArgument(qualification.uppercase().replace("-", "_"))
+            addArgument(StringLiteralExpr(it.get("description").asText()))
+            addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
+            addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
+            addArgument(BooleanLiteralExpr(it.get("hasVariationSelectors").asBoolean()))
+        }*/
             emojiConstantVariable.getVariable(0).setInitializer(initializer)
         }
 
@@ -1120,7 +1120,7 @@ fun createSubGroupEmojiInterface(
     emojiSubGroupInterfaceConstantVariables.forEach(emojiSubGroupInterfaceFile::addMember)
     emojiSubGroupInterfaceFile.addSingleMemberAnnotation(
         "SuppressWarnings",
-        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused"), /*StringLiteralExpr("UnnecessaryUnicodeEscape")*/))
+        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused") /*StringLiteralExpr("UnnecessaryUnicodeEscape")*/))
     )
 
     emojiSubGroupCompilationUnit.storage.get().save()
