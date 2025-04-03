@@ -104,23 +104,24 @@ tasks.named("build") {
 tasks.register("copyJarToProject") {
     group = "jemoji"
     doLast {
-        copy {
-            val libsDir = layout.buildDirectory.dir("libs").get().asFile
-            val targetDir = project.rootDir.resolve("libs")
-
-            val jarFile = libsDir.listFiles()?.find { it.name.matches(Regex("jemoji-\\d+\\.\\d+\\.\\d+\\.jar")) }
-
-            if (jarFile != null) {
-                val targetFile = targetDir.resolve("jemoji.jar")
-                jarFile.copyTo(targetFile, overwrite = true)
-            } else {
-                println("No valid jemoji-<VERSION>.jar found!")
-            }
+        println(111)
+        val libsDir = layout.buildDirectory.dir("libs").get().asFile
+        println(222)
+        val targetDir = project.rootDir.resolve("libs")
+        println(333)
+        val jarFile = libsDir.listFiles()?.find { it.name.matches(Regex("jemoji-\\d+\\.\\d+\\.\\d+\\.jar")) }
+        println(444)
+        if (jarFile != null) {
+            println(555)
+            val targetFile = targetDir.resolve("jemoji.jar")
+            println(666)
+            jarFile.copyTo(targetFile, overwrite = true)
+            println(777)
+        } else {
+            println("No valid jemoji-<VERSION>.jar found!")
         }
     }
 }
-
-
 
 fun findPropertyOrNull(name: String) = if (hasProperty(name)) project.property(name) as String else null
 val prePublishTask by tasks.register("prePublishTask") {
