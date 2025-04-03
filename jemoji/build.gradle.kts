@@ -105,8 +105,17 @@ tasks.register("copyJarToProject") {
     group = "jemoji"
     doLast {
         copy {
-            from("${layout.buildDirectory}/libs/jemoji.jar")
-            into(project.rootDir.path + "\\libs")
+            val libsDir = layout.buildDirectory.dir("libs").get().asFile
+            val targetDir = project.rootDir.resolve("libs")
+
+            val jarFile = libsDir.listFiles()?.find { it.name.matches(Regex("jemoji-\\d+\\.\\d+\\.\\d+\\.jar")) }
+
+            if (jarFile != null) {
+                val targetFile = targetDir.resolve("jemoji.jar")
+                jarFile.copyTo(targetFile, overwrite = true)
+            } else {
+                println("No valid jemoji-<VERSION>.jar found!")
+            }
         }
     }
 }
