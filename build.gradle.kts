@@ -9,16 +9,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.treeToValue
-import com.github.javaparser.JavaParser
-import com.github.javaparser.StaticJavaParser
-import com.github.javaparser.ast.CompilationUnit
-import com.github.javaparser.ast.Modifier
-import com.github.javaparser.ast.NodeList
-import com.github.javaparser.ast.body.EnumConstantDeclaration
-import com.github.javaparser.ast.body.FieldDeclaration
-import com.github.javaparser.ast.body.VariableDeclarator
-import com.github.javaparser.ast.comments.JavadocComment
-import com.github.javaparser.ast.expr.*
+import com.palantir.javapoet.*
 import net.fellbaum.jemoji.*
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -39,6 +30,7 @@ import java.nio.charset.StandardCharsets
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
+import javax.lang.model.element.Modifier
 import kotlin.math.ceil
 
 plugins {
@@ -63,9 +55,10 @@ buildscript {
         classpath(libs.okhttp)
         classpath(libs.jsoup)
         classpath(libs.htmlunit)
-        classpath(libs.javaparser.symbol.solver.core)
+        classpath(libs.javapoet)
         classpath(libs.kotlinx.coroutines.core)
         classpath(libs.kotlinx.coroutines.jdk8)
+        classpath("com.esotericsoftware.kryo:kryo5:5.6.2")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
     }
 }
@@ -377,8 +370,20 @@ fun generate(generateAll: Boolean = false) {
 
         FileOutputStream(path).use { ObjectOutputStream(it).use { it.writeObject(emojiMap) } }
 
-    }
 
+        /*val kryo: Kryo = Kryo()
+        kryo.register(HashMap::class.java)
+        kryo.register(Emoji::class.java, JavaSerializer())
+        kryo.register(EmojiGroup::class.java, JavaSerializer())
+        kryo.register(EmojiSubGroup::class.java, JavaSerializer())
+        kryo.register(Qualification::class.java, JavaSerializer())
+
+        // Serialisierung
+        val byteArrayOutputStream: ByteArrayOutputStream = ByteArrayOutputStream()
+        val output = Output(FileOutputStream("C:\\Users\\domme\\IdeaProjects\\JEmoji\\jemoji\\src\\main\\resources\\jemoji\\kryofile.bin"))
+        kryo.writeObject(output, emojiMap)
+        output.close()*/
+    }
 
 ////////////////////////
 ////////////////////////
@@ -732,15 +737,7 @@ val generatedSourcesDir = "${project(":jemoji").layout.buildDirectory.get()}/gen
 /**
  * Startup task to generate the necessary source files for this project. Does not generate a new emojis.json.
  */
-/*tasks.register("generateJavaSourceFilesFromEmojiJson") {
-    group = "jemoji"
-    doLast { generateJavaSourceFiles() }
-}*/
-
 fun generateJavaSourceFiles() {
-
-//generateEmojisDescriptionAndKeywords()
-
     val emojisPerInterface = 900
     //val emojisPerListInterface = 5000
     val emojiArrayNode: ArrayNode =
@@ -748,411 +745,263 @@ fun generateJavaSourceFiles() {
 
     createStaticConstantsClassFromPreComputation(jemojiPackagePath, emojiArrayNode)
 
-    val emojisCompilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
-    emojisCompilationUnit.setStorage(file("$generatedSourcesDir/${jemojiPackagePath.joinToString("/")}/Emojis.java").toPath())
-    val emojisInterface = emojisCompilationUnit.addInterface("Emojis")
-    emojisInterface.setPublic(true)
-    /*emojisCompilationUnit.run {
-        addImport("java.util.Arrays")
-        addImport("java.util.List")
-    }*/
+    TypeSpec.interfaceBuilder("Emojis").apply {
+        addModifiers(Modifier.PUBLIC)
 
-    //val emojisListField: FieldDeclaration = emojisInterface.addField("List<Emoji>", "EMOJI_LIST")
-    //val emojisArrayCreationExpr = MethodCallExpr(NameExpr("Arrays"), "asList")
+        for (entry in emojiArrayNode.groupBy { it.get("subgroup").asText() }) {
+            val emojiSubGroupInterfaceConstantVariables = mutableListOf<FieldSpec>()
+            val emojiSubGroupInterfaceConstantVariablesValidNames = mutableListOf<FieldSpec>()
+            entry.value.forEach {
+                val constantName: String =
+                    emojiDescriptionToConstantName(it.get("description").asText(), it.get("qualification").asText())
 
-    val emojiClassType = JavaParser().parseClassOrInterfaceType("Emoji").result.get()
-    val emojiFileNameToConstants = mutableMapOf<String, List<FieldDeclaration>>()
-    for (entry in emojiArrayNode.groupBy { it.get("subgroup").asText() }) {
-        val emojiSubGroupInterfaceConstantVariables = NodeList<FieldDeclaration>()
-        entry.value.forEach {
-            val constantName: String =
-                emojiDescriptionToConstantName(it.get("description").asText(), it.get("qualification").asText())
+                val emojiConstantVariable = FieldSpec.builder(ClassName.get(Emoji::class.java), constantName)
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                    .addJavadoc(it.get("emoji").asText())
+                    .initializer(
+                        CodeBlock.of(
+                            "\$T.getEmoji(\$S).orElseThrow(\$T::new)",
+                            EmojiManager::class.java,
+                            it.get("emoji").asText(),
+                            java.lang.IllegalStateException::class.java
+                        )
+                    )
+                    .build()
 
-            val emojiConstantVariable = FieldDeclaration()
-                .addVariable(VariableDeclarator(emojiClassType, constantName))
-                .setJavadocComment(JavadocComment(it.get("emoji").asText()))
+                emojiSubGroupInterfaceConstantVariables.add(emojiConstantVariable)
+            }
 
-            emojiSubGroupInterfaceConstantVariables.add(emojiConstantVariable)
-
-            val discordAliases = getAndSanitizeEmojiAliases(it.get("discordAliases"))
-            val slackAliases = getAndSanitizeEmojiAliases(it.get("slackAliases"))
-            val githubAliases = getAndSanitizeEmojiAliases(it.get("githubAliases"))
-            val keywords = getAndSanitizeEmojiAliases(it.get("keywords"))
-            val qualification = it.get("qualification").asText()
-
-
-            val getEmojiCall = MethodCallExpr(
-                NameExpr("EmojiManager"),
-                "getEmoji",
-                NodeList(StringLiteralExpr(it.get("emoji").asText()))
-            )
-
-            val initializer = MethodCallExpr(getEmojiCall, "orElseThrow")
-            initializer.addArgument("IllegalStateException::new")
-
-            /*ObjectCreationExpr().apply {
-            setType(emojiClassType)
-            addArgument(StringLiteralExpr(it.get("emoji").asText()))
-            addArgument(
-                StringLiteralExpr(
-                    it.get("emoji").asText().asSequence()
-                        .joinToString(separator = "") { char -> "\\\\u%04X".format(char.code) })
-            )
-            addArgument(StringLiteralExpr(it.get("htmlDec").asText()))
-            addArgument(StringLiteralExpr(it.get("htmlHex").asText()))
-            addArgument(StringLiteralExpr(it.get("urlEncoded").asText()))
-            addArgument(getGeneratedMethodCallExprForEntries(discordAliases))
-            addArgument(getGeneratedMethodCallExprForEntries(slackAliases))
-            addArgument(getGeneratedMethodCallExprForEntries(githubAliases))
-            addArgument(getGeneratedMethodCallExprForEntries(keywords))
-            addArgument(BooleanLiteralExpr(it.get("hasFitzpatrick").asBoolean()))
-            addArgument(BooleanLiteralExpr(it.get("hasHairStyle").asBoolean()))
-            addArgument(DoubleLiteralExpr(it.get("version").asDouble()))
-            addArgument(qualification.uppercase().replace("-", "_"))
-            addArgument(StringLiteralExpr(it.get("description").asText()))
-            addArgument(NameExpr("EmojiGroup." + emojiGroupToEnumName(it.get("group").asText())))
-            addArgument(NameExpr("EmojiSubGroup." + emojiGroupToEnumName(it.get("subgroup").asText())))
-            addArgument(BooleanLiteralExpr(it.get("hasVariationSelectors").asBoolean()))
-        }*/
-            emojiConstantVariable.getVariable(0).setInitializer(initializer)
-        }
-
-        emojiSubGroupInterfaceConstantVariables.groupBy { it.getVariable(0).name }.onEach {
-            if (it.value.size > 1) {
-                it.value.forEachIndexed { index, enumConstantDeclaration ->
-                    enumConstantDeclaration.getVariable(0)
-                        .setName(enumConstantDeclaration.getVariable(0).name.asString() + "_$index")
+            emojiSubGroupInterfaceConstantVariables.groupBy { it.name() }.forEach {
+                if (it.value.size > 1) {
+                    it.value.forEachIndexed { index, emojiFieldSpec ->
+                        emojiSubGroupInterfaceConstantVariablesValidNames.add(
+                            FieldSpec.builder(
+                                emojiFieldSpec.type(),
+                                emojiFieldSpec.name() + "_$index"
+                            ).initializer(emojiFieldSpec.initializer())
+                                .addModifiers(*emojiFieldSpec.modifiers().toTypedArray())
+                                .addJavadoc(emojiFieldSpec.javadoc())
+                                .build()
+                        )
+                    }
+                } else {
+                    emojiSubGroupInterfaceConstantVariablesValidNames.add(it.value.first())
                 }
             }
-        }
 
-// After changing duplicated names of some emojis, add them to the all emojis list
-        /*emojiSubGroupInterfaceConstantVariables.forEach {
-            emojisArrayCreationExpr.addArgument(it.getVariable(0).name.toString())
-        }*/
-
-// Create multiple interfaces of the same SubGroup, if there are more than X emojis
-        val emojiSubgroupFileName = emojiDescriptionToFileName(entry.key)
-        if (ceil(emojiSubGroupInterfaceConstantVariables.size / emojisPerInterface.toDouble()) > 1) {
-            var startingLetter = 'A'
-            emojiSubGroupInterfaceConstantVariables.windowed(emojisPerInterface, emojisPerInterface, true).forEach {
-                val adjustedInterfaceName = emojiSubgroupFileName + (startingLetter++)
-                emojiFileNameToConstants[adjustedInterfaceName] = it
-                emojisInterface.addExtendedType(adjustedInterfaceName)
-                createSubGroupEmojiInterface(jemojiPackagePath, adjustedInterfaceName, it)
-            }
-        } else {
-            emojiFileNameToConstants[emojiSubgroupFileName] = emojiSubGroupInterfaceConstantVariables
-            emojisInterface.addExtendedType(emojiSubgroupFileName)
-            createSubGroupEmojiInterface(
-                jemojiPackagePath,
-                emojiSubgroupFileName,
-                emojiSubGroupInterfaceConstantVariables
-            )
-        }
-    }
-
-    /*val mapEntriesListWithNoMoreThanXEntries = mutableListOf<MutableList<Pair<String, List<FieldDeclaration>>>>()
-    emojiFileNameToConstants.entries.forEach {
-        var added = false
-
-        for (list in mapEntriesListWithNoMoreThanXEntries) {
-            if (list.sumOf { stringListPair -> stringListPair.second.size } + it.value.size <= emojisPerListInterface) {
-                list.add(Pair(it.key, it.value))
-                added = true
-                break
+            // Create multiple interfaces of the same SubGroup, if there are more than X emojis
+            val emojiSubgroupFileName = emojiDescriptionToFileName(entry.key)
+            if (ceil(emojiSubGroupInterfaceConstantVariablesValidNames.size / emojisPerInterface.toDouble()) > 1) {
+                var startingLetter = 'A'
+                emojiSubGroupInterfaceConstantVariablesValidNames.windowed(emojisPerInterface, emojisPerInterface, true)
+                    .forEach {
+                        val adjustedInterfaceName = emojiSubgroupFileName + (startingLetter++)
+                        addSuperinterface(ClassName.get("net.fellbaum.jemoji", adjustedInterfaceName))
+                        createSubGroupEmojiInterface(adjustedInterfaceName, it)
+                    }
+            } else {
+                addSuperinterface(ClassName.get("net.fellbaum.jemoji", emojiSubgroupFileName))
+                createSubGroupEmojiInterface(emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariablesValidNames)
             }
         }
-        if (!added) {
-            mapEntriesListWithNoMoreThanXEntries.add(mutableListOf(Pair(it.key, it.value)))
-        }
-    }*/
-
-//Create the emoji loader interfaces grouped by max X entries per interface
-    /*var startingLetter = 'A'
-    mapEntriesListWithNoMoreThanXEntries.forEach {
-        createEmojiLoaderInterface(jemojiPackagePath, "EmojiLoader" + (startingLetter++), it)
-    }*/
-
-    //emojisListField.getVariable(0).setInitializer(emojisArrayCreationExpr)
-    emojisCompilationUnit.storage.get().save()
+    }.build().saveGeneratedJavaSourceFile()
 }
 
 fun generateEmojiLanguageEnum(languages: List<String>) {
-    val fileName = "EmojiLanguage"
-
-    val emojisPath = "${jemojiPackagePath.joinToString("/")}/$fileName.java"
-    val compilationUnit = CompilationUnit(jemojiPackagePath.joinToString("."))
-
-    compilationUnit.setStorage(file("$generatedSourcesDir/$emojisPath").toPath())
-    val enumFile = compilationUnit.addEnum(fileName)
-
-    val nodeList = NodeList<EnumConstantDeclaration>()
-    languages.forEach {
-        val constantName = emojiGroupToEnumName(it)
-        val enumConstantDeclaration = EnumConstantDeclaration(constantName).addArgument(StringLiteralExpr(it))
-        nodeList.add(enumConstantDeclaration)
-    }
-
-    enumFile.setEntries(nodeList)
-
-    val valueField = enumFile.addPrivateField(String::class.java, "value").setFinal(true)
-    val enumConstructor = enumFile.addConstructor()
-
-    enumConstructor.addParameter(String::class.java, "value")
-    enumConstructor.createBody().addStatement("this.value = value;")
-    valueField.createGetter().setJavadocComment(
-        """
+    TypeSpec.enumBuilder("EmojiLanguage").apply {
+        addModifiers(Modifier.PUBLIC)
+        languages.forEach {
+            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder("\$S", it).build())
+        }
+        addField(
+            String::class.java,
+            "value",
+            Modifier.PRIVATE,
+            Modifier.FINAL
+        )
+        addMethod(
+            MethodSpec.constructorBuilder()
+                .addParameter(String::class.java, "value", Modifier.FINAL)
+                .addStatement("this.value = value")
+                .build()
+        )
+        addMethod(
+            MethodSpec.methodBuilder("getValue")
+                .addJavadoc(
+                    """
                 Gets the value.
 
                 @return The value.
             """.trimIndent()
-    )
-
-    compilationUnit.storage.get().save()
+                )
+                .addModifiers(Modifier.PUBLIC)
+                .returns(String::class.java)
+                .addStatement("return value")
+                .build()
+        )
+    }.build().saveGeneratedJavaSourceFile()
 }
 
-
 fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayNode: JsonNode) {
-    val emojiSubgroupFilePath = "${path.joinToString("/")}/PreComputedConstants.java"
-    val emojiSubGroupCompilationUnit = CompilationUnit(path.joinToString("."))
-        .setStorage(file("$generatedSourcesDir/$emojiSubgroupFilePath").toPath())
+    TypeSpec.classBuilder("PreComputedConstants").apply {
+        addModifiers(Modifier.FINAL)
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
 
-    emojiSubGroupCompilationUnit.run {
-        addImport("java.util.Arrays")
-        addImport("java.util.Set")
-        addImport("java.util.HashSet")
-    }
+        val variablesModifiers = listOf(
+            Modifier.PUBLIC,
+            Modifier.STATIC,
+            Modifier.FINAL
+        )
 
-    val emojiSubGroupClassFile = emojiSubGroupCompilationUnit.addClass("PreComputedConstants").setPublic(false)
+        addField(
+            FieldSpec.builder(TypeName.INT, "MAXIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
+                .initializer(
+                    "\$L",
+                    emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                        .maxOfOrNull { it.codePointCount(0, it.length) }!!.toString()
+                ).build()
+        )
 
-    emojiSubGroupClassFile.addSingleMemberAnnotation(
-        "SuppressWarnings",
-        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused")))
-    )
+        addField(
+            FieldSpec.builder(TypeName.INT, "MINIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
+                .initializer(
+                    "\$L",
+                    emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                        .minOfOrNull { it.codePointCount(0, it.length) }!!.toString()
+                ).build()
+        )
 
-    val modifiers = listOf(Modifier.Keyword.PUBLIC, Modifier.Keyword.STATIC, Modifier.Keyword.FINAL)
+        addField(
+            FieldSpec.builder(TypeName.INT, "ALIAS_EMOJI_MAX_LENGTH", *variablesModifiers.toTypedArray())
+                .initializer(
+                    "\$L",
+                    emojiArrayNode.flatMap { node ->
+                        listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
+                            node[key]?.map { it.asText() } ?: emptyList()
+                        }
+                    }.distinct().maxOfOrNull { it.codePointCount(0, it.length) }!!.toString()
+                ).build()
+        )
 
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "int",
-        "MAXIMUM_EMOJI_URL_ENCODED_LENGTH",
-        IntegerLiteralExpr(
-            emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
-                .maxOfOrNull { it.codePointCount(0, it.length) }!!
-        ),
-        *modifiers.toTypedArray()
-    )
+        addField(
+            FieldSpec.builder(
+                TypeName.INT,
+                "MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH",
+                *variablesModifiers.toTypedArray()
+            ).initializer(
+                "\$L",
+                emojiArrayNode.map { it.get("htmlDec").asText() }
+                    .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt().toString()
+            ).build()
+        )
 
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "int",
-        "MINIMUM_EMOJI_URL_ENCODED_LENGTH",
-        IntegerLiteralExpr(
-            emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
-                .minOfOrNull { it.codePointCount(0, it.length) }!!
-        ),
-        *modifiers.toTypedArray()
-    )
+        addField(
+            FieldSpec.builder(TypeName.INT, "MIN_HTML_DECIMAL_CODEPOINT_LENGTH", *variablesModifiers.toTypedArray())
+                .initializer(
+                    "\$L",
+                    emojiArrayNode.map { it.get("htmlDec").asText() }
+                        .minOfOrNull { text: String -> text.codePoints().toArray().size }!!.toString()
+                ).build()
+        )
 
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "int",
-        "ALIAS_EMOJI_MAX_LENGTH",
-        IntegerLiteralExpr(
-            emojiArrayNode.flatMap { node ->
+        emojiArrayNode.asSequence()
+            .flatMap { node ->
                 listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
                     node[key]?.map { it.asText() } ?: emptyList()
                 }
-            }.distinct().maxOfOrNull { it.codePointCount(0, it.length) }!!
-        ),
-        *modifiers.toTypedArray()
-    )
-
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "int",
-        "MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH",
-        IntegerLiteralExpr(
-            emojiArrayNode.map { it.get("htmlDec").asText() }
-                .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt()
-        ),
-        *modifiers.toTypedArray()
-    )
-
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "int",
-        "MIN_HTML_DECIMAL_CODEPOINT_LENGTH",
-        IntegerLiteralExpr(
-            emojiArrayNode.map { it.get("htmlDec").asText() }
-                .minOfOrNull { text: String -> text.codePoints().toArray().size }!!
-        ),
-        *modifiers.toTypedArray()
-    )
-
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "Set<Integer>",
-        "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
-        ObjectCreationExpr(
-            null,
-            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
-            NodeList(
-                MethodCallExpr(
-                    NameExpr("Arrays"),
-                    "asList",
-                    NodeList(
-                        *emojiArrayNode.flatMap { node ->
-                            listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
-                                node[key]?.map { it.asText() } ?: emptyList()
-                            }
-                        }
-                            .distinct()
-                            .map { it.codePointAt(0) } // Zu String konvertieren
-                            .distinct()
-                            .sorted()
-                            .map { IntegerLiteralExpr(it) }
-                            .toTypedArray()
-                    )
+            }
+            .distinct()
+            .map { it.codePointAt(0) }
+            .distinct()
+            .sorted()
+            .toList()
+            .let {
+                addField(
+                    FieldSpec.builder(
+                        ParameterizedTypeName.get(
+                            ClassName.get(Set::class.java),
+                            ClassName.get("java.lang", "Integer")
+                        ),
+                        "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
+                        *variablesModifiers.toTypedArray()
+                    ).initializer(
+                        CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$L" } + "))",
+                            HashSet::class.java,
+                            Arrays::class.java,
+                            *it.toTypedArray())
+                    ).build()
                 )
-            )
-        ),
-        *modifiers.toTypedArray()
-    )
+            }
 
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "Set<Integer>",
-        "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
-        ObjectCreationExpr(
-            null,
-            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
-            NodeList(
-                MethodCallExpr(
-                    NameExpr("Arrays"),
-                    "asList",
-                    NodeList(
-                        *emojiArrayNode.map { it.get("urlEncoded").asText() }
-                            .map { it.codePointAt(0) }
-                            .distinct()
-                            .sorted()
-                            .map { IntegerLiteralExpr(it) }
-                            .toTypedArray()
-                    )
+        emojiArrayNode.asSequence().map { it.get("urlEncoded").asText() }
+            .map { it.codePointAt(0) }
+            .distinct()
+            .sorted()
+            .toList()
+            .let {
+                addField(
+                    FieldSpec.builder(
+                        ParameterizedTypeName.get(
+                            ClassName.get(Set::class.java),
+                            ClassName.get("java.lang", "Integer")
+                        ),
+                        "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
+                        *variablesModifiers.toTypedArray()
+                    ).initializer(
+                        CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$L" } + "))",
+                            HashSet::class.java,
+                            Arrays::class.java,
+                            *it.toTypedArray())
+                    ).build()
                 )
-            )
-        ),
-        *modifiers.toTypedArray()
-    )
+            }
 
-    emojiSubGroupClassFile.addFieldWithInitializer(
-        "Set<String>",
-        "ALLOWED_EMOJI_URL_ENCODED_SEQUENCES",
-        ObjectCreationExpr(
-            null,
-            StaticJavaParser.parseClassOrInterfaceType("HashSet").setDiamondOperator(),
-            NodeList(
-                MethodCallExpr(
-                    NameExpr("Arrays"),
-                    "asList",
-                    NodeList(
-                        *emojiArrayNode.map { it.get("urlEncoded").asText() }
-                            .flatMap { it.split("%") }
-                            .distinct()
-                            .filter { it.isNotEmpty() }
-                            .sorted()
-                            .map { StringLiteralExpr(it) }
-                            .toTypedArray()
+        emojiArrayNode.asSequence().map { it.get("urlEncoded").asText() }
+            .flatMap { it.split("%") }
+            .distinct()
+            .filter { it.isNotEmpty() }
+            .sorted()
+            .toList()
+            .let {
+                addField(
+                    FieldSpec.builder(
+                        ParameterizedTypeName.get(ClassName.get(Set::class.java), ClassName.get(String::class.java)),
+                        "ALLOWED_EMOJI_URL_ENCODED_SEQUENCES",
+                        *variablesModifiers.toTypedArray()
                     )
+                        .initializer(
+                            CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$S" } + "))",
+                                HashSet::class.java,
+                                Arrays::class.java,
+                                *it.toTypedArray())
+                        ).build()
                 )
-            )
-        ),
-        *modifiers.toTypedArray()
-    )
-
-    emojiSubGroupCompilationUnit.storage.get().save()
-}
-
-fun createEmojiLoaderInterface(
-    path: List<String>,
-    filename: String,
-    emojiSubGroupInterfaceConstantVariables: MutableList<Pair<String, List<FieldDeclaration>>>
-) {
-    val emojiSubgroupFilePath = "${path.joinToString("/")}/$filename.java"
-    val emojiSubGroupCompilationUnit = CompilationUnit(path.joinToString("."))
-        .setStorage(file("$generatedSourcesDir/$emojiSubgroupFilePath").toPath())
-
-    emojiSubGroupCompilationUnit.run {
-        addImport("java.util.Arrays")
-        addImport("java.util.List")
-    }
-
-    val emojiSubGroupInterfaceFile = emojiSubGroupCompilationUnit.addInterface(filename).setPublic(false)
-
-    emojiSubGroupInterfaceFile.addSingleMemberAnnotation(
-        "SuppressWarnings",
-        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused")))
-    )
-
-    val emojisListField: FieldDeclaration = emojiSubGroupInterfaceFile.addField("List<Emoji>", "EMOJI_LIST")
-    val emojisArrayCreationExpr = MethodCallExpr(NameExpr("Arrays"), "asList")
-
-    emojiSubGroupInterfaceConstantVariables.forEach { pair ->
-        emojiSubGroupCompilationUnit.addImport("net.fellbaum.jemoji.${pair.first}", true, true)
-        pair.second.forEach {
-            emojisArrayCreationExpr.addArgument(it.getVariable(0).name.toString())
-        }
-    }
-
-    emojisListField.getVariable(0).setInitializer(emojisArrayCreationExpr)
-    emojiSubGroupCompilationUnit.storage.get().save()
+            }
+    }.build().saveGeneratedJavaSourceFile()
 }
 
 fun createSubGroupEmojiInterface(
-    path: List<String>,
     emojiSubgroupFileName: String,
-    emojiSubGroupInterfaceConstantVariables: List<FieldDeclaration>
+    emojiSubGroupInterfaceConstantVariables: List<FieldSpec>
 ) {
-    val emojiSubgroupFilePath = "${path.joinToString("/")}/$emojiSubgroupFileName.java"
-    val emojiSubGroupCompilationUnit = CompilationUnit(path.joinToString("."))
-        .setStorage(file("$generatedSourcesDir/$emojiSubgroupFilePath").toPath())
-    val emojiSubGroupInterfaceFile = emojiSubGroupCompilationUnit.addInterface(emojiSubgroupFileName).setPublic(false)
-    /*emojiSubGroupCompilationUnit.run {
-        addImport("java.util.Arrays")
-        addImport("java.util.Collections")
-        addImport("net.fellbaum.jemoji.Qualification", true, true)
-    }*/
-
-    emojiSubGroupInterfaceConstantVariables.forEach(emojiSubGroupInterfaceFile::addMember)
-    emojiSubGroupInterfaceFile.addSingleMemberAnnotation(
-        "SuppressWarnings",
-        ArrayInitializerExpr(NodeList(StringLiteralExpr("unused") /*StringLiteralExpr("UnnecessaryUnicodeEscape")*/))
-    )
-
-    emojiSubGroupCompilationUnit.storage.get().save()
+    TypeSpec.interfaceBuilder(emojiSubgroupFileName).apply {
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addFields(emojiSubGroupInterfaceConstantVariables)
+    }.build().saveGeneratedJavaSourceFile()
 }
 
-fun getGeneratedMethodCallExprForEntries(aliases: List<StringLiteralExpr>): MethodCallExpr {
-    if (aliases.isEmpty()) return MethodCallExpr("Collections.emptyList")
-    if (aliases.size == 1) return MethodCallExpr("Collections.singletonList").setArguments(NodeList(aliases))
-    return MethodCallExpr("Collections.unmodifiableList").addArgument(
-        MethodCallExpr("Arrays.asList").setArguments(
-            NodeList(aliases)
-        )
-    )
+fun TypeSpec.saveGeneratedJavaSourceFile() {
+    JavaFile.builder(jemojiPackagePath.joinToString("."), this)
+        .indent("    ")
+        .skipJavaLangImports(true)
+        .build()
+        .writeTo(file(generatedSourcesDir).toPath())
 }
 
 // Fix quotation marks
 val replaceQuotationMarksRegex = Regex("\"")
 // Fix error with aliases like: :-\
 val replaceBackslashRegex = Regex("[\\\\]")
-
-fun getAndSanitizeEmojiAliases(aliases: JsonNode): List<StringLiteralExpr> {
-    return buildList {
-        aliases.forEach { alias ->
-            add(
-                StringLiteralExpr(
-                    alias.asText().replace(replaceBackslashRegex, "\\\\\\\\")
-                        .replace(replaceQuotationMarksRegex, "\\\\\"")
-                )
-            )
-        }
-    }
-}
 
 // FIX DESCRIPTION ERRORS THAT CAUSE COMPILATION ERRORS WITH NAMES
 // Basic allowed characters
