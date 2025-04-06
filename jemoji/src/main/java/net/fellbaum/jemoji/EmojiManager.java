@@ -2,9 +2,7 @@ package net.fellbaum.jemoji;
 
 import org.jspecify.annotations.Nullable;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -62,12 +60,10 @@ public final class EmojiManager {
 
         static Object readFileAsObject(final String filePathName) {
             try {
-                try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-                    if (null == is) throw new IllegalStateException("InputStream is null");
-                    final ObjectInputStream ois = new ObjectInputStream(is);
-                    final Object readObject = ois.readObject();
-                    ois.close();
-                    return readObject;
+                try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName);
+                     final BufferedInputStream bis = new BufferedInputStream(Objects.requireNonNull(is));
+                     final ObjectInputStream ois = new ObjectInputStream(bis);) {
+                    return ois.readObject();
                 } catch (final ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
