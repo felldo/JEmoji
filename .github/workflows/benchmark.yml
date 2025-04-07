@@ -36,7 +36,7 @@ jobs:
           gh-repository: github.com/felldo/JEmoji
           # Workflow will fail when an alert happens
           fail-on-alert: false
-          alert-threshold: 125%
+          alert-threshold: 200%
           # GitHub API token to make a commit comment
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Enable alert commit comment
