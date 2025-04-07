@@ -822,7 +822,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
         addMethod(
             MethodSpec.constructorBuilder()
                 .addParameter(String::class.java, "value", Modifier.FINAL)
-                .addStatement("this.value = value")
+                .addStatement("this.\$N = \$N", "value", "value")
                 .build()
         )
         addMethod(
@@ -836,7 +836,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
                 )
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String::class.java)
-                .addStatement("return value")
+                .addStatement("return \$N", "value")
                 .build()
         )
     }.build().saveGeneratedJavaSourceFile()
@@ -891,7 +891,7 @@ fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayN
             ).initializer(
                 "\$L",
                 emojiArrayNode.map { it.get("htmlDec").asText() }
-                    .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt().toString()
+                    .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt()
             ).build()
         )
 
