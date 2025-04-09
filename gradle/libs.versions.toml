@@ -19,7 +19,7 @@ gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle
 
 [plugins]
 versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
-versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "0.8.5" }
+versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "1.0.0" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
 jreleaser = { id = "org.jreleaser", version = "1.17.0" }
 #https://github.com/melix/jmh-gradle-plugin
