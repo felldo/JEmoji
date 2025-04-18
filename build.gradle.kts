@@ -106,7 +106,7 @@ fun requestCLDREmojiDescriptionTranslation(
 }
 
 val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
-
+val jemojiBasePackagePathString = jemojiPackagePath.joinToString(".")
 tasks.register("generate") {
     group = "jemoji"
     doFirst {
@@ -339,7 +339,7 @@ fun generate(generateAll: Boolean = false) {
     ////////////////////////
 
 
-    "C:\\Users\\domme\\IdeaProjects\\JEmoji\\jemoji\\src\\main\\resources\\jemoji\\serializedEmojis".let { path ->
+    project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/serializedEmojis").asFile.let { file ->
         val clazz = Emoji::class.java
         val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
         constructor.isAccessible = true
@@ -368,7 +368,7 @@ fun generate(generateAll: Boolean = false) {
             )
         }
 
-        FileOutputStream(path).use { ObjectOutputStream(it).use { it.writeObject(emojiMap) } }
+        FileOutputStream(file).use { ObjectOutputStream(it).use { it.writeObject(emojiMap) } }
 
 
         /*val kryo: Kryo = Kryo()
@@ -380,7 +380,7 @@ fun generate(generateAll: Boolean = false) {
 
         // Serialisierung
         val byteArrayOutputStream: ByteArrayOutputStream = ByteArrayOutputStream()
-        val output = Output(FileOutputStream("C:\\Users\\domme\\IdeaProjects\\JEmoji\\jemoji\\src\\main\\resources\\jemoji\\kryofile.bin"))
+        val output = Output(FileOutputStream(project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/kryo.bin").asFile))
         kryo.writeObject(output, emojiMap)
         output.close()*/
     }
@@ -798,11 +798,11 @@ fun generateJavaSourceFiles() {
                 emojiSubGroupInterfaceConstantVariablesValidNames.windowed(emojisPerInterface, emojisPerInterface, true)
                     .forEach {
                         val adjustedInterfaceName = emojiSubgroupFileName + (startingLetter++)
-                        addSuperinterface(ClassName.get("net.fellbaum.jemoji", adjustedInterfaceName))
+                        addSuperinterface(ClassName.get(jemojiBasePackagePathString, adjustedInterfaceName))
                         createSubGroupEmojiInterface(adjustedInterfaceName, it)
                     }
             } else {
-                addSuperinterface(ClassName.get("net.fellbaum.jemoji", emojiSubgroupFileName))
+                addSuperinterface(ClassName.get(jemojiBasePackagePathString, emojiSubgroupFileName))
                 createSubGroupEmojiInterface(emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariablesValidNames)
             }
         }
@@ -861,10 +861,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
         }
         addField(
             FieldSpec.builder(
-                ParameterizedTypeName.get(
-                    ClassName.get(List::class.java),
-                    ClassName.get("net.fellbaum.jemoji", "EmojiGroup")
-                ),
+                getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiGroup"),
                 "EMOJI_GROUPS",
                 Modifier.PRIVATE,
                 Modifier.STATIC,
@@ -915,12 +912,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
             """.trimIndent()
                 )
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(
-                    ParameterizedTypeName.get(
-                        ClassName.get(List::class.java),
-                        ClassName.get("net.fellbaum.jemoji", "EmojiGroup")
-                    )
-                )
+                .returns(getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiGroup"))
                 .addStatement("return \$N", "EMOJI_GROUPS")
                 .build()
         )
@@ -937,7 +929,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                 )
                 .addParameter(String::class.java, "name", Modifier.FINAL)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"))
+                .returns(ClassName.get(jemojiBasePackagePathString, "EmojiGroup"))
                 .addCode(
                     CodeBlock.of(
                         """
@@ -963,12 +955,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
             """.trimIndent()
                 )
                 .addModifiers(Modifier.PUBLIC)
-                .returns(
-                    ParameterizedTypeName.get(
-                        ClassName.get(EnumSet::class.java),
-                        ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
-                    )
-                )
+                .returns(getParameterizedTypName(EnumSet::class.java, jemojiBasePackagePathString, "EmojiSubGroup"))
                 .addStatement(
                     "return \$T.copyOf(EmojiSubGroup.getSubGroups().stream().filter(subgroup -> subgroup.getGroup() == this).collect(\$T.toList()))",
                     EnumSet::class.java, Collectors::class.java
@@ -1002,10 +989,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
 
         addField(
             FieldSpec.builder(
-                ParameterizedTypeName.get(
-                    ClassName.get(List::class.java),
-                    ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
-                ),
+                getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiSubGroup"),
                 "EMOJI_SUBGROUPS",
                 Modifier.PRIVATE,
                 Modifier.STATIC,
@@ -1025,7 +1009,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
             Modifier.FINAL
         )
         addField(
-            ClassName.get("net.fellbaum.jemoji", "EmojiGroup"),
+            ClassName.get(jemojiBasePackagePathString, "EmojiGroup"),
             "emojiGroup",
             Modifier.PRIVATE,
             Modifier.FINAL
@@ -1033,7 +1017,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
         addMethod(
             MethodSpec.constructorBuilder()
                 .addParameter(String::class.java, "name", Modifier.FINAL)
-                .addParameter(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"), "emojiGroup", Modifier.FINAL)
+                .addParameter(ClassName.get(jemojiBasePackagePathString, "EmojiGroup"), "emojiGroup", Modifier.FINAL)
                 .addStatement("this.\$N = \$N", "name", "name")
                 .addStatement("this.\$N = \$N", "emojiGroup", "emojiGroup")
                 .build()
@@ -1063,12 +1047,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
             """.trimIndent()
                 )
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(
-                    ParameterizedTypeName.get(
-                        ClassName.get(List::class.java),
-                        ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
-                    )
-                )
+                .returns(getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiSubGroup"))
                 .addStatement("return \$N", "EMOJI_SUBGROUPS")
                 .build()
         )
@@ -1085,7 +1064,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                 )
                 .addParameter(String::class.java, "name", Modifier.FINAL)
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
-                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup"))
+                .returns(ClassName.get(jemojiBasePackagePathString, "EmojiSubGroup"))
                 .addCode(
                     CodeBlock.of(
                         """
@@ -1111,7 +1090,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
             """.trimIndent()
                 )
                 .addModifiers(Modifier.PUBLIC)
-                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"))
+                .returns(ClassName.get(jemojiBasePackagePathString, "EmojiGroup"))
                 .addStatement("return \$N", "emojiGroup")
                 .build()
         )
@@ -1194,10 +1173,7 @@ fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayN
             .let {
                 addField(
                     FieldSpec.builder(
-                        ParameterizedTypeName.get(
-                            ClassName.get(Set::class.java),
-                            ClassName.get("java.lang", "Integer")
-                        ),
+                        getParameterizedTypName(Set::class.java, "java.lang", "Integer"),
                         "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
@@ -1217,10 +1193,7 @@ fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayN
             .let {
                 addField(
                     FieldSpec.builder(
-                        ParameterizedTypeName.get(
-                            ClassName.get(Set::class.java),
-                            ClassName.get("java.lang", "Integer")
-                        ),
+                        getParameterizedTypName(Set::class.java, "java.lang", "Integer"),
                         "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
@@ -1241,7 +1214,7 @@ fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayN
             .let {
                 addField(
                     FieldSpec.builder(
-                        ParameterizedTypeName.get(ClassName.get(Set::class.java), ClassName.get(String::class.java)),
+                        getParameterizedTypName(Set::class.java, String::class.java),
                         "ALLOWED_EMOJI_URL_ENCODED_SEQUENCES",
                         *variablesModifiers.toTypedArray()
                     )
@@ -1278,6 +1251,13 @@ fun TypeSpec.Builder.saveGeneratedJavaSourceFile() {
         .build()
         .writeTo(file(generatedSourcesDir).toPath())
 }
+
+
+fun getParameterizedTypName(clazz: Class<*>, clazz2: Class<*>): ParameterizedTypeName =
+    ParameterizedTypeName.get(ClassName.get(clazz), ClassName.get(clazz2))
+
+fun getParameterizedTypName(clazz: Class<*>, packageName: String, simpleName: String): ParameterizedTypeName =
+    ParameterizedTypeName.get(ClassName.get(clazz), ClassName.get(packageName, simpleName))
 
 // Fix quotation marks
 val replaceQuotationMarksRegex = Regex("\"")
