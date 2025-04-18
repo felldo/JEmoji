@@ -16,7 +16,7 @@ interface LibraryPluginExtension {
 }
 
 // Add the 'greeting' extension object to project
-val extension = project.extensions.create<LibraryPluginExtension>("library").apply{
+val extension = project.extensions.create<LibraryPluginExtension>("library").apply {
     title.convention("")
 }
 
@@ -25,7 +25,8 @@ java {
     withJavadocJar()
     withSourcesJar()
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion = JavaLanguageVersion.of(8)
+        vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 

@@ -9,7 +9,7 @@ public enum EmojiType {
     /**
      * Represents a format for encoding emojis using HTML decimal notation.
      * In this representation, emojis are encoded as decimal values of their
-     * Unicode code points, encapsulated within an HTML entity (e.g., "&#value;" format).
+     * Unicode code points, encapsulated within an HTML entity (e.g., "&#38;#value;" format).
      * This format is commonly used in HTML documents to ensure proper rendering
      * of emojis or special characters across different platforms.
      */
@@ -17,7 +17,7 @@ public enum EmojiType {
     /**
      * Represents a format for encoding emojis using HTML hexadecimal notation.
      * In this representation, emojis are encoded as hexadecimal values of their
-     * Unicode code points, encapsulated within an HTML entity (e.g., "&#xvalue;" format).
+     * Unicode code points, encapsulated within an HTML entity (e.g., "&#38;#xvalue;;" format).
      * This format is often used in HTML documents to ensure consistent rendering
      * of emojis or special characters across various platforms and browsers.
      */
