@@ -99,7 +99,7 @@ publishing {
                 }
             }
             pom {
-                name.set(extension.title.get())
+                name.set(project.name)
                 description.set(rootProject.description)
                 url.set("https://github.com/felldo/JEmoji")
 
