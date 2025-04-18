@@ -850,7 +850,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
             CodeBlock.of(
                 """
             Represents a group of emojis categorized by their thematic content, such as
-            Activities, Animals & Nature, Flags, etc.
+            Activities, Animals &#38; Nature, Flags, etc.
         """.trimIndent()
             )
         )
