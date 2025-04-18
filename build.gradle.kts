@@ -441,6 +441,8 @@ fun generate(generateAll: Boolean = false) {
     }
 
     generateEmojiLanguageEnum(fileNameList)
+    generateEmojiGroupEnum(allUnicodeEmojis.map { it.group })
+    generateEmojiSubGroupEnum(allUnicodeEmojis.map { Pair(it.subgroup, it.group) })
     generateJavaSourceFiles()
 }
 
@@ -804,7 +806,7 @@ fun generateJavaSourceFiles() {
                 createSubGroupEmojiInterface(emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariablesValidNames)
             }
         }
-    }.build().saveGeneratedJavaSourceFile()
+    }.saveGeneratedJavaSourceFile()
 }
 
 fun generateEmojiLanguageEnum(languages: List<String>) {
@@ -839,7 +841,281 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
                 .addStatement("return \$N", "value")
                 .build()
         )
-    }.build().saveGeneratedJavaSourceFile()
+    }.saveGeneratedJavaSourceFile()
+}
+
+fun generateEmojiGroupEnum(groups: List<String>) {
+    TypeSpec.enumBuilder("EmojiGroup").apply {
+        addJavadoc(
+            CodeBlock.of(
+                """
+            Represents a group of emojis categorized by their thematic content, such as
+            Activities, Animals & Nature, Flags, etc.
+        """.trimIndent()
+            )
+        )
+        addModifiers(Modifier.PUBLIC)
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        groups.forEach {
+            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder("\$S", it).build())
+        }
+        addField(
+            FieldSpec.builder(
+                ParameterizedTypeName.get(
+                    ClassName.get(List::class.java),
+                    ClassName.get("net.fellbaum.jemoji", "EmojiGroup")
+                ),
+                "EMOJI_GROUPS",
+                Modifier.PRIVATE,
+                Modifier.STATIC,
+                Modifier.FINAL
+            ).initializer(
+                CodeBlock.of(
+                    "\$T.asList(\$L)",
+                    Arrays::class.java,
+                    "values()"
+                )
+            ).build()
+        )
+        addField(
+            String::class.java,
+            "name",
+            Modifier.PRIVATE,
+            Modifier.FINAL
+        )
+
+        addMethod(
+            MethodSpec.constructorBuilder()
+                .addParameter(String::class.java, "name", Modifier.FINAL)
+                .addStatement("this.\$N = \$N", "name", "name")
+                .build()
+        )
+        addMethod(
+            MethodSpec.methodBuilder("getName")
+                .addJavadoc(
+                    """
+                Gets the name of the emoji group.
+
+                @return The name of the emoji group.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC)
+                .returns(String::class.java)
+                .addStatement("return \$N", "name")
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("getGroups")
+                .addJavadoc(
+                    """
+                Gets all emoji groups.
+
+                @return All emoji groups.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(
+                    ParameterizedTypeName.get(
+                        ClassName.get(List::class.java),
+                        ClassName.get("net.fellbaum.jemoji", "EmojiGroup")
+                    )
+                )
+                .addStatement("return \$N", "EMOJI_GROUPS")
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("fromString")
+                .addJavadoc(
+                    """
+                Gets the emoji group for the given name.
+
+                @param name The name of the emoji group.
+                @return The emoji group.
+            """.trimIndent()
+                )
+                .addParameter(String::class.java, "name", Modifier.FINAL)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"))
+                .addCode(
+                    CodeBlock.of(
+                        """
+                        for (final EmojiGroup emojiGroup : EMOJI_GROUPS) {
+                            if (emojiGroup.getName().equals(name)) {
+                                return emojiGroup;
+                             }
+                        }
+                        throw new IllegalArgumentException("No EmojiGroup found for name: " + name);
+                    """.trimIndent()
+                    )
+                )
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("getSubGroups")
+                .addJavadoc(
+                    """
+                Gets all emoji subgroups related to this group.
+
+                @return All emoji subgroups.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC)
+                .returns(
+                    ParameterizedTypeName.get(
+                        ClassName.get(EnumSet::class.java),
+                        ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
+                    )
+                )
+                .addStatement(
+                    "return \$T.copyOf(EmojiSubGroup.getSubGroups().stream().filter(subgroup -> subgroup.getGroup() == this).collect(\$T.toList()))",
+                    EnumSet::class.java, Collectors::class.java
+                )
+                .build()
+        )
+
+
+    }.saveGeneratedJavaSourceFile()
+}
+
+fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
+    TypeSpec.enumBuilder("EmojiSubGroup").apply {
+        addModifiers(Modifier.PUBLIC)
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addJavadoc(
+            CodeBlock.of(
+                """
+             This enum represents various subgroups of emojis. Each subgroup is associated with
+             a specific {@link EmojiGroup}, categorizing the emojis into their respective 
+             thematic groups. These subgroups allow for better organization and retrieval of emojis.
+        """.trimIndent()
+            )
+        )
+        groups.forEach {
+            addEnumConstant(
+                emojiGroupToEnumName(it.first),
+                TypeSpec.anonymousClassBuilder("\$S, EmojiGroup.\$L", it.first, emojiGroupToEnumName(it.second)).build()
+            )
+        }
+
+        addField(
+            FieldSpec.builder(
+                ParameterizedTypeName.get(
+                    ClassName.get(List::class.java),
+                    ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
+                ),
+                "EMOJI_SUBGROUPS",
+                Modifier.PRIVATE,
+                Modifier.STATIC,
+                Modifier.FINAL
+            ).initializer(
+                CodeBlock.of(
+                    "\$T.asList(\$L)",
+                    Arrays::class.java,
+                    "values()"
+                )
+            ).build()
+        )
+        addField(
+            String::class.java,
+            "name",
+            Modifier.PRIVATE,
+            Modifier.FINAL
+        )
+        addField(
+            ClassName.get("net.fellbaum.jemoji", "EmojiGroup"),
+            "emojiGroup",
+            Modifier.PRIVATE,
+            Modifier.FINAL
+        )
+        addMethod(
+            MethodSpec.constructorBuilder()
+                .addParameter(String::class.java, "name", Modifier.FINAL)
+                .addParameter(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"), "emojiGroup", Modifier.FINAL)
+                .addStatement("this.\$N = \$N", "name", "name")
+                .addStatement("this.\$N = \$N", "emojiGroup", "emojiGroup")
+                .build()
+        )
+        addMethod(
+            MethodSpec.methodBuilder("getName")
+                .addJavadoc(
+                    """
+                Gets the name of the emoji sub group.
+
+                @return The name of the emoji subgroup.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC)
+                .returns(String::class.java)
+                .addStatement("return \$N", "name")
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("getSubGroups")
+                .addJavadoc(
+                    """
+                Gets all emoji subgroups.
+
+                @return All emoji subgroups.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(
+                    ParameterizedTypeName.get(
+                        ClassName.get(List::class.java),
+                        ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup")
+                    )
+                )
+                .addStatement("return \$N", "EMOJI_SUBGROUPS")
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("fromString")
+                .addJavadoc(
+                    """
+                Gets the emoji subgroup for the given name.
+
+                @param name The name of the emoji subgroup.
+                @return The emoji subgroup.
+            """.trimIndent()
+                )
+                .addParameter(String::class.java, "name", Modifier.FINAL)
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiSubGroup"))
+                .addCode(
+                    CodeBlock.of(
+                        """
+                        for (final EmojiSubGroup emojiSubGroup : EMOJI_SUBGROUPS) {
+                            if (emojiSubGroup.getName().equals(name)) {
+                                return emojiSubGroup;
+                             }
+                        }
+                        throw new IllegalArgumentException("No EmojiSubGroup found for name: " + name);
+                    """.trimIndent()
+                    )
+                )
+                .build()
+        )
+
+        addMethod(
+            MethodSpec.methodBuilder("getGroup")
+                .addJavadoc(
+                    """
+                Gets the parent group this sub group belongs to.
+
+                @return The parent group.
+            """.trimIndent()
+                )
+                .addModifiers(Modifier.PUBLIC)
+                .returns(ClassName.get("net.fellbaum.jemoji", "EmojiGroup"))
+                .addStatement("return \$N", "emojiGroup")
+                .build()
+        )
+    }.saveGeneratedJavaSourceFile()
 }
 
 fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayNode: JsonNode) {
@@ -977,7 +1253,7 @@ fun createStaticConstantsClassFromPreComputation(path: List<String>, emojiArrayN
                         ).build()
                 )
             }
-    }.build().saveGeneratedJavaSourceFile()
+    }.saveGeneratedJavaSourceFile()
 }
 
 fun createSubGroupEmojiInterface(
@@ -987,11 +1263,16 @@ fun createSubGroupEmojiInterface(
     TypeSpec.interfaceBuilder(emojiSubgroupFileName).apply {
         addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
         addFields(emojiSubGroupInterfaceConstantVariables)
-    }.build().saveGeneratedJavaSourceFile()
+    }.saveGeneratedJavaSourceFile()
 }
 
-fun TypeSpec.saveGeneratedJavaSourceFile() {
-    JavaFile.builder(jemojiPackagePath.joinToString("."), this)
+fun TypeSpec.Builder.saveGeneratedJavaSourceFile() {
+    addAnnotation(
+        AnnotationSpec.builder(ClassName.get("javax.annotation", "Generated"))
+            .addMember("value", "\$S", "build.gradle.kts")
+            .build()
+    )
+    JavaFile.builder(jemojiPackagePath.joinToString("."), this.build())
         .indent("    ")
         .skipJavaLangImports(true)
         .build()

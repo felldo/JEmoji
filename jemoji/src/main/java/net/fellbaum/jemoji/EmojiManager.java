@@ -217,7 +217,7 @@ public final class EmojiManager {
         if (EMOJIS_LENGTH_DESCENDING == null) {
             initUnicode();
         }
-        return new HashSet<>(EMOJIS_LENGTH_DESCENDING);
+        return Collections.unmodifiableSet(new HashSet<>(EMOJIS_LENGTH_DESCENDING));
     }
 
     /**

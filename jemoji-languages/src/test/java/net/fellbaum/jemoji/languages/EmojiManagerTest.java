@@ -1,6 +1,5 @@
 package net.fellbaum.jemoji.languages;
 
-import net.fellbaum.jemoji.EmojiLanguage;
 import net.fellbaum.jemoji.Emojis;
 import org.junit.jupiter.api.Test;
 

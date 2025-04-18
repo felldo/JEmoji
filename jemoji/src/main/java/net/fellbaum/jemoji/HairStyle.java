@@ -3,16 +3,36 @@ package net.fellbaum.jemoji;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * An enumeration representing different types of hairstyles, each associated with a Unicode character.
+ */
 public enum HairStyle {
 
+    /**
+     * Represents red hair as a hairstyle, associated with the Unicode character "🦰".
+     */
     RED_HAIR("🦰"),
+    /**
+     * Represents a curly hairstyle, associated with the Unicode character '🦱'.
+     */
     CURLY_HAIR("🦱"),
+    /**
+     * Represents red hair as a hairstyle, associated with the Unicode character "🦳".
+     */
     WHITE_HAIR("🦳"),
+    /**
+     * Represents the "Bald" hairstyle, associated with the Unicode character 🦲.
+     */
     BALD("🦲");
 
     private static final List<HairStyle> HAIR_STYLE_LIST = Arrays.asList(values());
     private final String unicode;
 
+    /**
+     * Constructor for the HairStyle enum, which associates each hairstyle type with its corresponding Unicode.
+     *
+     * @param unicode The Unicode representation of the hairstyle.
+     */
     HairStyle(final String unicode) {
         this.unicode = unicode;
     }

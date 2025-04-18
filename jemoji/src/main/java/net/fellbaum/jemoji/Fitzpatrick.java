@@ -3,17 +3,42 @@ package net.fellbaum.jemoji;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The Fitzpatrick enum represents skin tone modifiers in the Fitzpatrick scale,
+ * often used in conjunction with emojis to provide a range of skin tone
+ * variations.
+ */
 public enum Fitzpatrick {
 
+    /**
+     * Represents the light skin tone modifier in the Fitzpatrick scale.
+     */
     LIGHT_SKIN("\uD83C\uDFFB"),
+    /**
+     * Represents the medium light skin tone modifier in the Fitzpatrick scale.
+     */
     MEDIUM_LIGHT_SKIN("\uD83C\uDFFC"),
+    /**
+     * Represents the medium skin tone modifier in the Fitzpatrick scale.
+     */
     MEDIUM_SKIN("\uD83C\uDFFD"),
+    /**
+     * Represents the medium dark skin tone modifier in the Fitzpatrick scale.
+     */
     MEDIUM_DARK_SKIN("\uD83C\uDFFE"),
+    /**
+     * Represents the dark skin tone modifier in the Fitzpatrick scale.
+     */
     DARK_SKIN("\uD83C\uDFFF");
 
     private static final List<Fitzpatrick> FITZPATRICK_LIST = Arrays.asList(values());
     private final String unicode;
 
+    /**
+     * Constructs a Fitzpatrick modifier with the specified Unicode value.
+     *
+     * @param unicode The Unicode string representing the Fitzpatrick modifier.
+     */
     Fitzpatrick(final String unicode) {
         this.unicode = unicode;
     }

@@ -13,6 +13,10 @@ import java.util.List;
 import java.util.ServiceLoader;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for managing and loading emojis, including descriptions and keywords.
+ * The class handles reading emoji-related data from resource files.
+ */
 @SuppressWarnings("unused")
 public final class EmojiLoader {
 

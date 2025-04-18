@@ -1,9 +1,6 @@
 package benchmark;
 
-import net.fellbaum.jemoji.Emoji;
-import net.fellbaum.jemoji.EmojiManager;
-import net.fellbaum.jemoji.EmojiManagerTest;
-import net.fellbaum.jemoji.IndexedEmoji;
+import net.fellbaum.jemoji.*;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
@@ -26,6 +23,9 @@ public class EmojiManagerBenchmark {
 
     private static final String CONTAINS_EMOJI_TEXT = new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ContainsBenchmarkTextFileWithEmojis.txt"))))
             .lines().collect(Collectors.joining("\n"));
+
+    private static final String ALIAS_TEXT = EmojiManager.replaceAllEmojis(new BufferedReader(new InputStreamReader(Objects.requireNonNull(EmojiManagerBenchmark.class.getClassLoader().getResourceAsStream("ExampleTextFileWithEmojis.txt"))))
+            .lines().collect(Collectors.joining("\n")), emoji -> emoji.getAllAliases().stream().findFirst().orElse("null"));
 
     public static void main(String[] args) throws Exception {
         org.openjdk.jmh.Main.main(args);
@@ -101,6 +101,16 @@ public class EmojiManagerBenchmark {
     @Benchmark
     public boolean containsEmoji() {
         return EmojiManager.containsAnyEmoji(CONTAINS_EMOJI_TEXT);
+    }
+
+    @Benchmark
+    public String replaceAliasesFunction() {
+        return EmojiManager.replaceAliases(ALIAS_TEXT, (s, emojis) -> "<replaced alias>");
+    }
+
+    @Benchmark
+    public List<IndexedAlias> extractAliasesInOrder() {
+        return EmojiManager.extractAliasesInOrderWithIndex(ALIAS_TEXT);
     }
 
 }

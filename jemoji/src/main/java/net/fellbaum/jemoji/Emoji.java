@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
 /**
- * Represents an emoji.
+ * Represents an emoji along with its properties such as Unicode representation,
+ * HTML codes, aliases, keywords, and grouping details.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class Emoji implements Comparable<Emoji>, Serializable {

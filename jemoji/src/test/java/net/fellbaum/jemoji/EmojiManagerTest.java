@@ -110,6 +110,26 @@ public class EmojiManagerTest {
     }
 
     @Test
+    public void getEmojiForInvalidString() {
+        String invalidEmojiString = "notAnEmoji";
+
+        Optional<Emoji> emoji = EmojiManager.getEmoji(invalidEmojiString);
+        assertFalse(emoji.isPresent());
+    }
+
+    @Test
+    public void getEmojiForNullInput() {
+        Optional<Emoji> emoji = EmojiManager.getEmoji(null);
+        assertFalse(emoji.isPresent());
+    }
+
+    @Test
+    public void getEmojiForEmptyString() {
+        Optional<Emoji> emoji = EmojiManager.getEmoji("");
+        assertFalse(emoji.isPresent());
+    }
+
+    @Test
     public void getEmojiWithVariation() {
         Optional<Emoji> emoji = EmojiManager.getEmoji(EMOJI_VARIATION_STRING);
         assertTrue(emoji.isPresent());
@@ -320,4 +340,142 @@ public class EmojiManagerTest {
         assertEquals(Arrays.asList(":thumbsup:", ":thumbsdown:"), EmojiManager.extractAliasesInOrder(Emojis.THUMBS_UP.getDiscordAliases().get(0) + " test 1 2 3 " + Emojis.THUMBS_DOWN.getDiscordAliases().get(0)));
     }
 
+    @Test
+    public void testIsEmojiWithValidEmoji() {
+        assertTrue(EmojiManager.isEmoji("👍")); // Standard emoji
+        assertTrue(EmojiManager.isEmoji("❤️")); // Heart emoji
+        assertTrue(EmojiManager.isEmoji("👩‍🚀")); // Emoji with ZWJ sequence
+    }
+
+    @Test
+    public void testIsEmojiWithInvalidString() {
+        assertFalse(EmojiManager.isEmoji("notAnEmoji")); // Random string
+        assertFalse(EmojiManager.isEmoji("a")); // Single letter
+        assertFalse(EmojiManager.isEmoji("1")); // Single digit
+        assertFalse(EmojiManager.isEmoji("" + (char) 0x20)); // Single space
+    }
+
+    @Test
+    public void testIsEmojiForEmptyAndNullInput() {
+        assertFalse(EmojiManager.isEmoji(null)); // Null input
+        assertFalse(EmojiManager.isEmoji("")); // Empty string
+    }
+
+    @Test
+    public void testGetAllEmojisNotEmpty() {
+        Set<Emoji> emojis = EmojiManager.getAllEmojis();
+        assertNotNull(emojis, "The set of emojis should not be null.");
+        assertFalse(emojis.isEmpty(), "The set of emojis should not be empty.");
+    }
+
+    @Test
+    public void testGetAllEmojisContainsCertainEmoji() {
+        Set<Emoji> emojis = EmojiManager.getAllEmojis();
+        assertTrue(emojis.stream().anyMatch(e -> e.getEmoji().equals("👍")), "The set of emojis should contain the '👍' emoji.");
+    }
+
+    @Test
+    public void testGetAllEmojisImmutable() {
+        Set<Emoji> emojis = EmojiManager.getAllEmojis();
+        //noinspection DataFlowIssue
+        assertThrows(UnsupportedOperationException.class, () -> emojis.add(null), "The set of emojis should be immutable.");
+    }
+
+    @Test
+    public void testGetAllEmojisSubGrouped() {
+        Map<EmojiSubGroup, Set<Emoji>> subGroupedEmojis = EmojiManager.getAllEmojisSubGrouped();
+
+        assertNotNull(subGroupedEmojis, "The grouping result should not be null.");
+
+        // Ensure all EmojiSubGroups are present in the map
+        for (EmojiSubGroup emojiSubGroup : EmojiSubGroup.values()) {
+            assertTrue(subGroupedEmojis.containsKey(emojiSubGroup), "Missing sub group: " + emojiSubGroup);
+        }
+
+        // Ensure none of the groups are empty
+        for (Map.Entry<EmojiSubGroup, Set<Emoji>> entry : subGroupedEmojis.entrySet()) {
+            EmojiSubGroup group = entry.getKey();
+            Set<Emoji> emojis = entry.getValue();
+
+            assertNotNull(emojis, "The sub group " + group + " should not have a null emoji set.");
+            assertFalse(emojis.isEmpty(), "The sub group " + group + " should not be empty.");
+        }
+
+        // Verify emojis belong to the correct group
+        for (Map.Entry<EmojiSubGroup, Set<Emoji>> entry : subGroupedEmojis.entrySet()) {
+            EmojiSubGroup group = entry.getKey();
+            Set<Emoji> emojis = entry.getValue();
+
+            for (Emoji emoji : emojis) {
+                assertEquals(group, emoji.getSubgroup(), "Emoji " + emoji.getEmoji() + " does not belong to sub group " + group);
+            }
+        }
+    }
+
+    @Test
+    public void testGetAllEmojisGrouped() {
+        Map<EmojiGroup, Set<Emoji>> groupedEmojis = EmojiManager.getAllEmojisGrouped();
+
+        assertNotNull(groupedEmojis, "The grouping result should not be null.");
+
+        // Ensure all EmojiGroups are present in the map
+        for (EmojiGroup group : EmojiGroup.values()) {
+            assertTrue(groupedEmojis.containsKey(group), "Missing group: " + group);
+        }
+
+        // Ensure none of the groups are empty
+        for (Map.Entry<EmojiGroup, Set<Emoji>> entry : groupedEmojis.entrySet()) {
+            EmojiGroup group = entry.getKey();
+            Set<Emoji> emojis = entry.getValue();
+
+            assertNotNull(emojis, "The group " + group + " should not have a null emoji set.");
+            assertFalse(emojis.isEmpty(), "The group " + group + " should not be empty.");
+        }
+
+        // Verify emojis belong to the correct group
+        for (Map.Entry<EmojiGroup, Set<Emoji>> entry : groupedEmojis.entrySet()) {
+            EmojiGroup group = entry.getKey();
+            Set<Emoji> emojis = entry.getValue();
+
+            for (Emoji emoji : emojis) {
+                assertEquals(group, emoji.getGroup(), "Emoji " + emoji.getEmoji() + " does not belong to group " + group);
+            }
+        }
+    }
+
+    @Test
+    public void testGetAllEmojisByGroup() {
+        // Verify all groups are present and contain emojis
+        for (EmojiGroup group : EmojiGroup.values()) {
+            Set<Emoji> emojis = EmojiManager.getAllEmojisByGroup(group);
+            assertNotNull(emojis, "The result for group " + group + " should not be null.");
+            assertFalse(emojis.isEmpty(), "The group " + group + " should not be empty.");
+            for (Emoji emoji : emojis) {
+                assertEquals(group, emoji.getGroup(), "Emoji " + emoji.getEmoji() + " does not belong to group " + group);
+            }
+        }
+
+        // Check for invalid group input (this should return an empty set)
+        Set<Emoji> invalidGroupResult = EmojiManager.getAllEmojisByGroup(null);
+        assertNotNull(invalidGroupResult, "The result for null group should not be null.");
+        assertTrue(invalidGroupResult.isEmpty(), "The result for null group should be an empty set.");
+    }
+
+    @Test
+    public void testGetAllEmojisBySubGroup() {
+        // Verify all subgroups are present and contain emojis
+        for (EmojiSubGroup subGroup : EmojiSubGroup.values()) {
+            Set<Emoji> emojis = EmojiManager.getAllEmojisBySubGroup(subGroup);
+            assertNotNull(emojis, "The result for subgroup " + subGroup + " should not be null.");
+            assertFalse(emojis.isEmpty(), "The subgroup " + subGroup + " should not be empty.");
+            for (Emoji emoji : emojis) {
+                assertEquals(subGroup, emoji.getSubgroup(), "Emoji " + emoji.getEmoji() + " does not belong to subgroup " + subGroup);
+            }
+        }
+
+        // Check for invalid subgroup input (this should return an empty set)
+        Set<Emoji> invalidSubGroupResult = EmojiManager.getAllEmojisBySubGroup(null);
+        assertNotNull(invalidSubGroupResult, "The result for null subgroup should not be null.");
+        assertTrue(invalidSubGroupResult.isEmpty(), "The result for null subgroup should be an empty set.");
+    }
 }

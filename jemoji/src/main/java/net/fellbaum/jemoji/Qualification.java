@@ -27,6 +27,6 @@ public enum Qualification {
                 return q;
             }
         }
-        throw new IllegalArgumentException("Unknown qualification encountered");
+        throw new IllegalArgumentException("Unknown qualification encountered: "+ qualification);
     }
 }
