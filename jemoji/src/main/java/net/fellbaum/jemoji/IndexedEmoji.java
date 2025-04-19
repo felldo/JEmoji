@@ -2,8 +2,6 @@ package net.fellbaum.jemoji;
 
 /**
  * Represents an emoji with character and codepoint indexes.
- *
- * @see EmojiManager#extractEmojisInOrderWithIndex(String)
  */
 public final class IndexedEmoji {
     private final Emoji emoji;

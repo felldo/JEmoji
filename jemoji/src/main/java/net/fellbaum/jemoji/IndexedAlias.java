@@ -4,8 +4,6 @@ import java.util.List;
 
 /**
  * Represents an alias with character and codepoint indexes.
- *
- * @see EmojiManager#extractEmojisInOrderWithIndex(String)
  */
 public final class IndexedAlias {
     private final List<Emoji> emojis;

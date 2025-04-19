@@ -55,6 +55,7 @@ final class InternalEmojiUtils {
 
     @Nullable
     static UniqueEmojiFoundResult findUnicodeEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
+        //noinspection DataFlowIssue
         final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
         if (emojisByCodePoint == null) return null;
         for (final Emoji emoji : emojisByCodePoint) {
@@ -136,6 +137,7 @@ final class InternalEmojiUtils {
             final String htmlEmojiString = htmlEmoji.toString();
             String formattedHtmlCharacterEntity = leadingZeros != 0 ? removeLeadingZerosFromHtmlCharacterEntity(htmlEmojiString, isHex) : htmlEmojiString;
 
+            //noinspection DataFlowIssue
             final Emoji emoji = isHex ? EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity) : EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity);
             if (emoji != null) {
                 return new UniqueEmojiFoundResult(emoji, textIndex + htmlEmojiString.length());
@@ -185,7 +187,7 @@ final class InternalEmojiUtils {
 
         final StringBuilder urlEncodedEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, currentIndex - textIndex).toUpperCase());
         while (urlEncodedEmoji.toString().contains("%")) {
-
+            //noinspection DataFlowIssue
             final Emoji emoji = EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji.toString());
             if (emoji != null) {
                 return new UniqueEmojiFoundResult(emoji, textIndex + urlEncodedEmoji.length());
@@ -313,6 +315,7 @@ final class InternalEmojiUtils {
         InternalCodepointSequence lastKnownCodepointSequence = null;
         for (int aliasCodePointIndex = 0; aliasCodePointIndex < PreComputedConstants.ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
             final InternalCodepointSequence tempCodepointSequence = new InternalCodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
+            //noinspection DataFlowIssue
             if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
                 lastKnownCodepointSequence = tempCodepointSequence;
             }
@@ -333,6 +336,7 @@ final class InternalEmojiUtils {
      * @return Whether the codepoint is a valid starter.
      */
     public static boolean checkIfCodepointIsInvalidEmojiStarter(final int currentCodepoint) {
+        //noinspection DataFlowIssue
         return EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) == null && currentCodepoint != '&' && currentCodepoint != '%';
     }
 }
