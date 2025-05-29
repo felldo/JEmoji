@@ -187,7 +187,6 @@ final class InternalEmojiUtils {
 
         final StringBuilder urlEncodedEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, currentIndex - textIndex).toUpperCase());
         while (urlEncodedEmoji.toString().contains("%")) {
-            //noinspection DataFlowIssue
             final Emoji emoji = EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji.toString());
             if (emoji != null) {
                 return new UniqueEmojiFoundResult(emoji, textIndex + urlEncodedEmoji.length());

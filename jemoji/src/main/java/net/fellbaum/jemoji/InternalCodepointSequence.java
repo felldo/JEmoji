@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 final class InternalCodepointSequence {
     private final int[] codepoints;
-    private final int hash;
 
     public int[] getCodepoints() {
         return codepoints;
@@ -12,7 +11,6 @@ final class InternalCodepointSequence {
 
     public InternalCodepointSequence(int[] codepoints) {
         this.codepoints = codepoints;
-        this.hash = Arrays.hashCode(codepoints);
     }
 
     public InternalCodepointSequence(String text) {
@@ -26,6 +24,6 @@ final class InternalCodepointSequence {
 
     @Override
     public int hashCode() {
-        return hash;
+        return Arrays.hashCode(codepoints);
     }
 }
