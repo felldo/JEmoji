@@ -1,5 +1,5 @@
 [versions]
-jackson = "2.19.0"
+jackson = "2.19.1"
 
 [libraries]
 jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
