@@ -3,6 +3,8 @@
 name: Benchmark
 on:
   push:
+    branches:
+      - master
 permissions:
   contents: write
   pages: write
