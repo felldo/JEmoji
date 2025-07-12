@@ -1,0 +1,56 @@
+name: Update Generated Files
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * 1'
+env:
+  GRADLE_OPTS: -Xmx2g
+  PR_BRANCH: update-generated-files
+
+jobs:
+  generate-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0  # needed to push force updates to branches
+
+#      - name: Grant execute permission for Gradle
+#        run: chmod +x ./gradlew
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run generateAll task
+        run: ./gradlew generateAll
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create or update PR branch
+        run: |
+          BRANCH=update-generated-files
+          git add .
+          git commit -m "Update generated files" || echo "No changes to commit"
+          git push -f origin HEAD:PR_BRANCH
+
+      - name: Create or update pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: master
+          branch: ${{ env.PR_BRANCH }}
+          title: Update generated files
+          body: Updates all generated files.
+          commit-message: Update generated files
