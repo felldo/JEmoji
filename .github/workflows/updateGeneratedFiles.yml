@@ -21,14 +21,17 @@ jobs:
           ref: master
           fetch-depth: 0  # needed to push force updates to branches
 
+
+      - name: Grant execute permission for Gradle
+        run: |
+          ls -l gradlew
+          chmod +x ./gradlew
+
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
-
-      - name: Grant execute permission for Gradle
-        run: chmod +x ./gradlew
 
       - name: Run generateAll task
         run: ./gradlew generateAll
@@ -43,7 +46,7 @@ jobs:
           BRANCH=update-generated-files
           git add .
           git commit -m "Update generated files" || echo "No changes to commit"
-          git push -f origin master:$BRANCH
+          git push -f origin HEAD:$BRANCH
 
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v7
@@ -53,4 +56,3 @@ jobs:
           title: Update generated files
           body: Updates all generated files.
           commit-message: Update generated files
-
