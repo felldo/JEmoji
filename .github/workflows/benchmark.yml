@@ -24,7 +24,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Run benchmark
-        run: ./gradlew jmh
+        run: |
+          ./gradlew jmh
+          git restore .
 
       # Run `github-action-benchmark` action
       - name: Compare benchmark results
