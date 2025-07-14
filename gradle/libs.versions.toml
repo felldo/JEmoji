@@ -6,7 +6,7 @@ jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
 jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
 jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8", version.ref = "jackson" }
 jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "5.0.0" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "5.1.0" }
 jsoup = { group = "org.jsoup", name = "jsoup", version = "1.21.1" }
 htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.13.0" }
 javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.7.0" }
