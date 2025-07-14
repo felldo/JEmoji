@@ -29,7 +29,12 @@ jobs:
           java-version: '21'
 
       - name: Run generateAll task
-        run: ./gradlew generateAll
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 10
+          retry_wait_seconds: 60
+          max_attempts: 2
+          command: ./gradlew generateAll
 
       - name: Configure Git
         run: |
