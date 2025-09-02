@@ -12,7 +12,7 @@ htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.14.0" }
 javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.7.0" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.10.2" }
 kotlinx-coroutines-jdk8 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-jdk8", version = "1.10.2" }
-gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.19.0" }
+gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.20.0" }
 
 # For buildSrc logic
 #gradleplugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version ="1.15.0" }
@@ -21,6 +21,6 @@ gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle
 versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
 versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "1.0.0" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
-jreleaser = { id = "org.jreleaser", version = "1.19.0" }
+jreleaser = { id = "org.jreleaser", version = "1.20.0" }
 #https://github.com/melix/jmh-gradle-plugin
 jmh = { id = "me.champeau.jmh", version = "0.7.3" }
