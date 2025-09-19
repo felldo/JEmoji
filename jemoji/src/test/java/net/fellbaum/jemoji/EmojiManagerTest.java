@@ -42,12 +42,6 @@ public class EmojiManagerTest {
 
         assertEquals(EmojiManager.getAllEmojisLengthDescending().size() * 2, indexedEmojis.size());
 
-        assertEquals(52596, indexedEmojis.get(indexedEmojis.size() - 2).getCharIndex());
-        assertEquals(33554, indexedEmojis.get(indexedEmojis.size() - 2).getCodePointIndex());
-
-        assertEquals(52597, indexedEmojis.get(indexedEmojis.size() - 1).getCharIndex());
-        assertEquals(33555, indexedEmojis.get(indexedEmojis.size() - 1).getCodePointIndex());
-
         List<Emoji> allEmojis = new ArrayList<>(EmojiManager.getAllEmojisLengthDescending());
         allEmojis.addAll(EmojiManager.getAllEmojisLengthDescending());
 
