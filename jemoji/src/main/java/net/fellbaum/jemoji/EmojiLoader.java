@@ -37,7 +37,7 @@ public final class EmojiLoader {
         if (RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE == null) {
             throw new IllegalStateException("Trying to access a property for language \"" + language.getValue() + "\" but the jemoji-language module is missing. To add multi language support, see here https://github.com/felldo/JEmoji?tab=readme-ov-file#-jemoji-language-module");
         }
-        return RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE.readFileAsObject(fileName + language.getValue());
+        return RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE.readFileAsObject(fileName + language.getValue() + ".ser");
     }
 
     static {

@@ -304,7 +304,7 @@ fun generate(generateAll: Boolean = false) {
             }
         }
 
-        "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}".let {
+        "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}.ser".let {
             if (generateAll) {
                 FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(descriptionMap) } }
             }
@@ -314,7 +314,7 @@ fun generate(generateAll: Boolean = false) {
         // Emoji to List<keywords>
         val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
         //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
-        "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}".let {
+        "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}.ser".let {
             if (generateAll) {
                 FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(keywordMap) } }
             }
@@ -339,7 +339,7 @@ fun generate(generateAll: Boolean = false) {
     ////////////////////////
 
 
-    project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/serializedEmojis").asFile.let { file ->
+    project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/serializedEmojis.ser").asFile.let { file ->
         val clazz = Emoji::class.java
         val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
         constructor.isAccessible = true

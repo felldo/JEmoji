@@ -98,7 +98,7 @@ public final class EmojiManager {
 
         static Set<Emoji> getEmojis() {
             if (EMOJIS == null) {
-                final HashMap<String, Emoji> map = (HashMap<String, Emoji>) readFileAsObject("/jemoji/serializedEmojis");
+                final HashMap<String, Emoji> map = (HashMap<String, Emoji>) readFileAsObject("/jemoji/serializedEmojis.ser");
                 EMOJIS = new HashSet<>(map.values());
             }
             return EMOJIS;
