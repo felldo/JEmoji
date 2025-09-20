@@ -1,26 +1,26 @@
 [versions]
 jackson = "2.20.0"
+org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
-jspecify = { group = "org.jspecify", name = "jspecify", version = "1.0.0" }
-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson" }
-jackson-datatype-jdk8 = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jdk8", version.ref = "jackson" }
-jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "5.1.0" }
-jsoup = { group = "org.jsoup", name = "jsoup", version = "1.21.2" }
-htmlunit = { group = "org.htmlunit", name = "htmlunit", version = "4.16.0" }
-javapoet = { group = "com.palantir.javapoet", name = "javapoet", version = "0.7.0" }
-kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.10.2" }
-kotlinx-coroutines-jdk8 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-jdk8", version = "1.10.2" }
-gradleplugin-jreleaser = { group = "org.jreleaser", name = "org.jreleaser.gradle.plugin", version = "1.20.0" }
+gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.20.0"
+htmlunit = "org.htmlunit:htmlunit:4.16.0"
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+javapoet = "com.palantir.javapoet:javapoet:0.7.0"
+jsoup = "org.jsoup:jsoup:1.21.2"
+jspecify = "org.jspecify:jspecify:1.0.0"
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
+kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlinx" }
+okhttp = "com.squareup.okhttp3:okhttp:5.1.0"
 
 # For buildSrc logic
 #gradleplugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version ="1.15.0" }
-
 [plugins]
-versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
-versions-catalog = { id = "nl.littlerobots.version-catalog-update", version = "1.0.0" }
-shadow = { id = "com.gradleup.shadow", version = "9.1.0" }
-jreleaser = { id = "org.jreleaser", version = "1.20.0" }
 #https://github.com/melix/jmh-gradle-plugin
-jmh = { id = "me.champeau.jmh", version = "0.7.3" }
+jmh = "me.champeau.jmh:0.7.3"
+jreleaser = "org.jreleaser:1.20.0"
+shadow = "com.gradleup.shadow:9.1.0"
+versions = "com.github.ben-manes.versions:0.52.0"
+versions-catalog = "nl.littlerobots.version-catalog-update:1.0.0"
