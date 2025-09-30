@@ -21,6 +21,6 @@ okhttp = "com.squareup.okhttp3:okhttp:5.1.0"
 #https://github.com/melix/jmh-gradle-plugin
 jmh = "me.champeau.jmh:0.7.3"
 jreleaser = "org.jreleaser:1.20.0"
-shadow = "com.gradleup.shadow:9.1.0"
+shadow = "com.gradleup.shadow:9.2.2"
 versions = "com.github.ben-manes.versions:0.53.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.0.1"
