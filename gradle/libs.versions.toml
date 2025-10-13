@@ -13,7 +13,7 @@ jsoup = "org.jsoup:jsoup:1.21.2"
 jspecify = "org.jspecify:jspecify:1.0.0"
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
 kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlinx" }
-okhttp = "com.squareup.okhttp3:okhttp:5.1.0"
+okhttp = "com.squareup.okhttp3:okhttp:5.2.1"
 
 # For buildSrc logic
 #gradleplugin-jreleaser = { module = "org.jreleaser:org.jreleaser.gradle.plugin", version ="1.15.0" }
