@@ -4,7 +4,7 @@ org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
 gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.21.0"
-htmlunit = "org.htmlunit:htmlunit:4.17.0"
+htmlunit = "org.htmlunit:htmlunit:4.18.0"
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
