@@ -3,7 +3,7 @@ jackson = "2.20.0"
 org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
-gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.20.0"
+gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.21.0"
 htmlunit = "org.htmlunit:htmlunit:4.17.0"
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
@@ -20,7 +20,7 @@ okhttp = "com.squareup.okhttp3:okhttp:5.2.1"
 [plugins]
 #https://github.com/melix/jmh-gradle-plugin
 jmh = "me.champeau.jmh:0.7.3"
-jreleaser = "org.jreleaser:1.20.0"
+jreleaser = "org.jreleaser:1.21.0"
 shadow = "com.gradleup.shadow:9.2.2"
 versions = "com.github.ben-manes.versions:0.53.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.0.1"
