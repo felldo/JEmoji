@@ -17,6 +17,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
       - name: Build project
-        run: ./gradlew build -x test
+        run: ./gradlew build -x test -s
       - name: Run tests
         run: ./gradlew test

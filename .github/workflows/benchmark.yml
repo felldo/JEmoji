@@ -25,7 +25,7 @@ jobs:
 
       - name: Run benchmark
         run: |
-          ./gradlew jmh
+          ./gradlew jmh -s
           git restore .
 
       # Run `github-action-benchmark` action

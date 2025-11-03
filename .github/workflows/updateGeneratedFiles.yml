@@ -34,7 +34,7 @@ jobs:
           timeout_minutes: 10
           retry_wait_seconds: 60
           max_attempts: 2
-          command: ./gradlew generateAll
+          command: ./gradlew generateAll -s
 
       - name: Configure Git
         run: |
