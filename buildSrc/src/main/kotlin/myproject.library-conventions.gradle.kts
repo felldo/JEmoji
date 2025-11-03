@@ -157,7 +157,7 @@ jreleaser {
     deploy {
         maven {
             mavenCentral {
-                create("sonatype") {
+                register("sonatype") {
                     active = org.jreleaser.model.Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
                     applyMavenCentralRules = true
