@@ -9,6 +9,8 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.treeToValue
+import com.jcabi.github.Coordinates
+import com.jcabi.github.RtGithub
 import com.palantir.javapoet.*
 import net.fellbaum.jemoji.*
 import okhttp3.HttpUrl
@@ -60,6 +62,7 @@ buildscript {
         classpath(libs.kotlinx.coroutines.jdk8)
         classpath("com.esotericsoftware.kryo:kryo5:5.6.2")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
+        classpath("com.jcabi:jcabi-github:1.8.0")
     }
 }
 
@@ -120,11 +123,51 @@ tasks.register("generateAll") {
         generate(true)
     }
 }
-fun generate(generateAll: Boolean = false) {
-    val unicodeTestDataUrl = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
-    val unicodeVariationSequences =
-        "https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt"
+fun getGitHubLatestEmojiTestData(): String {
+    val github = RtGithub()
+    val unicodeOrg = "unicode-org"
+    val unicodeToolsRepo = "unicodetools"
+    val pathPrefix = "unicodetools/data/emoji/"
+    val latestVersion = github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
+        .contents()
+        .iterate(pathPrefix, "main")
+        .map { it.path() }
+        .map { it.replace(pathPrefix, "") }
+        .filter { it.matches(Regex("[0-9]+\\.[0-9+]")) }
+        .map { it.toDoubleOrNull() }
+        .sortedBy { it }
+        .toSet().last()
 
+    return github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
+        .contents().get("$pathPrefix$latestVersion/emoji-test.txt").raw().readBytes().decodeToString()
+}
+
+fun getGitHubLatestEmojiVariationSequencesData(): String {
+    val github = RtGithub()
+    val unicodeOrg = "unicode-org"
+    val unicodeToolsRepo = "unicodetools"
+    val pathPrefix = "unicodetools/data/ucd/"
+    val latestVersion = github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
+        .contents()
+        .iterate(pathPrefix, "main")
+        .map { it.path() }
+        .map { it.replace(pathPrefix, "") }
+        .filter { it.matches(Regex("^[0-9]+(\\.[0-9+])+$")) }
+        .sortedWith(
+            compareBy(
+                { it.split(".")[0].toInt() },
+                { it.split(".")[1].toInt() },
+                { it.split(".")[2].toInt() }
+            )
+        )
+        .toSet().last()
+
+    return github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
+        .contents().get("$pathPrefix$latestVersion/emoji/emoji-variation-sequences.txt").raw().readBytes()
+        .decodeToString()
+}
+
+fun generate(generateAll: Boolean = false) {
     val client = OkHttpClient()
     val mapper = jacksonObjectMapper()
 
@@ -135,8 +178,7 @@ fun generate(generateAll: Boolean = false) {
     val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
     githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
 
-    val unicodeVariationLines =
-        client.newCall(Request.Builder().url(unicodeVariationSequences).build()).execute().body.string()
+    val unicodeVariationLines = getGitHubLatestEmojiVariationSequencesData()
 
     val emojisThatHaveVariations = unicodeVariationLines.lines()
         .asSequence()
@@ -148,7 +190,8 @@ fun generate(generateAll: Boolean = false) {
         .map { String(Character.toChars(it.toInt(16))) }
         .toSet()
 
-    val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body.string()
+//    val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body.string()
+    val unicodeLines = getGitHubLatestEmojiTestData()
 
     // drop the first block as it's just the header
     val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
