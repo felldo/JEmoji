@@ -123,48 +123,48 @@ tasks.register("generateAll") {
         generate(true)
     }
 }
-fun getGitHubLatestEmojiTestData(): String {
-    val github = RtGithub()
-    val unicodeOrg = "unicode-org"
-    val unicodeToolsRepo = "unicodetools"
-    val pathPrefix = "unicodetools/data/emoji/"
-    val latestVersion = github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
-        .contents()
-        .iterate(pathPrefix, "main")
-        .map { it.path() }
-        .map { it.replace(pathPrefix, "") }
-        .filter { it.matches(Regex("[0-9]+\\.[0-9+]")) }
-        .map { it.toDoubleOrNull() }
-        .sortedBy { it }
-        .toSet().last()
 
-    return github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
-        .contents().get("$pathPrefix$latestVersion/emoji-test.txt").raw().readBytes().decodeToString()
-}
-
-fun getGitHubLatestEmojiVariationSequencesData(): String {
+object GitHubUnicodeData {
     val github = RtGithub()
-    val unicodeOrg = "unicode-org"
-    val unicodeToolsRepo = "unicodetools"
-    val pathPrefix = "unicodetools/data/ucd/"
-    val latestVersion = github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
-        .contents()
-        .iterate(pathPrefix, "main")
-        .map { it.path() }
-        .map { it.replace(pathPrefix, "") }
-        .filter { it.matches(Regex("^[0-9]+(\\.[0-9+])+$")) }
-        .sortedWith(
-            compareBy(
-                { it.split(".")[0].toInt() },
-                { it.split(".")[1].toInt() },
-                { it.split(".")[2].toInt() }
+    val coordinates = Coordinates.Simple("unicode-org", "unicodetools")
+
+    fun getGitHubLatestEmojiTestData(): String {
+        val pathPrefix = "unicodetools/data/emoji/"
+        val latestVersion = github.repos().get(coordinates)
+            .contents()
+            .iterate(pathPrefix, "main")
+            .map { it.path() }
+            .map { it.replace(pathPrefix, "") }
+            .filter { it.matches(Regex("[0-9]+\\.[0-9+]")) }
+            .map { it.toDoubleOrNull() }
+            .sortedBy { it }
+            .toSet().last()
+
+        return github.repos().get(coordinates)
+            .contents().get("$pathPrefix$latestVersion/emoji-test.txt").raw().readBytes().decodeToString()
+    }
+
+    fun getGitHubLatestEmojiVariationSequencesData(): String {
+        val pathPrefix = "unicodetools/data/ucd/"
+        val latestVersion = github.repos().get(coordinates)
+            .contents()
+            .iterate(pathPrefix, "main")
+            .map { it.path() }
+            .map { it.replace(pathPrefix, "") }
+            .filter { it.matches(Regex("^[0-9]+(\\.[0-9+])+$")) }
+            .sortedWith(
+                compareBy(
+                    { it.split(".")[0].toInt() },
+                    { it.split(".")[1].toInt() },
+                    { it.split(".")[2].toInt() }
+                )
             )
-        )
-        .toSet().last()
+            .toSet().last()
 
-    return github.repos().get(Coordinates.Simple(unicodeOrg, unicodeToolsRepo))
-        .contents().get("$pathPrefix$latestVersion/emoji/emoji-variation-sequences.txt").raw().readBytes()
-        .decodeToString()
+        return github.repos().get(coordinates)
+            .contents().get("$pathPrefix$latestVersion/emoji/emoji-variation-sequences.txt").raw().readBytes()
+            .decodeToString()
+    }
 }
 
 fun generate(generateAll: Boolean = false) {
@@ -178,7 +178,7 @@ fun generate(generateAll: Boolean = false) {
     val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
     githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
 
-    val unicodeVariationLines = getGitHubLatestEmojiVariationSequencesData()
+    val unicodeVariationLines = GitHubUnicodeData.getGitHubLatestEmojiVariationSequencesData()
 
     val emojisThatHaveVariations = unicodeVariationLines.lines()
         .asSequence()
@@ -190,8 +190,7 @@ fun generate(generateAll: Boolean = false) {
         .map { String(Character.toChars(it.toInt(16))) }
         .toSet()
 
-//    val unicodeLines = client.newCall(Request.Builder().url(unicodeTestDataUrl).build()).execute().body.string()
-    val unicodeLines = getGitHubLatestEmojiTestData()
+    val unicodeLines = GitHubUnicodeData.getGitHubLatestEmojiTestData()
 
     // drop the first block as it's just the header
     val allUnicodeEmojis = unicodeLines.split("# group: ").drop(1).flatMap { group ->
@@ -232,8 +231,6 @@ fun generate(generateAll: Boolean = false) {
                 .map { stringList ->
                     // 1F44D     ; fully-qualified     # 👍 E0.6 thumbs up
                     //[   [0]    ][                [1]                   ]
-
-//val cpOrigString = stringList[0].trim().replace(" ", "-")
 
                     val codepointsString = stringList[0].trim()
                         .split(" ")
@@ -521,7 +518,7 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
             ).replace(".png?v8", "", true)
         }
         .groupBy { it.second }
-//{1F44D=[(+1, 1F44D), (thumbsup, 1F44D)]
+    //{1F44D=[(+1, 1F44D), (thumbsup, 1F44D)]
 
 
     val fetchedGhList =
