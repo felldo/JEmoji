@@ -13,7 +13,7 @@ jsoup = "org.jsoup:jsoup:1.21.2"
 jspecify = "org.jspecify:jspecify:1.0.0"
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
 kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlinx" }
-okhttp = "com.squareup.okhttp3:okhttp:5.3.0"
+okhttp = "com.squareup.okhttp3:okhttp:5.3.1"
 
 [plugins]
 #https://github.com/melix/jmh-gradle-plugin
