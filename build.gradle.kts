@@ -62,7 +62,7 @@ buildscript {
         classpath(libs.kotlinx.coroutines.jdk8)
         classpath("com.esotericsoftware.kryo:kryo5:5.6.2")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
-        classpath("com.jcabi:jcabi-github:1.9.1")
+        classpath("com.jcabi:jcabi-github:1.10.0")
     }
 }
 
