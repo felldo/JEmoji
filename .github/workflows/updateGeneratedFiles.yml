@@ -48,7 +48,7 @@ jobs:
           git push -f origin HEAD:$PR_BRANCH
 
       - name: Create or update pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: ${{ env.PR_BRANCH }}
           title: Update generated files
