@@ -1635,7 +1635,7 @@
   "group" : "Smileys & Emotion",
   "subgroup" : "face-concerned",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "anxiety", "bloated", "panic", "shocked", "surprised", "vulnerable" ]
 }, {
   "emoji" : "🥺",
   "unicode" : "\\uD83E\\uDD7A",
@@ -3057,7 +3057,7 @@
   "group" : "Smileys & Emotion",
   "subgroup" : "emotion",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "argument", "brawl", "debate", "disagreement", "fight", "ruckus", "wrestle" ]
 }, {
   "emoji" : "💥",
   "unicode" : "\\uD83D\\uDCA5",
@@ -34035,7 +34035,7 @@
   "group" : "People & Body",
   "subgroup" : "person-fantasy",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bigfoot", "cryptid", "forest", "giant", "hairy", "sasquatch", "woodwose", "yeti" ]
 }, {
   "emoji" : "💆",
   "unicode" : "\\uD83D\\uDC86",
@@ -43449,7 +43449,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer" ]
 }, {
   "emoji" : "🧑🏻‍🩰",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDE70",
@@ -43467,7 +43467,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer", "light skin tone" ]
 }, {
   "emoji" : "🧑🏼‍🩰",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDE70",
@@ -43485,7 +43485,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer", "medium-light skin tone" ]
 }, {
   "emoji" : "🧑🏽‍🩰",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDE70",
@@ -43503,7 +43503,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer", "medium skin tone" ]
 }, {
   "emoji" : "🧑🏾‍🩰",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDE70",
@@ -43521,7 +43521,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer", "medium-dark skin tone" ]
 }, {
   "emoji" : "🧑🏿‍🩰",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDE70",
@@ -43539,7 +43539,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "ballet", "dancer", "dark skin tone" ]
 }, {
   "emoji" : "💃",
   "unicode" : "\\uD83D\\uDC83",
@@ -43917,7 +43917,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏼",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFC",
@@ -43935,7 +43935,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏽",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFD",
@@ -43953,7 +43953,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏾",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFE",
@@ -43971,7 +43971,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏿",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFF",
@@ -43989,7 +43989,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯‍♂️",
   "unicode" : "\\uD83D\\uDC6F\\u200D\\u2642\\uFE0F",
@@ -44043,7 +44043,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏻‍♂",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFB\\u200D\\u2642",
@@ -44061,7 +44061,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏼‍♂️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F",
@@ -44079,7 +44079,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏼‍♂",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFC\\u200D\\u2642",
@@ -44097,7 +44097,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏽‍♂️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F",
@@ -44115,7 +44115,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏽‍♂",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFD\\u200D\\u2642",
@@ -44133,7 +44133,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏾‍♂️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F",
@@ -44151,7 +44151,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏾‍♂",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFE\\u200D\\u2642",
@@ -44169,7 +44169,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏿‍♂️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F",
@@ -44187,7 +44187,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯🏿‍♂",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFF\\u200D\\u2642",
@@ -44205,7 +44205,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👯‍♀️",
   "unicode" : "\\uD83D\\uDC6F\\u200D\\u2640\\uFE0F",
@@ -44259,7 +44259,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏻‍♀",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFB\\u200D\\u2640",
@@ -44277,7 +44277,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏼‍♀️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F",
@@ -44295,7 +44295,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏼‍♀",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFC\\u200D\\u2640",
@@ -44313,7 +44313,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏽‍♀️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F",
@@ -44331,7 +44331,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏽‍♀",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFD\\u200D\\u2640",
@@ -44349,7 +44349,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏾‍♀️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F",
@@ -44367,7 +44367,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏾‍♀",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFE\\u200D\\u2640",
@@ -44385,7 +44385,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏿‍♀️",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F",
@@ -44403,7 +44403,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👯🏿‍♀",
   "unicode" : "\\uD83D\\uDC6F\\uD83C\\uDFFF\\u200D\\u2640",
@@ -44421,7 +44421,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "🧑🏻‍🐰‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -44439,7 +44439,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏻‍🐰‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -44457,7 +44457,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏻‍🐰‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -44475,7 +44475,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏻‍🐰‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -44493,7 +44493,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏼‍🐰‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -44511,7 +44511,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏼‍🐰‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -44529,7 +44529,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏼‍🐰‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -44547,7 +44547,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏼‍🐰‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -44565,7 +44565,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏽‍🐰‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -44583,7 +44583,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏽‍🐰‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -44601,7 +44601,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏽‍🐰‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -44619,7 +44619,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏽‍🐰‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -44637,7 +44637,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏾‍🐰‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -44655,7 +44655,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏾‍🐰‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -44673,7 +44673,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏾‍🐰‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -44691,7 +44691,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏾‍🐰‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -44709,7 +44709,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏿‍🐰‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -44727,7 +44727,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏿‍🐰‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -44745,7 +44745,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏿‍🐰‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -44763,7 +44763,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "🧑🏿‍🐰‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -44781,7 +44781,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏻‍🐰‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -44799,7 +44799,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏻‍🐰‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -44817,7 +44817,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏻‍🐰‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -44835,7 +44835,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏻‍🐰‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -44853,7 +44853,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏼‍🐰‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -44871,7 +44871,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏼‍🐰‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -44889,7 +44889,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏼‍🐰‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -44907,7 +44907,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏼‍🐰‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -44925,7 +44925,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏽‍🐰‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -44943,7 +44943,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏽‍🐰‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -44961,7 +44961,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏽‍🐰‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -44979,7 +44979,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏽‍🐰‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -44997,7 +44997,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏾‍🐰‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -45015,7 +45015,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏾‍🐰‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -45033,7 +45033,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏾‍🐰‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -45051,7 +45051,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏾‍🐰‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -45069,7 +45069,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏿‍🐰‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -45087,7 +45087,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏿‍🐰‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -45105,7 +45105,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏿‍🐰‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -45123,7 +45123,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👨🏿‍🐰‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -45141,7 +45141,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "men", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies" ]
 }, {
   "emoji" : "👩🏻‍🐰‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -45159,7 +45159,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏻‍🐰‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -45177,7 +45177,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏻‍🐰‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -45195,7 +45195,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏻‍🐰‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -45213,7 +45213,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏼‍🐰‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -45231,7 +45231,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏼‍🐰‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -45249,7 +45249,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏼‍🐰‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -45267,7 +45267,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏼‍🐰‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -45285,7 +45285,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏽‍🐰‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -45303,7 +45303,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏽‍🐰‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -45321,7 +45321,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏽‍🐰‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -45339,7 +45339,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏽‍🐰‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -45357,7 +45357,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏾‍🐰‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -45375,7 +45375,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "light skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏾‍🐰‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -45393,7 +45393,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium-dark skin tone", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏾‍🐰‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -45411,7 +45411,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "double", "ear", "identical", "medium skin tone", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏾‍🐰‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -45429,7 +45429,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏿‍🐰‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -45447,7 +45447,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏿‍🐰‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -45465,7 +45465,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-light skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏿‍🐰‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -45483,7 +45483,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "👩🏿‍🐰‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83D\\uDC30\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -45501,7 +45501,7 @@
   "group" : "People & Body",
   "subgroup" : "person-activity",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "bestie", "bff", "bunny", "counterpart", "dancer", "dark skin tone", "double", "ear", "identical", "medium-dark skin tone", "pair", "party", "partying", "people", "soulmate", "twin", "twinsies", "women" ]
 }, {
   "emoji" : "🧖",
   "unicode" : "\\uD83E\\uDDD6",
@@ -52017,7 +52017,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏼",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFC",
@@ -52035,7 +52035,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏽",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFD",
@@ -52053,7 +52053,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏾",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFE",
@@ -52071,7 +52071,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏿",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFF",
@@ -52089,7 +52089,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼‍♂️",
   "unicode" : "\\uD83E\\uDD3C\\u200D\\u2642\\uFE0F",
@@ -52143,7 +52143,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏻‍♂",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFB\\u200D\\u2642",
@@ -52161,7 +52161,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏼‍♂️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFC\\u200D\\u2642\\uFE0F",
@@ -52179,7 +52179,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏼‍♂",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFC\\u200D\\u2642",
@@ -52197,7 +52197,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏽‍♂️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFD\\u200D\\u2642\\uFE0F",
@@ -52215,7 +52215,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏽‍♂",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFD\\u200D\\u2642",
@@ -52233,7 +52233,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏾‍♂️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFE\\u200D\\u2642\\uFE0F",
@@ -52251,7 +52251,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏾‍♂",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFE\\u200D\\u2642",
@@ -52269,7 +52269,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏿‍♂️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFF\\u200D\\u2642\\uFE0F",
@@ -52287,7 +52287,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏿‍♂",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFF\\u200D\\u2642",
@@ -52305,7 +52305,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼‍♀️",
   "unicode" : "\\uD83E\\uDD3C\\u200D\\u2640\\uFE0F",
@@ -52359,7 +52359,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏻‍♀",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFB\\u200D\\u2640",
@@ -52377,7 +52377,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏼‍♀️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFC\\u200D\\u2640\\uFE0F",
@@ -52395,7 +52395,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏼‍♀",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFC\\u200D\\u2640",
@@ -52413,7 +52413,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏽‍♀️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFD\\u200D\\u2640\\uFE0F",
@@ -52431,7 +52431,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏽‍♀",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFD\\u200D\\u2640",
@@ -52449,7 +52449,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏾‍♀️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFE\\u200D\\u2640\\uFE0F",
@@ -52467,7 +52467,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏾‍♀",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFE\\u200D\\u2640",
@@ -52485,7 +52485,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏿‍♀️",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFF\\u200D\\u2640\\uFE0F",
@@ -52503,7 +52503,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤼🏿‍♀",
   "unicode" : "\\uD83E\\uDD3C\\uD83C\\uDFFF\\u200D\\u2640",
@@ -52521,7 +52521,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏻‍🫯‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -52539,7 +52539,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏻‍🫯‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -52557,7 +52557,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏻‍🫯‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -52575,7 +52575,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏻‍🫯‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -52593,7 +52593,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏼‍🫯‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -52611,7 +52611,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏼‍🫯‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -52629,7 +52629,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏼‍🫯‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -52647,7 +52647,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏼‍🫯‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -52665,7 +52665,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏽‍🫯‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -52683,7 +52683,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏽‍🫯‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -52701,7 +52701,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏽‍🫯‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -52719,7 +52719,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏽‍🫯‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -52737,7 +52737,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏾‍🫯‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -52755,7 +52755,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏾‍🫯‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -52773,7 +52773,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏾‍🫯‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -52791,7 +52791,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏾‍🫯‍🧑🏿",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFF",
@@ -52809,7 +52809,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏿‍🫯‍🧑🏻",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFB",
@@ -52827,7 +52827,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏿‍🫯‍🧑🏼",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFC",
@@ -52845,7 +52845,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏿‍🫯‍🧑🏽",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFD",
@@ -52863,7 +52863,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🧑🏿‍🫯‍🧑🏾",
   "unicode" : "\\uD83E\\uDDD1\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83E\\uDDD1\\uD83C\\uDFFE",
@@ -52881,7 +52881,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "people", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏻‍🫯‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -52899,7 +52899,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏻‍🫯‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -52917,7 +52917,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏻‍🫯‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -52935,7 +52935,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏻‍🫯‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -52953,7 +52953,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏼‍🫯‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -52971,7 +52971,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏼‍🫯‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -52989,7 +52989,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏼‍🫯‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -53007,7 +53007,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏼‍🫯‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -53025,7 +53025,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏽‍🫯‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -53043,7 +53043,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏽‍🫯‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -53061,7 +53061,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏽‍🫯‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -53079,7 +53079,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏽‍🫯‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -53097,7 +53097,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏾‍🫯‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -53115,7 +53115,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏾‍🫯‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -53133,7 +53133,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏾‍🫯‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -53151,7 +53151,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏾‍🫯‍👨🏿",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFF",
@@ -53169,7 +53169,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏿‍🫯‍👨🏻",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFB",
@@ -53187,7 +53187,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏿‍🫯‍👨🏼",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFC",
@@ -53205,7 +53205,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏿‍🫯‍👨🏽",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFD",
@@ -53223,7 +53223,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👨🏿‍🫯‍👨🏾",
   "unicode" : "\\uD83D\\uDC68\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC68\\uD83C\\uDFFE",
@@ -53241,7 +53241,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "men", "ring", "tournament", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏻‍🫯‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -53259,7 +53259,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏻‍🫯‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -53277,7 +53277,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏻‍🫯‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -53295,7 +53295,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏻‍🫯‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFB\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -53313,7 +53313,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏼‍🫯‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -53331,7 +53331,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏼‍🫯‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -53349,7 +53349,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏼‍🫯‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -53367,7 +53367,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏼‍🫯‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFC\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -53385,7 +53385,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏽‍🫯‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -53403,7 +53403,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏽‍🫯‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -53421,7 +53421,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏽‍🫯‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -53439,7 +53439,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏽‍🫯‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFD\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -53457,7 +53457,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏾‍🫯‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -53475,7 +53475,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "light skin tone", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏾‍🫯‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -53493,7 +53493,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium-dark skin tone", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏾‍🫯‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -53511,7 +53511,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "duel", "grapple", "medium skin tone", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏾‍🫯‍👩🏿",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFE\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFF",
@@ -53529,7 +53529,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏿‍🫯‍👩🏻",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFB",
@@ -53547,7 +53547,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏿‍🫯‍👩🏼",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFC",
@@ -53565,7 +53565,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-light skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏿‍🫯‍👩🏽",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFD",
@@ -53583,7 +53583,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "👩🏿‍🫯‍👩🏾",
   "unicode" : "\\uD83D\\uDC69\\uD83C\\uDFFF\\u200D\\uD83E\\uDEEF\\u200D\\uD83D\\uDC69\\uD83C\\uDFFE",
@@ -53601,7 +53601,7 @@
   "group" : "People & Body",
   "subgroup" : "person-sport",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "combat", "dark skin tone", "duel", "grapple", "medium-dark skin tone", "ring", "tournament", "women", "wrestle", "wrestling" ]
 }, {
   "emoji" : "🤽",
   "unicode" : "\\uD83E\\uDD3D",
@@ -67821,7 +67821,7 @@
   "group" : "Animals & Nature",
   "subgroup" : "animal-marine",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "marine", "ocean", "whale" ]
 }, {
   "emoji" : "🦭",
   "unicode" : "\\uD83E\\uDDAD",
@@ -71583,7 +71583,7 @@
   "group" : "Travel & Places",
   "subgroup" : "place-geographic",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "avalanche", "danger", "disaster", "earthquake", "mountain", "mudslide", "rocks" ]
 }, {
   "emoji" : "🌋",
   "unicode" : "\\uD83C\\uDF0B",
@@ -79233,7 +79233,7 @@
   "group" : "Objects",
   "subgroup" : "musical-instrument",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "brass", "instrument", "jazz", "music", "sad", "slide" ]
 }, {
   "emoji" : "🪗",
   "unicode" : "\\uD83E\\uDE97",
@@ -80619,7 +80619,7 @@
   "group" : "Objects",
   "subgroup" : "money",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "gem", "gold", "jewels", "loot", "money", "prize", "silver", "valuables", "wealth" ]
 }, {
   "emoji" : "💴",
   "unicode" : "\\uD83D\\uDCB4",
@@ -87153,7 +87153,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "0", "keycap", "zero" ]
 }, {
   "emoji" : "0⃣",
   "unicode" : "\\u0030\\u20E3",
@@ -87171,7 +87171,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "0", "keycap", "zero" ]
 }, {
   "emoji" : "1️⃣",
   "unicode" : "\\u0031\\uFE0F\\u20E3",
@@ -87189,7 +87189,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "1", "keycap", "one" ]
 }, {
   "emoji" : "1⃣",
   "unicode" : "\\u0031\\u20E3",
@@ -87207,7 +87207,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "1", "keycap", "one" ]
 }, {
   "emoji" : "2️⃣",
   "unicode" : "\\u0032\\uFE0F\\u20E3",
@@ -87225,7 +87225,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "2", "keycap", "two" ]
 }, {
   "emoji" : "2⃣",
   "unicode" : "\\u0032\\u20E3",
@@ -87243,7 +87243,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "2", "keycap", "two" ]
 }, {
   "emoji" : "3️⃣",
   "unicode" : "\\u0033\\uFE0F\\u20E3",
@@ -87261,7 +87261,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "3", "keycap", "three" ]
 }, {
   "emoji" : "3⃣",
   "unicode" : "\\u0033\\u20E3",
@@ -87279,7 +87279,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "3", "keycap", "three" ]
 }, {
   "emoji" : "4️⃣",
   "unicode" : "\\u0034\\uFE0F\\u20E3",
@@ -87297,7 +87297,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "4", "four", "keycap" ]
 }, {
   "emoji" : "4⃣",
   "unicode" : "\\u0034\\u20E3",
@@ -87315,7 +87315,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "4", "four", "keycap" ]
 }, {
   "emoji" : "5️⃣",
   "unicode" : "\\u0035\\uFE0F\\u20E3",
@@ -87333,7 +87333,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "5", "five", "keycap" ]
 }, {
   "emoji" : "5⃣",
   "unicode" : "\\u0035\\u20E3",
@@ -87351,7 +87351,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "5", "five", "keycap" ]
 }, {
   "emoji" : "6️⃣",
   "unicode" : "\\u0036\\uFE0F\\u20E3",
@@ -87369,7 +87369,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "6", "keycap", "six" ]
 }, {
   "emoji" : "6⃣",
   "unicode" : "\\u0036\\u20E3",
@@ -87387,7 +87387,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "6", "keycap", "six" ]
 }, {
   "emoji" : "7️⃣",
   "unicode" : "\\u0037\\uFE0F\\u20E3",
@@ -87405,7 +87405,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "7", "keycap", "seven" ]
 }, {
   "emoji" : "7⃣",
   "unicode" : "\\u0037\\u20E3",
@@ -87423,7 +87423,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "7", "keycap", "seven" ]
 }, {
   "emoji" : "8️⃣",
   "unicode" : "\\u0038\\uFE0F\\u20E3",
@@ -87441,7 +87441,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "8", "eight", "keycap" ]
 }, {
   "emoji" : "8⃣",
   "unicode" : "\\u0038\\u20E3",
@@ -87459,7 +87459,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "8", "eight", "keycap" ]
 }, {
   "emoji" : "9️⃣",
   "unicode" : "\\u0039\\uFE0F\\u20E3",
@@ -87477,7 +87477,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "9", "keycap", "nine" ]
 }, {
   "emoji" : "9⃣",
   "unicode" : "\\u0039\\u20E3",
@@ -87495,7 +87495,7 @@
   "group" : "Symbols",
   "subgroup" : "keycap",
   "hasVariationSelectors" : false,
-  "keywords" : [ "keycap" ]
+  "keywords" : [ "9", "keycap", "nine" ]
 }, {
   "emoji" : "🔟",
   "unicode" : "\\uD83D\\uDD1F",
