@@ -10,7 +10,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.jcabi.github.Coordinates
-import com.jcabi.github.RtGithub
+import com.jcabi.github.RtGitHub
 import com.palantir.javapoet.*
 import net.fellbaum.jemoji.*
 import okhttp3.HttpUrl
@@ -62,7 +62,7 @@ buildscript {
         classpath(libs.kotlinx.coroutines.jdk8)
         classpath("com.esotericsoftware.kryo:kryo5:5.6.2")
         classpath(files(project.rootDir.path + "\\libs\\jemoji.jar"))
-        classpath("com.jcabi:jcabi-github:1.9.1")
+        classpath("com.jcabi:jcabi-github:1.10.0")
     }
 }
 
@@ -125,7 +125,7 @@ tasks.register("generateAll") {
 }
 
 object GitHubUnicodeData {
-    val github = RtGithub()
+    val github = RtGitHub()
     val coordinates = Coordinates.Simple("unicode-org", "unicodetools")
 
     fun getGitHubLatestEmojiTestData(): String {
@@ -577,7 +577,7 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
         .body()
     val start = ".exports=JSON.parse('{\"100\""
     jsContent = jsContent.substring(jsContent.indexOf(start) + 21)
-    jsContent = jsContent.substring(0, jsContent.indexOf("\"}}')},") + 3)
+    jsContent = jsContent.take(jsContent.indexOf("\"}}')},") + 3)
     val node = jacksonObjectMapper().readTree(jsContent)
 
     return buildMap<String, MutableList<String>> {
@@ -640,12 +640,12 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
     val mainEmojiJsContentStart = "exports=JSON.parse('{\"emojis\":[{\""
     var mainEmojiJsContent = response.body()
-//File("discord.js").writeText(mainEmojiJsContent)
+    //File("discord.js").writeText(mainEmojiJsContent)
 
     mainEmojiJsContent =
         mainEmojiJsContent.substring(mainEmojiJsContent.indexOf(mainEmojiJsContentStart) + mainEmojiJsContentStart.length - 13)
     //mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}]}')},") + 3)
-    mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}')},") + 1)
+    mainEmojiJsContent = mainEmojiJsContent.take(mainEmojiJsContent.indexOf("}')},") + 1)
     //File("discordmain.json").writeText(mainEmojiJsContent)
 
 
@@ -654,14 +654,13 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.substring(
         abbreviationsEmojiJsContent.indexOf(abbreviationsEmojiJsContentStart) + abbreviationsEmojiJsContentStart.length - 2
     )
-    abbreviationsEmojiJsContent =
-        abbreviationsEmojiJsContent.substring(0, abbreviationsEmojiJsContent.indexOf("}')},") + 1)
+    abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.take(abbreviationsEmojiJsContent.indexOf("}')},") + 1)
 
     val abbreviationsEmojiNode =
         jacksonObjectMapper().readTree(abbreviationsEmojiJsContent.replace("\\\\", "\\").replace("\\'", "'"))
 
-//{">:(":"angry",">:-(":"angry",">=(":"angry",">=-(":"angry",":\\")":"blush",":-\\")":"blush"...}
-// Create a map {"angry": [">:(",">:-("...]...}
+    //{">:(":"angry",">:-(":"angry",">=(":"angry",">=-(":"angry",":\\")":"blush",":-\\")":"blush"...}
+    // Create a map {"angry": [">:(",">:-("...]...}
     val nameToShortcutMap = buildMap<String, MutableList<String>> {
         abbreviationsEmojiNode.properties().forEach {
             if (containsKey(it.value.asText())) {
@@ -673,15 +672,14 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     }
 
 
-    val emojiJsonNodeeeee =
-        jacksonObjectMapper().readValue<EmojiJson>(
-            mainEmojiJsContent.replace(
-                Regex("\\\\x([0-9A-Fa-f]{2})"),
-                "\\\\u00$1"
-            )
+    val emojiJsonNode = jacksonObjectMapper().readValue<EmojiJson>(
+        mainEmojiJsContent.replace(
+            Regex("\\\\x([0-9A-Fa-f]{2})"),
+            "\\\\u00$1"
         )
+    )
 
-    val emojiIndexToNames = emojiJsonNodeeeee.nameToEmoji.entries.groupBy { it.value }
+    val emojiIndexToNames = emojiJsonNode.nameToEmoji.entries.groupBy { it.value }
 
     //File("./emoji_source_files/discord_emoji_shortcuts.original.min.json").writeText(emojiArrayNode.toString())
     fun diversityToFitzPatrickAlias(diversity: String) = when (diversity) {
@@ -694,8 +692,8 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     }
 
     return buildMap<String, MutableList<String>> {
-//Add the normal emoji aliases
-        emojiJsonNodeeeee.emojis.forEachIndexed { index, emoji ->
+        //Add the normal emoji aliases
+        emojiJsonNode.emojis.forEachIndexed { index, emoji ->
             put(emoji.surrogates, emoji.names.map(::getStringWithColon).toMutableList())
             emojiIndexToNames[index]?.let {
                 val names = it.map { it.key }.map(::getStringWithColon)
@@ -703,7 +701,7 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
             }
 
             if (emoji.diversity?.size == 1) {
-                emojiJsonNodeeeee.emojis.find { parentEmoji -> parentEmoji.diversityChildren?.contains(index) == true }
+                emojiJsonNode.emojis.find { parentEmoji -> parentEmoji.diversityChildren?.contains(index) == true }
                     ?.let { parentEmoji ->
                         get(emoji.surrogates)!!.addAll(parentEmoji.names.map { name ->
                             getStringWithColon(name) + diversityToFitzPatrickAlias(
@@ -715,9 +713,9 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
         }
 
-//Add the abbreviations like :) >:(
+        //Add the abbreviations like :) >:(
         nameToShortcutMap.forEach { entry ->
-            emojiJsonNodeeeee.emojis.find { it.names.contains(entry.key) }
+            emojiJsonNode.emojis.find { it.names.contains(entry.key) }
                 ?.let { get(it.surrogates)!!.addAll(entry.value) }
         }
         /*
@@ -802,7 +800,7 @@ fun generateJavaSourceFiles() {
                     .addJavadoc(it.get("emoji").asText())
                     .initializer(
                         CodeBlock.of(
-                            "\$T.getEmoji(\$S).orElseThrow(\$T::new)",
+                            $$"$T.getEmoji($S).orElseThrow($T::new)",
                             EmojiManager::class.java,
                             it.get("emoji").asText(),
                             java.lang.IllegalStateException::class.java
@@ -853,7 +851,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
     TypeSpec.enumBuilder("EmojiLanguage").apply {
         addModifiers(Modifier.PUBLIC)
         languages.forEach {
-            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder("\$S", it).build())
+            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder($$"$S", it).build())
         }
         addField(
             String::class.java,
@@ -864,7 +862,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
         addMethod(
             MethodSpec.constructorBuilder()
                 .addParameter(String::class.java, "value", Modifier.FINAL)
-                .addStatement("this.\$N = \$N", "value", "value")
+                .addStatement($$"this.$N = $N", "value", "value")
                 .build()
         )
         addMethod(
@@ -878,7 +876,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
                 )
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String::class.java)
-                .addStatement("return \$N", "value")
+                .addStatement($$"return $N", "value")
                 .build()
         )
     }.saveGeneratedJavaSourceFile()
@@ -895,9 +893,9 @@ fun generateEmojiGroupEnum(groups: List<String>) {
             )
         )
         addModifiers(Modifier.PUBLIC)
-        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
         groups.forEach {
-            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder("\$S", it).build())
+            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder($$"$S", it).build())
         }
         addField(
             FieldSpec.builder(
@@ -908,7 +906,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                 Modifier.FINAL
             ).initializer(
                 CodeBlock.of(
-                    "\$T.asList(\$L)",
+                    $$"$T.asList($L)",
                     Arrays::class.java,
                     "values()"
                 )
@@ -924,7 +922,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
         addMethod(
             MethodSpec.constructorBuilder()
                 .addParameter(String::class.java, "name", Modifier.FINAL)
-                .addStatement("this.\$N = \$N", "name", "name")
+                .addStatement($$"this.$N = $N", "name", "name")
                 .build()
         )
         addMethod(
@@ -938,7 +936,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                 )
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String::class.java)
-                .addStatement("return \$N", "name")
+                .addStatement($$"return $N", "name")
                 .build()
         )
 
@@ -953,7 +951,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                 )
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiGroup"))
-                .addStatement("return \$N", "EMOJI_GROUPS")
+                .addStatement($$"return $N", "EMOJI_GROUPS")
                 .build()
         )
 
@@ -997,7 +995,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                 .addModifiers(Modifier.PUBLIC)
                 .returns(getParameterizedTypName(EnumSet::class.java, jemojiBasePackagePathString, "EmojiSubGroup"))
                 .addStatement(
-                    "return \$T.copyOf(EmojiSubGroup.getSubGroups().stream().filter(subgroup -> subgroup.getGroup() == this).collect(\$T.toList()))",
+                    $$"return $T.copyOf(EmojiSubGroup.getSubGroups().stream().filter(subgroup -> subgroup.getGroup() == this).collect($T.toList()))",
                     EnumSet::class.java, Collectors::class.java
                 )
                 .build()
@@ -1010,7 +1008,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
 fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
     TypeSpec.enumBuilder("EmojiSubGroup").apply {
         addModifiers(Modifier.PUBLIC)
-        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
         addJavadoc(
             CodeBlock.of(
                 """
@@ -1023,7 +1021,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
         groups.forEach {
             addEnumConstant(
                 emojiGroupToEnumName(it.first),
-                TypeSpec.anonymousClassBuilder("\$S, EmojiGroup.\$L", it.first, emojiGroupToEnumName(it.second)).build()
+                TypeSpec.anonymousClassBuilder($$"$S, EmojiGroup.$L", it.first, emojiGroupToEnumName(it.second)).build()
             )
         }
 
@@ -1036,7 +1034,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                 Modifier.FINAL
             ).initializer(
                 CodeBlock.of(
-                    "\$T.asList(\$L)",
+                    $$"$T.asList($L)",
                     Arrays::class.java,
                     "values()"
                 )
@@ -1058,8 +1056,8 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
             MethodSpec.constructorBuilder()
                 .addParameter(String::class.java, "name", Modifier.FINAL)
                 .addParameter(ClassName.get(jemojiBasePackagePathString, "EmojiGroup"), "emojiGroup", Modifier.FINAL)
-                .addStatement("this.\$N = \$N", "name", "name")
-                .addStatement("this.\$N = \$N", "emojiGroup", "emojiGroup")
+                .addStatement($$"this.$N = $N", "name", "name")
+                .addStatement($$"this.$N = $N", "emojiGroup", "emojiGroup")
                 .build()
         )
         addMethod(
@@ -1073,7 +1071,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                 )
                 .addModifiers(Modifier.PUBLIC)
                 .returns(String::class.java)
-                .addStatement("return \$N", "name")
+                .addStatement($$"return $N", "name")
                 .build()
         )
 
@@ -1088,7 +1086,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                 )
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(getParameterizedTypName(List::class.java, jemojiBasePackagePathString, "EmojiSubGroup"))
-                .addStatement("return \$N", "EMOJI_SUBGROUPS")
+                .addStatement($$"return $N", "EMOJI_SUBGROUPS")
                 .build()
         )
 
@@ -1131,7 +1129,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                 )
                 .addModifiers(Modifier.PUBLIC)
                 .returns(ClassName.get(jemojiBasePackagePathString, "EmojiGroup"))
-                .addStatement("return \$N", "emojiGroup")
+                .addStatement($$"return $N", "emojiGroup")
                 .build()
         )
     }.saveGeneratedJavaSourceFile()
@@ -1140,7 +1138,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
 fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
     TypeSpec.classBuilder("PreComputedConstants").apply {
         addModifiers(Modifier.FINAL)
-        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
 
         val variablesModifiers = listOf(
             Modifier.PUBLIC,
@@ -1151,7 +1149,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
         addField(
             FieldSpec.builder(TypeName.INT, "MAXIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
-                    "\$L",
+                    $$"$L",
                     emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
                         .maxOfOrNull { it.codePointCount(0, it.length) }!!.toString()
                 ).build()
@@ -1160,7 +1158,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
         addField(
             FieldSpec.builder(TypeName.INT, "MINIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
-                    "\$L",
+                    $$"$L",
                     emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
                         .minOfOrNull { it.codePointCount(0, it.length) }!!.toString()
                 ).build()
@@ -1169,7 +1167,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
         addField(
             FieldSpec.builder(TypeName.INT, "ALIAS_EMOJI_MAX_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
-                    "\$L",
+                    $$"$L",
                     emojiArrayNode.flatMap { node ->
                         listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
                             node[key]?.map { it.asText() } ?: emptyList()
@@ -1184,7 +1182,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                 "MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH",
                 *variablesModifiers.toTypedArray()
             ).initializer(
-                "\$L",
+                $$"$L",
                 emojiArrayNode.map { it.get("htmlDec").asText() }
                     .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt()
             ).build()
@@ -1193,7 +1191,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
         addField(
             FieldSpec.builder(TypeName.INT, "MIN_HTML_DECIMAL_CODEPOINT_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
-                    "\$L",
+                    $$"$L",
                     emojiArrayNode.map { it.get("htmlDec").asText() }
                         .minOfOrNull { text: String -> text.codePoints().toArray().size }!!.toString()
                 ).build()
@@ -1217,7 +1215,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                         "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
-                        CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$L" } + "))",
+                        CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$L" } + "))",
                             HashSet::class.java,
                             Arrays::class.java,
                             *it.toTypedArray())
@@ -1237,7 +1235,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                         "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
-                        CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$L" } + "))",
+                        CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$L" } + "))",
                             HashSet::class.java,
                             Arrays::class.java,
                             *it.toTypedArray())
@@ -1259,7 +1257,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                         *variablesModifiers.toTypedArray()
                     )
                         .initializer(
-                            CodeBlock.of("new \$T<>(\$T.asList(" + it.joinToString(", ") { "\$S" } + "))",
+                            CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$S" } + "))",
                                 HashSet::class.java,
                                 Arrays::class.java,
                                 *it.toTypedArray())
@@ -1274,7 +1272,7 @@ fun createSubGroupEmojiInterface(
     emojiSubGroupInterfaceConstantVariables: List<FieldSpec>
 ) {
     TypeSpec.interfaceBuilder(emojiSubgroupFileName).apply {
-        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", "\$S", "unused").build())
+        addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
         addFields(emojiSubGroupInterfaceConstantVariables)
     }.saveGeneratedJavaSourceFile()
 }
@@ -1282,7 +1280,7 @@ fun createSubGroupEmojiInterface(
 fun TypeSpec.Builder.saveGeneratedJavaSourceFile() {
     addAnnotation(
         AnnotationSpec.builder(ClassName.get("javax.annotation", "Generated"))
-            .addMember("value", "\$S", "build.gradle.kts")
+            .addMember("value", $$"$S", "build.gradle.kts")
             .build()
     )
     JavaFile.builder(jemojiPackagePath.joinToString("."), this.build())
