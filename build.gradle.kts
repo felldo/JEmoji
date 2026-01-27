@@ -649,7 +649,7 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     //File("discordmain.json").writeText(mainEmojiJsContent)
 
 
-    val abbreviationsEmojiJsContentStart = "523558:function(e){\"use strict\";e.exports=JSON.parse('{\""
+    val abbreviationsEmojiJsContentStart = "132565(e){\"use strict\";e.exports=JSON.parse('{\""//"132565:function(e){\"use strict\";e.exports=JSON.parse('{\""
     var abbreviationsEmojiJsContent = response.body()
     abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.substring(
         abbreviationsEmojiJsContent.indexOf(abbreviationsEmojiJsContentStart) + abbreviationsEmojiJsContentStart.length - 2
