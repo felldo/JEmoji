@@ -1,5 +1,5 @@
 [versions]
-jackson = "2.21.0"
+jackson = "2.21.1"
 org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
