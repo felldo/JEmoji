@@ -56,6 +56,7 @@ public final class EmojiManager {
         EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlDecimalRepresentationToEmoji();
         EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlHexadecimalRepresentationToEmoji();
         EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = InitHelper.emojiUrlEncodedRepresentationToEmoji();
+        InitHelper.initFinished();
     }
 
     private static volatile boolean aliasInitialized = false;
@@ -109,7 +110,30 @@ public final class EmojiManager {
         }
 
         static Map<String, Emoji> emojiUnicodeToEmoji() {
-            return Collections.unmodifiableMap(prepareEmojisStreamForInitialization(getEmojis()).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue, (existing, replacement) -> existing)));
+            final Map<String, Emoji> resultMap = new HashMap<>();
+            prepareEmojisStreamForInitialization(getEmojis()).forEach(entry -> {
+                final String key = entry.getKey();
+                final Emoji emoji = entry.getValue();
+
+                resultMap.merge(key, emoji, (existing, replacement) -> {
+                    // Prefer exact match on the base emoji string (without variation selectors)
+                    if (replacement.getEmoji().equals(key)) {
+                        return replacement;
+                    }
+                    if (existing.getEmoji().equals(key)) {
+                        return existing;
+                    }
+
+                    // If both don't match exactly, prefer FULLY_QUALIFIED
+                    if (replacement.getQualification() == Qualification.FULLY_QUALIFIED &&
+                        existing.getQualification() != Qualification.FULLY_QUALIFIED) {
+                        return replacement;
+                    }
+
+                    return existing;
+                });
+            });
+            return Collections.unmodifiableMap(resultMap);
         }
 
         static Map<Integer, List<Emoji>> emojiFirstCodepointToEmojisOrderCodepointLengthDescending() {

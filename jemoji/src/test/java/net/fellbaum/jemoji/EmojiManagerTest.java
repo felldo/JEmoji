@@ -15,6 +15,29 @@ public class EmojiManagerTest {
     private static final String EMOJI_VARIATION_STRING = "♎️";
 
     @Test
+    public void testIfEmojisRetrievalWorks() {
+        assertNotSame(Emojis.RECYCLING_SYMBOL, Emojis.RECYCLING_SYMBOL_UNQUALIFIED);
+    }
+
+    @Test
+    public void testIfTextVariantIsHandled() {
+        // Text variation (for this emoji) is not an emoji, which is included in the emoji.json. Let's default back to the emoji because the variation ending only signalizes how the symbol should be displayed
+        assertEquals(EmojiManager.getEmoji(Emojis.LIBRA.getEmoji()).orElseThrow(IllegalStateException::new), EmojiManager.getEmoji(Emojis.LIBRA.getTextVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+        assertEquals(EmojiManager.getEmoji(Emojis.LIBRA.getEmoji()).orElseThrow(IllegalStateException::new), EmojiManager.getEmoji(Emojis.LIBRA.getEmojiVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+
+        assertNotEquals(Emojis.A_BUTTON_BLOOD_TYPE, Emojis.A_BUTTON_BLOOD_TYPE_UNQUALIFIED);
+
+        // emojis.json only contains fully qualified version \\u2B1B
+        assertEquals(Emojis.BLACK_LARGE_SQUARE, EmojiManager.getEmoji(Emojis.BLACK_LARGE_SQUARE.getEmojiVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+        assertEquals(Emojis.BLACK_LARGE_SQUARE, EmojiManager.getEmoji(Emojis.BLACK_LARGE_SQUARE.getTextVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+
+        // emojis.json only contains fully qualified and unqualified version version \\u2B1B
+        assertNotEquals(Emojis.A_BUTTON_BLOOD_TYPE, Emojis.A_BUTTON_BLOOD_TYPE_UNQUALIFIED);
+        assertEquals(Emojis.A_BUTTON_BLOOD_TYPE_UNQUALIFIED, EmojiManager.getEmoji(Emojis.A_BUTTON_BLOOD_TYPE_UNQUALIFIED.getTextVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+        assertEquals(Emojis.A_BUTTON_BLOOD_TYPE, EmojiManager.getEmoji(Emojis.A_BUTTON_BLOOD_TYPE_UNQUALIFIED.getEmojiVariation().orElseThrow(IllegalStateException::new)).orElseThrow(IllegalStateException::new));
+    }
+
+    @Test
     public void testIfAllEmojisAreUnique() {
         final List<String> unicodeEmojis = EmojiManager.getAllEmojis().stream().map(Emoji::getEmoji).collect(Collectors.toList());
         assertTrue(EmojiManager.getAllEmojis().stream().allMatch(emoji -> unicodeEmojis.contains(emoji.getEmoji())));
