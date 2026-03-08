@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static java.util.Collections.singletonList;
 
 public class EmojiManagerTest {
 
@@ -476,6 +477,354 @@ public class EmojiManagerTest {
         Set<Emoji> invalidGroupResult = EmojiManager.getAllEmojisByGroup(null);
         assertNotNull(invalidGroupResult, "The result for null group should not be null.");
         assertTrue(invalidGroupResult.isEmpty(), "The result for null group should be an empty set.");
+    }
+
+    // ===== Platform alias lookups =====
+
+    @Test
+    public void getByGithubAlias() {
+        String alias = Emojis.THUMBS_UP.getGithubAliases().get(0);
+        Optional<Emoji> emoji = EmojiManager.getByGithubAlias(alias);
+        assertTrue(emoji.isPresent());
+        assertEquals(Emojis.THUMBS_UP.getEmoji(), emoji.get().getEmoji());
+    }
+
+    @Test
+    public void getByGithubAliasWithColons() {
+        String alias = Emojis.THUMBS_UP.getGithubAliases().get(0);
+        String aliasWithColons = alias.startsWith(":") ? alias : ":" + alias + ":";
+        Optional<Emoji> emoji = EmojiManager.getByGithubAlias(aliasWithColons);
+        assertTrue(emoji.isPresent());
+    }
+
+    @Test
+    public void getByGithubAliasNullAndEmpty() {
+        assertFalse(EmojiManager.getByGithubAlias(null).isPresent());
+        assertFalse(EmojiManager.getByGithubAlias("").isPresent());
+    }
+
+    @Test
+    public void getByGithubAliasNonExistent() {
+        assertFalse(EmojiManager.getByGithubAlias("thisAliasDefinitelyDoesNotExist99999").isPresent());
+    }
+
+    @Test
+    public void getBySlackAlias() {
+        String alias = Emojis.THUMBS_UP.getSlackAliases().get(0);
+        Optional<Emoji> emoji = EmojiManager.getBySlackAlias(alias);
+        assertTrue(emoji.isPresent());
+        assertEquals(Emojis.THUMBS_UP.getEmoji(), emoji.get().getEmoji());
+    }
+
+    @Test
+    public void getBySlackAliasWithColons() {
+        String alias = Emojis.THUMBS_UP.getSlackAliases().get(0);
+        String aliasWithColons = alias.startsWith(":") ? alias : ":" + alias + ":";
+        Optional<Emoji> emoji = EmojiManager.getBySlackAlias(aliasWithColons);
+        assertTrue(emoji.isPresent());
+    }
+
+    @Test
+    public void getBySlackAliasNullAndEmpty() {
+        assertFalse(EmojiManager.getBySlackAlias(null).isPresent());
+        assertFalse(EmojiManager.getBySlackAlias("").isPresent());
+    }
+
+    @Test
+    public void getBySlackAliasNonExistent() {
+        assertFalse(EmojiManager.getBySlackAlias("thisAliasDefinitelyDoesNotExist99999").isPresent());
+    }
+
+    @Test
+    public void getByAliasNullAndEmpty() {
+        assertFalse(EmojiManager.getByAlias(null).isPresent());
+        assertFalse(EmojiManager.getByAlias("").isPresent());
+    }
+
+    // ===== Encoding-based direct lookups =====
+
+    @Test
+    public void getByHtmlDecimal() {
+        Optional<Emoji> emoji = EmojiManager.getByHtmlDecimal(Emojis.THUMBS_UP.getHtmlDecimalCode());
+        assertTrue(emoji.isPresent());
+        assertEquals(Emojis.THUMBS_UP.getEmoji(), emoji.get().getEmoji());
+    }
+
+    @Test
+    public void getByHtmlDecimalNullEmptyGarbage() {
+        assertFalse(EmojiManager.getByHtmlDecimal(null).isPresent());
+        assertFalse(EmojiManager.getByHtmlDecimal("").isPresent());
+        assertFalse(EmojiManager.getByHtmlDecimal("&#notAnEmoji;").isPresent());
+    }
+
+    @Test
+    public void getByHtmlHexadecimal() {
+        // Map stores keys in uppercase, so input must be uppercase to match
+        Optional<Emoji> emoji = EmojiManager.getByHtmlHexadecimal(Emojis.THUMBS_UP.getHtmlHexadecimalCode().toUpperCase());
+        assertTrue(emoji.isPresent());
+        assertEquals(Emojis.THUMBS_UP.getEmoji(), emoji.get().getEmoji());
+    }
+
+    @Test
+    public void getByHtmlHexadecimalNullEmptyGarbage() {
+        assertFalse(EmojiManager.getByHtmlHexadecimal(null).isPresent());
+        assertFalse(EmojiManager.getByHtmlHexadecimal("").isPresent());
+        assertFalse(EmojiManager.getByHtmlHexadecimal("&#xNOTANEMOJI;").isPresent());
+    }
+
+    @Test
+    public void getByUrlEncoded() {
+        Optional<Emoji> emoji = EmojiManager.getByUrlEncoded(Emojis.THUMBS_UP.getURLEncoded());
+        assertTrue(emoji.isPresent());
+        assertEquals(Emojis.THUMBS_UP.getEmoji(), emoji.get().getEmoji());
+    }
+
+    @Test
+    public void getByUrlEncodedNullEmptyGarbage() {
+        assertFalse(EmojiManager.getByUrlEncoded(null).isPresent());
+        assertFalse(EmojiManager.getByUrlEncoded("").isPresent());
+        assertFalse(EmojiManager.getByUrlEncoded("%NOTANEMOJI").isPresent());
+    }
+
+    // ===== containsAnyEmoji with EmojiType =====
+
+    @Test
+    public void containsAnyEmojiWithHtmlDecimalType() {
+        assertTrue(EmojiManager.containsAnyEmoji(Emojis.THUMBS_UP.getHtmlDecimalCode(), EnumSet.of(EmojiType.HTML_DECIMAL)));
+        assertFalse(EmojiManager.containsAnyEmoji("Hello World", EnumSet.of(EmojiType.HTML_DECIMAL)));
+        assertFalse(EmojiManager.containsAnyEmoji(null, EnumSet.of(EmojiType.HTML_DECIMAL)));
+        assertFalse(EmojiManager.containsAnyEmoji("", EnumSet.of(EmojiType.HTML_DECIMAL)));
+    }
+
+    @Test
+    public void containsAnyEmojiWithHtmlHexadecimalType() {
+        assertTrue(EmojiManager.containsAnyEmoji(Emojis.THUMBS_UP.getHtmlHexadecimalCode(), EnumSet.of(EmojiType.HTML_HEXADECIMAL)));
+        assertFalse(EmojiManager.containsAnyEmoji("Hello World", EnumSet.of(EmojiType.HTML_HEXADECIMAL)));
+    }
+
+    @Test
+    public void containsAnyEmojiWithUrlEncodedType() {
+        assertTrue(EmojiManager.containsAnyEmoji(Emojis.THUMBS_UP.getURLEncoded(), EnumSet.of(EmojiType.URL_ENCODED)));
+        assertFalse(EmojiManager.containsAnyEmoji("Hello World", EnumSet.of(EmojiType.URL_ENCODED)));
+    }
+
+    @Test
+    public void containsAnyEmojiNullOrEmpty() {
+        assertFalse(EmojiManager.containsAnyEmoji(null));
+        assertFalse(EmojiManager.containsAnyEmoji(""));
+    }
+
+    // ===== extractEmojis/extractEmojisInOrder with EnumSet =====
+
+    @Test
+    public void extractEmojisInOrderWithHtmlDecimalType() {
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(Emojis.THUMBS_UP.getHtmlDecimalCode(), EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals(1, emojis.size());
+        assertEquals(Emojis.THUMBS_UP, emojis.get(0));
+    }
+
+    @Test
+    public void extractEmojisInOrderWithHtmlHexadecimalType() {
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(Emojis.THUMBS_UP.getHtmlHexadecimalCode(), EnumSet.of(EmojiType.HTML_HEXADECIMAL));
+        assertEquals(1, emojis.size());
+        assertEquals(Emojis.THUMBS_UP, emojis.get(0));
+    }
+
+    @Test
+    public void extractEmojisInOrderWithUrlEncodedType() {
+        List<Emoji> emojis = EmojiManager.extractEmojisInOrder(Emojis.THUMBS_UP.getURLEncoded(), EnumSet.of(EmojiType.URL_ENCODED));
+        assertEquals(1, emojis.size());
+        assertEquals(Emojis.THUMBS_UP, emojis.get(0));
+    }
+
+    @Test
+    public void extractEmojisInOrderWithEmptyEnumSet() {
+        assertTrue(EmojiManager.extractEmojisInOrder("👍", EnumSet.noneOf(EmojiType.class)).isEmpty());
+    }
+
+    @Test
+    public void extractEmojisInOrderWithNullOrEmptyText() {
+        assertTrue(EmojiManager.extractEmojisInOrder(null, EnumSet.of(EmojiType.UNICODE)).isEmpty());
+        assertTrue(EmojiManager.extractEmojisInOrder("", EnumSet.of(EmojiType.UNICODE)).isEmpty());
+    }
+
+    @Test
+    public void extractEmojisSetWithHtmlDecimalType() {
+        Set<Emoji> emojis = EmojiManager.extractEmojis(Emojis.THUMBS_UP.getHtmlDecimalCode() + Emojis.THUMBS_UP.getHtmlDecimalCode(), EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals(1, emojis.size());
+        assertTrue(emojis.contains(Emojis.THUMBS_UP));
+    }
+
+    // ===== removeAllEmojis with EnumSet =====
+
+    @Test
+    public void removeAllEmojisWithHtmlDecimalType() {
+        assertEquals("", EmojiManager.removeAllEmojis(Emojis.THUMBS_UP.getHtmlDecimalCode(), EnumSet.of(EmojiType.HTML_DECIMAL)));
+        assertEquals("Hello  World", EmojiManager.removeAllEmojis("Hello " + Emojis.THUMBS_UP.getHtmlDecimalCode() + " World", EnumSet.of(EmojiType.HTML_DECIMAL)));
+    }
+
+    @Test
+    public void removeAllEmojisWithUrlEncodedType() {
+        assertEquals("", EmojiManager.removeAllEmojis(Emojis.THUMBS_UP.getURLEncoded(), EnumSet.of(EmojiType.URL_ENCODED)));
+    }
+
+    @Test
+    public void removeAllEmojisWithEmptyEnumSetLeavesTextUnchanged() {
+        String text = "Hello 👍 World";
+        assertEquals(text, EmojiManager.removeAllEmojis(text, EnumSet.noneOf(EmojiType.class)));
+    }
+
+    @Test
+    public void removeAllEmojisNullOrEmpty() {
+        assertEquals("", EmojiManager.removeAllEmojis(null));
+        assertEquals("", EmojiManager.removeAllEmojis(""));
+    }
+
+    // ===== removeEmojis varargs and Collection variants =====
+
+    @Test
+    public void removeEmojisVarargs() {
+        assertEquals("Hello  World", EmojiManager.removeEmojis("Hello 👍 World", Emojis.THUMBS_UP));
+        assertEquals("Hello  👎 World", EmojiManager.removeEmojis("Hello 👍 👎 World", Emojis.THUMBS_UP));
+    }
+
+    @Test
+    public void removeEmojisCollection() {
+        assertEquals("Hello  World", EmojiManager.removeEmojis("Hello 👍 World", singletonList(Emojis.THUMBS_UP)));
+        assertEquals("Hello  👎 World", EmojiManager.removeEmojis("Hello 👍 👎 World", singletonList(Emojis.THUMBS_UP)));
+    }
+
+    @Test
+    public void removeEmojisCollectionEquivalentToVarargs() {
+        String text = "Hello 👍 👎 World";
+        assertEquals(
+                EmojiManager.removeEmojis(text, Emojis.THUMBS_UP),
+                EmojiManager.removeEmojis(text, singletonList(Emojis.THUMBS_UP)));
+    }
+
+    @Test
+    public void removeEmojisCollectionWithType() {
+        String htmlText = "Hello " + Emojis.THUMBS_UP.getHtmlDecimalCode() + " World";
+        assertEquals("Hello  World", EmojiManager.removeEmojis(htmlText, singletonList(Emojis.THUMBS_UP), EnumSet.of(EmojiType.HTML_DECIMAL)));
+        // Unicode type should NOT remove HTML decimal representation
+        assertEquals(htmlText, EmojiManager.removeEmojis(htmlText, singletonList(Emojis.THUMBS_UP), EnumSet.of(EmojiType.UNICODE)));
+    }
+
+    // ===== removeAllEmojisExcept Collection variant =====
+
+    @Test
+    public void removeAllEmojisExceptCollection() {
+        String result = EmojiManager.removeAllEmojisExcept("Hello 👍 👎 World", singletonList(Emojis.THUMBS_UP));
+        assertEquals("Hello 👍  World", result);
+    }
+
+    @Test
+    public void removeAllEmojisExceptCollectionEquivalentToArray() {
+        String text = "Hello 👍 👎 World" + SIMPLE_EMOJI_STRING;
+        assertEquals(
+                EmojiManager.removeAllEmojisExcept(text, Emojis.THUMBS_UP),
+                EmojiManager.removeAllEmojisExcept(text, singletonList(Emojis.THUMBS_UP)));
+    }
+
+    @Test
+    public void removeAllEmojisExceptCollectionWithType() {
+        String htmlText = Emojis.THUMBS_UP.getHtmlDecimalCode() + Emojis.THUMBS_DOWN.getHtmlDecimalCode();
+        // Keep thumbs up (HTML_DECIMAL), remove others
+        String result = EmojiManager.removeAllEmojisExcept(htmlText, singletonList(Emojis.THUMBS_UP), EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals(Emojis.THUMBS_UP.getHtmlDecimalCode(), result);
+    }
+
+    // ===== replaceAllEmojis with Function and EnumSet =====
+
+    @Test
+    public void replaceAllEmojisFunctionWithHtmlDecimalType() {
+        String result = EmojiManager.replaceAllEmojis(Emojis.THUMBS_UP.getHtmlDecimalCode(), emoji -> "REPLACED", EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals("REPLACED", result);
+    }
+
+    @Test
+    public void replaceAllEmojisFunctionNullOrEmpty() {
+        assertEquals("", EmojiManager.replaceAllEmojis(null, "x"));
+        assertEquals("", EmojiManager.replaceAllEmojis("", "x"));
+    }
+
+    // ===== replaceEmojis varargs =====
+
+    @Test
+    public void replaceEmojisVarargs() {
+        assertEquals("Hello REPLACED World", EmojiManager.replaceEmojis("Hello 👍 World", "REPLACED", Emojis.THUMBS_UP));
+        // Emoji not in list stays unchanged
+        assertEquals("Hello 👍 World", EmojiManager.replaceEmojis("Hello 👍 World", "REPLACED", Emojis.THUMBS_DOWN));
+    }
+
+    // ===== replaceEmojis Function + Collection =====
+
+    @Test
+    public void replaceEmojisFunctionCollection() {
+        String result = EmojiManager.replaceEmojis("Hello 👍 World", emoji -> "[" + emoji.getDescription() + "]", singletonList(Emojis.THUMBS_UP));
+        assertTrue(result.startsWith("Hello ["));
+        assertTrue(result.endsWith("] World"));
+    }
+
+    @Test
+    public void replaceEmojisFunctionCollectionWithType() {
+        String htmlText = "Hello " + Emojis.THUMBS_UP.getHtmlDecimalCode() + " World";
+        String result = EmojiManager.replaceEmojis(htmlText, emoji -> "REPLACED", singletonList(Emojis.THUMBS_UP), EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals("Hello REPLACED World", result);
+    }
+
+    @Test
+    public void replaceEmojisStringCollectionWithType() {
+        String htmlText = "Hello " + Emojis.THUMBS_UP.getHtmlDecimalCode() + " World";
+        String result = EmojiManager.replaceEmojis(htmlText, "REPLACED", singletonList(Emojis.THUMBS_UP), EnumSet.of(EmojiType.HTML_DECIMAL));
+        assertEquals("Hello REPLACED World", result);
+    }
+
+    // ===== replaceAliases null/empty =====
+
+    @Test
+    public void replaceAliasesNullOrEmpty() {
+        assertEquals("", EmojiManager.replaceAliases(null, (alias, emojis) -> alias));
+        assertEquals("", EmojiManager.replaceAliases("", (alias, emojis) -> alias));
+    }
+
+    // ===== extractAliasesInOrderWithIndex =====
+
+    @Test
+    public void extractAliasesInOrderWithIndexPositions() {
+        String alias1 = Emojis.THUMBS_UP.getDiscordAliases().get(0);
+        String alias2 = Emojis.THUMBS_DOWN.getDiscordAliases().get(0);
+        String sep = " test ";
+        String text = alias1 + sep + alias2;
+
+        List<IndexedAlias> aliases = EmojiManager.extractAliasesInOrderWithIndex(text);
+        assertEquals(2, aliases.size());
+
+        assertEquals(alias1, aliases.get(0).getAlias());
+        assertEquals(0, aliases.get(0).getCharIndex());
+        assertEquals(0, aliases.get(0).getCodePointIndex());
+        assertEquals(alias1.length(), aliases.get(0).getEndCharIndex());
+
+        assertEquals(alias2, aliases.get(1).getAlias());
+        assertEquals(alias1.length() + sep.length(), aliases.get(1).getCharIndex());
+    }
+
+    @Test
+    public void extractAliasesInOrderWithIndexEmptyAndNull() {
+        assertTrue(EmojiManager.extractAliasesInOrderWithIndex(null).isEmpty());
+        assertTrue(EmojiManager.extractAliasesInOrderWithIndex("").isEmpty());
+    }
+
+    // ===== getAllEmojisLengthDescending ordering =====
+
+    @Test
+    public void getAllEmojisLengthDescendingOrdering() {
+        List<Emoji> emojis = EmojiManager.getAllEmojisLengthDescending();
+        assertFalse(emojis.isEmpty());
+
+        int firstCodePoints = emojis.get(0).getEmoji().codePointCount(0, emojis.get(0).getEmoji().length());
+        int lastCodePoints = emojis.get(emojis.size() - 1).getEmoji().codePointCount(0, emojis.get(emojis.size() - 1).getEmoji().length());
+        assertTrue(firstCodePoints >= lastCodePoints);
     }
 
     @Test
