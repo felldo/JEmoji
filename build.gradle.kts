@@ -1,14 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.databind.node.ArrayNode
-import com.fasterxml.jackson.databind.node.JsonNodeFactory
-import com.fasterxml.jackson.databind.node.ObjectNode
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.jcabi.github.Coordinates
 import com.jcabi.github.RtGitHub
 import com.palantir.javapoet.*
@@ -24,8 +15,16 @@ import org.htmlunit.html.HtmlPage
 import org.htmlunit.html.HtmlScript
 import org.jsoup.Connection
 import org.jsoup.Jsoup
-import java.io.FileOutputStream
-import java.io.ObjectOutputStream
+import tools.jackson.databind.JsonNode
+import tools.jackson.databind.ObjectMapper
+import tools.jackson.databind.SerializationFeature
+import tools.jackson.databind.node.ArrayNode
+import tools.jackson.databind.node.JsonNodeFactory
+import tools.jackson.databind.node.ObjectNode
+import tools.jackson.module.kotlin.jacksonMapperBuilder
+import tools.jackson.module.kotlin.jacksonObjectMapper
+import tools.jackson.module.kotlin.readValue
+import tools.jackson.module.kotlin.treeToValue
 import java.lang.reflect.Constructor
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -53,7 +52,6 @@ buildscript {
     dependencies {
         classpath(libs.jackson.databind)
         classpath(libs.jackson.module.kotlin)
-        classpath(libs.jackson.datatype.jdk8)
         classpath(libs.okhttp)
         classpath(libs.jsoup)
         classpath(libs.htmlunit)
@@ -65,6 +63,7 @@ buildscript {
         classpath("com.jcabi:jcabi-github:1.10.0")
     }
 }
+
 
 // https://github.com/unicode-org/cldr/tree/main/common/annotations
 // https://github.com/unicode-org/cldr-json/tree/main/cldr-json
@@ -99,7 +98,7 @@ fun requestCLDREmojiDescriptionTranslation(
 
     annotationsNode.properties().forEach {
         if (it.value.has("tts")) {
-            descriptionNodeOutput.put(it.key, it.value.get("tts").joinToString(" ") { jsonNode -> jsonNode.asText() })
+            descriptionNodeOutput.put(it.key, it.value.get("tts").joinToString(" ") { jsonNode -> jsonNode.asString() })
             val keywordsArray = keywordsNodeOutput.putArray(it.key)
             if (it.value.has("default")) {
                 it.value.get("default").forEach { jsonNode -> keywordsArray.add(jsonNode) }
@@ -169,14 +168,14 @@ object GitHubUnicodeData {
 
 fun generate(generateAll: Boolean = false) {
     val client = OkHttpClient()
-    val mapper = jacksonObjectMapper()
+    val jacksonMapper = jacksonObjectMapper()
 
-    val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, mapper)
+    val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, jacksonMapper)
     val discordAliases = retrieveDiscordEmojiShortcutsFile()
     val slackAliases = retrieveSlackEmojiShortcutsFile()
 
     val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")
-    githubEmojiDefinition.writeText(mapper.writeValueAsString(githubEmojiToAliasMap))
+    githubEmojiDefinition.writeText(jacksonMapper.writeValueAsString(githubEmojiToAliasMap))
 
     val unicodeVariationLines = GitHubUnicodeData.getGitHubLatestEmojiVariationSequencesData()
 
@@ -300,7 +299,8 @@ fun generate(generateAll: Boolean = false) {
     val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
     requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
     val descriptionDirectory: List<Map<String, Any>> =
-        mapper.readValue(client.newCall(requestBuilder.build()).execute().body.string())
+        jacksonMapper.readValue(client.newCall(requestBuilder.build()).execute().body.string())
+
     // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
     // So there might be a description or keywords for the unqualified version but not the fully-qualified
     val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
@@ -324,7 +324,7 @@ fun generate(generateAll: Boolean = false) {
             requestCLDREmojiDescriptionTranslation(
                 url,
                 client,
-                mapper,
+                jacksonMapper,
                 descriptionNodeOutput,
                 keywordsNodeOutput,
                 dirName
@@ -333,7 +333,8 @@ fun generate(generateAll: Boolean = false) {
 
         val fileOutputDir = project(":jemoji-languages").projectDir
 
-        val descriptionMap: MutableMap<String, String> = mapper.treeToValue(descriptionNodeOutput)
+        val descriptionMap: MutableMap<String, String> =
+            jacksonMapper.treeToValue<MutableMap<String, String>>(descriptionNodeOutput)
         // Emojis should also have a distinct description by emoji.
         // So fully-qualified, minimally-qualified and unqualified emojis are basically the same except for the Unicode.
         descriptionMap.toMap().forEach { (_, value) ->
@@ -344,19 +345,19 @@ fun generate(generateAll: Boolean = false) {
             }
         }
 
-        "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}.ser".let {
+        "$fileOutputDir/src/main/resources/emoji_sources/description/${dirName}.json".let {
+
             if (generateAll) {
-                FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(descriptionMap) } }
+                jacksonMapper.writeValue(File(it), descriptionMap)
             }
             descriptionNodesLanguageMap.put(dirName, descriptionMap as MutableMap<String, String?>)
         }
 
         // Emoji to List<keywords>
-        val keywordMap: MutableMap<String, List<String>?> = mapper.treeToValue(keywordsNodeOutput)
-        //val keywordMap: Map<String, List<String>> = mapper.treeToValue(keywordsNodeOutput, object : TypeReference<Map<String, List<String>>>() {})
-        "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}.ser".let {
+        val keywordMap: MutableMap<String, List<String>?> = jacksonMapper.treeToValue(keywordsNodeOutput)
+        "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}.json".let {
             if (generateAll) {
-                FileOutputStream(it).use { fos -> ObjectOutputStream(fos).use { oos -> oos.writeObject(keywordMap) } }
+                jacksonMapper.writeValue(File(it), descriptionMap)
             }
             keywordsNodesLanguageMap[dirName] = keywordMap
             if (dirName == "en") {
@@ -379,52 +380,38 @@ fun generate(generateAll: Boolean = false) {
     ////////////////////////
 
 
-    project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/serializedEmojis.ser").asFile.let { file ->
-        val clazz = Emoji::class.java
-        val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
-        constructor.isAccessible = true
+    val clazz = Emoji::class.java
+    val constructor = clazz.declaredConstructors[0] as Constructor<Emoji>
+    constructor.isAccessible = true
 
-        val emojiMap: HashMap<String, Emoji> = HashMap<String, Emoji>()
+    val emojiMap: HashMap<String, Emoji> = HashMap<String, Emoji>()
 
-        allUnicodeEmojis.forEach { emoji ->
-            emojiMap[emoji.emoji] = constructor.newInstance(
-                emoji.emoji,
-                emoji.unicode,
-                emoji.htmlDec,
-                emoji.htmlHex,
-                emoji.urlEncoded,
-                emoji.discordAliases.stream().collect(Collectors.toList()),
-                emoji.slackAliases.stream().collect(Collectors.toList()),
-                emoji.githubAliases.stream().collect(Collectors.toList()),
-                Collections.emptyList<String>(),
-                emoji.hasFitzpatrick,
-                emoji.hasHairStyle,
-                emoji.version,
-                Qualification.fromString(emoji.qualification),
-                emoji.description as String,
-                EmojiGroup.fromString(emoji.group),
-                EmojiSubGroup.fromString(emoji.subgroup),
-                emoji.hasVariationSelectors
-            )
-        }
-
-        FileOutputStream(file).use { ObjectOutputStream(it).use { it.writeObject(emojiMap) } }
-
-
-        /*val kryo: Kryo = Kryo()
-        kryo.register(HashMap::class.java)
-        kryo.register(Emoji::class.java, JavaSerializer())
-        kryo.register(EmojiGroup::class.java, JavaSerializer())
-        kryo.register(EmojiSubGroup::class.java, JavaSerializer())
-        kryo.register(Qualification::class.java, JavaSerializer())
-
-        // Serialisierung
-        val byteArrayOutputStream: ByteArrayOutputStream = ByteArrayOutputStream()
-        val output = Output(FileOutputStream(project(":jemoji").layout.projectDirectory.dir("src/main/resources/jemoji/kryo.bin").asFile))
-        kryo.writeObject(output, emojiMap)
-        output.close()*/
+    allUnicodeEmojis.forEach { emoji ->
+        emojiMap[emoji.emoji] = constructor.newInstance(
+            emoji.emoji,
+            emoji.unicode,
+            emoji.htmlDec,
+            emoji.htmlHex,
+            emoji.urlEncoded,
+            emoji.discordAliases.stream().collect(Collectors.toList()),
+            emoji.slackAliases.stream().collect(Collectors.toList()),
+            emoji.githubAliases.stream().collect(Collectors.toList()),
+            Collections.emptyList<String>(),
+            emoji.hasFitzpatrick,
+            emoji.hasHairStyle,
+            emoji.version,
+            Qualification.fromString(emoji.qualification),
+            emoji.description as String,
+            EmojiGroup.fromString(emoji.group),
+            EmojiSubGroup.fromString(emoji.subgroup),
+            emoji.hasVariationSelectors
+        )
     }
 
+
+    val jemojiResourcesFile = File("$rootDir/jemoji/src/main/resources/jemoji/emojis.json")
+    val mapper = jacksonMapperBuilder().enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).build()
+    jemojiResourcesFile.writeText(mapper.writeValueAsString(allUnicodeEmojis))
 ////////////////////////
 ////////////////////////
 ////////////////////////
@@ -432,7 +419,7 @@ fun generate(generateAll: Boolean = false) {
 
     if (generateAll) {
         for (emoji in allUnicodeEmojis) {
-            val descriptionMap = buildMap<String, String?> {
+            val descriptionMap = buildMap {
                 descriptionNodesLanguageMap.forEach { (key, value) ->
                     if (value.containsKey(emoji.emoji)) {
                         put(key, value[emoji.emoji])
@@ -443,7 +430,7 @@ fun generate(generateAll: Boolean = false) {
             }
             emoji.description = descriptionMap
 
-            val keywordsMap = buildMap<String, List<String>?> {
+            val keywordsMap = buildMap {
                 keywordsNodesLanguageMap.forEach { (key, value) ->
                     if (value.containsKey(emoji.emoji)) {
                         put(key, value[emoji.emoji])
@@ -489,8 +476,7 @@ fun generate(generateAll: Boolean = false) {
 fun writeContentToPublicFiles(fileName: String, content: Any) {
     val publicFile = File("$rootDir/public/$fileName.json")
     val publicFileMin = File("$rootDir/public/$fileName.min.json")
-    val mapper =
-        jacksonObjectMapper().registerModule(Jdk8Module()).enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
+    val mapper = jacksonMapperBuilder().enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS).build()
     publicFile.writeText(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
     publicFileMin.writeText(mapper.writeValueAsString(content))
 }
@@ -503,7 +489,7 @@ fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<Stri
     val githubEmojiAliasMap = mapper.readTree(json)
         .properties()
         .asSequence()
-        .map { it.key to it.value.asText().uppercase() }
+        .map { it.key to it.value.asString().uppercase() }
         .filter {
             it.second.contains(
                 "https://github.githubassets.com/images/icons/emoji/unicode",
@@ -583,22 +569,25 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
     return buildMap<String, MutableList<String>> {
         node.properties().forEach {
             val key =
-                it.value.get("unicode").asText().split("-")
+                it.value.get("unicode").asString().split("-")
                     .joinToString("") { str -> String(Character.toChars(str.toInt(16))) }
             if (containsKey(key)) {
-                get(key)?.add(getStringWithColon(it.value.get("name").asText()))
+                get(key)?.add(getStringWithColon(it.value.get("name").asString()))
             } else {
-                put(key, mutableListOf(getStringWithColon(it.value.get("name").asText())))
+                put(key, mutableListOf(getStringWithColon(it.value.get("name").asString())))
             }
 
             if (it.value.hasNonNull("skinVariations")) {
                 it.value.get("skinVariations").properties().forEach { variation ->
-                    val skinVariationsKey = variation.value.get("unicode").asText().split("-")
+                    val skinVariationsKey = variation.value.get("unicode").asString().split("-")
                         .joinToString("") { str -> String(Character.toChars(str.toInt(16))) }
                     if (containsKey(skinVariationsKey)) {
-                        get(skinVariationsKey)?.add(getStringWithColon(variation.value.get("name").asText()))
+                        get(skinVariationsKey)?.add(getStringWithColon(variation.value.get("name").asString()))
                     } else {
-                        put(skinVariationsKey, mutableListOf(getStringWithColon(variation.value.get("name").asText())))
+                        put(
+                            skinVariationsKey,
+                            mutableListOf(getStringWithColon(variation.value.get("name").asString()))
+                        )
                     }
                 }
             }
@@ -649,7 +638,8 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     //File("discordmain.json").writeText(mainEmojiJsContent)
 
 
-    val abbreviationsEmojiJsContentStart = "132565(e){\"use strict\";e.exports=JSON.parse('{\""//"132565:function(e){\"use strict\";e.exports=JSON.parse('{\""
+    val abbreviationsEmojiJsContentStart =
+        "132565(e){\"use strict\";e.exports=JSON.parse('{\""//"132565:function(e){\"use strict\";e.exports=JSON.parse('{\""
     var abbreviationsEmojiJsContent = response.body()
     abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.substring(
         abbreviationsEmojiJsContent.indexOf(abbreviationsEmojiJsContentStart) + abbreviationsEmojiJsContentStart.length - 2
@@ -663,10 +653,10 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     // Create a map {"angry": [">:(",">:-("...]...}
     val nameToShortcutMap = buildMap<String, MutableList<String>> {
         abbreviationsEmojiNode.properties().forEach {
-            if (containsKey(it.value.asText())) {
-                get(it.value.asText())?.add(it.key)
+            if (containsKey(it.value.asString())) {
+                get(it.value.asString())?.add(it.key)
             } else {
-                put(it.value.asText(), mutableListOf(it.key))
+                put(it.value.asString(), mutableListOf(it.key))
             }
         }
     }
@@ -788,21 +778,21 @@ fun generateJavaSourceFiles() {
     TypeSpec.interfaceBuilder("Emojis").apply {
         addModifiers(Modifier.PUBLIC)
 
-        for (entry in emojiArrayNode.groupBy { it.get("subgroup").asText() }) {
+        for (entry in emojiArrayNode.groupBy { it.get("subgroup").asString() }) {
             val emojiSubGroupInterfaceConstantVariables = mutableListOf<FieldSpec>()
             val emojiSubGroupInterfaceConstantVariablesValidNames = mutableListOf<FieldSpec>()
             entry.value.forEach {
                 val constantName: String =
-                    emojiDescriptionToConstantName(it.get("description").asText(), it.get("qualification").asText())
+                    emojiDescriptionToConstantName(it.get("description").asString(), it.get("qualification").asString())
 
                 val emojiConstantVariable = FieldSpec.builder(ClassName.get(Emoji::class.java), constantName)
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                    .addJavadoc(it.get("emoji").asText())
+                    .addJavadoc(it.get("emoji").asString())
                     .initializer(
                         CodeBlock.of(
                             $$"$T.getEmoji($S).orElseThrow($T::new)",
                             EmojiManager::class.java,
-                            it.get("emoji").asText(),
+                            it.get("emoji").asString(),
                             java.lang.IllegalStateException::class.java
                         )
                     )
@@ -980,6 +970,7 @@ fun generateEmojiGroupEnum(groups: List<String>) {
                     """.trimIndent()
                     )
                 )
+                .addAnnotation(JsonCreator::class.java)
                 .build()
         )
 
@@ -1115,6 +1106,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
                     """.trimIndent()
                     )
                 )
+                .addAnnotation(JsonCreator::class.java)
                 .build()
         )
 
@@ -1135,7 +1127,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>) {
     }.saveGeneratedJavaSourceFile()
 }
 
-fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
+fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode) {
     TypeSpec.classBuilder("PreComputedConstants").apply {
         addModifiers(Modifier.FINAL)
         addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
@@ -1150,7 +1142,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
             FieldSpec.builder(TypeName.INT, "MAXIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
                     $$"$L",
-                    emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                    emojiArrayNode.values().map { it.get("urlEncoded").asString() }.distinct()
                         .maxOfOrNull { it.codePointCount(0, it.length) }!!.toString()
                 ).build()
         )
@@ -1159,7 +1151,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
             FieldSpec.builder(TypeName.INT, "MINIMUM_EMOJI_URL_ENCODED_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
                     $$"$L",
-                    emojiArrayNode.map { it.get("urlEncoded").asText() }.distinct()
+                    emojiArrayNode.values().map { it.get("urlEncoded").asString() }.distinct()
                         .minOfOrNull { it.codePointCount(0, it.length) }!!.toString()
                 ).build()
         )
@@ -1168,9 +1160,9 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
             FieldSpec.builder(TypeName.INT, "ALIAS_EMOJI_MAX_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
                     $$"$L",
-                    emojiArrayNode.flatMap { node ->
+                    emojiArrayNode.values().flatMap { node ->
                         listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
-                            node[key]?.map { it.asText() } ?: emptyList()
+                            node[key].values()?.map { it.asString() } ?: emptyList()
                         }
                     }.distinct().maxOfOrNull { it.codePointCount(0, it.length) }!!.toString()
                 ).build()
@@ -1183,7 +1175,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                 *variablesModifiers.toTypedArray()
             ).initializer(
                 $$"$L",
-                emojiArrayNode.map { it.get("htmlDec").asText() }
+                emojiArrayNode.values().map { it.get("htmlDec").asString() }
                     .maxOfOrNull { it.chars().filter { ch: Int -> ch == ';'.code }.count() }!!.toInt()
             ).build()
         )
@@ -1192,7 +1184,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
             FieldSpec.builder(TypeName.INT, "MIN_HTML_DECIMAL_CODEPOINT_LENGTH", *variablesModifiers.toTypedArray())
                 .initializer(
                     $$"$L",
-                    emojiArrayNode.map { it.get("htmlDec").asText() }
+                    emojiArrayNode.values().map { it.get("htmlDec").asString() }
                         .minOfOrNull { text: String -> text.codePoints().toArray().size }!!.toString()
                 ).build()
         )
@@ -1200,7 +1192,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
         emojiArrayNode.asSequence()
             .flatMap { node ->
                 listOf("discordAliases", "githubAliases", "slackAliases").flatMap { key ->
-                    node[key]?.map { it.asText() } ?: emptyList()
+                    node[key].values()?.map { it.asString() } ?: emptyList()
                 }
             }
             .distinct()
@@ -1223,7 +1215,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                 )
             }
 
-        emojiArrayNode.asSequence().map { it.get("urlEncoded").asText() }
+        emojiArrayNode.asSequence().map { it.get("urlEncoded").asString() }
             .map { it.codePointAt(0) }
             .distinct()
             .sorted()
@@ -1243,7 +1235,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: JsonNode) {
                 )
             }
 
-        emojiArrayNode.asSequence().map { it.get("urlEncoded").asText() }
+        emojiArrayNode.asSequence().map { it.get("urlEncoded").asString() }
             .flatMap { it.split("%") }
             .distinct()
             .filter { it.isNotEmpty() }
@@ -1279,7 +1271,7 @@ fun createSubGroupEmojiInterface(
 
 fun TypeSpec.Builder.saveGeneratedJavaSourceFile() {
     addAnnotation(
-        AnnotationSpec.builder(ClassName.get("javax.annotation", "Generated"))
+        AnnotationSpec.builder(ClassName.get("javax.annotation.processing", "Generated"))
             .addMember("value", $$"$S", "build.gradle.kts")
             .build()
     )

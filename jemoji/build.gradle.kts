@@ -12,6 +12,10 @@ library {
 
 val java9: SourceSet by sourceSets.creating
 
+dependencies {
+    implementation(libs.jackson.databind)
+}
+
 tasks.named<JavaCompile>(java9.compileJavaTaskName) {
     javaCompiler = javaToolchains.compilerFor {
         languageVersion = JavaLanguageVersion.of(9)

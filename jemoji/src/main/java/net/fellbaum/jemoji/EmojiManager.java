@@ -1,11 +1,11 @@
 package net.fellbaum.jemoji;
 
 import org.jspecify.annotations.Nullable;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -82,6 +82,26 @@ public final class EmojiManager {
 
         @Nullable
         private static Set<Emoji> EMOJIS = null;
+        static ObjectMapper objectMapper = new ObjectMapper();
+//                .registerModule(new SimpleModule()
+//                        .addDeserializer(Qualification.class, new JsonDeserializer<Qualification>() {
+//                            @Override
+//                            public Qualification deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
+//                                return Qualification.fromString(p.getText());
+//                            }
+//                        })
+//                        .addDeserializer(EmojiGroup.class, new JsonDeserializer<EmojiGroup>() {
+//                            @Override
+//                            public EmojiGroup deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
+//                                return EmojiGroup.fromString(p.getText());
+//                            }
+//                        })
+//                        .addDeserializer(EmojiSubGroup.class, new JsonDeserializer<EmojiSubGroup>() {
+//                            @Override
+//                            public EmojiSubGroup deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
+//                                return EmojiSubGroup.fromString(p.getText());
+//                            }
+//                        }));
 
         static Object readFileAsObject(final String filePathName) {
             try {
@@ -99,8 +119,8 @@ public final class EmojiManager {
 
         static Set<Emoji> getEmojis() {
             if (EMOJIS == null) {
-                final HashMap<String, Emoji> map = (HashMap<String, Emoji>) readFileAsObject("/jemoji/serializedEmojis.ser");
-                EMOJIS = new HashSet<>(map.values());
+                EMOJIS = objectMapper.readValue(EmojiManager.class.getResourceAsStream("/jemoji/emojis.json"), new TypeReference<>() {
+                });
             }
             return EMOJIS;
         }

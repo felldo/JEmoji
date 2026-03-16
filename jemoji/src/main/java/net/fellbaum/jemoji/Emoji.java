@@ -1,6 +1,8 @@
 package net.fellbaum.jemoji;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,9 +13,7 @@ import static net.fellbaum.jemoji.InternalEmojiUtils.*;
  * HTML codes, aliases, keywords, and grouping details.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
-public final class Emoji implements Comparable<Emoji>, Serializable {
-
-    private static final long serialVersionUID = 1L;
+public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;
     private final String unicode;
@@ -35,24 +35,25 @@ public final class Emoji implements Comparable<Emoji>, Serializable {
 
     private final List<String> allAliases;
 
+    @JsonCreator
     Emoji(
-            final String emoji,
-            final String unicode,
-            final String htmlDec,
-            final String htmlHex,
-            final String urlEncoded,
-            final List<String> discordAliases,
-            final List<String> slackAliases,
-            final List<String> githubAliases,
-            final List<String> keywords,
-            final boolean hasFitzpatrick,
-            final boolean hasHairStyle,
-            final double version,
-            final Qualification qualification,
-            final String description,
-            final EmojiGroup group,
-            final EmojiSubGroup subgroup,
-            final boolean hasVariationSelectors) {
+            @JsonProperty("emoji") final String emoji,
+            @JsonProperty("unicode") final String unicode,
+            @JsonProperty("htmlDec") final String htmlDec,
+            @JsonProperty("htmlHex") final String htmlHex,
+            @JsonProperty("urlEncoded") final String urlEncoded,
+            @JsonProperty("discordAliases") final List<String> discordAliases,
+            @JsonProperty("slackAliases") final List<String> slackAliases,
+            @JsonProperty("githubAliases") final List<String> githubAliases,
+            @JsonProperty("keywords") final List<String> keywords,
+            @JsonProperty("hasFitzpatrick") final boolean hasFitzpatrick,
+            @JsonProperty("hasHairStyle") final boolean hasHairStyle,
+            @JsonProperty("version") final double version,
+            @JsonProperty("qualification") final Qualification qualification,
+            @JsonProperty("description") final String description,
+            @JsonProperty("group") final EmojiGroup group,
+            @JsonProperty("subgroup") final EmojiSubGroup subgroup,
+            @JsonProperty("hasVariationSelectors") final boolean hasVariationSelectors) {
         this.emoji = emoji;
         this.unicode = unicode;
         this.htmlDec = htmlDec;
