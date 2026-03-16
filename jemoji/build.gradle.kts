@@ -10,49 +10,49 @@ library {
     title = "JEmoji"
 }
 
-val java9: SourceSet by sourceSets.creating
+//val java9: SourceSet by sourceSets.creating
 
 dependencies {
     implementation(libs.jackson.databind)
 }
 
-tasks.named<JavaCompile>(java9.compileJavaTaskName) {
-    javaCompiler = javaToolchains.compilerFor {
-        languageVersion = JavaLanguageVersion.of(9)
-    }
-    options.compilerArgumentProviders.add(object : CommandLineArgumentProvider {
-        @get:InputFiles
-        @get:PathSensitive(PathSensitivity.RELATIVE)
-        val mainClassesDirs = sourceSets.main.map { it.output.classesDirs }
+//tasks.named<JavaCompile>(java9.compileJavaTaskName) {
+//    javaCompiler = javaToolchains.compilerFor {
+//        languageVersion = JavaLanguageVersion.of(9)
+//    }
+//    options.compilerArgumentProviders.add(object : CommandLineArgumentProvider {
+//        @get:InputFiles
+//        @get:PathSensitive(PathSensitivity.RELATIVE)
+//        val mainClassesDirs = sourceSets.main.map { it.output.classesDirs }
+//
+//        override fun asArguments() = mainClassesDirs
+//            .get()
+//            .files
+//            .map { it.absolutePath }
+//            .flatMap {
+//                listOf(
+//                    "--patch-module",
+//                    "net.fellbaum.jemoji=$it"
+//                )
+//            }
+//    })
+//}
 
-        override fun asArguments() = mainClassesDirs
-            .get()
-            .files
-            .map { it.absolutePath }
-            .flatMap {
-                listOf(
-                    "--patch-module",
-                    "net.fellbaum.jemoji=$it"
-                )
-            }
-    })
-}
+//tasks.jar {
+//    manifest {
+//        attributes("Multi-Release" to true)
+//    }
+//    from(java9.output) {
+//        into("META-INF/versions/9/")
+//    }
+//}
 
-tasks.jar {
-    manifest {
-        attributes("Multi-Release" to true)
-    }
-    from(java9.output) {
-        into("META-INF/versions/9/")
-    }
-}
-
-val java9Implementation by configurations.existing {
-    extendsFrom(configurations.implementation.get())
-}
+//val java9Implementation by configurations.existing {
+//    extendsFrom(configurations.implementation.get())
+//}
 
 dependencies {
-    compileOnlyApi(libs.jspecify)
+    api(libs.jspecify)
 }
 
 jmh {

@@ -1,7 +1,6 @@
 package net.fellbaum.jemoji;
 
 import org.jspecify.annotations.Nullable;
-import tools.jackson.core.JsonParser;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
