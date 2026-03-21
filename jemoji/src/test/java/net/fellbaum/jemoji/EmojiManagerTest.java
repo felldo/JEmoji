@@ -41,7 +41,7 @@ public class EmojiManagerTest {
 
     @Test
     public void testIfAllEmojisAreUnique() {
-        final List<String> unicodeEmojis = EmojiManager.getAllEmojis().stream().map(Emoji::getEmoji).collect(Collectors.toList());
+        final List<String> unicodeEmojis = EmojiManager.getAllEmojis().stream().map(Emoji::getEmoji).toList();
         assertTrue(EmojiManager.getAllEmojis().stream().allMatch(emoji -> unicodeEmojis.contains(emoji.getEmoji())));
     }
 
@@ -70,7 +70,7 @@ public class EmojiManagerTest {
         List<Emoji> allEmojis = new ArrayList<>(EmojiManager.getAllEmojisLengthDescending());
         allEmojis.addAll(EmojiManager.getAllEmojisLengthDescending());
 
-        assertEquals(allEmojis, indexedEmojis.stream().map(IndexedEmoji::getEmoji).collect(Collectors.toList()));
+        assertEquals(allEmojis, indexedEmojis.stream().map(IndexedEmoji::getEmoji).toList());
     }
 
     @Test
