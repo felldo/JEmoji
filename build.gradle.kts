@@ -841,7 +841,7 @@ fun generateEmojiLanguageEnum(languages: List<String>) {
     TypeSpec.enumBuilder("EmojiLanguage").apply {
         addModifiers(Modifier.PUBLIC)
         languages.forEach {
-            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder($$"$S", it).build())
+            addEnumConstant(emojiGroupToEnumName(it), TypeSpec.anonymousClassBuilder($$"$S", it).addJavadoc(it).build())
         }
         addField(
             String::class.java,

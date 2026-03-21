@@ -56,25 +56,15 @@ tasks.withType<Javadoc>().configureEach {
         encoding = "UTF-8"
         docTitle = "${extension.title.get()} ${project.version}"
         windowTitle = "$docTitle Documentation"
-        links("https://docs.oracle.com/javase/8/docs/api/")
+        links("https://docs.oracle.com/en/java/javase/17/docs/api/", "https://github.com/felldo/JEmoji")
         isUse = true
         isVersion = true
         isAuthor = true
         isSplitIndex = true
 
-        val toolchain = javadocTool
-            .map { JavaVersion.toVersion(it.metadata.languageVersion) }
-            .orElse(provider { JavaVersion.current() })
-            .get()
-        if (toolchain.isCompatibleWith(JavaVersion.VERSION_1_9)) {
-            addBooleanOption("html5", true)
-            addStringOption("-release", java.targetCompatibility.majorVersion)
-            if (toolchain.isCompatibleWith(JavaVersion.VERSION_11) && !toolchain.isCompatibleWith(JavaVersion.VERSION_13)) {
-                addBooleanOption("-no-module-directories", true)
-            }
-        } else {
-            source = java.sourceCompatibility.toString()
-        }
+        addBooleanOption("html5", true)
+        addStringOption("-release", java.targetCompatibility.majorVersion)
+        addBooleanOption("Xdoclint:all,-missing", true)
     }
 }
 
