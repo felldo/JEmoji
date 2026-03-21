@@ -2,16 +2,7 @@ package net.fellbaum.jemoji;
 
 import java.util.Arrays;
 
-final class InternalCodepointSequence {
-    private final int[] codepoints;
-
-    public int[] getCodepoints() {
-        return codepoints;
-    }
-
-    public InternalCodepointSequence(int[] codepoints) {
-        this.codepoints = codepoints;
-    }
+record InternalCodepointSequence(int[] codepoints) {
 
     public InternalCodepointSequence(String text) {
         this(InternalEmojiUtils.stringToCodePoints(text));

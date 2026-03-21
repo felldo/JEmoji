@@ -55,7 +55,6 @@ final class InternalEmojiUtils {
 
     @Nullable
     static UniqueEmojiFoundResult findUnicodeEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        //noinspection DataFlowIssue
         final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
         if (emojisByCodePoint == null) return null;
         for (final Emoji emoji : emojisByCodePoint) {
@@ -67,7 +66,7 @@ final class InternalEmojiUtils {
             }
 
             for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                //break out because the emoji is not the same
+                //break out because the emoji is different
                 if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
                     break;
                 }
@@ -117,7 +116,7 @@ final class InternalEmojiUtils {
                 currentIndex++;
             }
 
-            // Validate the sequence ends with a semicolon
+            // Validates the sequence ends with a semicolon
             if (digitCount == 0 || currentIndex >= textCodePointsLength || textCodePointsArray[currentIndex] != ';') {
                 break;
             }
@@ -133,11 +132,10 @@ final class InternalEmojiUtils {
         }
 
         final StringBuilder htmlEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, lastValidSemicolonIndex - textIndex).toUpperCase());
-        while (htmlEmoji.length() != 0) {
+        while (!htmlEmoji.isEmpty()) {
             final String htmlEmojiString = htmlEmoji.toString();
             String formattedHtmlCharacterEntity = leadingZeros != 0 ? removeLeadingZerosFromHtmlCharacterEntity(htmlEmojiString, isHex) : htmlEmojiString;
 
-            //noinspection DataFlowIssue
             final Emoji emoji = isHex ? EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity) : EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI.get(formattedHtmlCharacterEntity);
             if (emoji != null) {
                 return new UniqueEmojiFoundResult(emoji, textIndex + htmlEmojiString.length());
@@ -275,23 +273,13 @@ final class InternalEmojiUtils {
      */
     @Nullable
     public static UniqueEmojiFoundResult findUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength, final EmojiType type) {
-        switch (type) {
-            case UNICODE: {
-                return findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-            }
-            case HTML_DECIMAL: {
-                return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, false);
-            }
-            case HTML_HEXADECIMAL: {
-                return findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
-            }
-            case URL_ENCODED: {
-                return findUrlEncodedEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-            }
-            default: {
-                throw new IllegalArgumentException("Unknown EmojiType: " + type);
-            }
-        }
+        return switch (type) {
+            case UNICODE -> findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
+            case HTML_DECIMAL -> findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, false);
+            case HTML_HEXADECIMAL -> findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
+            case URL_ENCODED -> findUrlEncodedEmoji(textCodePointsArray, textCodePointsLength, textIndex);
+            default -> throw new IllegalArgumentException("Unknown EmojiType: " + type);
+        };
     }
 
     /**
@@ -314,14 +302,13 @@ final class InternalEmojiUtils {
         InternalCodepointSequence lastKnownCodepointSequence = null;
         for (int aliasCodePointIndex = 0; aliasCodePointIndex < PreComputedConstants.ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
             final InternalCodepointSequence tempCodepointSequence = new InternalCodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
-            //noinspection DataFlowIssue
             if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
                 lastKnownCodepointSequence = tempCodepointSequence;
             }
         }
 
         if (lastKnownCodepointSequence != null) {
-            return new NonUniqueEmojiFoundResult(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(lastKnownCodepointSequence), textIndex + lastKnownCodepointSequence.getCodepoints().length, lastKnownCodepointSequence);
+            return new NonUniqueEmojiFoundResult(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(lastKnownCodepointSequence), textIndex + lastKnownCodepointSequence.codepoints().length, lastKnownCodepointSequence);
         }
 
         return null;
@@ -335,28 +322,11 @@ final class InternalEmojiUtils {
      * @return Whether the codepoint is a valid starter.
      */
     public static boolean checkIfCodepointIsInvalidEmojiStarter(final int currentCodepoint) {
-        //noinspection DataFlowIssue
         return EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) == null && currentCodepoint != '&' && currentCodepoint != '%';
     }
 }
 
-final class UniqueEmojiFoundResult {
-
-    private final Emoji emoji;
-    private final int endIndex;
-
-    public UniqueEmojiFoundResult(Emoji emoji, int endIndex) {
-        this.emoji = emoji;
-        this.endIndex = endIndex;
-    }
-
-    public Emoji getEmoji() {
-        return emoji;
-    }
-
-    public int getEndIndex() {
-        return endIndex;
-    }
+record UniqueEmojiFoundResult(Emoji emoji, int endIndex) {
 
     @Override
     public String toString() {
@@ -367,27 +337,6 @@ final class UniqueEmojiFoundResult {
     }
 }
 
-final class NonUniqueEmojiFoundResult {
+record NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex, InternalCodepointSequence codepointSequence) {
 
-    private final List<Emoji> emojis;
-    private final int endIndex;
-    private final InternalCodepointSequence codepointSequence;
-
-    public NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex, InternalCodepointSequence codepointSequence) {
-        this.emojis = emojis;
-        this.endIndex = endIndex;
-        this.codepointSequence = codepointSequence;
-    }
-
-    public List<Emoji> getEmojis() {
-        return emojis;
-    }
-
-    public int getEndIndex() {
-        return endIndex;
-    }
-
-    public InternalCodepointSequence getCodepointSequence() {
-        return codepointSequence;
-    }
 }

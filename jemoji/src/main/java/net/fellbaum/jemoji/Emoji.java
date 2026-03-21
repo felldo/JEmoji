@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static net.fellbaum.jemoji.InternalEmojiUtils.*;
 
@@ -75,7 +74,7 @@ public final class Emoji implements Comparable<Emoji> {
         aliases.addAll(getDiscordAliases());
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
-        allAliases = Collections.unmodifiableList(new ArrayList<>(aliases));
+        allAliases = List.copyOf(aliases);
     }
 
     /**
@@ -139,7 +138,7 @@ public final class Emoji implements Comparable<Emoji> {
                 .parallelStream()
                 .filter(emoji -> HairStyle.removeHairStyle(Fitzpatrick.removeFitzpatrick(emoji.getEmoji())).equals(baseEmoji))
                 .filter(emoji -> !emoji.equals(this))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**

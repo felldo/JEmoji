@@ -4,7 +4,10 @@ import org.jspecify.annotations.Nullable;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -82,25 +85,6 @@ public final class EmojiManager {
         @Nullable
         private static Set<Emoji> EMOJIS = null;
         static ObjectMapper objectMapper = new ObjectMapper();
-//                .registerModule(new SimpleModule()
-//                        .addDeserializer(Qualification.class, new JsonDeserializer<Qualification>() {
-//                            @Override
-//                            public Qualification deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
-//                                return Qualification.fromString(p.getText());
-//                            }
-//                        })
-//                        .addDeserializer(EmojiGroup.class, new JsonDeserializer<EmojiGroup>() {
-//                            @Override
-//                            public EmojiGroup deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
-//                                return EmojiGroup.fromString(p.getText());
-//                            }
-//                        })
-//                        .addDeserializer(EmojiSubGroup.class, new JsonDeserializer<EmojiSubGroup>() {
-//                            @Override
-//                            public EmojiSubGroup deserialize(JsonParser p, DeserializationContext ctxt) throws java.io.IOException {
-//                                return EmojiSubGroup.fromString(p.getText());
-//                            }
-//                        }));
 
         static Object readFileAsObject(final String filePathName) {
             try {
@@ -145,18 +129,18 @@ public final class EmojiManager {
 
                     // If both don't match exactly, prefer FULLY_QUALIFIED
                     if (replacement.getQualification() == Qualification.FULLY_QUALIFIED &&
-                        existing.getQualification() != Qualification.FULLY_QUALIFIED) {
+                            existing.getQualification() != Qualification.FULLY_QUALIFIED) {
                         return replacement;
                     }
 
                     return existing;
                 });
             });
-            return Collections.unmodifiableMap(resultMap);
+            return Map.copyOf(resultMap);
         }
 
         static Map<Integer, List<Emoji>> emojiFirstCodepointToEmojisOrderCodepointLengthDescending() {
-            return Collections.unmodifiableMap(prepareEmojisStreamForInitialization(getEmojis()).collect(getEmojiLinkedHashMapCollector()));
+            return Map.copyOf(prepareEmojisStreamForInitialization(getEmojis()).collect(getEmojiLinkedHashMapCollector()));
         }
 
         static Map<InternalCodepointSequence, List<Emoji>> aliasEmojiToEmojisOrderCodepointLengthDescending() {
@@ -164,30 +148,27 @@ public final class EmojiManager {
         }
 
         static Map<String, Emoji> emojiHtmlDecimalRepresentationToEmoji() {
-            return Collections.unmodifiableMap(
-                    getEmojis().stream().collect(Collectors.toMap(
-                            o -> o.getHtmlDecimalCode().toUpperCase(),
-                            emoji -> emoji,
-                            (existing, replacement) -> existing)
-                    ));
+            return getEmojis().stream().collect(Collectors.toUnmodifiableMap(
+                    o -> o.getHtmlDecimalCode().toUpperCase(),
+                    Function.identity(),
+                    (existing, replacement) -> existing)
+            );
         }
 
         static Map<String, Emoji> emojiHtmlHexadecimalRepresentationToEmoji() {
-            return Collections.unmodifiableMap(
-                    getEmojis().stream().collect(Collectors.toMap(
-                            o -> o.getHtmlHexadecimalCode().toUpperCase(),
-                            emoji -> emoji,
-                            (existing, replacement) -> existing)
-                    ));
+            return getEmojis().stream().collect(Collectors.toUnmodifiableMap(
+                    o -> o.getHtmlHexadecimalCode().toUpperCase(),
+                    Function.identity(),
+                    (existing, replacement) -> existing)
+            );
         }
 
         static Map<String, Emoji> emojiUrlEncodedRepresentationToEmoji() {
-            return Collections.unmodifiableMap(
-                    getEmojis().stream().collect(Collectors.toMap(
+            return getEmojis().stream().collect(Collectors.toUnmodifiableMap(
                             o -> o.getURLEncoded().toUpperCase(),
-                            emoji -> emoji,
+                            Function.identity(),
                             (existing, replacement) -> existing)
-                    ));
+                    );
         }
 
         static boolean initFinished() {
@@ -278,7 +259,7 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojis() {
         ensureUnicodeInitialized();
-        return Collections.unmodifiableSet(new HashSet<>(EMOJIS_LENGTH_DESCENDING));
+        return Set.copyOf(EMOJIS_LENGTH_DESCENDING);
     }
 
     /**
@@ -320,7 +301,7 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojisBySubGroup(final EmojiSubGroup subgroup) {
         ensureUnicodeInitialized();
-        return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getSubgroup() == subgroup).collect(Collectors.toSet());
+        return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getSubgroup() == subgroup).collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -503,7 +484,7 @@ public final class EmojiManager {
      * @return A list of emojis.
      */
     public static Set<Emoji> extractEmojis(final String text) {
-        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text)));
+        return Set.copyOf(extractEmojisInOrder(text));
     }
 
     /**
@@ -514,7 +495,7 @@ public final class EmojiManager {
      * @return A list of emojis.
      */
     public static Set<Emoji> extractEmojis(final String text, EnumSet<EmojiType> emojiType) {
-        return Collections.unmodifiableSet(new HashSet<>(extractEmojisInOrder(text, emojiType)));
+        return Set.copyOf(extractEmojisInOrder(text, emojiType));
     }
 
     /**
@@ -524,7 +505,7 @@ public final class EmojiManager {
      * @return A list of emojis.
      */
     public static List<Emoji> extractEmojisInOrder(final String text) {
-        return extractEmojisInOrderWithIndex(text).stream().map(IndexedEmoji::getEmoji).collect(Collectors.toList());
+        return extractEmojisInOrderWithIndex(text).stream().map(IndexedEmoji::getEmoji).toList();
     }
 
     /**
@@ -535,7 +516,7 @@ public final class EmojiManager {
      * @return A list of emojis.
      */
     public static List<Emoji> extractEmojisInOrder(final String text, EnumSet<EmojiType> emojiType) {
-        return extractEmojisInOrderWithIndex(text, emojiType).stream().map(IndexedEmoji::getEmoji).collect(Collectors.toList());
+        return extractEmojisInOrderWithIndex(text, emojiType).stream().map(IndexedEmoji::getEmoji).toList();
     }
 
     /**
@@ -557,7 +538,7 @@ public final class EmojiManager {
      */
     public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text, EnumSet<EmojiType> emojiType) {
         ensureUnicodeInitialized();
-        if (isStringNullOrEmpty(text)) return Collections.emptyList();
+        if (isStringNullOrEmpty(text)) return List.of();
 
         final List<IndexedEmoji> emojis = new ArrayList<>();
 
@@ -581,19 +562,19 @@ public final class EmojiManager {
                 final int startCharIndex = charIndex;
                 final int startTextIndex = textIndex;
 
-                for (int i = textIndex; i < uniqueEmojiFoundResult.getEndIndex(); i++) {
+                for (int i = textIndex; i < uniqueEmojiFoundResult.endIndex(); i++) {
                     charIndex += Character.charCount(textCodePointsArray[i]);
                 }
-                emojis.add(new IndexedEmoji(uniqueEmojiFoundResult.getEmoji(), startCharIndex, startTextIndex, charIndex, textIndex));
+                emojis.add(new IndexedEmoji(uniqueEmojiFoundResult.emoji(), startCharIndex, startTextIndex, charIndex, textIndex));
                 //-1 because loop adds +1
-                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
+                textIndex = uniqueEmojiFoundResult.endIndex() - 1;
 
                 continue nextTextIteration;
             }
             charIndex += Character.charCount(currentCodepoint);
         }
 
-        return Collections.unmodifiableList(emojis);
+        return List.copyOf(emojis);
     }
 
     // ======================================================
@@ -607,7 +588,7 @@ public final class EmojiManager {
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text) {
-        return removeAllEmojisExcept(text, Collections.emptyList(), EnumSet.of(EmojiType.UNICODE));
+        return removeAllEmojisExcept(text, List.of(), EnumSet.of(EmojiType.UNICODE));
     }
 
     /**
@@ -618,7 +599,7 @@ public final class EmojiManager {
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text, EnumSet<EmojiType> emojiType) {
-        return removeAllEmojisExcept(text, Collections.emptyList(), emojiType);
+        return removeAllEmojisExcept(text, List.of(), emojiType);
     }
 
     /**
@@ -711,15 +692,15 @@ public final class EmojiManager {
                     continue;
                 }
 
-                if (emojisToKeep.contains(uniqueEmojiFoundResult.getEmoji())) {
-                    for (int i = textIndex + 1; i < uniqueEmojiFoundResult.getEndIndex(); i++) {
+                if (emojisToKeep.contains(uniqueEmojiFoundResult.emoji())) {
+                    for (int i = textIndex + 1; i < uniqueEmojiFoundResult.endIndex(); i++) {
                         sb.appendCodePoint(textCodePointsArray[i]);
                     }
                 } else {
                     sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
                 }
                 //-1 because loop adds +1
-                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
+                textIndex = uniqueEmojiFoundResult.endIndex() - 1;
                 continue nextTextIteration;
             }
         }
@@ -861,12 +842,12 @@ public final class EmojiManager {
                 }
 
                 //-1 because loop adds +1
-                textIndex = uniqueEmojiFoundResult.getEndIndex() - 1;
+                textIndex = uniqueEmojiFoundResult.endIndex() - 1;
                 sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
-                if (emojisToReplace.contains(uniqueEmojiFoundResult.getEmoji())) {
-                    sb.append(replacementFunction.apply(uniqueEmojiFoundResult.getEmoji()));
+                if (emojisToReplace.contains(uniqueEmojiFoundResult.emoji())) {
+                    sb.append(replacementFunction.apply(uniqueEmojiFoundResult.emoji()));
                 } else {
-                    sb.append(uniqueEmojiFoundResult.getEmoji().getEmoji());
+                    sb.append(uniqueEmojiFoundResult.emoji().getEmoji());
                 }
                 continue nextTextIteration;
             }
@@ -911,10 +892,10 @@ public final class EmojiManager {
             }
 
             //-1 because loop adds +1
-            textIndex = nonUniqueEmojiFoundResult.getEndIndex() - 1;
+            textIndex = nonUniqueEmojiFoundResult.endIndex() - 1;
             sb.delete(sb.length() - Character.charCount(currentCodepoint), sb.length());
 
-            sb.append(replacementFunction.apply(new String(nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints(), 0, nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints().length), nonUniqueEmojiFoundResult.getEmojis()));
+            sb.append(replacementFunction.apply(new String(nonUniqueEmojiFoundResult.codepointSequence().codepoints(), 0, nonUniqueEmojiFoundResult.codepointSequence().codepoints().length), nonUniqueEmojiFoundResult.emojis()));
         }
 
         return sb.toString();
@@ -927,7 +908,7 @@ public final class EmojiManager {
      * @return A set of aliases.
      */
     public static Set<String> extractAliases(final String text) {
-        return Collections.unmodifiableSet(new HashSet<>(extractAliasesInOrder(text)));
+        return Set.copyOf(extractAliasesInOrder(text));
     }
 
     /**
@@ -937,7 +918,7 @@ public final class EmojiManager {
      * @return A list of aliases.
      */
     public static List<String> extractAliasesInOrder(final String text) {
-        return extractAliasesInOrderWithIndex(text).stream().map(IndexedAlias::getAlias).collect(Collectors.toList());
+        return extractAliasesInOrderWithIndex(text).stream().map(IndexedAlias::getAlias).toList();
     }
 
     /**
@@ -948,7 +929,7 @@ public final class EmojiManager {
      */
     public static List<IndexedAlias> extractAliasesInOrderWithIndex(final String text) {
         ensureAliasInitialized();
-        if (isStringNullOrEmpty(text)) return Collections.emptyList();
+        if (isStringNullOrEmpty(text)) return List.of();
 
         final int[] textCodePointsArray = stringToCodePoints(text);
         final long textCodePointsLength = textCodePointsArray.length;
@@ -969,20 +950,20 @@ public final class EmojiManager {
 
             final int startCharIndex = charIndex;
             final int startTextIndex = textIndex;
-            for (int i = textIndex; i < nonUniqueEmojiFoundResult.getEndIndex(); i++) {
+            for (int i = textIndex; i < nonUniqueEmojiFoundResult.endIndex(); i++) {
                 charIndex += Character.charCount(textCodePointsArray[i]);
             }
 
             indexedAliases.add(new IndexedAlias(new String(
-                    nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints(), 0, nonUniqueEmojiFoundResult.getCodepointSequence().getCodepoints().length),
-                    nonUniqueEmojiFoundResult.getEmojis(),
+                    nonUniqueEmojiFoundResult.codepointSequence().codepoints(), 0, nonUniqueEmojiFoundResult.codepointSequence().codepoints().length),
+                    nonUniqueEmojiFoundResult.emojis(),
                     startCharIndex,
                     startTextIndex,
                     charIndex,
                     textIndex));
 
             //-1 because loop adds +1
-            textIndex = nonUniqueEmojiFoundResult.getEndIndex() - 1;
+            textIndex = nonUniqueEmojiFoundResult.endIndex() - 1;
         }
         return indexedAliases;
     }

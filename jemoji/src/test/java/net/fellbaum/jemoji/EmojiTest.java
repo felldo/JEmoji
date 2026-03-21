@@ -159,12 +159,4 @@ public class EmojiTest {
         assertTrue(Emojis.FAMILY_MAN_WOMAN_GIRL_BOY.compareTo(Emojis.THUMBS_UP) > 0);
     }
 
-    // ===== Deprecated method =====
-
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testDeprecatedGetUnicodeEqualsGetUnicodeText() {
-        assertEquals(Emojis.THUMBS_UP.getUnicodeText(), Emojis.THUMBS_UP.getUnicode());
-    }
-
 }

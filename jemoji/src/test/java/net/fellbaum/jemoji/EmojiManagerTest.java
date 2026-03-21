@@ -17,14 +17,6 @@ public class EmojiManagerTest {
 
 
     @Test
-    public void testIfEmojisRetrievalWorksfff() {
-        long start = System.nanoTime();
-        EmojiManager.getAllEmojis();
-        long end = System.nanoTime();
-        System.out.println("Startup time: " + (end - start) / 1000 + "ns");
-    }
-/*
-    @Test
     public void testIfEmojisRetrievalWorks() {
         assertNotSame(Emojis.RECYCLING_SYMBOL, Emojis.RECYCLING_SYMBOL_UNQUALIFIED);
     }
@@ -852,5 +844,5 @@ public class EmojiManagerTest {
         Set<Emoji> invalidSubGroupResult = EmojiManager.getAllEmojisBySubGroup(null);
         assertNotNull(invalidSubGroupResult, "The result for null subgroup should not be null.");
         assertTrue(invalidSubGroupResult.isEmpty(), "The result for null subgroup should be an empty set.");
-    }*/
+    }
 }
