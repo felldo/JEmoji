@@ -5435,7 +5435,7 @@
   "🪇" : [ "cha cha cha", "danse", "danser", "fête", "hochet", "instrument", "maracas", "musique", "percussion", "secouer" ],
   "🪈" : [ "bois", "fanfare", "fifre", "flûte", "flûte à bec", "flûtiste", "instrument", "musique", "orchestre", "piccolo" ],
   "🪉" : [ "amour", "cupidon", "harpe", "instrument", "musique", "orchestre" ],
-  "🪊" : null,
+  "🪊" : [ "instrument", "musique", "trombone" ],
   "🪎" : [ "argent", "argenterie", "bijoux", "butin", "objets de valeur", "or", "pierre précieuse", "richesse" ],
   "🪏" : [ "bêche", "creuser", "pelle", "trou" ],
   "🪐" : [ "anneaux", "planète à anneaux", "saturne", "saturnien", "saturnienne" ],

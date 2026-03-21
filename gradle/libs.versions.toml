@@ -1,10 +1,12 @@
 [versions]
-jackson = "3.1.0"
+jackson = "3.1.1"
+kotlin = "2.3.0"
 org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
 gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.23.0"
 htmlunit = "org.htmlunit:htmlunit:4.21.0"
+jcabi-github = "com.jcabi:jcabi-github:1.10.0"
 jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 #jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
@@ -18,7 +20,8 @@ okhttp = "com.squareup.okhttp3:okhttp:5.3.2"
 [plugins]
 #https://github.com/melix/jmh-gradle-plugin
 jmh = "me.champeau.jmh:0.7.3"
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 jreleaser = "org.jreleaser:1.23.0"
-shadow = "com.gradleup.shadow:9.4.0"
+shadow = "com.gradleup.shadow:9.4.1"
 versions = "com.github.ben-manes.versions:0.53.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.1.0"

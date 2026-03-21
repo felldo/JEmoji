@@ -14,4 +14,4 @@ plugins {
 }
 
 rootProject.name = "JEmoji"
-include("jemoji", "jemoji-languages")
+include("jemoji", "jemoji-languages", "emoji-generator")
