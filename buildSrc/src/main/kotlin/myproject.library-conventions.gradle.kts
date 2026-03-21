@@ -56,7 +56,7 @@ tasks.withType<Javadoc>().configureEach {
         encoding = "UTF-8"
         docTitle = "${extension.title.get()} ${project.version}"
         windowTitle = "$docTitle Documentation"
-        links("https://docs.oracle.com/en/java/javase/17/docs/api/", "https://github.com/felldo/JEmoji")
+        links("https://docs.oracle.com/en/java/javase/17/docs/api/")
         isUse = true
         isVersion = true
         isAuthor = true
