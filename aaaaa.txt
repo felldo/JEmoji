@@ -1,0 +1,6 @@
+9851=[
+Emoji{emoji='♻️', unicode='\u267B\uFE0F', discordAliases=[:recycle:], githubAliases=[:recycle:], slackAliases=[:recycle:], hasFitzpatrick=false, hasHairStyle=false, version=0.6, qualification=FULLY_QUALIFIED, description='recycling symbol', group=SYMBOLS, subgroup=OTHER_SYMBOL, hasVariationSelectors=false, allAliases=[:recycle:]},
+Emoji{emoji='♻', unicode='\u267B', discordAliases=[], githubAliases=[], slackAliases=[], hasFitzpatrick=false, hasHairStyle=false, version=0.6, qualification=UNQUALIFIED, description='recycling symbol', group=SYMBOLS, subgroup=OTHER_SYMBOL, hasVariationSelectors=true, allAliases=[]},
+Emoji{emoji='♻', unicode='\u267B', discordAliases=[], githubAliases=[], slackAliases=[], hasFitzpatrick=false, hasHairStyle=false, version=0.6, qualification=UNQUALIFIED, description='recycling symbol', group=SYMBOLS, subgroup=OTHER_SYMBOL, hasVariationSelectors=true, allAliases=[]},
+Emoji{emoji='♻', unicode='\u267B', discordAliases=[], githubAliases=[], slackAliases=[], hasFitzpatrick=false, hasHairStyle=false, version=0.6, qualification=UNQUALIFIED, description='recycling symbol', group=SYMBOLS, subgroup=OTHER_SYMBOL, hasVariationSelectors=true, allAliases=[]}
+]

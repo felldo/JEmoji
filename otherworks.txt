@@ -1,0 +1,190 @@
+    private static void initUnicode() {
+        EMOJIS_LENGTH_DESCENDING = InitHelper.emojisLengthDescending();
+        EMOJI_UNICODE_TO_EMOJI = InitHelper.emojiUnicodeToEmoji();
+        EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = InitHelper.emojiFirstCodepointToEmojisOrderCodepointLengthDescending();
+        EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlDecimalRepresentationToEmoji();
+        EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlHexadecimalRepresentationToEmoji();
+        EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = InitHelper.emojiUrlEncodedRepresentationToEmoji();
+        InitHelper.initFinished();
+    }
+
+    private static volatile boolean aliasInitialized = false;
+    private static final Object ALIAS_INIT_LOCK = new Object();
+
+    private static void ensureAliasInitialized() {
+        if (!aliasInitialized) {
+            synchronized (ALIAS_INIT_LOCK) {
+                if (!aliasInitialized) {
+                    initAlias();
+                    aliasInitialized = true;
+                }
+            }
+        }
+    }
+
+    private static void initAlias() {
+        ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = InitHelper.aliasEmojiToEmojisOrderCodepointLengthDescending();
+    }
+
+    //https://pangin.pro/posts/computation-in-static-initializer
+    private static final class InitHelper {
+
+        @Nullable
+        private static Set<Emoji> EMOJIS = null;
+
+        static Object readFileAsObject(final String filePathName) {
+            try {
+                try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName);
+                     final BufferedInputStream bis = new BufferedInputStream(Objects.requireNonNull(is));
+                     final ObjectInputStream ois = new ObjectInputStream(bis);) {
+                    return ois.readObject();
+                } catch (final ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (final IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        static Set<Emoji> getEmojis() {
+            if (EMOJIS == null) {
+                final HashMap<String, Emoji> map = (HashMap<String, Emoji>) readFileAsObject("/jemoji/serializedEmojis.ser");
+                EMOJIS = new HashSet<>(map.values());
+            }
+            return EMOJIS;
+        }
+
+        static List<Emoji> emojisLengthDescending() {
+            return Collections.unmodifiableList(getEmojis().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+        }
+
+        /*static Map<String, Emoji> emojiUnicodeToEmoji() {
+            return Collections.unmodifiableMap(getEmojis().stream().collect(Collectors.toMap(Emoji::getEmoji, emoji -> emoji)));
+        }*/
+        static Map<String, Emoji> emojiUnicodeToEmoji() {
+            return Collections.unmodifiableMap(buildEmojiStringToEmojiMap());
+        }
+
+        /*static Map<Integer, List<Emoji>> emojiFirstCodepointToEmojisOrderCodepointLengthDescending() {
+//            prepareEmojisStreamForInitialization(getEmojis()).forEachOrdered(entry -> System.out.println(entry.getKey() + " " + entry.getValue().getEmoji() + " "+ entry.getValue().getDescription()));
+            // Mit variation 5943
+            //variation mit distinct
+            // Ohne variation 5225
+            // All emojis only 5225
+            getEmojis().stream().collect(getEmojiLinkedHashMapCollector()).forEach((integer, emojis) -> System.out.println(integer + " " + emojis.size()));
+            return Collections.unmodifiableMap(getEmojis().stream().collect(getEmojiLinkedHashMapCollector()));
+//            return Collections.unmodifiableMap(getEmojis().stream().collect(getEmojiLinkedHashMapCollector()));
+        }*/
+
+        static Map<Integer, List<Emoji>> emojiFirstCodepointToEmojisOrderCodepointLengthDescending() {
+            return Collections.unmodifiableMap(
+                    buildEmojiStringToEmojiMap().entrySet().stream()
+                            .collect(Collectors.groupingBy(
+                                    entry -> entry.getKey().codePointAt(0),
+                                    LinkedHashMap::new,
+                                    Collectors.collectingAndThen(
+                                            Collectors.toList(),
+                                            list -> {
+                                                list.sort(Comparator.comparingInt((Map.Entry<String, Emoji> e) ->
+                                                        e.getKey().length()).reversed());
+                                                return list.stream().map(Map.Entry::getValue).collect(Collectors.toList());
+                                            }
+                                    )
+                            ))
+            );
+        }
+
+        static Map<InternalCodepointSequence, List<Emoji>> aliasEmojiToEmojisOrderCodepointLengthDescending() {
+            return mapAliasesToEmojis(getEmojis());
+        }
+
+        static Map<String, Emoji> emojiHtmlDecimalRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getHtmlDecimalCode().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static Map<String, Emoji> emojiHtmlHexadecimalRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getHtmlHexadecimalCode().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static Map<String, Emoji> emojiUrlEncodedRepresentationToEmoji() {
+            return Collections.unmodifiableMap(
+                    getEmojis().stream().collect(Collectors.toMap(
+                            o -> o.getURLEncoded().toUpperCase(),
+                            emoji -> emoji,
+                            (existing, replacement) -> existing)
+                    ));
+        }
+
+        static boolean initFinished() {
+//            System.out.println("+++++++++++++++++++++++");
+//            System.out.println(emojiFirstCodepointToEmojisOrderCodepointLengthDescending());
+//            AtomicInteger atomicInteger = new AtomicInteger();
+//            emojiFirstCodepointToEmojisOrderCodepointLengthDescending().forEach((integer, emojis) -> atomicInteger.addAndGet(emojis.size()));
+//            System.out.println(atomicInteger.get());
+            EMOJIS = null;
+            return true;
+        }
+
+        private static Map<InternalCodepointSequence, List<Emoji>> mapAliasesToEmojis(final Collection<Emoji> emojis) {
+            return emojis.stream()
+                    .flatMap(emoji -> emoji.getAllAliases().stream()
+                            .map(alias -> new AbstractMap.SimpleEntry<>(new InternalCodepointSequence(stringToCodePoints(alias)), emoji)))
+                    .collect(Collectors.groupingBy(
+                            AbstractMap.SimpleEntry::getKey,
+                            HashMap::new,
+                            Collectors.mapping(AbstractMap.SimpleEntry::getValue, Collectors.toList())
+                    ));
+        }
+
+        private static Collector<Emoji, ?, LinkedHashMap<Integer, List<Emoji>>> getEmojiLinkedHashMapCollector() {
+            return Collectors.groupingBy(
+                    entry -> entry.getEmoji().codePointAt(0),
+                    LinkedHashMap::new,
+                    Collectors.collectingAndThen(
+                            Collectors.toList(),
+                            list -> {
+                                list.sort((e1, e2) -> Integer.compare(e2.getEmoji().length(), e1.getEmoji().length()));
+                                return list;
+                            }
+                    )
+            );
+        }
+
+
+        private static Map<String, Emoji> buildEmojiStringToEmojiMap() {
+            final Map<String, Emoji> map = new LinkedHashMap<>();
+
+            for (final Emoji emoji : getEmojis()) {
+                map.putIfAbsent(emoji.getEmoji(), emoji);
+                if (emoji.hasVariationSelectors()) {
+                    emoji.getTextVariation().ifPresent(v -> map.putIfAbsent(v, emoji));
+                    emoji.getEmojiVariation().ifPresent(v -> map.putIfAbsent(v, emoji));
+                }
+            }
+
+            return map;
+        }
+
+        /*private static Stream<AbstractMap.SimpleEntry<String, Emoji>> prepareEmojisStreamForInitialization(final Collection<Emoji> emojis) {
+            return emojis.stream()
+                    .flatMap(emoji -> {
+                        final Stream.Builder<AbstractMap.SimpleEntry<String, Emoji>> streamBuilder = Stream.builder();
+                        streamBuilder.add(new AbstractMap.SimpleEntry<>(emoji.getEmoji(), emoji));
+                        if (emoji.hasVariationSelectors()) {
+                            emoji.getTextVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
+                            emoji.getEmojiVariation().ifPresent(variation -> streamBuilder.add(new AbstractMap.SimpleEntry<>(variation, emoji)));
+                        }
+                        return streamBuilder.build();
+                    });
+        }*/
+    }
