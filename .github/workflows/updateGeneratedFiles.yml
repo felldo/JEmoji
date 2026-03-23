@@ -29,7 +29,7 @@ jobs:
           java-version: '21'
 
       - name: Run generateAll task
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 10
           retry_wait_seconds: 60
