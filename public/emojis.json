@@ -77476,7 +77476,7 @@
   "htmlDec" : "&#129669;",
   "htmlHex" : "&#x1FA85;",
   "urlEncoded" : "%F0%9F%AA%85",
-  "discordAliases" : [ ":piñata:" ],
+  "discordAliases" : [ ":piñata:", ":pinata:" ],
   "githubAliases" : [ ":pinata:" ],
   "slackAliases" : [ ":pinata:" ],
   "hasFitzpatrick" : false,
