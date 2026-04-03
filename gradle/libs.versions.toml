@@ -1,6 +1,6 @@
 [versions]
 jackson = "3.1.1"
-kotlin = "2.3.0"
+kotlin = "2.3.20"
 org-jetbrains-kotlinx = "1.10.2"
 
 [libraries]
@@ -25,3 +25,4 @@ jreleaser = "org.jreleaser:1.23.0"
 shadow = "com.gradleup.shadow:9.4.1"
 versions = "com.github.ben-manes.versions:0.53.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.1.0"
+gradle-versions-filter = "se.ascp.gradle.gradle-versions-filter:0.1.16"

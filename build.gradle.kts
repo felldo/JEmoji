@@ -1,5 +1,14 @@
 plugins {
     id("base")
+    alias(libs.plugins.versions)
+    alias(libs.plugins.gradle.versions.filter)
+}
+
+// dependencyUpdates fails in parallel mode with Gradle 9+ (https://github.com/ben-manes/gradle-versions-plugin/issues/968)
+tasks.named("dependencyUpdates") {
+    doFirst {
+        gradle.startParameter.isParallelProjectExecutionEnabled = false
+    }
 }
 
 tasks.register("generate") {

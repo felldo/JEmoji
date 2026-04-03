@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.versions)
     alias(libs.plugins.shadow)
     alias(libs.plugins.jmh)
     id("myproject.library-conventions")
