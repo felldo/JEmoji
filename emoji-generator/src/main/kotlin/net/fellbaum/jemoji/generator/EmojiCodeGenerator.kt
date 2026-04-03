@@ -390,7 +390,7 @@ fun generateEmojiSubGroupEnum(groups: List<Pair<String, String>>, rootDir: Strin
 
 fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode, rootDir: String) {
     TypeSpec.classBuilder("PreComputedConstants").apply {
-        addModifiers(Modifier.FINAL)
+        addModifiers(Modifier.FINAL, Modifier.PUBLIC)
         addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
 
         val variablesModifiers = listOf(
