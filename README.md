@@ -5,17 +5,15 @@
 ![Dynamic Regex Badge](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Funicode.org%2Femoji%2Fcharts%2Findex.html&search=Unicode%C2%AE%20Emoji%20Charts%20v(%5Cd%2B%5C.%5Cd%2B)&replace=%241&style=for-the-badge&logo=unicode&label=Latest%20Unicode%20Emoji%20Version)
 ![Library Unicode Emoji Version](https://img.shields.io/badge/Library_Unicode_Emoji_version-17.0-critical?style=for-the-badge&logo=unicode)
 
-
-
 ![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
-![Library Unicode Emoji Version](https://img.shields.io/badge/Last_Java_8_support-v1.7.6-blue?style=for-the-badge)
+![Last java 8 version](https://img.shields.io/badge/Last_Java_8_support-v1.7.6-blue?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
 
 </div>
 
 # Java Emoji (JEmoji)
 
-JEmoji is a lightweight, fast and auto generated emoji library for Java with a complete list of all emojis from the Unicode consortium.
+JEmoji is a lightweight, fast and auto-generated emoji library for Java with a complete list of all emojis from the Unicode consortium.
 
 With many utility methods and **type safe** direct access to Emojis,
 JEmoji aims to improve your experience and development when working with Emojis.
@@ -23,9 +21,9 @@ JEmoji aims to improve your experience and development when working with Emojis.
 ## ⭐ Highlights
 - Extract, replace and remove emojis from text.
 - Ability to detect emoji in other representations than Unicode (HTML dec / hex, url encoded).
-- Auto generated type safe constant emojis are directly accessible `Emojis.THUMBS_UP` .
+- Auto-generated type safe constant emojis are directly accessible `Emojis.THUMBS_UP` .
 - Get emojis dynamically with `getEmoji`, `getByAlias`, `getByHtmlDecimal`,`getByHtmlHexadecimal`,`getByUrlEncoded`.
-- 1 click to update the library to the newest Unicode consortium emoji specification.
+- One click to update the library to the newest Unicode consortium emoji specification.
 
 ## ❓ Why another emoji library?
 
@@ -108,7 +106,7 @@ Emojis.THUMBS_UP_MEDIUM_SKIN_TONE;
 Set<Emoji> emojis=EmojiManager.getAllEmojis();
 ```
 
-#### Get emoji by unicode string
+#### Get emoji by Unicode string
 
 ```java
 Optional<Emoji> emoji=EmojiManager.getEmoji("😀");
@@ -278,9 +276,9 @@ On every push on the master branch,
 a benchmark will be executed and automatically deployed to this
 projects [GitHub pages](https://felldo.github.io/JEmoji/dev/bench/).
 These benchmarks are executed on GitHub runners and therefore are not very accurate and can differ a bit since this
-library measures benchmarks in single digit milliseconds range or even below.
+library measures benchmarks in the single digit milliseconds range or even below.
 They are generally okay to measure large differences if something bad got pushed but are not as reliable as the results
-of benchmark table below which are always executed on the specified specs.
+of the benchmark table below which are always executed on the specified specs.
 
 | **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
 |------------------------------------------------|----------|---------|-------------|-----------|-----------|
