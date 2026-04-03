@@ -13,6 +13,7 @@ import kotlin.math.ceil
 
 private val jemojiPackagePath = listOf("net", "fellbaum", "jemoji")
 private val jemojiBasePackagePathString = jemojiPackagePath.joinToString(".")
+private val jemojiGeneratedPackagePathString = "$jemojiBasePackagePathString.generated"
 
 // FIX DESCRIPTION ERRORS THAT CAUSE COMPILATION ERRORS WITH NAMES
 // Basic allowed characters
@@ -50,14 +51,14 @@ fun generateJavaSourceFiles(rootDir: String) {
                     .addJavadoc(it.get("emoji").asString())
                     .initializer(
                         CodeBlock.of(
-                            $$"$T.getEmoji($S).orElseThrow($T::new)",
+                            $$"$T.getEmoji($S).orElseThrow()",
                             EmojiManager::class.java,
-                            it.get("emoji").asString(),
-                            java.lang.IllegalStateException::class.java
+                            it.get("emoji").asString()
                         )
                     )
                     .build()
-
+//                $$"$T.getEmoji($S).orElseThrow($T::new)"
+//                java.lang.IllegalStateException::class.java
                 emojiSubGroupInterfaceConstantVariables.add(emojiConstantVariable)
             }
 
@@ -86,11 +87,11 @@ fun generateJavaSourceFiles(rootDir: String) {
                 emojiSubGroupInterfaceConstantVariablesValidNames.windowed(emojisPerInterface, emojisPerInterface, true)
                     .forEach {
                         val adjustedInterfaceName = emojiSubgroupFileName + (startingLetter++)
-                        addSuperinterface(ClassName.get(jemojiBasePackagePathString, adjustedInterfaceName))
+                        addSuperinterface(ClassName.get(jemojiGeneratedPackagePathString, adjustedInterfaceName))
                         createSubGroupEmojiInterface(adjustedInterfaceName, it, rootDir)
                     }
             } else {
-                addSuperinterface(ClassName.get(jemojiBasePackagePathString, emojiSubgroupFileName))
+                addSuperinterface(ClassName.get(jemojiGeneratedPackagePathString, emojiSubgroupFileName))
                 createSubGroupEmojiInterface(emojiSubgroupFileName, emojiSubGroupInterfaceConstantVariablesValidNames, rootDir)
             }
         }
@@ -516,7 +517,7 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode, root
                         ).build()
                 )
             }
-    }.saveGeneratedJavaSourceFile(rootDir)
+    }.saveGeneratedJavaSourceFile(rootDir, "internal")
 }
 
 fun createSubGroupEmojiInterface(
@@ -525,19 +526,21 @@ fun createSubGroupEmojiInterface(
     rootDir: String
 ) {
     TypeSpec.interfaceBuilder(emojiSubgroupFileName).apply {
+        addModifiers(Modifier.PUBLIC)
         addAnnotation(AnnotationSpec.builder(SuppressWarnings::class.java).addMember("value", $$"$S", "unused").build())
         addFields(emojiSubGroupInterfaceConstantVariables)
-    }.saveGeneratedJavaSourceFile(rootDir)
+    }.saveGeneratedJavaSourceFile(rootDir, "generated")
 }
 
-fun TypeSpec.Builder.saveGeneratedJavaSourceFile(rootDir: String) {
+fun TypeSpec.Builder.saveGeneratedJavaSourceFile(rootDir: String, subPackage: String? = null) {
     val generatedSourcesDir = "$rootDir/jemoji/build/generated/jemoji"
     addAnnotation(
         AnnotationSpec.builder(ClassName.get("javax.annotation.processing", "Generated"))
-            .addMember("value", $$"$S", "build.gradle.kts")
+            .addMember("value", $$"$S", "emoji-generator")
             .build()
     )
-    JavaFile.builder(jemojiPackagePath.joinToString("."), this.build())
+    val packageName = jemojiPackagePath.joinToString(".") + (subPackage?.let { ".$it" } ?: "")
+    JavaFile.builder(packageName, this.build())
         .indent("    ")
         .skipJavaLangImports(true)
         .build()

@@ -5,7 +5,10 @@
 ![Dynamic Regex Badge](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Funicode.org%2Femoji%2Fcharts%2Findex.html&search=Unicode%C2%AE%20Emoji%20Charts%20v(%5Cd%2B%5C.%5Cd%2B)&replace=%241&style=for-the-badge&logo=unicode&label=Latest%20Unicode%20Emoji%20Version)
 ![Library Unicode Emoji Version](https://img.shields.io/badge/Library_Unicode_Emoji_version-17.0-critical?style=for-the-badge&logo=unicode)
 
+
+
 ![Maven Central](https://img.shields.io/maven-central/v/net.fellbaum/jemoji?style=for-the-badge)
+![Library Unicode Emoji Version](https://img.shields.io/badge/Last_Java_8_support-v1.7.6-blue?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/felldo/JEmoji?style=for-the-badge)
 
 </div>

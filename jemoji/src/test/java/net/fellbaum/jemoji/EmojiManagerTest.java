@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 import static java.util.Collections.singletonList;
 
+@SuppressWarnings("DataFlowIssue")
 public class EmojiManagerTest {
 
     public static final String ALL_EMOJIS_STRING = EmojiManager.getAllEmojisLengthDescending().stream().map(Emoji::getEmoji).collect(Collectors.joining());
@@ -259,6 +260,7 @@ public class EmojiManagerTest {
         for (Object[] testCase : testCases) {
             String input = (String) testCase[0];
             String expectedOutput = (String) testCase[1];
+            //noinspection unchecked
             EnumSet<EmojiType> emojiTypes = (EnumSet<EmojiType>) testCase[2];
 
             assertEquals(expectedOutput, EmojiManager.replaceAllEmojis(input, "<replaced>", emojiTypes),
@@ -278,6 +280,7 @@ public class EmojiManagerTest {
         for (Object[] testCase : testCases) {
             String input = (String) testCase[0];
             String expectedOutput = (String) testCase[1];
+            //noinspection unchecked
             EnumSet<EmojiType> emojiTypes = (EnumSet<EmojiType>) testCase[2];
             assertEquals(expectedOutput, EmojiManager.replaceAllEmojis(input, "<replaced>", emojiTypes),
                     "Failed for input: " + input);

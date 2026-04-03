@@ -1,5 +1,7 @@
-package net.fellbaum.jemoji;
+package net.fellbaum.jemoji.internal;
 
+import net.fellbaum.jemoji.Emoji;
+import net.fellbaum.jemoji.EmojiType;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
@@ -7,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static net.fellbaum.jemoji.EmojiManager.*;
+import static net.fellbaum.jemoji.internal.EmojiData.*;
 
-final class InternalEmojiUtils {
+public final class EmojiUtils {
 
-    private InternalEmojiUtils() {
+    private EmojiUtils() {
     }
 
     public static final char TEXT_VARIATION_CHARACTER = '\uFE0E';
@@ -34,10 +36,10 @@ final class InternalEmojiUtils {
         return alias.startsWith(":") && alias.endsWith(":") ? alias : ":" + alias + ":";
     }
 
-    public static Optional<List<Emoji>> findEmojiByEitherAlias(final Map<InternalCodepointSequence, List<Emoji>> map, final String alias) {
-        final List<Emoji> firstValue = map.get(new InternalCodepointSequence(addColonToAlias(alias)));
+    public static Optional<List<Emoji>> findEmojiByEitherAlias(final Map<CodepointSequence, List<Emoji>> map, final String alias) {
+        final List<Emoji> firstValue = map.get(new CodepointSequence(addColonToAlias(alias)));
         if (firstValue != null) return Optional.of(firstValue);
-        final List<Emoji> secondValue = map.get(new InternalCodepointSequence(removeColonFromAlias(alias)));
+        final List<Emoji> secondValue = map.get(new CodepointSequence(removeColonFromAlias(alias)));
         if (secondValue != null) return Optional.of(secondValue);
         return Optional.empty();
     }
@@ -299,9 +301,9 @@ final class InternalEmojiUtils {
     static NonUniqueEmojiFoundResult findAliasEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
         if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) return null;
 
-        InternalCodepointSequence lastKnownCodepointSequence = null;
+        CodepointSequence lastKnownCodepointSequence = null;
         for (int aliasCodePointIndex = 0; aliasCodePointIndex < PreComputedConstants.ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
-            final InternalCodepointSequence tempCodepointSequence = new InternalCodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
+            final CodepointSequence tempCodepointSequence = new CodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
             if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
                 lastKnownCodepointSequence = tempCodepointSequence;
             }
@@ -324,19 +326,4 @@ final class InternalEmojiUtils {
     public static boolean checkIfCodepointIsInvalidEmojiStarter(final int currentCodepoint) {
         return EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) == null && currentCodepoint != '&' && currentCodepoint != '%';
     }
-}
-
-record UniqueEmojiFoundResult(Emoji emoji, int endIndex) {
-
-    @Override
-    public String toString() {
-        return "UniqueEmojiFoundResult{" +
-                "emoji=" + emoji +
-                ", endIndex=" + endIndex +
-                '}';
-    }
-}
-
-record NonUniqueEmojiFoundResult(List<Emoji> emojis, int endIndex, InternalCodepointSequence codepointSequence) {
-
 }

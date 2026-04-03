@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
 
-import static net.fellbaum.jemoji.InternalEmojiUtils.*;
+import static net.fellbaum.jemoji.internal.EmojiUtils.*;
 
 /**
  * Represents an emoji along with its properties such as Unicode representation,

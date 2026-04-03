@@ -1,10 +1,11 @@
 package net.fellbaum.jemoji;
 
+import net.fellbaum.jemoji.internal.CodepointSequence;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InternalCodepointSequenceTest {
+public class CodepointSequenceTest {
 
     @Test
     public void testConstructorWithCodepoints() {
@@ -12,7 +13,7 @@ public class InternalCodepointSequenceTest {
         int[] codepoints = {0x1F44D}; // Thumbs up emoji codepoint
 
         // Act
-        InternalCodepointSequence sequence = new InternalCodepointSequence(codepoints);
+        CodepointSequence sequence = new CodepointSequence(codepoints);
 
         // Assert
         assertNotNull(sequence);
@@ -26,7 +27,7 @@ public class InternalCodepointSequenceTest {
         int[] expectedCodepoints = {0x1F44D};
 
         // Act
-        InternalCodepointSequence sequence = new InternalCodepointSequence(emoji);
+        CodepointSequence sequence = new CodepointSequence(emoji);
 
         // Assert
         assertNotNull(sequence);
@@ -37,7 +38,7 @@ public class InternalCodepointSequenceTest {
     public void testGetCodepoints() {
         // Arrange
         int[] codepoints = {0x1F600}; // Grinning face emoji codepoint
-        InternalCodepointSequence sequence = new InternalCodepointSequence(codepoints);
+        CodepointSequence sequence = new CodepointSequence(codepoints);
 
         // Act
         int[] result = sequence.codepoints();
@@ -53,8 +54,8 @@ public class InternalCodepointSequenceTest {
         // Arrange
         int[] codepoints1 = {0x1F44D}; // Thumbs up emoji codepoint
         int[] codepoints2 = {0x1F44D}; // Same codepoint in a different array
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints1);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(codepoints2);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints1);
+        CodepointSequence sequence2 = new CodepointSequence(codepoints2);
 
         // Act & Assert
         assertEquals(sequence1, sequence2);
@@ -66,8 +67,8 @@ public class InternalCodepointSequenceTest {
         // Arrange
         int[] codepoints1 = {0x1F44D}; // Thumbs up emoji codepoint
         int[] codepoints2 = {0x1F44E}; // Thumbs down emoji codepoint
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints1);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(codepoints2);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints1);
+        CodepointSequence sequence2 = new CodepointSequence(codepoints2);
 
         // Act & Assert
         assertNotEquals(sequence1, sequence2);
@@ -79,8 +80,8 @@ public class InternalCodepointSequenceTest {
         // Arrange
         int[] codepoints1 = {0x1F44D}; // Single codepoint
         int[] codepoints2 = {0x1F44D, 0x1F44D}; // Two codepoints
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints1);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(codepoints2);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints1);
+        CodepointSequence sequence2 = new CodepointSequence(codepoints2);
 
         // Act & Assert
         assertNotEquals(sequence1, sequence2);
@@ -91,7 +92,7 @@ public class InternalCodepointSequenceTest {
     public void testEquals_WithNull() {
         // Arrange
         int[] codepoints = {0x1F44D}; // Thumbs up emoji codepoint
-        InternalCodepointSequence sequence = new InternalCodepointSequence(codepoints);
+        CodepointSequence sequence = new CodepointSequence(codepoints);
 
         // Act & Assert
         assertNotEquals(sequence, null);
@@ -101,7 +102,7 @@ public class InternalCodepointSequenceTest {
     public void testEquals_WithDifferentClass() {
         // Arrange
         int[] codepoints = {0x1F44D}; // Thumbs up emoji codepoint
-        InternalCodepointSequence sequence = new InternalCodepointSequence(codepoints);
+        CodepointSequence sequence = new CodepointSequence(codepoints);
         Object differentObject = "Not a sequence";
 
         // Act & Assert
@@ -113,8 +114,8 @@ public class InternalCodepointSequenceTest {
         // Arrange
         int[] codepoints1 = {0x1F44D}; // Thumbs up emoji codepoint
         int[] codepoints2 = {0x1F44D}; // Same codepoint in a different array
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints1);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(codepoints2);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints1);
+        CodepointSequence sequence2 = new CodepointSequence(codepoints2);
 
         // Act & Assert
         assertEquals(sequence1.hashCode(), sequence2.hashCode());
@@ -125,8 +126,8 @@ public class InternalCodepointSequenceTest {
         // Arrange
         int[] codepoints1 = {0x1F44D}; // Thumbs up emoji codepoint
         int[] codepoints2 = {0x1F44E}; // Thumbs down emoji codepoint
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints1);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(codepoints2);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints1);
+        CodepointSequence sequence2 = new CodepointSequence(codepoints2);
 
         // Act & Assert
         assertNotEquals(sequence1.hashCode(), sequence2.hashCode());
@@ -139,8 +140,8 @@ public class InternalCodepointSequenceTest {
         String familyEmoji = "👨‍👩‍👧‍👦"; // Family emoji
 
         // Act
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(codepoints);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(familyEmoji);
+        CodepointSequence sequence1 = new CodepointSequence(codepoints);
+        CodepointSequence sequence2 = new CodepointSequence(familyEmoji);
 
         // Assert
         assertArrayEquals(sequence1.codepoints(), sequence2.codepoints());
@@ -155,8 +156,8 @@ public class InternalCodepointSequenceTest {
         String emptyString = "";
 
         // Act
-        InternalCodepointSequence sequence1 = new InternalCodepointSequence(emptyCodepoints);
-        InternalCodepointSequence sequence2 = new InternalCodepointSequence(emptyString);
+        CodepointSequence sequence1 = new CodepointSequence(emptyCodepoints);
+        CodepointSequence sequence2 = new CodepointSequence(emptyString);
 
         // Assert
         assertArrayEquals(emptyCodepoints, sequence1.codepoints());
