@@ -10,7 +10,7 @@ jcabi-github = "com.jcabi:jcabi-github:1.10.0"
 jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 #jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
-javapoet = "com.palantir.javapoet:javapoet:0.12.0"
+javapoet = "com.palantir.javapoet:javapoet:0.14.0"
 jsoup = "org.jsoup:jsoup:1.22.1"
 jspecify = "org.jspecify:jspecify:1.0.0"
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
