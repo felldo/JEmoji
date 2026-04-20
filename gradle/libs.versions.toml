@@ -23,6 +23,6 @@ jmh = "me.champeau.jmh:0.7.3"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 jreleaser = "org.jreleaser:1.23.0"
 shadow = "com.gradleup.shadow:9.4.1"
-versions = "com.github.ben-manes.versions:0.53.0"
+versions = "com.github.ben-manes.versions:0.54.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.1.0"
 gradle-versions-filter = "se.ascp.gradle.gradle-versions-filter:0.1.16"
