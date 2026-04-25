@@ -468,9 +468,8 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode, root
                         "POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
-                        CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$L" } + "))",
-                            HashSet::class.java,
-                            Arrays::class.java,
+                        CodeBlock.of($$"$T.of(" + it.joinToString(", ") { $$"$L" } + ")",
+                            Set::class.java,
                             *it.toTypedArray())
                     ).build()
                 )
@@ -488,9 +487,8 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode, root
                         "POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS",
                         *variablesModifiers.toTypedArray()
                     ).initializer(
-                        CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$L" } + "))",
-                            HashSet::class.java,
-                            Arrays::class.java,
+                        CodeBlock.of($$"$T.of(" + it.joinToString(", ") { $$"$L" } + ")",
+                            Set::class.java,
                             *it.toTypedArray())
                     ).build()
                 )
@@ -510,9 +508,8 @@ fun createStaticConstantsClassFromPreComputation(emojiArrayNode: ArrayNode, root
                         *variablesModifiers.toTypedArray()
                     )
                         .initializer(
-                            CodeBlock.of($$"new $T<>($T.asList(" + it.joinToString(", ") { $$"$S" } + "))",
-                                HashSet::class.java,
-                                Arrays::class.java,
+                            CodeBlock.of($$"$T.of(" + it.joinToString(", ") { $$"$S" } + ")",
+                                Set::class.java,
                                 *it.toTypedArray())
                         ).build()
                 )

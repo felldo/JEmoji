@@ -196,21 +196,27 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
     val document = Jsoup.connect(url).userAgent("Mozilla").get()
     val scripts = document.select("script[src]")
-    val src = scripts.stream().map { it.attr("src") }.filter { it.matches(Regex("/assets/web\\..*\\.js")) }.findFirst()
-    if (!src.isPresent) {
+    val srcFiles = scripts.stream().map { it.attr("src") }.filter { it.matches(Regex("""/assets/\w+\.\w+\.js""")) }.toList()
+    var srcBody: String? = null
+    for (filePath in srcFiles) {
+        val response = Jsoup.connect("https://discord.com${filePath}")
+            .ignoreContentType(true)
+            .method(Connection.Method.GET)
+            .maxBodySize(Integer.MAX_VALUE)
+            .execute()
+        val body = response.body()
+        if (body.contains("{\"emojis\":")) {
+            srcBody = body
+        }
+    }
+
+    if (srcBody.isNullOrBlank()) {
         throw IllegalStateException("Emoji script source not found")
     }
-    val response = Jsoup.connect("https://discord.com${src.get()}")
-        .ignoreContentType(true)
-        .method(Connection.Method.GET)
-        .maxBodySize(Integer.MAX_VALUE)
-        .execute()
-
-
 
     val mainEmojiJsContentStart = "exports=JSON.parse('{\"emojis\":[{\""
-    var mainEmojiJsContent = response.body()
-    //File("discord.js").writeText(mainEmojiJsContent)
+    var mainEmojiJsContent = srcBody
+//    File("discord.js").writeText(mainEmojiJsContent)
 
     mainEmojiJsContent =
         mainEmojiJsContent.substring(mainEmojiJsContent.indexOf(mainEmojiJsContentStart) + mainEmojiJsContentStart.length - 13)
@@ -221,7 +227,7 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
     val abbreviationsEmojiJsContentStart =
         "132565(e){\"use strict\";e.exports=JSON.parse('{\""//"132565:function(e){\"use strict\";e.exports=JSON.parse('{\""
-    var abbreviationsEmojiJsContent = response.body()
+    var abbreviationsEmojiJsContent = srcBody
     abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.substring(
         abbreviationsEmojiJsContent.indexOf(abbreviationsEmojiJsContentStart) + abbreviationsEmojiJsContentStart.length - 2
     )
