@@ -282,16 +282,20 @@ of the benchmark table below which are always executed on the specified specs.
 
 | **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
 |------------------------------------------------|----------|---------|-------------|-----------|-----------|
-| getByAlias -> `:+1:`                           | avgt     | 10      | 59,509      | ± 0,608   | ns/op     |
-| getByAlias -> `nope`                           | avgt     | 10      | 72,004      | ± 0,546   | ns/op     |
-| containsEmoji                                  | avgt     | 10      | 1,403       | ± 0,004   | ms/op     |
-| extractEmojisInOrder                           | avgt     | 10      | 1,382       | ± 0,013   | ms/op     |
-| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 10      | 6,013       | ± 0,022   | ms/op     |
-| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 10      | 6,614       | ± 0,045   | ms/op     |
-| extractEmojisInOrderWithIndex                  | avgt     | 10      | 1,814       | ± 0,002   | ms/op     |
-| removeAllEmojis                                | avgt     | 10      | 2,264       | ± 0,370   | ms/op     |
-| replaceAllEmojis                               | avgt     | 10      | 2,517       | ± 0,020   | ms/op     |
-| replaceAllEmojisFunction                       | avgt     | 10      | 2,502       | ± 0,023   | ms/op     |
+| getByAlias -> `:+1:`                           | avgt     | 5       | 11,588      | ± 1,038   | ns/op     |
+| getByAlias -> `nope`                           | avgt     | 5       | 17,364      | ± 0,774   | ns/op     |
+| getByDiscordAlias                              | avgt     | 5       | 40,838      | ± 0,529   | ns/op     |
+| containsEmoji                                  | avgt     | 5       | 18,778      | ± 0,376   | ms/op     |
+| extractAliasesInOrder                          | avgt     | 5       | 107,864     | ± 2,324   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 5       | 19,731      | ± 0,032   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 5       | 1,504       | ± 0,006   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 5       | 1,749       | ± 0,004   | ms/op     |
+| extractEmojisInOrderWithIndex                  | avgt     | 5       | 19,567      | ± 0,028   | ms/op     |
+| removeAllEmojis                                | avgt     | 5       | 20,149      | ± 0,063   | ms/op     |
+| replaceAliasesFunction                         | avgt     | 5       | 108,504     | ± 0,920   | ms/op     |
+| replaceAllEmojis                               | avgt     | 5       | 21,722      | ± 0,257   | ms/op     |
+| replaceAllEmojisFunction                       | avgt     | 5       | 21,962      | ± 0,447   | ms/op     |
+| replaceAllEmojisManyStarter                    | avgt     | 5       | 16,349      | ± 0,053   | ms/op     |
 
 <details>
 

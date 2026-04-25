@@ -33,6 +33,7 @@ public final class Emoji implements Comparable<Emoji> {
     private final boolean hasVariationSelectors;
 
     private final List<String> allAliases;
+    private final int[] emojiCodePoints;
 
     @JsonCreator
     Emoji(
@@ -75,6 +76,16 @@ public final class Emoji implements Comparable<Emoji> {
         aliases.addAll(getGithubAliases());
         aliases.addAll(getSlackAliases());
         allAliases = List.copyOf(aliases);
+        emojiCodePoints = stringToCodePoints(emoji);
+    }
+
+    /**
+     * Gets the pre-computed codepoint array of this emoji's string.
+     *
+     * @return The codepoint array of this emoji.
+     */
+    public int[] getEmojiCodePoints() {
+        return emojiCodePoints;
     }
 
     /**

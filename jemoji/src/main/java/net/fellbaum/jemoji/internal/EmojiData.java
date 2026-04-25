@@ -1,8 +1,10 @@
 package net.fellbaum.jemoji.internal;
 
 import net.fellbaum.jemoji.Emoji;
+import net.fellbaum.jemoji.EmojiGroup;
 import net.fellbaum.jemoji.EmojiLanguage;
 import net.fellbaum.jemoji.EmojiManager;
+import net.fellbaum.jemoji.EmojiSubGroup;
 import net.fellbaum.jemoji.Qualification;
 import org.jspecify.annotations.Nullable;
 import tools.jackson.core.type.TypeReference;
@@ -32,8 +34,12 @@ public class EmojiData {
 
     public static Map<CodepointSequence, List<Emoji>> ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = null;
 
+    public static Set<Emoji> EMOJIS_AS_SET = null;
+    public static Map<EmojiGroup, Set<Emoji>> EMOJIS_GROUPED = null;
+    public static Map<EmojiSubGroup, Set<Emoji>> EMOJIS_SUB_GROUPED = null;
+
     @Nullable
-    public static Pattern EMOJI_PATTERN;
+    public static volatile Pattern EMOJI_PATTERN;
 
     public static final Map<EmojiLanguage, Map<String, String>> EMOJI_DESCRIPTION_LANGUAGE_MAP = new HashMap<>();
     public static final Map<EmojiLanguage, Map<String, List<String>>> EMOJI_KEYWORD_LANGUAGE_MAP = new HashMap<>();
@@ -59,6 +65,11 @@ public class EmojiData {
         EMOJI_HTML_DECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlDecimalRepresentationToEmoji();
         EMOJI_HTML_HEXADECIMAL_REPRESENTATION_TO_EMOJI = InitHelper.emojiHtmlHexadecimalRepresentationToEmoji();
         EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = InitHelper.emojiUrlEncodedRepresentationToEmoji();
+        EMOJIS_AS_SET = Set.copyOf(EMOJIS_LENGTH_DESCENDING);
+        EMOJIS_GROUPED = Collections.unmodifiableMap(EMOJIS_LENGTH_DESCENDING.stream()
+                .collect(Collectors.groupingBy(Emoji::getGroup, Collectors.toUnmodifiableSet())));
+        EMOJIS_SUB_GROUPED = Collections.unmodifiableMap(EMOJIS_LENGTH_DESCENDING.stream()
+                .collect(Collectors.groupingBy(Emoji::getSubgroup, Collectors.toUnmodifiableSet())));
         InitHelper.initFinished();
     }
 

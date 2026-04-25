@@ -24,6 +24,7 @@ tasks.register("generateAll") {
 }
 
 tasks.register("publishAll") {
+    description = "Publish all subprojects"
     group = "publishing"
     subprojects.forEach { subproject ->
         dependsOn(subproject.tasks.matching { it.name == "publish" })

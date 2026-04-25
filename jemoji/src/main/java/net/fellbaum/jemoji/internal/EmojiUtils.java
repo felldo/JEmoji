@@ -60,7 +60,7 @@ public final class EmojiUtils {
         final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
         if (emojisByCodePoint == null) return null;
         for (final Emoji emoji : emojisByCodePoint) {
-            final int[] emojiCodePointsArray = stringToCodePoints(emoji.getEmoji());
+            final int[] emojiCodePointsArray = emoji.getEmojiCodePoints();
             final int emojiCodePointsLength = emojiCodePointsArray.length;
             // Check if Emoji code points are in bounds of the text code points
             if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
@@ -186,7 +186,7 @@ public final class EmojiUtils {
         }
 
         final StringBuilder urlEncodedEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, currentIndex - textIndex).toUpperCase());
-        while (urlEncodedEmoji.toString().contains("%")) {
+        while (urlEncodedEmoji.indexOf("%") != -1) {
             final Emoji emoji = EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji.toString());
             if (emoji != null) {
                 return new UniqueEmojiFoundResult(emoji, textIndex + urlEncodedEmoji.length());
