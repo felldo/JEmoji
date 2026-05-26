@@ -1,6 +1,7 @@
 plugins {
     id("base")
     alias(libs.plugins.versions)
+    alias(libs.plugins.versions.catalog)
     alias(libs.plugins.gradle.versions.filter)
 }
 
