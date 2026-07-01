@@ -5,7 +5,7 @@ org-jetbrains-kotlinx = "1.11.0"
 
 [libraries]
 gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.24.0"
-htmlunit = "org.htmlunit:htmlunit:5.0.0"
+htmlunit = "org.htmlunit:htmlunit:5.2.0"
 jcabi-github = "com.jcabi:jcabi-github:1.11.1"
 jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
