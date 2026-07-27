@@ -30,8 +30,16 @@ fun generate(rootDir: String, generateAll: Boolean = false) {
     val client = OkHttpClient()
     val jacksonMapper = jacksonObjectMapper()
 
+    val discordDefinitionFile = File("$rootDir/emoji_source_files/discord-emoji-definition.json")
+    val discordAliases = try {
+        retrieveDiscordEmojiShortcutsFile().also { discordDefinitionFile.writeText(jacksonMapper.writeValueAsString(it)) }
+    } catch (e: Exception) {
+        println("Warning: Could not fetch Discord emoji shortcuts (${e.message}), falling back to cached file")
+        jacksonMapper.readValue<Map<String, List<String>>>(discordDefinitionFile)
+    }
+
     val githubEmojiToAliasMap = getGithubEmojiAliasMap(client, jacksonMapper)
-    val discordAliases = retrieveDiscordEmojiShortcutsFile()
+
     val slackAliases = retrieveSlackEmojiShortcutsFile()
 
     val githubEmojiDefinition = File("$rootDir/emoji_source_files/github-emoji-definition.json")

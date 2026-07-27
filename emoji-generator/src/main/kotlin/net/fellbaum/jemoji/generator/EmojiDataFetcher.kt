@@ -191,47 +191,67 @@ fun retrieveSlackEmojiShortcutsFile(): Map<String, List<String>> {
 }
 
 
+/**
+ * Extracts the raw (still JS-escaped) contents of a `JSON.parse('...')` single-quoted string literal
+ * that starts with [markerWithOpeningQuote] (a prefix ending in the literal opening `'`).
+ *
+ * A plain `indexOf("}')},")` terminator is not reliable across webpack chunks: whether the JSON.parse
+ * call is followed by a comma (another module in the same chunk) or immediately closes the chunk
+ * varies, so the closing quote is found by scanning with backslash-escape awareness instead.
+ */
+private fun extractJsonParseStringLiteral(source: String, markerWithOpeningQuote: String): String {
+    val markerIndex = source.indexOf(markerWithOpeningQuote)
+    check(markerIndex >= 0) { "Marker not found: $markerWithOpeningQuote" }
+    val openQuoteIndex = markerIndex + markerWithOpeningQuote.indexOf('\'')
+
+    var i = openQuoteIndex + 1
+    while (true) {
+        when (source[i]) {
+            '\\' -> i += 2
+            '\'' -> return source.substring(openQuoteIndex + 1, i)
+            else -> i++
+        }
+    }
+}
+
 fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
     val url = "https://discord.com/channels/@me"
 
     val document = Jsoup.connect(url).userAgent("Mozilla").get()
-    val scripts = document.select("script[src]")
-    val srcFiles = scripts.stream().map { it.attr("src") }.filter { it.matches(Regex("""/assets/\w+\.\w+\.js""")) }.toList()
-    var srcBody: String? = null
-    for (filePath in srcFiles) {
-        val response = Jsoup.connect("https://discord.com${filePath}")
-            .ignoreContentType(true)
-            .method(Connection.Method.GET)
-            .maxBodySize(Integer.MAX_VALUE)
-            .execute()
-        val body = response.body()
-        if (body.contains("{\"emojis\":")) {
-            srcBody = body
-        }
-    }
+    val srcFiles = document.select("script[src]").map { it.attr("src") }
 
-    if (srcBody.isNullOrBlank()) {
-        throw IllegalStateException("Emoji script source not found")
+    val abbreviationsEmojiJsContentStart =
+        "132565(e){\"use strict\";e.exports=JSON.parse('{\""
+
+    // Discord ships the emoji definitions and the kaomoji abbreviations in two separate, predictably
+    // named asset chunks, so there's no need to download and scan every asset on the page for them.
+    val mainEmojiFile = srcFiles.firstOrNull { it.matches(Regex("""/assets/vnd-emoji\.\w+\.js""")) }
+        ?: throw IllegalStateException("vnd-emoji asset script not found")
+    val abbreviationsFile = srcFiles.firstOrNull { it.matches(Regex("""/assets/web\.\w+\.js""")) }
+        ?: throw IllegalStateException("web asset script not found")
+
+    fun fetchBody(path: String): String = Jsoup.connect("https://discord.com$path")
+        .ignoreContentType(true)
+        .method(Connection.Method.GET)
+        .maxBodySize(Integer.MAX_VALUE)
+        .execute()
+        .body()
+
+    val mainEmojiSrcBody = fetchBody(mainEmojiFile)
+    val abbreviationsSrcBody = fetchBody(abbreviationsFile)
+
+    if (!mainEmojiSrcBody.contains("{\"emojis\":")) {
+        throw IllegalStateException("Emoji definitions script source not found")
+    }
+    if (!abbreviationsSrcBody.contains(abbreviationsEmojiJsContentStart)) {
+        throw IllegalStateException("Emoji abbreviations script source not found")
     }
 
     val mainEmojiJsContentStart = "exports=JSON.parse('{\"emojis\":[{\""
-    var mainEmojiJsContent = srcBody
-//    File("discord.js").writeText(mainEmojiJsContent)
+    val mainEmojiJsContent = extractJsonParseStringLiteral(mainEmojiSrcBody, mainEmojiJsContentStart)
 
-    mainEmojiJsContent =
-        mainEmojiJsContent.substring(mainEmojiJsContent.indexOf(mainEmojiJsContentStart) + mainEmojiJsContentStart.length - 13)
-    //mainEmojiJsContent = mainEmojiJsContent.substring(0, mainEmojiJsContent.indexOf("}]}')},") + 3)
-    mainEmojiJsContent = mainEmojiJsContent.take(mainEmojiJsContent.indexOf("}')},") + 1)
-    //File("discordmain.json").writeText(mainEmojiJsContent)
-
-
-    val abbreviationsEmojiJsContentStart =
-        "132565(e){\"use strict\";e.exports=JSON.parse('{\""//"132565:function(e){\"use strict\";e.exports=JSON.parse('{\""
-    var abbreviationsEmojiJsContent = srcBody
-    abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.substring(
-        abbreviationsEmojiJsContent.indexOf(abbreviationsEmojiJsContentStart) + abbreviationsEmojiJsContentStart.length - 2
-    )
-    abbreviationsEmojiJsContent = abbreviationsEmojiJsContent.take(abbreviationsEmojiJsContent.indexOf("}')},") + 1)
+    val abbreviationsEmojiJsContent =
+        extractJsonParseStringLiteral(abbreviationsSrcBody, abbreviationsEmojiJsContentStart)
 
     val abbreviationsEmojiNode =
         jacksonObjectMapper().readTree(abbreviationsEmojiJsContent.replace("\\\\", "\\").replace("\\'", "'"))
@@ -250,7 +270,7 @@ fun retrieveDiscordEmojiShortcutsFile(): Map<String, List<String>> {
 
 
     val emojiJsonNode = jacksonObjectMapper().readValue<EmojiJson>(
-        mainEmojiJsContent.replace(
+        mainEmojiJsContent.replace("\\\\", "\\").replace(
             Regex("\\\\x([0-9A-Fa-f]{2})"),
             "\\\\u00$1"
         )
