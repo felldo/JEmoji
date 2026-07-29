@@ -1,16 +1,16 @@
 [versions]
-jackson = "3.1.4"
-kotlin = "2.3.21"
+jackson = "3.2.1"
+kotlin = "2.4.10"
 org-jetbrains-kotlinx = "1.11.0"
 
 [libraries]
 gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.24.0"
-htmlunit = "org.htmlunit:htmlunit:5.2.0"
+htmlunit = "org.htmlunit:htmlunit:5.3.0"
 jcabi-github = "com.jcabi:jcabi-github:1.11.1"
 jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 #jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
-javapoet = "com.palantir.javapoet:javapoet:0.17.0"
+javapoet = "com.palantir.javapoet:javapoet:0.18.0"
 jsoup = "org.jsoup:jsoup:1.22.2"
 jspecify = "org.jspecify:jspecify:1.0.0"
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
@@ -22,7 +22,7 @@ okhttp = "com.squareup.okhttp3:okhttp:5.4.0"
 jmh = "me.champeau.jmh:0.7.3"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 jreleaser = "org.jreleaser:1.24.0"
-shadow = "com.gradleup.shadow:9.4.3"
-versions = "com.github.ben-manes.versions:0.54.0"
+shadow = "com.gradleup.shadow:9.6.1"
+versions = "com.github.ben-manes.versions:0.56.0"
 versions-catalog = "nl.littlerobots.version-catalog-update:1.1.0"
 gradle-versions-filter = "se.ascp.gradle.gradle-versions-filter:0.1.16"
