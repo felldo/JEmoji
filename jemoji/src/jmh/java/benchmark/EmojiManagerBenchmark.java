@@ -103,6 +103,13 @@ public class EmojiManagerBenchmark {
         return EmojiManager.containsAnyEmoji(CONTAINS_EMOJI_TEXT);
     }
 
+    private static final Emoji VARIATIONS_EMOJI = Emojis.MAN_LIGHT_SKIN_TONE_RED_HAIR;
+
+    @Benchmark
+    public List<Emoji> getVariations() {
+        return VARIATIONS_EMOJI.getVariations();
+    }
+
     @Benchmark
     public String replaceAliasesFunction() {
         return EmojiManager.replaceAliases(ALIAS_TEXT, (s, emojis) -> "<replaced alias>");

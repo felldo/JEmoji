@@ -3,6 +3,8 @@ package net.fellbaum.jemoji;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.fellbaum.jemoji.internal.EmojiUtils.removeModifier;
+
 /**
  * The Fitzpatrick enum represents skin tone modifiers in the Fitzpatrick scale,
  * often used in conjunction with emojis to provide a range of skin tone
@@ -70,7 +72,7 @@ public enum Fitzpatrick {
      */
     public static String removeFitzpatrick(String unicode) {
         for (Fitzpatrick value : FITZPATRICK_LIST) {
-            unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
+            unicode = removeModifier(unicode, value.unicode);
         }
         return unicode;
     }

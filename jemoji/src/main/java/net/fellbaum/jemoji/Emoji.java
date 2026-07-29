@@ -331,7 +331,7 @@ public final class Emoji implements Comparable<Emoji> {
      */
     @Override
     public int compareTo(final Emoji o) {
-        final int comparedValue = Integer.compare(getCodePointCount(this.getEmoji()), getCodePointCount(o.getEmoji()));
+        final int comparedValue = Integer.compare(this.emojiCodePoints.length, o.emojiCodePoints.length);
         if (comparedValue != 0) {
             return comparedValue;
         }

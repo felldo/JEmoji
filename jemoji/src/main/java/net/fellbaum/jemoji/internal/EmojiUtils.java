@@ -18,7 +18,35 @@ public final class EmojiUtils {
 
     public static final char TEXT_VARIATION_CHARACTER = '\uFE0E';
     public static final char EMOJI_VARIATION_CHARACTER = '\uFE0F';
+    private static final char ZERO_WIDTH_JOINER = '\u200D';
     private static final int MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT = 6;
+
+    /**
+     * Removes every occurrence of the given modifier, together with a Zero Width Joiner
+     * directly preceding it, from the text.
+     * <p>
+     * Equivalent to {@code text.replaceAll("\u200D?" + modifier, "")} but without compiling
+     * a regular expression on every call.
+     *
+     * @param text     The text to remove the modifier from.
+     * @param modifier The modifier to remove.
+     * @return The text without the modifier.
+     */
+    public static String removeModifier(final String text, final String modifier) {
+        int modifierIndex = text.indexOf(modifier);
+        if (modifierIndex == -1) return text;
+
+        final StringBuilder sb = new StringBuilder(text.length());
+        int copiedUpTo = 0;
+        while (modifierIndex != -1) {
+            final boolean precededByJoiner = modifierIndex > 0 && text.charAt(modifierIndex - 1) == ZERO_WIDTH_JOINER;
+            sb.append(text, copiedUpTo, precededByJoiner ? modifierIndex - 1 : modifierIndex);
+            copiedUpTo = modifierIndex + modifier.length();
+            modifierIndex = text.indexOf(modifier, copiedUpTo);
+        }
+        sb.append(text, copiedUpTo, text.length());
+        return sb.toString();
+    }
 
     public static int getCodePointCount(final String string) {
         return string.codePointCount(0, string.length());
@@ -299,21 +327,29 @@ public final class EmojiUtils {
 
     @Nullable
     static NonUniqueEmojiFoundResult findAliasEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) return null;
+        // Walk the alias trie, remembering the longest alias that ended along the way.
+        // The walk stops as soon as no alias shares the current prefix.
+        AliasTrie node = ALIAS_TRIE;
+        List<Emoji> longestMatchEmojis = null;
+        int longestMatchEndIndex = -1;
 
-        CodepointSequence lastKnownCodepointSequence = null;
-        for (int aliasCodePointIndex = 0; aliasCodePointIndex < PreComputedConstants.ALIAS_EMOJI_MAX_LENGTH && (aliasCodePointIndex + textIndex) <= textCodePointsLength; aliasCodePointIndex++) {
-            final CodepointSequence tempCodepointSequence = new CodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, textIndex + aliasCodePointIndex));
-            if (ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.containsKey(tempCodepointSequence)) {
-                lastKnownCodepointSequence = tempCodepointSequence;
+        for (int currentIndex = textIndex; currentIndex < textCodePointsLength; currentIndex++) {
+            node = node.child(textCodePointsArray[currentIndex]);
+            if (node == null) break;
+
+            final List<Emoji> emojis = node.getEmojis();
+            if (emojis != null) {
+                longestMatchEmojis = emojis;
+                longestMatchEndIndex = currentIndex + 1;
             }
         }
 
-        if (lastKnownCodepointSequence != null) {
-            return new NonUniqueEmojiFoundResult(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(lastKnownCodepointSequence), textIndex + lastKnownCodepointSequence.codepoints().length, lastKnownCodepointSequence);
-        }
+        if (longestMatchEmojis == null) return null;
 
-        return null;
+        return new NonUniqueEmojiFoundResult(
+                longestMatchEmojis,
+                longestMatchEndIndex,
+                new CodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, longestMatchEndIndex)));
     }
 
     /**

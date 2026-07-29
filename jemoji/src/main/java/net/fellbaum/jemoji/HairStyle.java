@@ -3,6 +3,8 @@ package net.fellbaum.jemoji;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.fellbaum.jemoji.internal.EmojiUtils.removeModifier;
+
 /**
  * An enumeration representing different types of hairstyles, each associated with a Unicode character.
  */
@@ -64,7 +66,7 @@ public enum HairStyle {
      */
     public static String removeHairStyle(String unicode) {
         for (HairStyle value : HAIR_STYLE_LIST) {
-            unicode = unicode.replaceAll("\u200D?" + value.getUnicode(), "");
+            unicode = removeModifier(unicode, value.unicode);
         }
         return unicode;
     }

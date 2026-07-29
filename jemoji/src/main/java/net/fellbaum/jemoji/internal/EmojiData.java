@@ -33,6 +33,7 @@ public class EmojiData {
     public static Map<String, Emoji> EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI = null;
 
     public static Map<CodepointSequence, List<Emoji>> ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = null;
+    public static AliasTrie ALIAS_TRIE = null;
 
     public static Set<Emoji> EMOJIS_AS_SET = null;
     public static Map<EmojiGroup, Set<Emoji>> EMOJIS_GROUPED = null;
@@ -89,6 +90,7 @@ public class EmojiData {
 
     private static void initAlias() {
         ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING = InitHelper.aliasEmojiToEmojisOrderCodepointLengthDescending();
+        ALIAS_TRIE = AliasTrie.build(ALIAS_EMOJI_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING);
     }
 
     //https://pangin.pro/posts/computation-in-static-initializer
