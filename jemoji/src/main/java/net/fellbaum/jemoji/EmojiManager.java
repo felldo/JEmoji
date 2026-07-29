@@ -1,7 +1,6 @@
 package net.fellbaum.jemoji;
 
 import net.fellbaum.jemoji.internal.NonUniqueEmojiFoundResult;
-import net.fellbaum.jemoji.internal.PreComputedConstants;
 import net.fellbaum.jemoji.internal.UniqueEmojiFoundResult;
 
 import java.util.*;
@@ -17,7 +16,11 @@ import static net.fellbaum.jemoji.internal.EmojiUtils.*;
 @SuppressWarnings("unused")
 public final class EmojiManager {
 
-
+    /**
+     * The default emoji type, shared to avoid allocating an {@link EnumSet} on every call.
+     * Never hand this instance out to callers, as {@link EnumSet} is mutable.
+     */
+    private static final EnumSet<EmojiType> UNICODE_ONLY = EnumSet.of(EmojiType.UNICODE);
 
     @SuppressWarnings("unchecked")
     static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
@@ -63,7 +66,7 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojis() {
         ensureUnicodeInitialized();
-        return Set.copyOf(EMOJIS_LENGTH_DESCENDING);
+        return EMOJIS_AS_SET;
     }
 
     /**
@@ -94,7 +97,7 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojisByGroup(final EmojiGroup group) {
         ensureUnicodeInitialized();
-        return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getGroup() == group).collect(Collectors.toSet());
+        return EMOJIS_GROUPED.getOrDefault(group, Set.of());
     }
 
     /**
@@ -105,7 +108,7 @@ public final class EmojiManager {
      */
     public static Set<Emoji> getAllEmojisBySubGroup(final EmojiSubGroup subgroup) {
         ensureUnicodeInitialized();
-        return EMOJIS_LENGTH_DESCENDING.stream().filter(emoji -> emoji.getSubgroup() == subgroup).collect(Collectors.toUnmodifiableSet());
+        return EMOJIS_SUB_GROUPED.getOrDefault(subgroup, Set.of());
     }
 
     /**
@@ -245,7 +248,7 @@ public final class EmojiManager {
      * @return True if the given text contains emojis.
      */
     public static boolean containsAnyEmoji(final String text) {
-        return containsAnyEmoji(text, EnumSet.of(EmojiType.UNICODE));
+        return containsAnyEmoji(text, UNICODE_ONLY);
     }
 
     /**
@@ -260,7 +263,7 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(text)) return false;
 
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             if (checkIfCodepointIsInvalidEmojiStarter(textCodePointsArray[textIndex])) {
@@ -330,7 +333,7 @@ public final class EmojiManager {
      * @return A list of indexed emojis.
      */
     public static List<IndexedEmoji> extractEmojisInOrderWithIndex(final String text) {
-        return extractEmojisInOrderWithIndex(text, EnumSet.of(EmojiType.UNICODE));
+        return extractEmojisInOrderWithIndex(text, UNICODE_ONLY);
     }
 
     /**
@@ -347,7 +350,7 @@ public final class EmojiManager {
         final List<IndexedEmoji> emojis = new ArrayList<>();
 
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
 
         int charIndex = 0;
         nextTextIteration:
@@ -392,7 +395,7 @@ public final class EmojiManager {
      * @return The text without emojis.
      */
     public static String removeAllEmojis(final String text) {
-        return removeAllEmojisExcept(text, List.of(), EnumSet.of(EmojiType.UNICODE));
+        return removeAllEmojisExcept(text, List.of(), UNICODE_ONLY);
     }
 
     /**
@@ -425,7 +428,7 @@ public final class EmojiManager {
      * @return The text without the given emojis.
      */
     public static String removeEmojis(final String text, final Collection<Emoji> emojisToRemove) {
-        return removeEmojis(text, emojisToRemove, EnumSet.of(EmojiType.UNICODE));
+        return removeEmojis(text, emojisToRemove, UNICODE_ONLY);
     }
 
     /**
@@ -445,8 +448,8 @@ public final class EmojiManager {
 
     private static String removeAllEmojisExceptInternal(final String text, final Set<Emoji> emojisToRemove, final EnumSet<EmojiType> emojiType) {
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
-        final StringBuilder sb = new StringBuilder();
+        final int textCodePointsLength = textCodePointsArray.length;
+        final StringBuilder sb = new StringBuilder(text.length());
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
@@ -494,7 +497,7 @@ public final class EmojiManager {
      * @return The text with only the given emojis.
      */
     public static String removeAllEmojisExcept(final String text, final Collection<Emoji> emojisToKeep) {
-        return removeAllEmojisExcept(text, emojisToKeep, EnumSet.of(EmojiType.UNICODE));
+        return removeAllEmojisExcept(text, emojisToKeep, UNICODE_ONLY);
     }
 
     /**
@@ -512,9 +515,9 @@ public final class EmojiManager {
 
         final Set<Emoji> keepSet = emojisToKeep instanceof Set ? (Set<Emoji>) emojisToKeep : new HashSet<>(emojisToKeep);
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
 
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder(text.length());
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
@@ -644,7 +647,7 @@ public final class EmojiManager {
      * @return The text with all emojis replaced.
      */
     public static String replaceEmojis(final String text, final Function<Emoji, String> replacementFunction, final Collection<Emoji> emojisToReplace) {
-        return replaceEmojis(text, replacementFunction, emojisToReplace, EnumSet.of(EmojiType.UNICODE));
+        return replaceEmojis(text, replacementFunction, emojisToReplace, UNICODE_ONLY);
     }
 
     /**
@@ -662,9 +665,9 @@ public final class EmojiManager {
 
         final Set<Emoji> replaceSet = emojisToReplace instanceof Set ? (Set<Emoji>) emojisToReplace : new HashSet<>(emojisToReplace);
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
 
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder(text.length());
 
         nextTextIteration:
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
@@ -712,17 +715,13 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(text)) return "";
 
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
 
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder(text.length());
 
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
             sb.appendCodePoint(currentCodepoint);
-
-            if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
-                continue;
-            }
 
             final NonUniqueEmojiFoundResult nonUniqueEmojiFoundResult = findNonUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength);
             if (nonUniqueEmojiFoundResult == null) {
@@ -770,19 +769,15 @@ public final class EmojiManager {
         if (isStringNullOrEmpty(text)) return List.of();
 
         final int[] textCodePointsArray = stringToCodePoints(text);
-        final long textCodePointsLength = textCodePointsArray.length;
+        final int textCodePointsLength = textCodePointsArray.length;
         final List<IndexedAlias> indexedAliases = new ArrayList<>();
         int charIndex = 0;
         for (int textIndex = 0; textIndex < textCodePointsLength; textIndex++) {
             final int currentCodepoint = textCodePointsArray[textIndex];
 
-            if (!PreComputedConstants.POSSIBLE_EMOJI_ALIAS_STARTER_CODEPOINTS.contains(currentCodepoint)) {
-                charIndex += Character.charCount(currentCodepoint);
-                continue;
-            }
-
             final NonUniqueEmojiFoundResult nonUniqueEmojiFoundResult = findNonUniqueEmoji(textCodePointsArray, textIndex, textCodePointsLength);
             if (nonUniqueEmojiFoundResult == null) {
+                charIndex += Character.charCount(currentCodepoint);
                 continue;
             }
 
