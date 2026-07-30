@@ -819,6 +819,36 @@ public class EmojiManagerTest {
         assertTrue(EmojiManager.extractAliasesInOrderWithIndex("").isEmpty());
     }
 
+    @Test
+    public void extractAliasesInOrderWithIndexAfterUnmatchedAliasStarter() {
+        // ':' is a possible alias starter, so "::" makes the scanner visit a starter
+        // codepoint that does not begin an actual alias. The indices reported for the
+        // following alias must still line up with the text.
+        String alias = Emojis.THUMBS_UP.getDiscordAliases().get(0);
+        String prefix = ":: ";
+        String text = prefix + alias;
+
+        List<IndexedAlias> aliases = EmojiManager.extractAliasesInOrderWithIndex(text);
+        assertEquals(1, aliases.size());
+
+        IndexedAlias indexedAlias = aliases.get(0);
+        assertEquals(alias, indexedAlias.getAlias());
+        assertEquals(prefix.length(), indexedAlias.getCharIndex());
+        assertEquals(prefix.length() + alias.length(), indexedAlias.getEndCharIndex());
+        assertEquals(alias, text.substring(indexedAlias.getCharIndex(), indexedAlias.getEndCharIndex()));
+    }
+
+    @Test
+    public void extractAliasesInOrderFindsMaximumLengthAlias() {
+        // The longest alias in the data set is exactly ALIAS_EMOJI_MAX_LENGTH codepoints long.
+        String longestAlias = EmojiManager.getAllEmojisLengthDescending().stream()
+                .flatMap(emoji -> emoji.getAllAliases().stream())
+                .max(Comparator.comparingInt(String::length))
+                .orElseThrow();
+
+        assertEquals(singletonList(longestAlias), EmojiManager.extractAliasesInOrder(longestAlias));
+    }
+
     // ===== getAllEmojisLengthDescending ordering =====
 
     @Test
