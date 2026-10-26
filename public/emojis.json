@@ -213,7 +213,7 @@
   "group" : "Smileys & Emotion",
   "subgroup" : "face-smiling",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "breaking", "crumbling", "masking", "resilience", "reveal", "tension", "transformation" ]
 }, {
   "emoji" : "😉",
   "unicode" : "\\uD83D\\uDE09",
@@ -2661,7 +2661,7 @@
   "group" : "Smileys & Emotion",
   "subgroup" : "heart",
   "hasVariationSelectors" : false,
-  "keywords" : [ "exclamation", "heart", "heavy", "mark", "punctuation" ]
+  "keywords" : [ "bang", "exclamation", "heart", "heavy", "mark", "punctuation" ]
 }, {
   "emoji" : "❣",
   "unicode" : "\\u2763",
@@ -2679,7 +2679,7 @@
   "group" : "Smileys & Emotion",
   "subgroup" : "heart",
   "hasVariationSelectors" : true,
-  "keywords" : [ "exclamation", "heart", "heavy", "mark", "punctuation" ]
+  "keywords" : [ "bang", "exclamation", "heart", "heavy", "mark", "punctuation" ]
 }, {
   "emoji" : "💔",
   "unicode" : "\\uD83D\\uDC94",
@@ -6585,7 +6585,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "left", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫹🏻",
   "unicode" : "\\uD83E\\uDEF9\\uD83C\\uDFFB",
@@ -6603,7 +6603,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "left", "light skin tone", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫹🏼",
   "unicode" : "\\uD83E\\uDEF9\\uD83C\\uDFFC",
@@ -6621,7 +6621,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "left", "medium-light skin tone", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫹🏽",
   "unicode" : "\\uD83E\\uDEF9\\uD83C\\uDFFD",
@@ -6639,7 +6639,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "left", "medium skin tone", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫹🏾",
   "unicode" : "\\uD83E\\uDEF9\\uD83C\\uDFFE",
@@ -6657,7 +6657,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "left", "medium-dark skin tone", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫹🏿",
   "unicode" : "\\uD83E\\uDEF9\\uD83C\\uDFFF",
@@ -6675,7 +6675,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "dark skin tone", "grip", "left", "neutral", "point", "that", "this" ]
 }, {
   "emoji" : "🫺",
   "unicode" : "\\uD83E\\uDEFA",
@@ -6693,7 +6693,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "🫺🏻",
   "unicode" : "\\uD83E\\uDEFA\\uD83C\\uDFFB",
@@ -6711,7 +6711,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "light skin tone", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "🫺🏼",
   "unicode" : "\\uD83E\\uDEFA\\uD83C\\uDFFC",
@@ -6729,7 +6729,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "medium-light skin tone", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "🫺🏽",
   "unicode" : "\\uD83E\\uDEFA\\uD83C\\uDFFD",
@@ -6747,7 +6747,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "medium skin tone", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "🫺🏾",
   "unicode" : "\\uD83E\\uDEFA\\uD83C\\uDFFE",
@@ -6765,7 +6765,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "grip", "medium-dark skin tone", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "🫺🏿",
   "unicode" : "\\uD83E\\uDEFA\\uD83C\\uDFFF",
@@ -6783,7 +6783,7 @@
   "group" : "People & Body",
   "subgroup" : "hand-fingers-closed",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "dark skin tone", "grip", "neutral", "point", "right", "that", "this" ]
 }, {
   "emoji" : "✊",
   "unicode" : "\\u270A",
@@ -68361,7 +68361,7 @@
   "group" : "Animals & Nature",
   "subgroup" : "animal-bug",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "caterpillar", "change", "fragile", "hope", "insect", "metamorphosis", "migration", "transformation" ]
 }, {
   "emoji" : "🐛",
   "unicode" : "\\uD83D\\uDC1B",
@@ -69747,7 +69747,7 @@
   "group" : "Food & Drink",
   "subgroup" : "food-vegetable",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "brine", "condiment", "cucumber", "ferment", "gherkin", "relish", "trouble" ]
 }, {
   "emoji" : "🥬",
   "unicode" : "\\uD83E\\uDD6C",
@@ -74121,7 +74121,7 @@
   "group" : "Travel & Places",
   "subgroup" : "transport-water",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "beacon", "enlightenment", "guidance", "hope", "light", "maritime", "navigation", "sea", "signal" ]
 }, {
   "emoji" : "⚓",
   "unicode" : "\\u2693",
@@ -76425,7 +76425,7 @@
   "group" : "Travel & Places",
   "subgroup" : "sky & weather",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "apocalypse", "falling", "fireball", "gravity", "rock", "space", "star" ]
 }, {
   "emoji" : "🔥",
   "unicode" : "\\uD83D\\uDD25",
@@ -81591,7 +81591,7 @@
   "group" : "Objects",
   "subgroup" : "writing",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "correction", "delete", "drawing", "erase", "error", "mistake", "remove", "rub", "undo", "writing" ]
 }, {
   "emoji" : "💼",
   "unicode" : "\\uD83D\\uDCBC",
@@ -82293,7 +82293,7 @@
   "group" : "Objects",
   "subgroup" : "tool",
   "hasVariationSelectors" : false,
-  "keywords" : [ ]
+  "keywords" : [ "catch", "collect", "mesh", "trap" ]
 }, {
   "emoji" : "🔨",
   "unicode" : "\\uD83D\\uDD28",
@@ -86703,7 +86703,7 @@
   "group" : "Symbols",
   "subgroup" : "punctuation",
   "hasVariationSelectors" : true,
-  "keywords" : [ "!", "exclamation", "mark", "outlined", "punctuation", "white" ]
+  "keywords" : [ "!", "bang", "exclamation", "mark", "outlined", "punctuation", "white" ]
 }, {
   "emoji" : "❗",
   "unicode" : "\\u2757",
@@ -86721,7 +86721,7 @@
   "group" : "Symbols",
   "subgroup" : "punctuation",
   "hasVariationSelectors" : true,
-  "keywords" : [ "!", "exclamation", "mark", "punctuation", "red" ]
+  "keywords" : [ "!", "bang", "exclamation", "mark", "punctuation", "red" ]
 }, {
   "emoji" : "〰️",
   "unicode" : "\\u3030\\uFE0F",
