@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790879376949,
+  "lastUpdate": 1793143637760,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -21010,6 +21010,120 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
             "value": 36.769094651569205,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "distinct": true,
+          "id": "e85e0aeb626105b965c4cc7a31baef8ad59a3ab7",
+          "message": "Update generated files",
+          "timestamp": "2026-10-27T23:34:01+01:00",
+          "tree_id": "c74b3b38e3de36c7915df2d206fbee4d167be9d6",
+          "url": "https://github.com/felldo/JEmoji/commit/e85e0aeb626105b965c4cc7a31baef8ad59a3ab7"
+        },
+        "date": 1793143636071,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\":+1:\"} )",
+            "value": 18.383135511195366,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\"nope\"} )",
+            "value": 29.05275151089301,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.containsEmoji",
+            "value": 2.6066039231252094,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractAliasesInOrder",
+            "value": 5.199567584261585,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrder",
+            "value": 2.8246545840826074,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending",
+            "value": 2.0983044018949757,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder",
+            "value": 2.4151861355523456,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderWithIndex",
+            "value": 2.846843613686932,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getByDiscordAlias",
+            "value": 95.22544423970142,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getVariations",
+            "value": 0.26644251406388336,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.removeAllEmojis",
+            "value": 3.96797014901708,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAliasesFunction",
+            "value": 6.030554448181313,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 3.836051345492553,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
+            "value": 3.8107877017634957,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
+            "value": 28.698680802024455,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 2\nthreads: 1"
           }
