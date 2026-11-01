@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1793567035593,
+  "lastUpdate": 1793567070478,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -21352,6 +21352,120 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
             "value": 22.399903807941516,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "distinct": true,
+          "id": "b27413b39303e4bd59c079b720c295f81b34144f",
+          "message": "Bump gradle-wrapper from 9.8.0 to 9.8.2\n\nBumps [gradle-wrapper](https://github.com/gradle/gradle) from 9.8.0 to 9.8.2.\n- [Release notes](https://github.com/gradle/gradle/releases)\n- [Commits](https://github.com/gradle/gradle/compare/v9.8.0...v9.8.2)\n\n---\nupdated-dependencies:\n- dependency-name: gradle-wrapper\n  dependency-version: 9.8.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+          "timestamp": "2026-11-01T21:10:40+01:00",
+          "tree_id": "5acaa97700804ae5f183e148dd387b964e3d5f05",
+          "url": "https://github.com/felldo/JEmoji/commit/b27413b39303e4bd59c079b720c295f81b34144f"
+        },
+        "date": 1793567069047,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\":+1:\"} )",
+            "value": 21.28318064979417,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\"nope\"} )",
+            "value": 35.92808441792723,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.containsEmoji",
+            "value": 3.2045719757020805,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractAliasesInOrder",
+            "value": 6.831444459370459,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrder",
+            "value": 3.569740624987445,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending",
+            "value": 2.7835309670709445,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder",
+            "value": 3.2616823758648197,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderWithIndex",
+            "value": 3.5644081741707936,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getByDiscordAlias",
+            "value": 127.96470043360674,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getVariations",
+            "value": 0.3501637296755215,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.removeAllEmojis",
+            "value": 4.848977421749643,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAliasesFunction",
+            "value": 8.101262308710464,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 4.994993594683221,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
+            "value": 4.850387180532847,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
+            "value": 33.480709841776175,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 2\nthreads: 1"
           }
