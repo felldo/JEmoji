@@ -19,7 +19,7 @@ okhttp = "com.squareup.okhttp3:okhttp:5.5.0"
 
 [plugins]
 #https://github.com/melix/jmh-gradle-plugin
-jmh = "me.champeau.jmh:0.7.3"
+jmh = "me.champeau.jmh:0.7.4"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 jreleaser = "org.jreleaser:1.26.0"
 shadow = "com.gradleup.shadow:9.6.1"
