@@ -1,5 +1,5 @@
 [versions]
-jackson = "3.2.3"
+jackson = "3.2.4"
 kotlin = "2.4.20"
 org-jetbrains-kotlinx = "1.11.0"
 
