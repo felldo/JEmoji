@@ -3,7 +3,7 @@ package net.fellbaum.jemoji.generator.source
 import net.fellbaum.jemoji.generator.Http
 import net.fellbaum.jemoji.generator.jsonMapper
 import net.fellbaum.jemoji.generator.model.LocaleAnnotations
-import net.fellbaum.jemoji.generator.writeTextCreatingParents
+import net.fellbaum.jemoji.generator.writeTextIfChanged
 import tools.jackson.module.kotlin.readValue
 import java.io.File
 import java.util.concurrent.atomic.AtomicInteger
@@ -52,7 +52,7 @@ class CldrSource(private val http: Http, private val rawFilesDir: File) {
 
             val isDerived = fileContent.has("annotationsDerived")
             rawFilesDir.resolve("$locale${if (isDerived) "-derieved" else ""}.json")
-                .writeTextCreatingParents(jsonMapper.writeValueAsString(fileContent))
+                .writeTextIfChanged(jsonMapper.writeValueAsString(fileContent))
 
             val root = fileContent["annotations"] ?: fileContent["annotationsDerived"]
             val annotations = root?.get("annotations") ?: return@forEach

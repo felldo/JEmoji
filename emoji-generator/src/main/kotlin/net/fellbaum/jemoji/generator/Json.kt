@@ -3,7 +3,6 @@ package net.fellbaum.jemoji.generator
 import tools.jackson.databind.SerializationFeature
 import tools.jackson.module.kotlin.jacksonMapperBuilder
 import tools.jackson.module.kotlin.jacksonObjectMapper
-import java.io.File
 
 /** Default mapper: keeps map entries in insertion order. */
 val jsonMapper = jacksonObjectMapper()
@@ -14,12 +13,7 @@ val sortedJsonMapper = jacksonMapperBuilder().enable(SerializationFeature.ORDER_
 /** Writes `public/<name>.json` (pretty printed) and `public/<name>.min.json` (compact). */
 fun writePublicJson(paths: GeneratorPaths, name: String, content: Any) {
     paths.publicDir.resolve("$name.json")
-        .writeTextCreatingParents(sortedJsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
+        .writeTextIfChanged(sortedJsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(content))
     paths.publicDir.resolve("$name.min.json")
-        .writeTextCreatingParents(sortedJsonMapper.writeValueAsString(content))
-}
-
-fun File.writeTextCreatingParents(text: String) {
-    parentFile.mkdirs()
-    writeText(text)
+        .writeTextIfChanged(sortedJsonMapper.writeValueAsString(content))
 }

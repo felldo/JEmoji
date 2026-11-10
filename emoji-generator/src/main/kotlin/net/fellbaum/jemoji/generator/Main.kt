@@ -48,7 +48,7 @@ fun generate(paths: GeneratorPaths, generateAll: Boolean = false) {
     val descriptionsByLocale = translations.locales.associate { it.locale to translations.expandedDescriptions(it) }
 
     // 2. Write the emoji data files
-    paths.emojisResourceFile.writeTextCreatingParents(sortedJsonMapper.writeValueAsString(emojis))
+    paths.emojisResourceFile.writeTextIfChanged(sortedJsonMapper.writeValueAsString(emojis))
     writePublicJson(paths, "emojis", emojis)
     if (generateAll) {
         writeLanguageFiles(paths, emojis, translations, descriptionsByLocale)
@@ -61,18 +61,20 @@ fun generate(paths: GeneratorPaths, generateAll: Boolean = false) {
     val publicEmojis = jsonMapper.readTree(paths.publicEmojisFile) as ArrayNode
     generatePreComputedConstants(publicEmojis, paths.generatedSourcesDir)
     generateEmojisInterfaces(publicEmojis, paths.generatedSourcesDir)
+
+    println(WriteStats.summary())
 }
 
 private fun fetchPlatformAliases(paths: GeneratorPaths, http: Http): PlatformAliases {
     val discord = try {
-        fetchDiscordAliases().also { paths.discordDefinitionFile.writeText(jsonMapper.writeValueAsString(it)) }
+        fetchDiscordAliases().also { paths.discordDefinitionFile.writeTextIfChanged(jsonMapper.writeValueAsString(it)) }
     } catch (e: Exception) {
         println("Warning: Could not fetch Discord emoji shortcuts (${e.message}), falling back to cached file")
         jsonMapper.readValue<Map<String, List<String>>>(paths.discordDefinitionFile)
     }
 
     val github = fetchGitHubAliases(http)
-    paths.githubDefinitionFile.writeText(jsonMapper.writeValueAsString(github))
+    paths.githubDefinitionFile.writeTextIfChanged(jsonMapper.writeValueAsString(github))
 
     return PlatformAliases(discord = discord, github = github, slack = fetchSlackAliases())
 }
@@ -87,8 +89,8 @@ private fun writeLanguageFiles(
     translations.locales.forEach { locale ->
         // Resources of the jemoji-languages module
         val descriptions = descriptionsByLocale.getValue(locale.locale)
-        paths.languageDescriptionFile(locale.locale).writeTextCreatingParents(jsonMapper.writeValueAsString(descriptions))
-        paths.languageKeywordFile(locale.locale).writeTextCreatingParents(jsonMapper.writeValueAsString(locale.keywords))
+        paths.languageDescriptionFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(descriptions))
+        paths.languageKeywordFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(locale.keywords))
 
         // Public files list every emoji, with null if the locale has no entry
         writePublicJson(paths, "description/${locale.locale}", descriptions.withNullForMissing(emojis))

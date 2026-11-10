@@ -7,6 +7,7 @@ import com.palantir.javapoet.MethodSpec
 import com.palantir.javapoet.ParameterizedTypeName
 import com.palantir.javapoet.TypeName
 import com.palantir.javapoet.TypeSpec
+import net.fellbaum.jemoji.generator.writeTextIfChanged
 import java.io.File
 import javax.lang.model.element.Modifier
 
@@ -21,11 +22,12 @@ fun TypeSpec.Builder.writeJavaFile(outputDir: File, packageName: String = JEMOJI
             .addMember("value", $$"$S", "emoji-generator")
             .build()
     )
-    JavaFile.builder(packageName, build())
+    val type = build()
+    val javaFile = JavaFile.builder(packageName, type)
         .indent("    ")
         .skipJavaLangImports(true)
         .build()
-        .writeTo(outputDir.toPath())
+    outputDir.resolve(packageName.replace('.', '/')).resolve("${type.name()}.java").writeTextIfChanged(javaFile.toString())
 }
 
 fun TypeSpec.Builder.suppressUnusedWarnings(): TypeSpec.Builder =
