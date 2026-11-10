@@ -78,7 +78,10 @@ object GitHubUnicodeData {
 fun getGithubEmojiAliasMap(client: OkHttpClient, mapper: ObjectMapper): Map<String, MutableList<String>> {
     val gitHubEmojiAliasUrl = "https://api.github.com/emojis"
 
-    val json = client.newCall(Request.Builder().url(gitHubEmojiAliasUrl).build()).execute().body.string()
+    val json = client.newCall(Request.Builder().url(gitHubEmojiAliasUrl).build()).execute().use { response ->
+        check(response.isSuccessful) { "Request failed: ${response.request.url} -> HTTP ${response.code}" }
+        response.body.string()
+    }
 
     val githubEmojiAliasMap = mapper.readTree(json)
         .properties()
