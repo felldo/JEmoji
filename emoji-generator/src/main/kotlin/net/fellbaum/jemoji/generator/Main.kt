@@ -233,7 +233,7 @@ fun generate(rootDir: String, generateAll: Boolean = false) {
         val keywordMap: MutableMap<String, List<String>?> = jacksonMapper.treeToValue(keywordsNodeOutput)
         "$fileOutputDir/src/main/resources/emoji_sources/keyword/${dirName}.json".let {
             if (generateAll) {
-                jacksonMapper.writeValue(File(it), descriptionMap)
+                jacksonMapper.writeValue(File(it), keywordMap)
             }
             keywordsNodesLanguageMap[dirName] = keywordMap
             if (dirName == "en") {
