@@ -1,17 +1,17 @@
 [versions]
 jackson = "3.2.4"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 org-jetbrains-kotlinx = "1.11.0"
 
 [libraries]
-gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.26.0"
-htmlunit = "org.htmlunit:htmlunit:5.5.0"
+gradleplugin-jreleaser = "org.jreleaser:org.jreleaser.gradle.plugin:1.27.0"
+htmlunit = "org.htmlunit:htmlunit:5.7.0"
 jcabi-github = "com.jcabi:jcabi-github:1.11.1"
 jackson-databind = { module = "tools.jackson.core:jackson-databind", version.ref = "jackson" }
 jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 #jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
-javapoet = "com.palantir.javapoet:javapoet:0.20.0"
-jsoup = "org.jsoup:jsoup:1.23.2"
+javapoet = "com.palantir.javapoet:javapoet:0.22.0"
+jsoup = "org.jsoup:jsoup:1.24.1"
 jspecify = "org.jspecify:jspecify:1.0.1"
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
 kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlinx" }
@@ -21,8 +21,8 @@ okhttp = "com.squareup.okhttp3:okhttp:5.5.1"
 #https://github.com/melix/jmh-gradle-plugin
 jmh = "me.champeau.jmh:0.7.4"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-jreleaser = "org.jreleaser:1.26.0"
+jreleaser = "org.jreleaser:1.27.0"
 shadow = "com.gradleup.shadow:9.6.1"
-versions = "com.github.ben-manes.versions:0.66.0"
-versions-catalog = "nl.littlerobots.version-catalog-update:1.1.1"
+versions = "com.github.ben-manes.versions:0.67.0"
+versions-catalog = "nl.littlerobots.version-catalog-update:1.1.2"
 gradle-versions-filter = "se.ascp.gradle.gradle-versions-filter:0.1.16"
