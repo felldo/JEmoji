@@ -282,30 +282,33 @@ of the benchmark table below which are always executed on the specified specs.
 
 | **Benchmark**                                  | **Mode** | **Cnt** | **Score**** | **Error** | **Units** |
 |------------------------------------------------|----------|---------|-------------|-----------|-----------|
-| getByAlias -> `:+1:`                           | avgt     | 5       | 11,588      | ± 1,038   | ns/op     |
-| getByAlias -> `nope`                           | avgt     | 5       | 17,364      | ± 0,774   | ns/op     |
-| getByDiscordAlias                              | avgt     | 5       | 40,838      | ± 0,529   | ns/op     |
-| containsEmoji                                  | avgt     | 5       | 18,778      | ± 0,376   | ms/op     |
-| extractAliasesInOrder                          | avgt     | 5       | 107,864     | ± 2,324   | ms/op     |
-| extractEmojisInOrder                           | avgt     | 5       | 19,731      | ± 0,032   | ms/op     |
-| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 5       | 1,504       | ± 0,006   | ms/op     |
-| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 5       | 1,749       | ± 0,004   | ms/op     |
-| extractEmojisInOrderWithIndex                  | avgt     | 5       | 19,567      | ± 0,028   | ms/op     |
-| removeAllEmojis                                | avgt     | 5       | 20,149      | ± 0,063   | ms/op     |
-| replaceAliasesFunction                         | avgt     | 5       | 108,504     | ± 0,920   | ms/op     |
-| replaceAllEmojis                               | avgt     | 5       | 21,722      | ± 0,257   | ms/op     |
-| replaceAllEmojisFunction                       | avgt     | 5       | 21,962      | ± 0,447   | ms/op     |
-| replaceAllEmojisManyStarter                    | avgt     | 5       | 16,349      | ± 0,053   | ms/op     |
+| getByAlias -> `:+1:`                           | avgt     | 5       | 10,206      | ± 0,045   | ns/op     |
+| getByAlias -> `nope`                           | avgt     | 5       | 17,563      | ± 0,258   | ns/op     |
+| getByDiscordAlias                              | avgt     | 5       | 41,073      | ± 0,866   | ns/op     |
+| containsEmoji                                  | avgt     | 5       | 0,563       | ± 0,267   | ms/op     |
+| extractAliasesInOrder                          | avgt     | 5       | 0,977       | ± 0,014   | ms/op     |
+| extractEmojisInOrder                           | avgt     | 5       | 0,696       | ± 0,008   | ms/op     |
+| extractEmojisInOrderOnlyEmojisLengthDescending | avgt     | 5       | 0,293       | ± 0,002   | ms/op     |
+| extractEmojisInOrderOnlyEmojisRandomOrder      | avgt     | 5       | 0,380       | ± 0,014   | ms/op     |
+| extractEmojisInOrderWithIndex                  | avgt     | 5       | 0,695       | ± 0,004   | ms/op     |
+| getVariations                                  | avgt     | 5       | 0,090       | ± 0,003   | ms/op     |
+| removeAllEmojis                                | avgt     | 5       | 0,833       | ± 0,169   | ms/op     |
+| replaceAliasesFunction                         | avgt     | 5       | 1,298       | ± 0,008   | ms/op     |
+| replaceAllEmojis                               | avgt     | 5       | 0,994       | ± 0,008   | ms/op     |
+| replaceAllEmojisFunction                       | avgt     | 5       | 0,986       | ± 0,006   | ms/op     |
+| replaceAllEmojisManyStarter                    | avgt     | 5       | 9,136       | ± 0,055   | ms/op     |
 
 <details>
 
 <summary>Click to see the benchmark details</summary>
 
-CPU:  Intel® Core™ i7-13700K
+CPU:  Intel® Core™ i7-14700K (pinned to the P-cores)
 
-VM version: JDK 1.8.0_372, OpenJDK 64-Bit Server VM, 25.372-b07
+VM version: JDK 17.0.20.1, OpenJDK 64-Bit Server VM, 17.0.20.1+1
 
-Blackhole mode: full + dont-inline hint (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+
+Forks: 1
 
 Warmup: 5 iterations, 10 s each
 
