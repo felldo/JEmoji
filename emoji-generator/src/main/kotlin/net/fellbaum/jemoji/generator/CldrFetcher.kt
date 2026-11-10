@@ -23,7 +23,10 @@ fun requestCLDREmojiDescriptionTranslation(
     val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
     requestBuilder.url(fileHttpBuilder.build())
 
-    val fileContent: JsonNode = mapper.readTree(client.newCall(requestBuilder.build()).execute().body.string())
+    val fileContent: JsonNode = mapper.readTree(client.newCall(requestBuilder.build()).execute().use { response ->
+        check(response.isSuccessful) { "Request failed: ${response.request.url} -> HTTP ${response.code}" }
+        response.body.string()
+    })
 
     val translationFile =
         File("$rootDir/emoji_source_files/description/$fileName${if (fileContent.has("annotationsDerived")) "-derieved" else ""}.json")
