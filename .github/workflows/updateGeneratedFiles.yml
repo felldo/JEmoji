@@ -30,6 +30,9 @@ jobs:
 
       - name: Run generateAll task
         uses: nick-fields/retry@v4
+        env:
+          # Optional, raises the GitHub API rate limit of the generator
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           timeout_minutes: 10
           retry_wait_seconds: 60

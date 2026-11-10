@@ -4,6 +4,7 @@ import com.jcabi.github.Coordinates
 import com.jcabi.github.RtGitHub
 import net.fellbaum.jemoji.Fitzpatrick
 import net.fellbaum.jemoji.HairStyle
+import net.fellbaum.jemoji.generator.GitHubToken
 import net.fellbaum.jemoji.generator.model.GradleEmoji
 import net.fellbaum.jemoji.generator.model.PlatformAliases
 import java.net.URLEncoder
@@ -13,7 +14,7 @@ import java.nio.charset.StandardCharsets
  * Emoji list and variation sequences from the latest data in the `unicode-org/unicodetools` repository.
  */
 object UnicodeSource {
-    private val github = RtGitHub()
+    private val github = GitHubToken.value?.let { RtGitHub(it) } ?: RtGitHub()
     private val coordinates = Coordinates.Simple("unicode-org", "unicodetools")
 
     /** Contents of the latest `emoji-test.txt`. */

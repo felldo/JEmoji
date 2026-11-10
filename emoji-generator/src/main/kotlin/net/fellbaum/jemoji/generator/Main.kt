@@ -25,6 +25,9 @@ import java.io.File
  * - `--rootDir=<path>`: repository root (default: working directory)
  * - `--all`: also write all per-language files (jemoji-languages resources, `public/description`,
  *   `public/keywords`, `public/emojis-full.json`)
+ *
+ * Environment:
+ * - `GITHUB_TOKEN` (optional): raises the GitHub API rate limit, see [GitHubToken]
  */
 fun main(args: Array<String>) {
     val rootDir = args.firstOrNull { it.startsWith("--rootDir=") }
@@ -34,6 +37,7 @@ fun main(args: Array<String>) {
 }
 
 fun generate(paths: GeneratorPaths, generateAll: Boolean = false) {
+    println(GitHubToken.describe())
     val http = Http()
 
     // 1. Fetch the emoji list and enrich it with platform aliases and English CLDR keywords
