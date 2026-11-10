@@ -2,6 +2,7 @@ package net.fellbaum.jemoji;
 
 import net.fellbaum.jemoji.internal.NonUniqueEmojiFoundResult;
 import net.fellbaum.jemoji.internal.UniqueEmojiFoundResult;
+import tools.jackson.core.type.TypeReference;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -22,14 +23,20 @@ public final class EmojiManager {
      */
     private static final EnumSet<EmojiType> UNICODE_ONLY = EnumSet.of(EmojiType.UNICODE);
 
-    @SuppressWarnings("unchecked")
+    /** Content of {@code /emoji_sources/description/<language>.json}: emoji -> description. */
+    private static final TypeReference<Map<String, String>> DESCRIPTION_FILE_TYPE = new TypeReference<Map<String, String>>() {
+    };
+
+    /** Content of {@code /emoji_sources/keyword/<language>.json}: emoji -> keywords. */
+    private static final TypeReference<Map<String, List<String>>> KEYWORD_FILE_TYPE = new TypeReference<Map<String, List<String>>>() {
+    };
+
     static Optional<String> getEmojiDescriptionForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, String>) readFromAllLanguageResourceFiles("/emoji_sources/description/", emojiLanguage)).get(emoji));
+        return Optional.ofNullable(EMOJI_DESCRIPTION_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> readFromAllLanguageResourceFiles("/emoji_sources/description/", emojiLanguage, DESCRIPTION_FILE_TYPE)).get(emoji));
     }
 
-    @SuppressWarnings("unchecked")
     static Optional<List<String>> getEmojiKeywordsForLanguageAndEmoji(final EmojiLanguage language, final String emoji) {
-        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> (Map<String, List<String>>) readFromAllLanguageResourceFiles("/emoji_sources/keyword/", emojiLanguage)).get(emoji));
+        return Optional.ofNullable(EMOJI_KEYWORD_LANGUAGE_MAP.computeIfAbsent(language, emojiLanguage -> readFromAllLanguageResourceFiles("/emoji_sources/keyword/", emojiLanguage, KEYWORD_FILE_TYPE)).get(emoji));
     }
 
     private EmojiManager() {

@@ -2,6 +2,8 @@ package net.fellbaum.jemoji;
 
 import net.fellbaum.jemoji.internal.ResourceFilesProvider;
 import org.jspecify.annotations.Nullable;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,11 +35,22 @@ public final class EmojiLoader {
         return services;
     }
 
-    static Object readFromAllLanguageResourceFiles(final String fileName, final EmojiLanguage language) {
+    private static final ObjectMapper LANGUAGE_FILE_MAPPER = new ObjectMapper();
+
+    /**
+     * Reads {@code <fileName><language>.json} from the language module and deserializes it into {@code type}.
+     */
+    static <T> T readFromAllLanguageResourceFiles(final String fileName, final EmojiLanguage language, final TypeReference<T> type) {
         if (RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE == null) {
             throw new IllegalStateException("Trying to access a property for language \"" + language.getValue() + "\" but the jemoji-language module is missing. To add multi language support, see here https://github.com/felldo/JEmoji?tab=readme-ov-file#-jemoji-language-module");
         }
-        return RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE.readLanguageFile(fileName + language.getValue() + ".json");
+        final String filePathName = fileName + language.getValue() + ".json";
+        final InputStream is = RESOURCE_FILES_PROVIDER_LANGUAGE_MODULE.openLanguageFile(filePathName);
+        if (is == null) {
+            throw new IllegalStateException("Language file not found: " + filePathName);
+        }
+        // readValue closes the stream
+        return LANGUAGE_FILE_MAPPER.readValue(is, type);
     }
 
     static {

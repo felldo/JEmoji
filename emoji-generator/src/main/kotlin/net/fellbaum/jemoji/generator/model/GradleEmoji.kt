@@ -1,5 +1,9 @@
 package net.fellbaum.jemoji.generator.model
 
+/**
+ * One emoji as written to `emojis.json`. The field names and order are the JSON format
+ * that jemoji deserializes at runtime, so don't rename or reorder them.
+ */
 data class GradleEmoji(
     val emoji: String,
     val unicode: String,
@@ -9,13 +13,15 @@ data class GradleEmoji(
     val discordAliases: Set<String>,
     val githubAliases: Set<String>,
     val slackAliases: Set<String>,
-    var hasFitzpatrick: Boolean,
-    var hasHairStyle: Boolean,
+    val hasFitzpatrick: Boolean,
+    val hasHairStyle: Boolean,
     val version: Double,
     val qualification: String,
-    var description: Any,
+    /** English description (`String`), or `Map<locale, String?>` in `emojis-full.json`. */
+    val description: Any,
     val group: String,
     val subgroup: String,
     val hasVariationSelectors: Boolean,
-    var keywords: Any
+    /** English keywords (`Set<String>`), or `Map<locale, List<String>?>` in `emojis-full.json`. */
+    val keywords: Any
 )
