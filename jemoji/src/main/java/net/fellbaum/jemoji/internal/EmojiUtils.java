@@ -4,7 +4,6 @@ import net.fellbaum.jemoji.Emoji;
 import net.fellbaum.jemoji.EmojiType;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -83,36 +82,48 @@ public final class EmojiUtils {
         return codePoints;
     }
 
+    /**
+     * Finds the longest unicode emoji starting at {@code charIndex}.
+     *
+     * @param text      The text.
+     * @param charIndex The char index of the codepoint to check.
+     * @param codepoint The codepoint at {@code charIndex}.
+     * @return The found emoji with its end char index, otherwise {@code null}.
+     */
     @Nullable
-    static UniqueEmojiFoundResult findUnicodeEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        final List<Emoji> emojisByCodePoint = EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(textCodePointsArray[textIndex]);
-        if (emojisByCodePoint == null) return null;
-        for (final Emoji emoji : emojisByCodePoint) {
-            final int[] emojiCodePointsArray = emoji.getEmojiCodePoints();
-            final int emojiCodePointsLength = emojiCodePointsArray.length;
-            // Check if Emoji code points are in bounds of the text code points
-            if (!((textIndex + emojiCodePointsLength) <= textCodePointsLength)) {
-                continue;
-            }
+    static UniqueEmojiFoundResult findUnicodeEmoji(final String text, final int charIndex, final int codepoint) {
+        // Walk the emoji trie, remembering the longest emoji that ended along the way.
+        // Only follows the path of the text instead of testing every emoji with the same first codepoint
+        // (up to ~500 for e.g. 👩).
+        CodepointTrie node = UNICODE_TRIE.child(codepoint);
+        if (node == null) return null;
 
-            for (int emojiCodePointIndex = 0; emojiCodePointIndex < emojiCodePointsLength; emojiCodePointIndex++) {
-                //break out because the emoji is different
-                if (textCodePointsArray[textIndex + emojiCodePointIndex] != emojiCodePointsArray[emojiCodePointIndex]) {
-                    break;
-                }
+        int currentIndex = charIndex + Character.charCount(codepoint);
+        List<Emoji> longestMatchEmojis = node.getEmojis();
+        int longestMatchEndIndex = currentIndex;
 
-                if (emojiCodePointIndex == (emojiCodePointsLength - 1)) {
-                    return new UniqueEmojiFoundResult(emoji, textIndex + emojiCodePointsLength);
-                }
+        final int textLength = text.length();
+        while (currentIndex < textLength) {
+            final int currentCodepoint = text.codePointAt(currentIndex);
+            node = node.child(currentCodepoint);
+            if (node == null) break;
+            currentIndex += Character.charCount(currentCodepoint);
+
+            final List<Emoji> emojis = node.getEmojis();
+            if (emojis != null) {
+                longestMatchEmojis = emojis;
+                longestMatchEndIndex = currentIndex;
             }
         }
 
-        return null;
+        if (longestMatchEmojis == null) return null;
+        return new UniqueEmojiFoundResult(longestMatchEmojis.get(0), longestMatchEndIndex);
     }
 
     @Nullable
-    static UniqueEmojiFoundResult findHtmlDecimalEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex, final boolean isHex) {
-        if (isHex ? ((textIndex >= textCodePointsLength - 3) || isInvalidHtmlHexadecimalSequence(textCodePointsArray, textIndex)) : textIndex >= textCodePointsLength - 2 || isInvalidHtmlDecimalSequence(textCodePointsArray, textIndex)) {
+    static UniqueEmojiFoundResult findHtmlDecimalEmoji(final String text, final int textIndex, final boolean isHex) {
+        final int textLength = text.length();
+        if (isHex ? ((textIndex >= textLength - 3) || isInvalidHtmlHexadecimalSequence(text, textIndex)) : textIndex >= textLength - 2 || isInvalidHtmlDecimalSequence(text, textIndex)) {
             return null; // Sequence does not start with "&#x"
         }
 
@@ -121,12 +132,11 @@ public final class EmojiUtils {
         int numberSequenceCount = 0;
         int currentIndex = textIndex;
         int lastValidSemicolonIndex = -1;
-        final StringBuilder sequenceBuilder = new StringBuilder();
 
         int leadingZeros = 0;
-        while (numberSequenceCount < PreComputedConstants.MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textCodePointsLength - (isHex ? 3 : 2))) {
+        while (numberSequenceCount < PreComputedConstants.MAX_HTML_DECIMAL_SINGLE_EMOJIS_CONCATENATED_LENGTH && currentIndex < (textLength - (isHex ? 3 : 2))) {
             // Ensure each sequence starts with "&#"
-            if (isHex ? isInvalidHtmlHexadecimalSequence(textCodePointsArray, currentIndex) : isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex)) {
+            if (isHex ? isInvalidHtmlHexadecimalSequence(text, currentIndex) : isInvalidHtmlDecimalSequence(text, currentIndex)) {
                 break;
             }
 
@@ -134,9 +144,9 @@ public final class EmojiUtils {
 
             int digitCount = 0;
             boolean isLeadingZero = true;
-            while (digitCount < (MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT + leadingZeros) && currentIndex < textCodePointsLength
-                    && (isHex ? isValidHexadecimalCharacter(textCodePointsArray[currentIndex]) : isValidDecimalCharacter(textCodePointsArray[currentIndex]))) {
-                if (isLeadingZero && textCodePointsArray[currentIndex + leadingZeros] == '0') {
+            while (digitCount < (MAX_LENGTH_HTML_DECIMAL_NUMBER_COUNT + leadingZeros) && currentIndex < textLength
+                    && (isHex ? isValidHexadecimalCharacter(text.charAt(currentIndex)) : isValidDecimalCharacter(text.charAt(currentIndex)))) {
+                if (isLeadingZero && text.charAt(currentIndex + leadingZeros) == '0') {
                     leadingZeros++;
                     continue;
                 } else {
@@ -147,7 +157,7 @@ public final class EmojiUtils {
             }
 
             // Validates the sequence ends with a semicolon
-            if (digitCount == 0 || currentIndex >= textCodePointsLength || textCodePointsArray[currentIndex] != ';') {
+            if (digitCount == 0 || currentIndex >= textLength || text.charAt(currentIndex) != ';') {
                 break;
             }
 
@@ -161,7 +171,7 @@ public final class EmojiUtils {
             return null;
         }
 
-        final StringBuilder htmlEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, lastValidSemicolonIndex - textIndex).toUpperCase());
+        final StringBuilder htmlEmoji = new StringBuilder(text.substring(textIndex, lastValidSemicolonIndex).toUpperCase());
         while (!htmlEmoji.isEmpty()) {
             final String htmlEmojiString = htmlEmoji.toString();
             String formattedHtmlCharacterEntity = leadingZeros != 0 ? removeLeadingZerosFromHtmlCharacterEntity(htmlEmojiString, isHex) : htmlEmojiString;
@@ -177,8 +187,9 @@ public final class EmojiUtils {
     }
 
     @Nullable
-    static UniqueEmojiFoundResult findUrlEncodedEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
-        if ((textIndex + PreComputedConstants.MINIMUM_EMOJI_URL_ENCODED_LENGTH >= textCodePointsLength) || !PreComputedConstants.POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS.contains(textCodePointsArray[textIndex])) {
+    static UniqueEmojiFoundResult findUrlEncodedEmoji(final String text, final int textIndex) {
+        final int textLength = text.length();
+        if ((textIndex + PreComputedConstants.MINIMUM_EMOJI_URL_ENCODED_LENGTH >= textLength) || !PreComputedConstants.POSSIBLE_EMOJI_URL_ENCODED_STARTER_CODEPOINTS.contains((int) text.charAt(textIndex))) {
             return null;
         }
 
@@ -186,26 +197,26 @@ public final class EmojiUtils {
 //      2%EF%B8%8F%E2%83%A3
 //      Add 1 if the character is no a % as it then proceeds to repeat %12%34 ...
         int currentIndex = textIndex;
-        if (textCodePointsArray[textIndex] != '%') {
+        if (text.charAt(textIndex) != '%') {
             currentIndex++;
         }
 
-        while ((currentIndex - textIndex) < PreComputedConstants.MAXIMUM_EMOJI_URL_ENCODED_LENGTH && (currentIndex + 1) <= textCodePointsLength) {
+        while ((currentIndex - textIndex) < PreComputedConstants.MAXIMUM_EMOJI_URL_ENCODED_LENGTH && (currentIndex + 1) <= textLength) {
             // Break out when it does not start with a '%', should always be true on the first run
-            if (textCodePointsArray[currentIndex] != '%') {
+            if (text.charAt(currentIndex) != '%') {
                 break;
             }
             // Skip the %
             currentIndex++;
 
-            if (currentIndex + 2 <= textCodePointsLength) {
-                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 2))) {
+            if (currentIndex + 2 <= textLength) {
+                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(text.substring(currentIndex, currentIndex + 2))) {
                     currentIndex = currentIndex + 2;
-                } else if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
+                } else if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(text.substring(currentIndex, currentIndex + 1))) {
                     currentIndex = currentIndex + 1;
                 }
-            } else if (currentIndex + 1 <= textCodePointsLength) {
-                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(new String(textCodePointsArray, currentIndex, 1))) {
+            } else if (currentIndex + 1 <= textLength) {
+                if (PreComputedConstants.ALLOWED_EMOJI_URL_ENCODED_SEQUENCES.contains(text.substring(currentIndex, currentIndex + 1))) {
                     currentIndex = currentIndex + 1;
                 }
             } else {
@@ -213,7 +224,7 @@ public final class EmojiUtils {
             }
         }
 
-        final StringBuilder urlEncodedEmoji = new StringBuilder(new String(textCodePointsArray, textIndex, currentIndex - textIndex).toUpperCase());
+        final StringBuilder urlEncodedEmoji = new StringBuilder(text.substring(textIndex, currentIndex).toUpperCase());
         while (urlEncodedEmoji.indexOf("%") != -1) {
             final Emoji emoji = EMOJI_URL_ENCODED_REPRESENTATION_TO_EMOJI.get(urlEncodedEmoji.toString());
             if (emoji != null) {
@@ -257,8 +268,8 @@ public final class EmojiUtils {
      * @param currentIndex        The current index.
      * @return Whether the textCodePointsArray at textIndex start if a valid decimal emoji sequence.
      */
-    private static boolean isInvalidHtmlHexadecimalSequence(final int[] textCodePointsArray, final int currentIndex) {
-        return isInvalidHtmlDecimalSequence(textCodePointsArray, currentIndex) || (textCodePointsArray[currentIndex + 2] != 'x' && textCodePointsArray[currentIndex + 2] != 'X');
+    private static boolean isInvalidHtmlHexadecimalSequence(final String text, final int currentIndex) {
+        return isInvalidHtmlDecimalSequence(text, currentIndex) || (text.charAt(currentIndex + 2) != 'x' && text.charAt(currentIndex + 2) != 'X');
     }
 
     /**
@@ -268,8 +279,8 @@ public final class EmojiUtils {
      * @param currentIndex        The current index.
      * @return Whether the textCodePointsArray at textIndex start if a valid hexadecimal emoji sequence.
      */
-    private static boolean isInvalidHtmlDecimalSequence(final int[] textCodePointsArray, final int currentIndex) {
-        return textCodePointsArray[currentIndex] != '&' || textCodePointsArray[currentIndex + 1] != '#';
+    private static boolean isInvalidHtmlDecimalSequence(final String text, final int currentIndex) {
+        return text.charAt(currentIndex) != '&' || text.charAt(currentIndex + 1) != '#';
     }
 
     /**
@@ -293,63 +304,55 @@ public final class EmojiUtils {
     }
 
     /**
-     * Finds a unique emoji starting at the position textIndex in the textCodePointsArray.
+     * Finds a unique emoji starting at the char index {@code charIndex} of the text.
      *
-     * @param textCodePointsArray  The textCodePointsArray to check if it contains an emoji.
-     * @param textIndex            The current text index.
-     * @param textCodePointsLength The length of the textCodePointsArray.
-     * @param type                 The {@link EmojiType} to check the codepoint against.
-     * @return The found emoji, otherwise {@code null}.
+     * @param text      The text to check if it contains an emoji.
+     * @param charIndex The char index to check, must be at the start of a codepoint.
+     * @param codepoint The codepoint at {@code charIndex}.
+     * @param type      The {@link EmojiType} to check the codepoint against.
+     * @return The found emoji with its end char index (exclusive), otherwise {@code null}.
      */
     @Nullable
-    public static UniqueEmojiFoundResult findUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength, final EmojiType type) {
+    public static UniqueEmojiFoundResult findUniqueEmoji(final String text, final int charIndex, final int codepoint, final EmojiType type) {
         return switch (type) {
-            case UNICODE -> findUnicodeEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-            case HTML_DECIMAL -> findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, false);
-            case HTML_HEXADECIMAL -> findHtmlDecimalEmoji(textCodePointsArray, textCodePointsLength, textIndex, true);
-            case URL_ENCODED -> findUrlEncodedEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-            default -> throw new IllegalArgumentException("Unknown EmojiType: " + type);
+            case UNICODE -> findUnicodeEmoji(text, charIndex, codepoint);
+            case HTML_DECIMAL -> codepoint == '&' ? findHtmlDecimalEmoji(text, charIndex, false) : null;
+            case HTML_HEXADECIMAL -> codepoint == '&' ? findHtmlDecimalEmoji(text, charIndex, true) : null;
+            case URL_ENCODED -> findUrlEncodedEmoji(text, charIndex);
         };
     }
 
     /**
-     * Finds a unique emoji starting at the position textIndex in the textCodePointsArray.
+     * Finds the longest alias starting at the char index {@code charIndex} of the text.
      *
-     * @param textCodePointsArray  The textCodePointsArray to check if it contains an emoji.
-     * @param textIndex            The current text index.
-     * @param textCodePointsLength The length of the textCodePointsArray.
-     * @return The found emoji, otherwise {@code null}.
+     * @param text      The text to check if it contains an alias.
+     * @param charIndex The char index to check, must be at the start of a codepoint.
+     * @return The found emojis with the end char index (exclusive) of the alias, otherwise {@code null}.
      */
     @Nullable
-    public static NonUniqueEmojiFoundResult findNonUniqueEmoji(final int[] textCodePointsArray, final int textIndex, final long textCodePointsLength) {
-        return findAliasEmoji(textCodePointsArray, textCodePointsLength, textIndex);
-    }
-
-    @Nullable
-    static NonUniqueEmojiFoundResult findAliasEmoji(final int[] textCodePointsArray, final long textCodePointsLength, final int textIndex) {
+    public static NonUniqueEmojiFoundResult findNonUniqueEmoji(final String text, final int charIndex) {
         // Walk the alias trie, remembering the longest alias that ended along the way.
         // The walk stops as soon as no alias shares the current prefix.
-        AliasTrie node = ALIAS_TRIE;
+        CodepointTrie node = ALIAS_TRIE;
         List<Emoji> longestMatchEmojis = null;
         int longestMatchEndIndex = -1;
 
-        for (int currentIndex = textIndex; currentIndex < textCodePointsLength; currentIndex++) {
-            node = node.child(textCodePointsArray[currentIndex]);
+        final int textLength = text.length();
+        for (int currentIndex = charIndex; currentIndex < textLength; ) {
+            final int codepoint = text.codePointAt(currentIndex);
+            node = node.child(codepoint);
             if (node == null) break;
+            currentIndex += Character.charCount(codepoint);
 
             final List<Emoji> emojis = node.getEmojis();
             if (emojis != null) {
                 longestMatchEmojis = emojis;
-                longestMatchEndIndex = currentIndex + 1;
+                longestMatchEndIndex = currentIndex;
             }
         }
 
         if (longestMatchEmojis == null) return null;
-
-        return new NonUniqueEmojiFoundResult(
-                longestMatchEmojis,
-                longestMatchEndIndex,
-                new CodepointSequence(Arrays.copyOfRange(textCodePointsArray, textIndex, longestMatchEndIndex)));
+        return new NonUniqueEmojiFoundResult(longestMatchEmojis, longestMatchEndIndex);
     }
 
     /**
@@ -360,6 +363,21 @@ public final class EmojiUtils {
      * @return Whether the codepoint is a valid starter.
      */
     public static boolean checkIfCodepointIsInvalidEmojiStarter(final int currentCodepoint) {
-        return EMOJI_FIRST_CODEPOINT_TO_EMOJIS_ORDER_CODEPOINT_LENGTH_DESCENDING.get(currentCodepoint) == null && currentCodepoint != '&' && currentCodepoint != '%';
+        return isNotInBitset(EMOJI_STARTER_BITS, currentCodepoint);
+    }
+
+    /**
+     * Checks if the codepoint cannot be the start of an alias.
+     *
+     * @param currentCodepoint The codepoint to check.
+     * @return Whether no alias starts with the codepoint.
+     */
+    public static boolean checkIfCodepointIsInvalidAliasStarter(final int currentCodepoint) {
+        return isNotInBitset(ALIAS_STARTER_BITS, currentCodepoint);
+    }
+
+    private static boolean isNotInBitset(final long[] bits, final int codepoint) {
+        final int word = codepoint >>> 6;
+        return word >= bits.length || (bits[word] & (1L << codepoint)) == 0;
     }
 }

@@ -9,16 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A codepoint trie over all emoji aliases, used to find the longest alias starting at a
- * given position in a text.
+ * A codepoint trie, used to find the longest emoji or alias starting at a given position in a text.
  * <p>
  * Scanning a text position costs one binary search per matched codepoint and stops as soon
- * as no alias shares the current prefix, instead of testing every possible alias length.
+ * as no entry shares the current prefix, instead of testing every possible entry.
  */
-public final class AliasTrie {
+public final class CodepointTrie {
 
     private static final int[] NO_CODEPOINTS = new int[0];
-    private static final AliasTrie[] NO_NODES = new AliasTrie[0];
+    private static final CodepointTrie[] NO_NODES = new CodepointTrie[0];
 
     /**
      * The codepoints of the child nodes, sorted ascending so they can be binary searched.
@@ -27,14 +26,14 @@ public final class AliasTrie {
     /**
      * The child nodes, positionally aligned with {@link #childCodepoints}.
      */
-    private AliasTrie[] childNodes = NO_NODES;
+    private CodepointTrie[] childNodes = NO_NODES;
     /**
      * The emojis of the alias ending at this node, {@code null} if no alias ends here.
      */
     @Nullable
     private List<Emoji> emojis;
 
-    private AliasTrie() {
+    private CodepointTrie() {
     }
 
     /**
@@ -48,13 +47,27 @@ public final class AliasTrie {
     }
 
     /**
+     * Builds a bitset over the codepoints of the direct children, i.e. all codepoints an entry can start with
+     * when called on the root node.
+     *
+     * @return The bitset, indexed by {@code codepoint >>> 6}.
+     */
+    public long[] childCodepointBits() {
+        int maxCodepoint = 0;
+        for (final int codepoint : childCodepoints) maxCodepoint = Math.max(maxCodepoint, codepoint);
+        final long[] bits = new long[(maxCodepoint >>> 6) + 1];
+        for (final int codepoint : childCodepoints) bits[codepoint >>> 6] |= 1L << codepoint;
+        return bits;
+    }
+
+    /**
      * Gets the child node continuing the alias with the given codepoint.
      *
      * @param codepoint The codepoint to follow.
      * @return The child node, or {@code null} if no alias continues with this codepoint.
      */
     @Nullable
-    public AliasTrie child(final int codepoint) {
+    public CodepointTrie child(final int codepoint) {
         final int[] codepoints = childCodepoints;
         int low = 0;
         int high = codepoints.length - 1;
@@ -78,7 +91,7 @@ public final class AliasTrie {
      * @param aliasToEmojis The aliases mapped to their emojis.
      * @return The root node of the trie.
      */
-    public static AliasTrie build(final Map<CodepointSequence, List<Emoji>> aliasToEmojis) {
+    public static CodepointTrie build(final Map<CodepointSequence, List<Emoji>> aliasToEmojis) {
         final Builder root = new Builder();
         for (final Map.Entry<CodepointSequence, List<Emoji>> entry : aliasToEmojis.entrySet()) {
             final int[] codepoints = entry.getKey().codepoints();
@@ -99,8 +112,8 @@ public final class AliasTrie {
         @Nullable
         private List<Emoji> emojis;
 
-        private AliasTrie freeze() {
-            final AliasTrie node = new AliasTrie();
+        private CodepointTrie freeze() {
+            final CodepointTrie node = new CodepointTrie();
             node.emojis = emojis;
 
             final int childCount = children.size();
@@ -112,7 +125,7 @@ public final class AliasTrie {
                 }
                 Arrays.sort(codepoints);
 
-                final AliasTrie[] nodes = new AliasTrie[childCount];
+                final CodepointTrie[] nodes = new CodepointTrie[childCount];
                 for (int i = 0; i < childCount; i++) {
                     nodes[i] = children.get(codepoints[i]).freeze();
                 }

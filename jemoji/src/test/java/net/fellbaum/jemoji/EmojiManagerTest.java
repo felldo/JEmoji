@@ -784,6 +784,50 @@ public class EmojiManagerTest {
         assertEquals("Hello REPLACED World", result);
     }
 
+    @Test
+    public void replaceEmojisWithTypeKeepsOriginalTextOfNotReplacedEmojis() {
+        // Emojis that are found but not in the replacement set must stay as they were written,
+        // not be converted to their unicode representation.
+        final String text = Emojis.THUMBS_UP.getHtmlDecimalCode() + " " + Emojis.THUMBS_DOWN.getHtmlHexadecimalCode() + " " + Emojis.THUMBS_DOWN.getURLEncoded() + " " + Emojis.THUMBS_UP.getEmoji();
+        final String result = EmojiManager.replaceEmojis(text, "X", singletonList(Emojis.THUMBS_UP), EnumSet.allOf(EmojiType.class));
+        assertEquals("X " + Emojis.THUMBS_DOWN.getHtmlHexadecimalCode() + " " + Emojis.THUMBS_DOWN.getURLEncoded() + " X", result);
+    }
+
+    @Test
+    public void removeAndReplaceKeepTextAroundEmojis() {
+        final String text = "a" + Emojis.THUMBS_UP.getEmoji() + "b\uD83D" + Emojis.THUMBS_DOWN.getHtmlDecimalCode() + "c" + Emojis.RED_HEART.getEmoji() + Emojis.RED_HEART.getEmoji();
+        final EnumSet<EmojiType> all = EnumSet.allOf(EmojiType.class);
+        assertEquals("ab\uD83Dc", EmojiManager.removeAllEmojis(text, all));
+        assertEquals("ab\uD83D" + Emojis.THUMBS_DOWN.getHtmlDecimalCode() + "c", EmojiManager.removeEmojis(text, List.of(Emojis.THUMBS_UP, Emojis.RED_HEART), all));
+        assertEquals("a" + Emojis.THUMBS_UP.getEmoji() + "b\uD83Dc", EmojiManager.removeAllEmojisExcept(text, List.of(Emojis.THUMBS_UP), all));
+        assertEquals("a_b\uD83D_c__", EmojiManager.replaceAllEmojis(text, "_", all));
+    }
+
+    @Test
+    public void extractWithIndexReportsEndIndices() {
+        // "a" + 👍🏼 (2 codepoints, 4 chars) + "b" + ❤️ (2 codepoints, 2 chars)
+        final String text = "a" + Emojis.THUMBS_UP_MEDIUM_LIGHT_SKIN_TONE.getEmoji() + "b" + Emojis.RED_HEART.getEmoji();
+        final List<IndexedEmoji> emojis = EmojiManager.extractEmojisInOrderWithIndex(text);
+        assertEquals(2, emojis.size());
+        assertEquals(1, emojis.get(0).getCharIndex());
+        assertEquals(1, emojis.get(0).getCodePointIndex());
+        assertEquals(5, emojis.get(0).getEndCharIndex());
+        assertEquals(3, emojis.get(0).getEndCodePointIndex());
+        assertEquals(6, emojis.get(1).getCharIndex());
+        assertEquals(4, emojis.get(1).getCodePointIndex());
+        assertEquals(8, emojis.get(1).getEndCharIndex());
+        assertEquals(6, emojis.get(1).getEndCodePointIndex());
+
+        final String aliasText = Emojis.THUMBS_UP_MEDIUM_LIGHT_SKIN_TONE.getEmoji() + ":thumbsup:";
+        final List<IndexedAlias> aliases = EmojiManager.extractAliasesInOrderWithIndex(aliasText);
+        assertEquals(1, aliases.size());
+        assertEquals(":thumbsup:", aliases.get(0).getAlias());
+        assertEquals(4, aliases.get(0).getCharIndex());
+        assertEquals(2, aliases.get(0).getCodePointIndex());
+        assertEquals(14, aliases.get(0).getEndCharIndex());
+        assertEquals(12, aliases.get(0).getEndCodePointIndex());
+    }
+
     // ===== replaceAliases null/empty =====
 
     @Test
