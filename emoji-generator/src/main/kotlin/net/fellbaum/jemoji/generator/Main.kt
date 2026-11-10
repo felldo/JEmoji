@@ -14,6 +14,8 @@ import tools.jackson.module.kotlin.treeToValue
 import java.io.File
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import java.util.Collections
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.stream.Collectors
 
@@ -167,13 +169,18 @@ fun generate(rootDir: String, generateAll: Boolean = false) {
     val requestBuilder: Request.Builder = Request.Builder().addHeader("Accept", "application/vnd.github.raw+json")
     requestBuilder.url(httpBuilderAnnotationsDerivedDirectory.build())
     val descriptionDirectory: List<Map<String, Any>> =
-        jacksonMapper.readValue<List<Map<String, Any>>>(client.newCall(requestBuilder.build()).execute().body.string())
+        jacksonMapper.readValue<List<Map<String, Any>>>(client.newCall(requestBuilder.build()).execute().use { response ->
+            check(response.isSuccessful) { "Request failed: ${response.request.url} -> HTTP ${response.code}" }
+            response.body.string()
+        })
 
     // For some reason, the Unicode GitHub repository has unqualified > minimally qualified emojis > fully qualified emojis as keys.
     // So there might be a description or keywords for the unqualified version but not the fully-qualified
-    val descriptionNodesLanguageMap = mutableMapOf<String, MutableMap<String, String?>>()
-    val keywordsNodesLanguageMap = mutableMapOf<String, MutableMap<String, List<String>?>>()
-    val fileNameList = mutableListOf<String>()
+    // Filled concurrently by the parallelStream below, so these must be thread-safe.
+    // The inner per-language maps stay regular maps, as they are later filled with null values.
+    val descriptionNodesLanguageMap = ConcurrentHashMap<String, MutableMap<String, String?>>()
+    val keywordsNodesLanguageMap = ConcurrentHashMap<String, MutableMap<String, List<String>?>>()
+    val fileNameList = Collections.synchronizedList(mutableListOf<String>())
     val emojisGroupedByDescription = allUnicodeEmojis.groupBy { it.description }
 
     val currentIndex = AtomicInteger(0)
@@ -307,7 +314,7 @@ fun generate(rootDir: String, generateAll: Boolean = false) {
         keywordsNodesLanguageMap.forEach { writeContentToPublicFiles("keywords/${it.key}", it.value, rootDir) }
     }
 
-    generateEmojiLanguageEnum(fileNameList, rootDir)
+    generateEmojiLanguageEnum(fileNameList.sorted(), rootDir)
     generateEmojiGroupEnum(allUnicodeEmojis.map { it.group }, rootDir)
     generateEmojiSubGroupEnum(allUnicodeEmojis.map { Pair(it.subgroup, it.group) }, rootDir)
     generateJavaSourceFiles(rootDir)
