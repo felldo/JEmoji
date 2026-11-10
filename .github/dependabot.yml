@@ -9,7 +9,17 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    groups:
+      # One PR for all Gradle dependencies (libraries, plugins, Gradle wrapper)
+      gradle-dependencies:
+        patterns:
+          - "*"
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "monthly"
+    groups:
+      # One PR for all GitHub Actions
+      github-actions:
+        patterns:
+          - "*"
