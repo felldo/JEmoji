@@ -11,7 +11,6 @@ import static net.fellbaum.jemoji.internal.EmojiUtils.*;
  * Represents an emoji along with its properties such as Unicode representation,
  * HTML codes, aliases, keywords, and grouping details.
  */
-@SuppressWarnings({"unused", "UnusedReturnValue"})
 public final class Emoji implements Comparable<Emoji> {
 
     private final String emoji;

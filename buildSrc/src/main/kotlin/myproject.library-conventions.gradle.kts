@@ -10,17 +10,14 @@ repositories {
     mavenCentral()
 }
 
-// Create extension object
 interface LibraryPluginExtension {
     val title: Property<String>
 }
 
-// Add the 'greeting' extension object to project
 val extension = project.extensions.create<LibraryPluginExtension>("library").apply {
     title.convention("")
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
 java {
     withJavadocJar()
     withSourcesJar()
@@ -34,18 +31,9 @@ testing {
     suites {
         // Configure the built-in test suite
         val test by getting(JvmTestSuite::class) {
-            // Use JUnit4 test framework
             useJUnitJupiter("6.1.3")
         }
     }
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<Test> {
-    systemProperty("file.encoding", "UTF-8")
 }
 
 tasks.withType<Javadoc>().configureEach {
@@ -70,12 +58,16 @@ tasks.withType<Javadoc>().configureEach {
 
 
 val stagingDir: Provider<Directory> = layout.buildDirectory.dir("staging-deploy")
+// Matches publish, publishAll, :jemoji:publish, publishToMavenLocal, jreleaser*, ...
+val isReleaseBuild = gradle.startParameter.taskNames.any { taskPath ->
+    val taskName = taskPath.substringAfterLast(':')
+    taskName.startsWith("publish") || taskName.startsWith("jreleaser")
+}
+if (isReleaseBuild) {
+    project.version = project.version.toString().removeSuffix("-SNAPSHOT")
+}
+
 publishing {
-    if (project.gradle.startParameter.taskNames.contains("publish")
-        or project.gradle.startParameter.taskNames.contains("publishToMavenLocal")
-    ) {
-        project.version = project.version.toString().replace("-SNAPSHOT", "")
-    }
     publications {
         create<MavenPublication>("mavenJava") {
             artifactId = project.base.archivesName.get()
@@ -139,8 +131,8 @@ jreleaser {
             skipRelease = true
             skipTag = true
             sign = true
-            branch = "main"
-            branchPush = "main"
+            branch = "master"
+            branchPush = "master"
             overwrite = true
         }
     }
@@ -159,4 +151,19 @@ jreleaser {
 
         }
     }
+}
+
+val signingSecretKeyRingFile = providers.gradleProperty("JEMOJI_SIGNING_SECRET_KEY_RING_FILE")
+val prePublishTask = tasks.register("prePublishTask") {
+    description = "Check if the secrets for signing are available before publishing"
+    doFirst {
+        if (signingSecretKeyRingFile.orNull.isNullOrBlank()) {
+            throw GradleException("Can not publish a new release because the secrets for signing are missing")
+        }
+    }
+}
+
+// When publishing, check if the secrets are available
+tasks.named("publish") {
+    dependsOn(prePublishTask)
 }

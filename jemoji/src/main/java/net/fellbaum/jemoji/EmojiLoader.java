@@ -5,21 +5,15 @@ import org.jspecify.annotations.Nullable;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
-import java.util.stream.Collectors;
 
 /**
  * Utility class for managing and loading emojis, including descriptions and keywords.
  * The class handles reading emoji-related data from resource files.
  */
-@SuppressWarnings("unused")
 public final class EmojiLoader {
 
     private EmojiLoader() {
@@ -70,20 +64,6 @@ public final class EmojiLoader {
         }
     }
 
-    private static String readFileAsString(final String filePathName) {
-        try {
-            try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName)) {
-                if (null == is) throw new IllegalStateException("InputStream is null");
-                try (final InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-                     final BufferedReader reader = new BufferedReader(isr)) {
-                    return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-                }
-            }
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
      * Loads all emoji descriptions into memory to avoid potential description file reads during operation.
      * This will most likely be called once on startup of your application.
@@ -95,7 +75,7 @@ public final class EmojiLoader {
     }
 
     /**
-     * Loads all emoji descriptions into memory to avoid potential description file reads during operation.
+     * Loads all emoji keywords into memory to avoid potential keyword file reads during operation.
      * This will most likely be called once on startup of your application.
      */
     public static void loadAllEmojiKeywords() {

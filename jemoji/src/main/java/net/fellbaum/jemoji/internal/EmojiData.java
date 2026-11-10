@@ -10,10 +10,6 @@ import org.jspecify.annotations.Nullable;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -123,20 +119,6 @@ public class EmojiData {
         @Nullable
         private static Set<Emoji> EMOJIS = null;
         static ObjectMapper objectMapper = new ObjectMapper();
-
-        static Object readFileAsObject(final String filePathName) {
-            try {
-                try (final InputStream is = EmojiManager.class.getResourceAsStream(filePathName);
-                     final BufferedInputStream bis = new BufferedInputStream(Objects.requireNonNull(is));
-                     final ObjectInputStream ois = new ObjectInputStream(bis);) {
-                    return ois.readObject();
-                } catch (final ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (final IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         static Set<Emoji> getEmojis() {
             if (EMOJIS == null) {

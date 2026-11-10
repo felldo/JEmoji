@@ -15,7 +15,6 @@ import static net.fellbaum.jemoji.EmojiLoader.readFromAllLanguageResourceFiles;
 import static net.fellbaum.jemoji.internal.EmojiData.*;
 import static net.fellbaum.jemoji.internal.EmojiUtils.*;
 
-@SuppressWarnings("unused")
 public final class EmojiManager {
 
     /**
