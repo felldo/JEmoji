@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1794958847838,
+  "lastUpdate": 1794959097696,
   "repoUrl": "https://github.com/felldo/JEmoji",
   "entries": {
     "Benchmark": [
@@ -22606,6 +22606,120 @@ window.BENCHMARK_DATA = {
           {
             "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
             "value": 11.58325944079653,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "d.fellbaum@hotmail.de",
+            "name": "Dominic Fellbaum",
+            "username": "felldo"
+          },
+          "distinct": true,
+          "id": "532b75508f7b1af257ebfcef200c83abf9fd5155",
+          "message": "Bump the gradle-dependencies group with 8 updates\n\nBumps the gradle-dependencies group with 8 updates:\n\n| Package | From | To |\n| --- | --- | --- |\n| [gradle-wrapper](https://github.com/gradle/gradle) | `9.8.2` | `9.9.0` |\n| [org.htmlunit:htmlunit](https://github.com/HtmlUnit/htmlunit) | `5.5.0` | `5.7.0` |\n| [com.palantir.javapoet:javapoet](https://github.com/palantir/javapoet) | `0.20.0` | `0.22.0` |\n| [org.jsoup:jsoup](https://github.com/jhy/jsoup) | `1.23.2` | `1.24.1` |\n| [org.jetbrains.kotlin.jvm](https://github.com/JetBrains/kotlin) | `2.4.20` | `2.4.21` |\n| org.jreleaser | `1.26.0` | `1.27.0` |\n| com.github.ben-manes.versions | `0.66.0` | `0.67.0` |\n| [nl.littlerobots.version-catalog-update](https://github.com/littlerobots/version-catalog-update-plugin) | `1.1.1` | `1.1.2` |\n\n\nUpdates `gradle-wrapper` from 9.8.2 to 9.9.0\n- [Release notes](https://github.com/gradle/gradle/releases)\n- [Commits](https://github.com/gradle/gradle/compare/v9.8.2...v9.9.0)\n\nUpdates `org.htmlunit:htmlunit` from 5.5.0 to 5.7.0\n- [Release notes](https://github.com/HtmlUnit/htmlunit/releases)\n- [Commits](https://github.com/HtmlUnit/htmlunit/compare/5.5.0...5.7.0)\n\nUpdates `com.palantir.javapoet:javapoet` from 0.20.0 to 0.22.0\n- [Release notes](https://github.com/palantir/javapoet/releases)\n- [Commits](https://github.com/palantir/javapoet/compare/0.20.0...0.22.0)\n\nUpdates `org.jsoup:jsoup` from 1.23.2 to 1.24.1\n- [Release notes](https://github.com/jhy/jsoup/releases)\n- [Changelog](https://github.com/jhy/jsoup/blob/master/CHANGES.md)\n- [Commits](https://github.com/jhy/jsoup/compare/jsoup-1.23.2...jsoup-1.24.1)\n\nUpdates `org.jetbrains.kotlin.jvm` from 2.4.20 to 2.4.21\n- [Release notes](https://github.com/JetBrains/kotlin/releases)\n- [Changelog](https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md)\n- [Commits](https://github.com/JetBrains/kotlin/compare/v2.4.20...v2.4.21)\n\nUpdates `org.jreleaser` from 1.26.0 to 1.27.0\n\nUpdates `com.github.ben-manes.versions` from 0.66.0 to 0.67.0\n\nUpdates `nl.littlerobots.version-catalog-update` from 1.1.1 to 1.1.2\n- [Release notes](https://github.com/littlerobots/version-catalog-update-plugin/releases)\n- [Changelog](https://github.com/littlerobots/version-catalog-update-plugin/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/littlerobots/version-catalog-update-plugin/compare/v1.1.1...v1.1.2)\n\n---\nupdated-dependencies:\n- dependency-name: gradle-wrapper\n  dependency-version: 9.9.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: org.htmlunit:htmlunit\n  dependency-version: 5.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: com.palantir.javapoet:javapoet\n  dependency-version: 0.22.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: org.jsoup:jsoup\n  dependency-version: 1.24.1\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: org.jetbrains.kotlin.jvm\n  dependency-version: 2.4.21\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: gradle-dependencies\n- dependency-name: org.jreleaser\n  dependency-version: 1.27.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: com.github.ben-manes.versions\n  dependency-version: 0.67.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n  dependency-group: gradle-dependencies\n- dependency-name: nl.littlerobots.version-catalog-update\n  dependency-version: 1.1.2\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n  dependency-group: gradle-dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+          "timestamp": "2026-11-17T23:51:27+01:00",
+          "tree_id": "96bc712844da99db6155d48652bd98e1eb8fefbb",
+          "url": "https://github.com/felldo/JEmoji/commit/532b75508f7b1af257ebfcef200c83abf9fd5155"
+        },
+        "date": 1794959096364,
+        "tool": "jmh",
+        "benches": [
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\":+1:\"} )",
+            "value": 21.386155062804924,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerAliasBenchmark.getByAlias ( {\"alias\":\"nope\"} )",
+            "value": 35.95761037941078,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.containsEmoji",
+            "value": 1.015914494054743,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractAliasesInOrder",
+            "value": 3.3703386355779563,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrder",
+            "value": 1.080485068291281,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisLengthDescending",
+            "value": 0.5264547774473727,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderOnlyEmojisRandomOrder",
+            "value": 0.6716685765454575,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.extractEmojisInOrderWithIndex",
+            "value": 1.0981035750310617,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getByDiscordAlias",
+            "value": 121.0109660653031,
+            "unit": "ns/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.getVariations",
+            "value": 0.37427443182798426,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.removeAllEmojis",
+            "value": 1.3415834279292567,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAliasesFunction",
+            "value": 4.00230669921949,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojis",
+            "value": 1.4072100989588994,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisFunction",
+            "value": 1.5076718483577767,
+            "unit": "ms/op",
+            "extra": "iterations: 5\nforks: 2\nthreads: 1"
+          },
+          {
+            "name": "benchmark.EmojiManagerBenchmark.replaceAllEmojisManyStarter",
+            "value": 20.33971363794856,
             "unit": "ms/op",
             "extra": "iterations: 5\nforks: 2\nthreads: 1"
           }
