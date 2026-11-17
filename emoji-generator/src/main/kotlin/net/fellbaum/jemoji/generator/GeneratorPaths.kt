@@ -13,7 +13,7 @@ class GeneratorPaths(val rootDir: File) {
     val githubDefinitionFile = sourceFilesDir.resolve("github-emoji-definition.json")
     val cldrRawFilesDir = sourceFilesDir.resolve("description")
 
-    /** Public JSON files (emojis.json, emojis-full.json, description/, keywords/). */
+    /** Public JSON files (emojis.json, description/, keywords/). */
     val publicDir = rootDir.resolve("public")
     val publicEmojisFile = publicDir.resolve("emojis.json")
 
@@ -27,6 +27,12 @@ class GeneratorPaths(val rootDir: File) {
 
     /** Generated Java sources, compiled into the core jemoji module. */
     val generatedSourcesDir = rootDir.resolve("jemoji/build/generated/jemoji")
+
+    /**
+     * Files too large for git (GitHub rejects files over 100 MiB), e.g. `emojis-full.json`. The update workflow
+     * uploads them to the `generated-data` GitHub release instead of committing them.
+     */
+    val releaseAssetsDir = rootDir.resolve("build/release-assets")
 
     /** Markdown summary of the changes in `public/emojis.json`, used as body of the update pull request. */
     val changeSummaryFile = rootDir.resolve("build/emoji-changes.md")

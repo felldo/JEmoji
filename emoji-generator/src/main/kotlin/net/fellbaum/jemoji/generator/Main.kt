@@ -24,7 +24,7 @@ import java.io.File
  * Arguments:
  * - `--rootDir=<path>`: repository root (default: working directory)
  * - `--all`: also write all per-language files (jemoji-languages resources, `public/description`,
- *   `public/keywords`, `public/emojis-full.json`)
+ *   `public/keywords`, and `emojis-full.json` in [GeneratorPaths.releaseAssetsDir])
  *
  * Environment:
  * - `GITHUB_TOKEN` (optional): raises the GitHub API rate limit, see [GitHubToken]
@@ -107,7 +107,8 @@ private fun writeLanguageFiles(
         written.any { it }
     }
 
-    writePublicJson(paths, "emojis-full", translations.withAllLanguages(emojis, descriptionsByLocale))
+    // Over 100 MiB, so it is published as release asset instead of in public/
+    writeJsonPair(paths.releaseAssetsDir, "emojis-full", translations.withAllLanguages(emojis, descriptionsByLocale))
     return changedLocales
 }
 
@@ -151,7 +152,7 @@ private fun writeChangeSummary(
         println("Emoji changes: ${summary.added.size} added, ${summary.removed.size} removed, " +
                 "${summary.aliasMoves.size} aliases moved, ${summary.changedEmojiCount} changed")
         val translationNote = changedLocales?.let {
-            "Translation files (description/, keywords/, emojis-full.json): $it of $localeCount locales changed, not listed in detail."
+            "Translation files (description/, keywords/): $it of $localeCount locales changed, not listed in detail."
         }
         summary.toPullRequestBody(translationNote)
     }

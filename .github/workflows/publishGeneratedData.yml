@@ -1,0 +1,54 @@
+name: Publish Generated Data
+
+# Publishes the files that are too large for the repository (emojis-full.json, emojis-full.min.json) to the
+# generated-data release, so they get a permanent link:
+#   https://github.com/<owner>/<repo>/releases/download/generated-data/emojis-full.json
+#
+# Runs when the "Update generated files" PR is merged and takes the files from the artifact of the latest
+# successful "Update Generated Files" run, which is the run that last pushed the PR branch. That way the release
+# matches the merged data instead of a new generation.
+
+permissions:
+  contents: write
+  actions: read
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [ master ]
+  # Manual fallback, e.g. for the first publication or if a run was missed
+  workflow_dispatch:
+
+env:
+  RELEASE_TAG: generated-data
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'update-generated-files')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Download artifact of the latest generation
+        run: |
+          RUN_ID=$(gh run list --workflow updateGeneratedFiles.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          if [ -z "$RUN_ID" ]; then
+            echo "::error::No successful Update Generated Files run found"
+            exit 1
+          fi
+          echo "Using artifact of run $RUN_ID"
+          gh run download "$RUN_ID" --name release-assets --dir release-assets
+
+      - name: Upload to release
+        run: |
+          if ! gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" \
+              --target master \
+              --title "Generated data" \
+              --notes "Emoji data that is too large for the repository (GitHub allows at most 100 MiB per file). Updated whenever the generated files PR is merged. Not a library release." \
+              --prerelease --latest=false
+          fi
+          gh release upload "$RELEASE_TAG" release-assets/*.json --clobber

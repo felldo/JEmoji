@@ -39,6 +39,16 @@ jobs:
           max_attempts: 2
           command: ./gradlew generateAll -s
 
+      # Files too large for the repository (emojis-full.json) are not committed. They are kept as artifact of this
+      # run and published to the generated-data release by publishGeneratedData.yml once the PR is merged.
+      - name: Keep release assets
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: release-assets
+          path: build/release-assets/*.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"

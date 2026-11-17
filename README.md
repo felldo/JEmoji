@@ -329,6 +329,19 @@ large files were used. Click [Here](./jemoji/src/jmh/) to see the benchmark code
 The emoji list can be easily generated with the ``generate`` Gradle task. The generated list will be saved in the
 ``public`` folder.
 
+The generated JSON files can also be used without this library:
+
+| File                                     | Link                                                                                                  |
+|------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `emojis.json` / `emojis.min.json`        | [public/emojis.json](./public/emojis.json)                                                            |
+| `description/<locale>.json`              | [public/description](./public/description)                                                            |
+| `keywords/<locale>.json`                 | [public/keywords](./public/keywords)                                                                  |
+| `emojis-full.json` / `emojis-full.min.json` | https://github.com/felldo/JEmoji/releases/download/generated-data/emojis-full.json (and `.min.json`) |
+
+`emojis-full.json` contains all languages and is close to GitHub's limit of 100 MiB per file in a repository, so it is
+published in the [`generated-data` release](https://github.com/felldo/JEmoji/releases/tag/generated-data) instead. The
+copy in `public/` is no longer updated. See [public/README.md](./public/README.md) for details.
+
 ## Project setup
 To get started with your local development, execute the ``generate`` Gradle task in the group ``jemoji``. 
 
