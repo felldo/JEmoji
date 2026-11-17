@@ -10,17 +10,20 @@ import java.util.concurrent.atomic.AtomicLong
  * their modification time. Parent directories are created if needed.
  *
  * The size check is a cheap metadata lookup; the content is only read if the sizes match.
+ *
+ * @return whether the file was written
  */
-fun File.writeTextIfChanged(text: String) {
+fun File.writeTextIfChanged(text: String): Boolean {
     val bytes = text.toByteArray(Charsets.UTF_8)
     if (isFile && length() == bytes.size.toLong() && readBytes().contentEquals(bytes)) {
         WriteStats.skipped.incrementAndGet()
-        return
+        return false
     }
     parentFile?.mkdirs()
     writeBytes(bytes)
     WriteStats.written.incrementAndGet()
     WriteStats.writtenBytes.addAndGet(bytes.size.toLong())
+    return true
 }
 
 /** Counts writes for the summary at the end of a run. Thread-safe, CLDR files are written in parallel. */

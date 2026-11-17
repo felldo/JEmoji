@@ -55,5 +55,6 @@ jobs:
         with:
           branch: ${{ env.PR_BRANCH }}
           title: Update generated files
-          body: Updates all generated files.
+          # Written by the generator, lists the emoji changes since the raw diff is too large for GitHub
+          body-path: build/emoji-changes.md
           commit-message: Update generated files

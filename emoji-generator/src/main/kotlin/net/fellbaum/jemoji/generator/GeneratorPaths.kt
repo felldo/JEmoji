@@ -27,4 +27,7 @@ class GeneratorPaths(val rootDir: File) {
 
     /** Generated Java sources, compiled into the core jemoji module. */
     val generatedSourcesDir = rootDir.resolve("jemoji/build/generated/jemoji")
+
+    /** Markdown summary of the changes in `public/emojis.json`, used as body of the update pull request. */
+    val changeSummaryFile = rootDir.resolve("build/emoji-changes.md")
 }

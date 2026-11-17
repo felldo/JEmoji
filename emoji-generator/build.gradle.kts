@@ -28,6 +28,14 @@ kotlin {
     jvmToolchain(25)
 }
 
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter("6.1.3")
+        }
+    }
+}
+
 val mainClassName = "net.fellbaum.jemoji.generator.MainKt"
 
 tasks.register<JavaExec>("generate") {

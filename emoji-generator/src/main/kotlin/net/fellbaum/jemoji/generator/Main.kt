@@ -51,12 +51,12 @@ fun generate(paths: GeneratorPaths, generateAll: Boolean = false) {
     val emojis = translations.withEnglishKeywords(parsedEmojis)
     val descriptionsByLocale = translations.locales.associate { it.locale to translations.expandedDescriptions(it) }
 
-    // 2. Write the emoji data files
+    // 2. Write the emoji data files, remembering the previous version for the change summary
+    val previousEmojis = readPreviousEmojis(paths)
     paths.emojisResourceFile.writeTextIfChanged(sortedJsonMapper.writeValueAsString(emojis))
     writePublicJson(paths, "emojis", emojis)
-    if (generateAll) {
-        writeLanguageFiles(paths, emojis, translations, descriptionsByLocale)
-    }
+    val changedLocales = if (generateAll) writeLanguageFiles(paths, emojis, translations, descriptionsByLocale) else null
+    writeChangeSummary(paths, previousEmojis, emojis, changedLocales, translations.locales.size)
 
     // 3. Generate the Java sources
     generateEmojiLanguageEnum(translations.locales.map { it.locale }, paths.generatedSourcesDir)
@@ -83,25 +83,80 @@ private fun fetchPlatformAliases(paths: GeneratorPaths, http: Http): PlatformAli
     return PlatformAliases(discord = discord, github = github, slack = fetchSlackAliases())
 }
 
-/** Files that contain all languages; only written with `--all`. */
+/**
+ * Files that contain all languages; only written with `--all`.
+ *
+ * @return the number of locales with at least one changed file
+ */
 private fun writeLanguageFiles(
     paths: GeneratorPaths,
     emojis: List<GradleEmoji>,
     translations: Translations,
     descriptionsByLocale: Map<String, Map<String, String>>,
-) {
-    translations.locales.forEach { locale ->
+): Int {
+    val changedLocales = translations.locales.count { locale ->
         // Resources of the jemoji-languages module
         val descriptions = descriptionsByLocale.getValue(locale.locale)
-        paths.languageDescriptionFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(descriptions))
-        paths.languageKeywordFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(locale.keywords))
-
-        // Public files list every emoji, with null if the locale has no entry
-        writePublicJson(paths, "description/${locale.locale}", descriptions.withNullForMissing(emojis))
-        writePublicJson(paths, "keywords/${locale.locale}", locale.keywords.withNullForMissing(emojis))
+        val written = listOf(
+            paths.languageDescriptionFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(descriptions)),
+            paths.languageKeywordFile(locale.locale).writeTextIfChanged(jsonMapper.writeValueAsString(locale.keywords)),
+            // Public files list every emoji, with null if the locale has no entry
+            writePublicJson(paths, "description/${locale.locale}", descriptions.withNullForMissing(emojis)),
+            writePublicJson(paths, "keywords/${locale.locale}", locale.keywords.withNullForMissing(emojis)),
+        )
+        written.any { it }
     }
 
     writePublicJson(paths, "emojis-full", translations.withAllLanguages(emojis, descriptionsByLocale))
+    return changedLocales
+}
+
+/**
+ * The committed `public/emojis.json` (`git show HEAD:...`), so a retried or repeated run still compares against
+ * the last commit and not against its own output. Falls back to the file on disk if git is not available.
+ */
+private fun readPreviousEmojis(paths: GeneratorPaths): List<GradleEmoji>? {
+    val committed = try {
+        val process = ProcessBuilder("git", "show", "HEAD:public/emojis.json")
+            .directory(paths.rootDir)
+            .redirectError(ProcessBuilder.Redirect.DISCARD)
+            .start()
+        val bytes = process.inputStream.use { it.readBytes() }
+        if (process.waitFor() == 0) bytes else null
+    } catch (e: Exception) {
+        null
+    }
+    return when {
+        committed != null -> jsonMapper.readValue<List<GradleEmoji>>(committed)
+        paths.publicEmojisFile.isFile -> {
+            println("Warning: Could not read public/emojis.json from git, comparing against the file on disk")
+            jsonMapper.readValue<List<GradleEmoji>>(paths.publicEmojisFile)
+        }
+        else -> null
+    }
+}
+
+/** Writes [GeneratorPaths.changeSummaryFile]; without a previous `public/emojis.json` there is nothing to compare. */
+private fun writeChangeSummary(
+    paths: GeneratorPaths,
+    previousEmojis: List<GradleEmoji>?,
+    emojis: List<GradleEmoji>,
+    changedLocales: Int?,
+    localeCount: Int,
+) {
+    val markdown = if (previousEmojis == null) {
+        "## Emoji changes\n\nNo previous `public/emojis.json` to compare with.\n"
+    } else {
+        val summary = ChangeSummary(previousEmojis.map { it.toSnapshot() }, emojis.map { it.toSnapshot() })
+        println("Emoji changes: ${summary.added.size} added, ${summary.removed.size} removed, " +
+                "${summary.aliasMoves.size} aliases moved, ${summary.changedEmojiCount} changed")
+        val translationNote = changedLocales?.let {
+            "Translation files (description/, keywords/, emojis-full.json): $it of $localeCount locales changed, not listed in detail."
+        }
+        summary.toPullRequestBody(translationNote)
+    }
+    paths.changeSummaryFile.writeTextIfChanged(markdown)
+    println("Change summary: ${paths.changeSummaryFile}")
 }
 
 private fun <V> Map<String, V>.withNullForMissing(emojis: List<GradleEmoji>): Map<String, V?> =
